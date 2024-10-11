@@ -2,7 +2,7 @@
 {
     public class AddGymDTO
     {
-        public string GymName { get; set; };
+        public string GymName { get; set; }
 
         public string? GymImage { get; set; }
 

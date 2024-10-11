@@ -14,13 +14,13 @@ namespace Project_Fitness.Server.Controllers
             _context = context;
             
         }
-        [HttpPost("AddNewGym")]
-        public async Task<IActionResult> AddNewGym() {
-            var NewGym = new Gym {
-            GymName=
-            };
-            return Ok();
-        }
+        //[HttpPost("AddNewGym")]
+        //public async Task<IActionResult> AddNewGym() {
+        //    var NewGym = new Gym {
+        //    GymName=
+        //    };
+        //    return Ok();
+        //}
 
     }
 }
