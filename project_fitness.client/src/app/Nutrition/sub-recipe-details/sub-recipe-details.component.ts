@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
-import { UrlNutritionService } from '../URL-Nutrition/url-nutrition.service';
 import { ActivatedRoute } from '@angular/router';
+import { URLService } from '../../url/url.service';
 
 @Component({
   selector: 'app-sub-recipe-details',
@@ -16,7 +16,7 @@ export class SubRecipeDetailsComponent {
     console.log(this.DetailsArray, "details")
   }
 
-  constructor(private _ser: UrlNutritionService, private _rout: ActivatedRoute) { }
+  constructor(private _ser: URLService, private _rout: ActivatedRoute) { }
 
   DetailsArray: any
   getDetails(id: any) {

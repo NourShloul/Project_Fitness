@@ -5,7 +5,7 @@ import { Observable } from 'rxjs';
 @Injectable({
   providedIn: 'root'
 })
-export class UrlNutritionService {
+export class URLService {
 
   constructor(private http: HttpClient) { }
   staticData = "https://localhost:7072/api";

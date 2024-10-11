@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { UrlNutritionService } from '../URL-Nutrition/url-nutrition.service';
+import { URLService } from '../../url/url.service';
 
 @Component({
   selector: 'app-recips',
@@ -11,7 +11,7 @@ export class RecipsComponent {
     this.GetAllRecipe()
   }
   constructor(private _ser:
-    UrlNutritionService) { }
+    URLService) { }
 
  RecipeArray: any
   GetAllRecipe() {

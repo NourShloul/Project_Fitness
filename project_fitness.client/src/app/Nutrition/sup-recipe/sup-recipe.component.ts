@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
-import { UrlNutritionService } from '../URL-Nutrition/url-nutrition.service';
 import { ActivatedRoute } from '@angular/router';
+import { URLService } from '../../url/url.service';
 
 @Component({
   selector: 'app-sup-recipe',
@@ -15,7 +15,7 @@ export class SupRecipeComponent {
     this.getsubrecipr(this.parameter);
   }
   subRecipeData: any
-  constructor(private _ser: UrlNutritionService, private _route: ActivatedRoute) { }
+  constructor(private _ser: URLService, private _route: ActivatedRoute) { }
   getsubrecipr(id: any) {
     this._ser.getSubRecipe(id).subscribe((data) => {
       this.subRecipeData = data
