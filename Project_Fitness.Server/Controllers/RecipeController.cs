@@ -88,7 +88,18 @@ namespace Project_Fitness.Server.Controllers
 
         }
 
+        [HttpGet("getImages/{imageName}")]
+        public IActionResult getImage(string imageName)
+        {
 
+            var pathImage = Path.Combine(Directory.GetCurrentDirectory(), "ImageRecipe", imageName);
+            if (System.IO.File.Exists(pathImage))
+            {
+                return PhysicalFile(pathImage, "image/*");
+            }
+
+            return NotFound();
+        }
 
     }
 }

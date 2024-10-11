@@ -8,6 +8,9 @@
     <BuildOutputFolder>$(MSBuildProjectDirectory)\dist\project_fitness.client\browser\</BuildOutputFolder>
   </PropertyGroup>
   <ItemGroup>
+    <Folder Include="src\app\assets\" />
+  </ItemGroup>
+  <ItemGroup>
     <Folder Include="src\Nour\" />
   </ItemGroup>
 </Project>

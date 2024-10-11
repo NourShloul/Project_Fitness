@@ -8,9 +8,6 @@ import { CategoriesService } from '../categories.service';
 })
 export class CategoryComponent {
 
-
-  constructor(private categoryService: CategoriesService, private router: Router) { }
-
 ngOnInit(): void {
   this.categoryService.getCategory().subscribe(
     (data) => {
