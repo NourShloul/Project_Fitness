@@ -57,7 +57,8 @@ import { ContactComponent } from './AOQ/contact/contact.component';
       { path: "AllGyms", component: GymComponent },
       { path: "About", component: AboutComponent },
       { path: "services", component: MainServicesComponent },
-      { path: "Contact", component: ContactComponent }
+      { path: "Contact", component: ContactComponent },
+      { path: "AllFitness", component: FitnessComponent },
 
       ])
   ],
