@@ -3,7 +3,7 @@
     public class AddFitnessClassDTO
     {
 
-        public string FitnessClassesName { get; set; } = null!;
+        public string? FitnessClassesName { get; set; } = null!;
 
         public IFormFile? FitnessClassesImage { get; set; }
 
@@ -15,8 +15,8 @@
 
         public string? Days { get; set; }
 
-        public TimeOnly? StartTime { get; set; }
+        public string? StartTime { get; set; }
 
-        public TimeOnly? EndTime { get; set; }
+        public string? EndTime { get; set; }
     }
 }
