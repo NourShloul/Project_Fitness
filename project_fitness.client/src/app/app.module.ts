@@ -7,12 +7,14 @@ import { AppComponent } from './app.component';
 import { NutrotionPageOneComponent } from './Nutrition/nutrotion-page-one/nutrotion-page-one.component';
 import { RouterModule } from '@angular/router';
 import { RecipsComponent } from './Nutrition/recips/recips.component';
+import { RegisterComponent } from './mustafa/register/register.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     NutrotionPageOneComponent,
-    RecipsComponent
+    RecipsComponent,
+    RegisterComponent
   ],
   imports: [
     BrowserModule, HttpClientModule,
