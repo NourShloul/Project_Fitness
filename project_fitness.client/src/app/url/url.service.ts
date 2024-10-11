@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, Observable } from 'rxjs';
+import { BehaviorSubject } from 'rxjs';
 import { Observable } from 'rxjs';
 
 @Injectable({
@@ -25,8 +25,7 @@ export class URLService {
   loginUser(data: any): Observable<any> {
     return this.http.post<any>(`${this.staticData}/registeruser/LOGIN`, data)
   }
-  constructor(private http: HttpClient) { }
-  staticData = "https://localhost:7072/api";
+ 
 
 
 
