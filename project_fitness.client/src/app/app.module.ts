@@ -7,12 +7,17 @@ import { AppComponent } from './app.component';
 import { NutrotionPageOneComponent } from './Nutrition/nutrotion-page-one/nutrotion-page-one.component';
 import { RouterModule } from '@angular/router';
 import { RecipsComponent } from './Nutrition/recips/recips.component';
+import { NavBarComponent } from './nav-bar/nav-bar.component';
+import { FooterComponent } from './footer/footer.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     NutrotionPageOneComponent,
     RecipsComponent
+    AppComponent,
+    NavBarComponent,
+    FooterComponent
   ],
   imports: [
     BrowserModule, HttpClientModule,
