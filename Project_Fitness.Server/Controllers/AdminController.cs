@@ -129,7 +129,7 @@ namespace Project_Fitness.Server.Controllers
         }
 
         [HttpPost("AddNewFitnessClass")]
-        public async Task<IActionResult> AddNewFitnessClass(AddFitnessClassDTO add) 
+        public async Task<IActionResult> AddNewFitnessClass([FromForm] AddFitnessClassDTO add)
         {
             if (add.FitnessClassesImage != null && add.FitnessClassesImage.Length > 0)
             {
@@ -137,7 +137,7 @@ namespace Project_Fitness.Server.Controllers
 
                 try
                 {
-
+                   
                     if (!Directory.Exists(uploadsFolder))
                     {
                         Directory.CreateDirectory(uploadsFolder);
@@ -146,13 +146,20 @@ namespace Project_Fitness.Server.Controllers
                     var uniqueFileName = Guid.NewGuid().ToString() + "_" + add.FitnessClassesImage.FileName;
                     var filePathWwwroot = Path.Combine(uploadsFolder, uniqueFileName);
 
-
+                    
                     using (var fileStream = new FileStream(filePathWwwroot, FileMode.Create))
                     {
                         await add.FitnessClassesImage.CopyToAsync(fileStream);
                     }
 
+                   
+                    if (!TimeOnly.TryParse(add.StartTime, out TimeOnly startTime) ||
+                        !TimeOnly.TryParse(add.EndTime, out TimeOnly endTime))
+                    {
+                        return BadRequest("Invalid start or end time format.");
+                    }
 
+                    
                     var fitness = new FitnessClass
                     {
                         FitnessClassesName = add.FitnessClassesName,
@@ -161,11 +168,11 @@ namespace Project_Fitness.Server.Controllers
                         Price = add.Price,
                         FitnessClassesLocation = add.FitnessClassesLocation,
                         Days = add.Days,
-                        StartTime = TimeOnly.Parse( add.StartTime),
-                        EndTime = TimeOnly.Parse( add.EndTime)
+                        StartTime = startTime,
+                        EndTime = endTime
                     };
 
-
+                    
                     _context.FitnessClasses.Add(fitness);
                     await _context.SaveChangesAsync();
 
@@ -173,14 +180,14 @@ namespace Project_Fitness.Server.Controllers
                 }
                 catch (Exception ex)
                 {
-
+                    
                     return StatusCode(500, "An error occurred while processing your request.");
                 }
             }
 
-
-            return BadRequest("Invalid data or missing image.");
            
+            return BadRequest("Invalid data or missing image.");
         }
+
     }
 }
