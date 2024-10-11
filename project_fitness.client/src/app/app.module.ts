@@ -10,6 +10,8 @@ import { RecipsComponent } from './Nutrition/recips/recips.component';
 import { NavBarComponent } from './nav-bar/nav-bar.component';
 import { FooterComponent } from './footer/footer.component';
 import { HomePageComponent } from './home-page/home-page.component';
+import { SupRecipeComponent } from './Nutrition/sup-recipe/sup-recipe.component';
+import { SubRecipeDetailsComponent } from './Nutrition/sub-recipe-details/sub-recipe-details.component';
 
 @NgModule({
   declarations: [
@@ -18,15 +20,20 @@ import { HomePageComponent } from './home-page/home-page.component';
     RecipsComponent,
     NavBarComponent,
     FooterComponent,
-    HomePageComponent
+    HomePageComponent,
+    SupRecipeComponent,
+    SubRecipeDetailsComponent
   ],
   imports: [
     BrowserModule, HttpClientModule,
     AppRoutingModule,
     RouterModule.forRoot(
-      [{ path: "NutritionPageOne", component: NutrotionPageOneComponent },
+      [{ path: "", component: HomePageComponent, pathMatch: "full" },
+        { path: "NutritionPageOne", component: NutrotionPageOneComponent },
         { path: "Recips", component: RecipsComponent },
-        { path: "", component: HomePageComponent, pathMatch: "full" }
+        { path: "SupRecipe/:id", component: SupRecipeComponent },
+        { path: "SupRecipeDetails/:id", component: SubRecipeDetailsComponent }
+       
       ])
   ],
   providers: [],
