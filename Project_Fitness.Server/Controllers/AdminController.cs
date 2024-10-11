@@ -177,6 +177,28 @@ namespace Project_Fitness.Server.Controllers
                     return StatusCode(500, "An error occurred while processing your request.");
                 }
             }
+            // GET: api/Carts
+            [HttpGet("get/cartDate")]
+             async Task<ActionResult<IEnumerable<CartDTO>>> GetCarts()
+            {
+                var carts = await _context.Carts
+                    .Include(c => c.CartItems)
+                    .Select(c => new CartDTO
+                    {
+                        Id = c.Id,
+                        UserId = c.UserId,
+                        CreatedDate = c.CreatedDate,
+                        CartItems = c.CartItems.Select(ci => new CartitemDTO
+                        {
+                            ProductId = ci.ProductId,
+                            Quantity = ci.Quantity,
+                            Price = ci.Price
+                        }).ToList()
+                    })
+                    .ToListAsync();
+
+                return Ok(carts);
+            }
 
 
             return BadRequest("Invalid data or missing image.");

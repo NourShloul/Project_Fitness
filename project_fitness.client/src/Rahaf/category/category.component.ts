@@ -8,19 +8,19 @@ import { CategoriesService } from '../categories.service';
 })
 export class CategoryComponent {
 
-ngOnInit(): void {
-  this.categoryService.getCategory().subscribe(
-    (data) => {
-      this.categories = data;
-    },
-    (error) => {
-      console.error('Error fetching categories:', error);
-    }
-  );
-}
+//ngOnInit(): void {
+//  this.categoryService.getCategory().subscribe(
+//    (data) => {
+//      this.categories = data;
+//    },
+//    (error) => {
+//      console.error('Error fetching categories:', error);
+//    }
+//  );
+//}
 
-viewCategoryProducts(categoryId: number): void {
+//viewCategoryProducts(categoryId: number): void {
 
-  this.router.navigate(['/products/category', categoryId]);
-}
+//  this.router.navigate(['/products/category', categoryId]);
+//}
 }
