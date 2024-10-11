@@ -1,8 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Project_Fitness.Server.Models;
@@ -42,7 +40,6 @@ namespace Project_Fitness.Server.Controllers
         }
 
         // PUT: api/Payments/5
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
         public async Task<IActionResult> PutPayment(int id, Payment payment)
         {
@@ -73,12 +70,32 @@ namespace Project_Fitness.Server.Controllers
         }
 
         // POST: api/Payments
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
-        public async Task<ActionResult<Payment>> PostPayment(Payment payment)
+        public async Task<IActionResult> PostPayment([FromBody] Payment payment)
         {
+            // Check if the associated order exists
+            var order = await _context.Orders.FindAsync(payment.OrderId);
+            if (order == null)
+            {
+                return NotFound("Order not found.");
+            }
+
+            // Process the payment
             _context.Payments.Add(payment);
             await _context.SaveChangesAsync();
+
+            if (payment.PaymentStatus == "Success")
+            {
+                order.Status = "Paid";
+                _context.Entry(order).State = EntityState.Modified;
+                await _context.SaveChangesAsync();
+            }
+            else if (payment.PaymentStatus == "Failed")
+            {
+                order.Status = "Failed"; 
+                _context.Entry(order).State = EntityState.Modified;
+                await _context.SaveChangesAsync();
+            }
 
             return CreatedAtAction("GetPayment", new { id = payment.Id }, payment);
         }

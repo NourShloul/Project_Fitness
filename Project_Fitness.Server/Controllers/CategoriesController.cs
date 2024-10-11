@@ -1,11 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Project_Fitness.Server.DTO;
 using Project_Fitness.Server.Models;
+using System.Linq;
 
 namespace Project_Fitness.Server.Controllers
 {
@@ -20,12 +17,20 @@ namespace Project_Fitness.Server.Controllers
             _context = context;
         }
 
-
         // GET: api/Categories
         [HttpGet]
         public IActionResult GetCategories()
         {
-            var categories = _context.Categories.ToList();
+            var categories = _context.Categories
+                .Select(c => new CategoriesDTO
+                {
+                    Id = c.Id,
+                    CategoryName = c.CategoryName,
+                    Description = c.Description,
+                    Image = c.Image
+                })
+                .ToList();
+
             return Ok(categories);
         }
 
@@ -33,7 +38,16 @@ namespace Project_Fitness.Server.Controllers
         [HttpGet("{id}")]
         public IActionResult GetCategory(int id)
         {
-            var category = _context.Categories.Find(id);
+            var category = _context.Categories
+                .Where(c => c.Id == id)
+                .Select(c => new CategoriesDTO
+                {
+                    Id = c.Id,
+                    CategoryName = c.CategoryName,
+                    Description = c.Description,
+                    Image = c.Image
+                })
+                .FirstOrDefault();
 
             if (category == null)
             {
@@ -43,49 +57,32 @@ namespace Project_Fitness.Server.Controllers
             return Ok(category);
         }
 
-        // POST: api/Categories
-        [HttpPost]
-        public IActionResult PostCategory([FromBody] Category category)
+        // GET: api/Categories/ByProduct/5
+        // Get category by product ID
+        [HttpGet("ByProduct/{productId}")]
+        public IActionResult GetCategoryByProductId(int productId)
         {
-            if (ModelState.IsValid)
-            {
-                _context.Categories.Add(category);
-                _context.SaveChanges();
+            var category = _context.Products
+                .Where(p => p.Id == productId)
+                .Include(p => p.Category) // Include the category relationship
+                .Select(p => new CategoriesDTO
+                {
+                    Id = p.Category.Id,
+                    CategoryName = p.Category.CategoryName,
+                    Description = p.Category.Description,
+                    Image = p.Category.Image
+                })
+                .FirstOrDefault();
 
-                return CreatedAtAction("GetCategory", new { id = category.Id }, category);
+            if (category == null)
+            {
+                return NotFound("Category for the given product ID not found.");
             }
-            return BadRequest(ModelState);
+
+            return Ok(category);
         }
 
-        // PUT: api/Categories/5
-        [HttpPut("{id}")]
-        public IActionResult PutCategory(int id, [FromBody] Category category)
-        {
-            if (id != category.Id)
-            {
-                return BadRequest("Category ID mismatch.");
-            }
-
-            _context.Entry(category).State = EntityState.Modified;
-
-            try
-            {
-                _context.SaveChanges();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!CategoryExists(id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
-            }
-
-            return NoContent();
-        }
+     
 
         // DELETE: api/Categories/5
         [HttpDelete("{id}")]
