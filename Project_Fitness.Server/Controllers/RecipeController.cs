@@ -27,13 +27,13 @@ namespace Project_Fitness.Server.Controllers
         }
         [HttpGet("Nutrition/GetRecipeById/{id}")]
         public IActionResult GetRecipeById(int id) {
-            if (id == 0) { 
-                return BadRequest();
+            if (id <= 0) { 
+                return BadRequest("Invalid Recipe ID");
             }
             var recipe = _db.Recipes.Where(p => p.RecipeId == id).FirstOrDefault();
             if (recipe == null) 
             { 
-                return NotFound();
+                return NotFound("No Recipe found for the given Recipe ID");
             }
             return Ok(recipe);
         }
@@ -41,7 +41,7 @@ namespace Project_Fitness.Server.Controllers
         public IActionResult CreateRecipe([FromForm] RecipeDTO recipeDTO) {
             if (!ModelState.IsValid)
             {
-                return BadRequest();
+                return BadRequest("Invalid Recipe");
 
             }
             var recipe = new Recipe
@@ -72,7 +72,7 @@ namespace Project_Fitness.Server.Controllers
 
             if (id <= 0)
             {
-                return BadRequest();
+                return BadRequest("Invalid Recipe");
             }
             var recipe = _db.Recipes.FirstOrDefault(p => p.RecipeId == id);
             if (recipe != null)
@@ -83,7 +83,8 @@ namespace Project_Fitness.Server.Controllers
                 return NoContent();
 
             }
-            return NotFound();
+            return NotFound("No Recipe found");
+
 
         }
 
