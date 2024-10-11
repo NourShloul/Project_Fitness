@@ -29,7 +29,7 @@ import { FitnessComponent } from './Services(a,m)/fitness/fitness.component';
     SupRecipeComponent,
     SubRecipeDetailsComponent,
     RegisterComponent,  // أضف RegisterComponent هنا
-    LoginComponent 
+    LoginComponent,
     SubRecipeDetailsComponent,
     MainServicesComponent,
     GymComponent,
