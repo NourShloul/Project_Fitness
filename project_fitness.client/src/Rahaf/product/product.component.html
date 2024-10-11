@@ -1,0 +1,22 @@
+<div class="row">
+  <div class="col-sm-6 col-md-4 col-lg-3" *ngFor="let product of array">
+    <div class="content-card">
+      <div class="card-big-shadow">
+        <div class="card card-just-text" data-background="color" data-color="yellow" data-radius="none">
+          <div class="content">
+            <h6 class="category">{{ product.category || 'Best cards' }}</h6>
+            <h4 class="title">
+              <a [routerLink]="['/product', product.id]">{{ product.productName }}</a>
+            </h4>
+            <p class="description">{{ product.description | slice: 0:80 }}...</p>
+
+            <!-- View Details Button -->
+            <a [routerLink]="['/product', product.id]" class="btn custom-btn" (click)="onViewDetails(product)">
+              View Details
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
