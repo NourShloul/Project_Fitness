@@ -13,14 +13,6 @@ import { FooterComponent } from './footer/footer.component';
 import { HomePageComponent } from './home-page/home-page.component';
 import { SupRecipeComponent } from './Nutrition/sup-recipe/sup-recipe.component';
 import { SubRecipeDetailsComponent } from './Nutrition/sub-recipe-details/sub-recipe-details.component';
-import { ContactUsComponent } from './Rahaf/contact-us/contact-us.component';
-import { CategoryComponent } from './Rahaf/category/category.component';
-import { ProductComponent } from './Rahaf/product/product.component';
-import { ProductDetailsComponent } from './Rahaf/product-details/product-details.component';
-import { AboutUsComponent } from './Rahaf/about-us/about-us.component';
-import { PolicesComponent } from './Rahaf/polices/polices.component';
-import { CartComponent } from './Rahaf/cart/cart.component';
-import { PaymentComponent } from './Rahaf/payment/payment.component';
 
 import { CartService } from './Rahaf/cart.service';
 import { ProductService } from './Rahaf/product.service';
@@ -34,43 +26,21 @@ import { ProductService } from './Rahaf/product.service';
     FooterComponent,
     HomePageComponent,
     SupRecipeComponent,
-    SubRecipeDetailsComponent,
-    ContactUsComponent,
-    CategoryComponent,
-    ProductComponent,
-    ProductDetailsComponent,
-    AboutUsComponent,
-    PolicesComponent,
-    CartComponent,
-    PaymentComponent
+    SubRecipeDetailsComponent
   ],
   imports: [
-    BrowserModule,
-    HttpClientModule,
+    BrowserModule, HttpClientModule,
     AppRoutingModule,
-    FormsModule,
+    FormsModule ,
     RouterModule.forRoot(
       [
         { path: "", component: HomePageComponent, pathMatch: "full" },
         { path: "NutritionPageOne", component: NutrotionPageOneComponent },
         { path: "Recips", component: RecipsComponent },
         { path: "SupRecipe/:id", component: SupRecipeComponent },
-        { path: "SupRecipeDetails/:id", component: SubRecipeDetailsComponent },
-        { path: "contact-us", component: ContactUsComponent },
-        { path: "categories", component: CategoryComponent },
-        { path: 'Product/:id', component: ProductComponent },
-        { path: 'ProductDetails/:id', component: ProductDetailsComponent },
-        { path: 'about-us', component: AboutUsComponent },
-        { path: 'policies', component: PolicesComponent },
-        { path: 'cart', component: CartComponent },
-        { path: 'payment', component: PaymentComponent },
-        { path: "**", redirectTo: "", pathMatch: "full" }
-      ]
-    )
-  ],
-  providers: [
-    CartService,
-    ProductService
+        { path: "SupRecipeDetails/:id", component: SubRecipeDetailsComponent }
+       
+      ])
   ],
   bootstrap: [AppComponent]
 })
