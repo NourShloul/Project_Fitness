@@ -1,8 +1,8 @@
 <div class="card" style="width: 18rem;" *ngFor="let item of RecipeArray">
-  <img [src]="'http://localhost:5000/api/controller/getImages/' + item.recipeImage" class="card-img-top" alt="{{item.recipeName}}">
+  <img [src]="'https://localhost:7072/api/Recipe/getImages/' + item.recipeImage" class="card-img-top" alt="{{item.recipeName}}">
   <div class="card-body">
     <h5 class="card-title">{{item.recipeName}}</h5>
 
-    <a routerLink="/SubServices/{{item.recipeId}}" class="btn btn-primary"> Show All </a>
+    <a routerLink="/SupRecipe/{{item.recipeId}}" class="btn btn-primary"> Show All </a>
   </div>
 </div>

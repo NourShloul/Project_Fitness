@@ -10,6 +10,11 @@ import { RecipsComponent } from './Nutrition/recips/recips.component';
 import { NavBarComponent } from './nav-bar/nav-bar.component';
 import { FooterComponent } from './footer/footer.component';
 import { HomePageComponent } from './home-page/home-page.component';
+import { SupRecipeComponent } from './Nutrition/sup-recipe/sup-recipe.component';
+import { SubRecipeDetailsComponent } from './Nutrition/sub-recipe-details/sub-recipe-details.component';
+import { MainServicesComponent } from './Services(a,m)/main-services/main-services.component';
+import { GymComponent } from './Services(a,m)/gym/gym.component';
+import { FitnessComponent } from './Services(a,m)/fitness/fitness.component';
 
 @NgModule({
   declarations: [
@@ -18,15 +23,25 @@ import { HomePageComponent } from './home-page/home-page.component';
     RecipsComponent,
     NavBarComponent,
     FooterComponent,
-    HomePageComponent
+    HomePageComponent,
+    SupRecipeComponent,
+    SubRecipeDetailsComponent,
+    MainServicesComponent,
+    GymComponent,
+    FitnessComponent
   ],
   imports: [
     BrowserModule, HttpClientModule,
     AppRoutingModule,
     RouterModule.forRoot(
-      [{ path: "NutritionPageOne", component: NutrotionPageOneComponent },
+      [{ path: "", component: HomePageComponent, pathMatch: "full" },
+        { path: "NutritionPageOne", component: NutrotionPageOneComponent },
         { path: "Recips", component: RecipsComponent },
-        { path: "", component: HomePageComponent, pathMatch: "full" }
+        { path: "SupRecipe/:id", component: SupRecipeComponent },
+        { path: "SupRecipeDetails/:id", component: SubRecipeDetailsComponent },
+        { path: "AllGyms", component: GymComponent },
+        { path: "services", component: MainServicesComponent }
+       
       ])
   ],
   providers: [],
