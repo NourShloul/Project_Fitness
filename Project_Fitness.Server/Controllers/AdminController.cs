@@ -97,7 +97,7 @@ namespace Project_Fitness.Server.Controllers
             gym.GymDescription = updateGymDTO.GymDescription ?? gym.GymDescription;
             gym.StartTime = updateGymDTO.StartTime ?? gym.StartTime;
             gym.EndTime = updateGymDTO.EndTime ?? gym.EndTime;
-            gym.GymImage = updateGymDTO.GymImage ?? gym.GymImage;
+            gym.GymImage = updateGymDTO.GymImage.FileName ?? gym.GymImage;
 
             return Ok();
         }
