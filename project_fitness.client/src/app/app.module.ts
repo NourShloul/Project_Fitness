@@ -7,27 +7,26 @@ import { AppComponent } from './app.component';
 import { NutrotionPageOneComponent } from './Nutrition/nutrotion-page-one/nutrotion-page-one.component';
 import { RouterModule } from '@angular/router';
 import { RecipsComponent } from './Nutrition/recips/recips.component';
-import { SupRecipeComponent } from './Nutrition/sup-recipe/sup-recipe.component';
-import { SubRecipeDetailsComponent } from './Nutrition/sub-recipe-details/sub-recipe-details.component';
+import { NavBarComponent } from './nav-bar/nav-bar.component';
+import { FooterComponent } from './footer/footer.component';
+import { HomePageComponent } from './home-page/home-page.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     NutrotionPageOneComponent,
     RecipsComponent,
-    SupRecipeComponent,
-    SubRecipeDetailsComponent
+    NavBarComponent,
+    FooterComponent,
+    HomePageComponent
   ],
   imports: [
     BrowserModule, HttpClientModule,
     AppRoutingModule,
     RouterModule.forRoot(
-    [  { path: "NutritionPageOne", component: NutrotionPageOneComponent, pathMatch: "full" },
-      //{ path: "NutritionPageOne", component: NutrotionPageOneComponent },
+      [{ path: "NutritionPageOne", component: NutrotionPageOneComponent },
         { path: "Recips", component: RecipsComponent },
-        { path: "SupRecipe/:id", component: SupRecipeComponent },
-        { path: "SupRecipeDetails/:id", component: SubRecipeDetailsComponent }
-
+        { path: "", component: HomePageComponent, pathMatch: "full" }
       ])
   ],
   providers: [],
