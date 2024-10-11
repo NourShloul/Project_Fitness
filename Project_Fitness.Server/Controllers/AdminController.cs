@@ -25,7 +25,7 @@ namespace Project_Fitness.Server.Controllers
 
                 try
                 {
-                    
+
                     if (!Directory.Exists(uploadsFolder))
                     {
                         Directory.CreateDirectory(uploadsFolder);
@@ -34,13 +34,13 @@ namespace Project_Fitness.Server.Controllers
                     var uniqueFileName = Guid.NewGuid().ToString() + "_" + add.GymImage.FileName;
                     var filePathWwwroot = Path.Combine(uploadsFolder, uniqueFileName);
 
-                    
+
                     using (var fileStream = new FileStream(filePathWwwroot, FileMode.Create))
                     {
                         await add.GymImage.CopyToAsync(fileStream);
                     }
 
-                    
+
                     var newGym = new Gym
                     {
                         GymName = add.GymName,
@@ -52,7 +52,7 @@ namespace Project_Fitness.Server.Controllers
                         EndTime = add.EndTime,
                     };
 
-                    
+
                     _context.Gyms.Add(newGym);
                     await _context.SaveChangesAsync();
 
@@ -60,12 +60,12 @@ namespace Project_Fitness.Server.Controllers
                 }
                 catch (Exception ex)
                 {
-                    
+
                     return StatusCode(500, "An error occurred while processing your request.");
                 }
             }
 
-           
+
             return BadRequest("Invalid data or missing image.");
         }
 
@@ -218,6 +218,28 @@ namespace Project_Fitness.Server.Controllers
                     
                     return StatusCode(500, "An error occurred while processing your request.");
                 }
+            }
+            // GET: api/Carts
+            [HttpGet("get/cartDate")]
+             async Task<ActionResult<IEnumerable<CartDTO>>> GetCarts()
+            {
+                var carts = await _context.Carts
+                    .Include(c => c.CartItems)
+                    .Select(c => new CartDTO
+                    {
+                        Id = c.Id,
+                        UserId = c.UserId,
+                        CreatedDate = c.CreatedDate,
+                        CartItems = c.CartItems.Select(ci => new CartitemDTO
+                        {
+                            ProductId = ci.ProductId,
+                            Quantity = ci.Quantity,
+                            Price = ci.Price
+                        }).ToList()
+                    })
+                    .ToListAsync();
+
+                return Ok(carts);
             }
 
            

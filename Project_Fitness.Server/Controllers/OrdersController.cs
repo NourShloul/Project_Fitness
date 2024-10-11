@@ -73,21 +73,38 @@ namespace Project_Fitness.Server.Controllers
 
         // POST: api/Orders
         [HttpPost]
-        public async Task<ActionResult<Order>> PostOrder(Order order)
+        public async Task<IActionResult> PostOrder([FromBody] Order order, [FromQuery] bool isPaid = false, [FromQuery] bool isPaymentFailed = false)
         {
+            if (isPaid)
+            {
+                order.Status = "Paid"; 
+            }
+            else if (isPaymentFailed)
+            {
+                order.Status = "Failed";
+            }
+            else
+            {
+                order.Status = "Hold"; 
+            }
 
+        
+            order.OrderDate = DateTime.Now;
             _context.Orders.Add(order);
             await _context.SaveChangesAsync();
 
-
-            var cart = await _context.Carts.FirstOrDefaultAsync(c => c.UserId == order.UserId);
-            if (cart != null)
+            
+            if (isPaid)
             {
-                _context.Carts.Remove(cart);
-                await _context.SaveChangesAsync();
+                var cart = await _context.Carts.FirstOrDefaultAsync(c => c.UserId == order.UserId);
+                if (cart != null)
+                {
+                    _context.Carts.Remove(cart);
+                    await _context.SaveChangesAsync();
+                }
             }
 
-            return CreatedAtAction("GetOrder", new { id = order.Id }, order);
+            return CreatedAtAction(nameof(GetOrder), new { id = order.Id }, order);
         }
 
         // DELETE: api/Orders/5
