@@ -23,4 +23,9 @@ export class URLService {
   getSubRecipeDetails(id: any): Observable<any> {
     return this.http.get<any>(`${this.staticData}/Subrecipe/Recipe/GetSubrecipeById/${id}`);
   }
+
+  GetAllGyms(): Observable<any> {
+    return this.http.get<any>(`${this.staticData}/Admin/GetAllGym`);
+  }
+
 }
