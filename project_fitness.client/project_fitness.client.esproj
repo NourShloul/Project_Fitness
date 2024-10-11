@@ -11,6 +11,7 @@
     <Folder Include="src\app\assets\" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="src\app\AOQ\" />
     <Folder Include="src\app\Services%28a,m%29\" />
     <Folder Include="src\Nour\" />
   </ItemGroup>

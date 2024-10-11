@@ -15,6 +15,9 @@ import { SubRecipeDetailsComponent } from './Nutrition/sub-recipe-details/sub-re
 import { MainServicesComponent } from './Services(a,m)/main-services/main-services.component';
 import { GymComponent } from './Services(a,m)/gym/gym.component';
 import { FitnessComponent } from './Services(a,m)/fitness/fitness.component';
+import { AboutComponent } from './AOQ/about/about.component';
+import { ContactComponent } from './AOQ/contact/contact.component';
+
 
 @NgModule({
   declarations: [
@@ -28,7 +31,9 @@ import { FitnessComponent } from './Services(a,m)/fitness/fitness.component';
     SubRecipeDetailsComponent,
     MainServicesComponent,
     GymComponent,
-    FitnessComponent
+    FitnessComponent,
+    AboutComponent,
+    ContactComponent
   ],
   imports: [
     BrowserModule, HttpClientModule,
@@ -40,7 +45,9 @@ import { FitnessComponent } from './Services(a,m)/fitness/fitness.component';
         { path: "SupRecipe/:id", component: SupRecipeComponent },
         { path: "SupRecipeDetails/:id", component: SubRecipeDetailsComponent },
         { path: "AllGyms", component: GymComponent },
-        { path: "services", component: MainServicesComponent }
+        { path: "About", component: AboutComponent },
+        { path: "services", component: MainServicesComponent },
+        { path: "Contact", component: ContactComponent }
        
       ])
   ],
