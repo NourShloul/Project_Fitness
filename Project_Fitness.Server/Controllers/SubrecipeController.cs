@@ -17,7 +17,7 @@ namespace Project_Fitness.Server.Controllers
         [HttpGet("Recipe/GetAllSubrecipe")]
         public ActionResult GetAllSubrecipe() 
         {
-            var subrecipe = _db.Recipes.ToList();
+            var subrecipe = _db.SubRecipes.ToList();
             if (subrecipe == null)
             {
                 return NoContent();
