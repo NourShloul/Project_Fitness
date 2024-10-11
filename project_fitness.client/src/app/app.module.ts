@@ -12,6 +12,13 @@ import { FooterComponent } from './footer/footer.component';
 import { HomePageComponent } from './home-page/home-page.component';
 import { SupRecipeComponent } from './Nutrition/sup-recipe/sup-recipe.component';
 import { SubRecipeDetailsComponent } from './Nutrition/sub-recipe-details/sub-recipe-details.component';
+import { RegisterComponent } from './mustafa/register/register.component';
+import { LoginComponent } from './mustafa/login/login.component';
+import { MainServicesComponent } from './Services(a,m)/main-services/main-services.component';
+import { GymComponent } from './Services(a,m)/gym/gym.component';
+import { FitnessComponent } from './Services(a,m)/fitness/fitness.component';
+import { AboutComponent } from './AOQ/about/about.component';
+import { ContactComponent } from './AOQ/contact/contact.component';
 
 
 @NgModule({
@@ -23,20 +30,35 @@ import { SubRecipeDetailsComponent } from './Nutrition/sub-recipe-details/sub-re
     FooterComponent,
     HomePageComponent,
     SupRecipeComponent,
-    SubRecipeDetailsComponent
+    SubRecipeDetailsComponent,
+    RegisterComponent,  // أضف RegisterComponent هنا
+    LoginComponent,
+    SubRecipeDetailsComponent,
+    MainServicesComponent,
+    GymComponent,
+    FitnessComponent,
+    AboutComponent,
+    ContactComponent
   ],
   imports: [
+    FormsModule,
     BrowserModule, HttpClientModule,
     AppRoutingModule,
-    FormsModule ,
     RouterModule.forRoot(
-      [
-        { path: "", component: HomePageComponent, pathMatch: "full" },
-        { path: "NutritionPageOne", component: NutrotionPageOneComponent },
-        { path: "Recips", component: RecipsComponent },
-        { path: "SupRecipe/:id", component: SupRecipeComponent },
-        { path: "SupRecipeDetails/:id", component: SubRecipeDetailsComponent }
-       
+      [{ path: "", component: HomePageComponent, pathMatch: "full" },
+      { path: "NutritionPageOne", component: NutrotionPageOneComponent },
+      { path: "Recips", component: RecipsComponent },
+      { path: "SupRecipe/:id", component: SupRecipeComponent },
+      { path: "SupRecipeDetails/:id", component: SubRecipeDetailsComponent },
+      { path: "Register", component: RegisterComponent },
+      { path: "Login", component: LoginComponent },
+      { path: "Home", component: HomePageComponent },
+      { path: "SupRecipeDetails/:id", component: SubRecipeDetailsComponent },
+      { path: "AllGyms", component: GymComponent },
+      { path: "About", component: AboutComponent },
+      { path: "services", component: MainServicesComponent },
+      { path: "Contact", component: ContactComponent }
+
       ])
   ],
   providers: [],
