@@ -3,6 +3,8 @@ import { URLService } from '../../url/url.service';
 import { Router } from '@angular/router';
 import Swal from 'sweetalert2';
 
+
+
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
