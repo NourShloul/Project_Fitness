@@ -47,7 +47,7 @@ import { FitnessComponent } from './Services(a,m)/fitness/fitness.component';
         { path: "SupRecipeDetails/:id", component: SubRecipeDetailsComponent },
         { path: "Register", component: RegisterComponent },
         { path: "Login", component: LoginComponent },
-         { path: "Home", component: HomePageComponent }
+        { path: "Home", component: HomePageComponent },
         { path: "SupRecipeDetails/:id", component: SubRecipeDetailsComponent },
         { path: "AllGyms", component: GymComponent },
         { path: "services", component: MainServicesComponent }
