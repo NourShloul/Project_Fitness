@@ -6,13 +6,14 @@
   <div class="container">
     <nav class="navbar navbar-expand-xxxl">
 
-      <a class="navbar-brand logo lh-0" routerLink="/">
+      <!-- Logo -->
+      <a class="navbar-brand logo lh-0" href="index.html">
         <img src="assets/images/logo.svg" alt="Logo">
       </a>
 
       <div class="header_block">
         <div class="MobileView lh-0 mb-sm-5 mb-4 d-flex align-items-center justify-content-end">
-          <a href="#!" class="closeBtn d-flex align-items-center">
+          <a href="#" class="closeBtn d-flex align-items-center" (click)="onCloseClick($event)">
             <p class="mb-0 pe-sm-3 pe-2">close</p>
             <div class="close-icon d-flex align-items-center justify-content-center">
               <span></span>
@@ -28,7 +29,7 @@
             <a routerLink="/NutritionPageOne">Nutrition</a>
           </li>
           <li>
-            <a routerLink="/about-us">About us</a>
+            <a href="about-us.html">About us</a>
           </li>
           <li>
             <a href="#pricing">Pricing</a>
@@ -42,7 +43,7 @@
             <a routerLink="/blog">Blogs</a>
           </li>
           <li>
-            <a routerLink="/contact-us">Contact Us</a>
+            <a href="contact-us.html">Contact Us</a>
           </li>
           <li class="dropdown">
             <a href="#!" class="dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
@@ -64,7 +65,7 @@
           <span>menu</span>
           <img src="assets/images/icon/toggle-icon.svg" alt="Icon" class="ps-2">
         </button>
-        <a routerLink="/contact-us" class="btn_wrapper d-lg-flex d-none">Contact Us</a>
+        <a href="contact-us.html" class="btn_wrapper d-lg-flex d-none">Contact us</a>
       </div>
     </nav>
   </div>

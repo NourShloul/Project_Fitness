@@ -3,7 +3,7 @@
     public class AddFitnessClassDTO
     {
 
-        public string FitnessClassesName { get; set; } = null!;
+        public string? FitnessClassesName { get; set; } = null!;
 
         public IFormFile? FitnessClassesImage { get; set; }
 

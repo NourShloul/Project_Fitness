@@ -9,9 +9,9 @@ namespace Project_Fitness.Server.DTO
         public string? UserPassword { get; set; }
         public string? confirmPassword { get; set; }
 
-        //public DateTime? CreatedAt { get; set; }
-     
+        public DateTime? CreatedAt { get; set; }
 
-       
+
+
     }
 }
