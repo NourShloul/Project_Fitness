@@ -245,19 +245,27 @@ namespace Project_Fitness.Server.Controllers
 
             return BadRequest("Invalid data or missing image.");
         }
+
         [HttpPut("UpdateFitnessClassById/{id}")]
         public async Task<IActionResult> UpdateFitnessClassById(int id, [FromForm] AddFitnessClassDTO updateFitnessClassDTO)
         {
             if (id <= 0)
             {
-                return BadRequest("The id can not be zero or negative value");
+                return BadRequest("The ID cannot be zero or negative.");
             }
-            if (updateFitnessClassDTO.FitnessClassesImage != null && updateFitnessClassDTO.FitnessClassesImage.Length > 0)
-            {
-                var uploadsFolder = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/images");
 
-                try
+            var fitness = await _context.FitnessClasses.FirstOrDefaultAsync(x => x.FitnessClassesId == id);
+            if (fitness == null)
+            {
+                return NotFound("No Gym found with the specified ID.");
+            }
+
+            try
+            {
+                if (updateFitnessClassDTO.FitnessClassesImage != null && updateFitnessClassDTO.FitnessClassesImage.Length > 0)
                 {
+                    var uploadsFolder = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/images");
+
 
                     if (!Directory.Exists(uploadsFolder))
                     {
@@ -274,39 +282,37 @@ namespace Project_Fitness.Server.Controllers
                     }
 
 
-                    var fitness = await _context.FitnessClasses.FirstOrDefaultAsync(x => x.FitnessClassesId == id);
-
-                    fitness.FitnessClassesName = updateFitnessClassDTO.FitnessClassesName ?? fitness.FitnessClassesName;
-                    fitness.FitnessClassesName = updateFitnessClassDTO.FitnessClassesName ?? fitness.FitnessClassesName;
-                    fitness.Price = updateFitnessClassDTO.Price ?? fitness.Price;
-                    fitness.FitnessClassesName = updateFitnessClassDTO.FitnessClassesName ?? fitness.FitnessClassesName;
-                    if (!string.IsNullOrEmpty(updateFitnessClassDTO.StartTime))
-                    {
-                        fitness.StartTime = TimeOnly.Parse(updateFitnessClassDTO.StartTime);
-                    }
-
-                    if (!string.IsNullOrEmpty(updateFitnessClassDTO.EndTime))
-                    {
-                        fitness.EndTime = TimeOnly.Parse(updateFitnessClassDTO.EndTime);
-                    }
-                    fitness.Days = updateFitnessClassDTO.Days ?? fitness.Days;
-                    fitness.FitnessClassesImage = updateFitnessClassDTO.FitnessClassesImage.FileName ?? fitness.FitnessClassesImage;
-
-
-                    _context.FitnessClasses.Update(fitness);
-                    await _context.SaveChangesAsync();
-
-                    return Ok(fitness);
+                    fitness.FitnessClassesImage = $"/images/{uniqueFileName}";
                 }
-                catch (Exception ex)
+
+
+                fitness.FitnessClassesName = updateFitnessClassDTO.FitnessClassesName ?? fitness.FitnessClassesName;
+                fitness.FitnessClassesLocation = updateFitnessClassDTO.FitnessClassesLocation ?? fitness.FitnessClassesLocation;
+                fitness.Price = updateFitnessClassDTO.Price ?? fitness.Price;
+                fitness.FitnessClassesDescription = updateFitnessClassDTO.FitnessClassesDescription ?? fitness.FitnessClassesDescription;
+                fitness.Days = updateFitnessClassDTO.Days ?? fitness.Days;
+                if (!string.IsNullOrEmpty(updateFitnessClassDTO.StartTime))
                 {
-
-                    return StatusCode(500, "An error occurred while processing your request.");
+                    fitness.StartTime = TimeOnly.Parse(updateFitnessClassDTO.StartTime);
                 }
 
+                if (!string.IsNullOrEmpty(updateFitnessClassDTO.EndTime))
+                {
+                    fitness.EndTime = TimeOnly.Parse(updateFitnessClassDTO.EndTime);
+                }
+
+
+                await _context.SaveChangesAsync();
+
+                return Ok(fitness);
             }
-            return BadRequest("Invalid data or missing image.");
+            catch (Exception ex)
+            {
+
+                return StatusCode(500, "An error occurred while processing your request.");
+            }
         }
+
         [HttpDelete("DeleteFitnessClassById/{id}")]
         public async Task<IActionResult> DeleteFitnessClassById(int id)
         {
