@@ -16,6 +16,25 @@ namespace Project_Fitness.Server.Controllers
         {
             _context = context;
         }
+        // GET: api/Categories/{categoryId}/products
+        [HttpGet("{categoryId}/products")]
+        public async Task<ActionResult<IEnumerable<Product>>> GetProductsByCategory(int categoryId)
+        {
+            // Check if the category exists first
+            var categoryExists = await _context.Categories.AnyAsync(c => c.Id == categoryId);
+            if (!categoryExists)
+            {
+                return NotFound(new { Message = $"Category with ID {categoryId} not found." });
+            }
+
+            // Fetch products for the category
+            var products = await _context.Products
+                                         .Where(p => p.CategoryId == categoryId)
+                                         .ToListAsync();
+
+            // Return an empty list if no products are found
+            return Ok(products);
+        }
 
         // GET: api/Categories
         [HttpGet]
