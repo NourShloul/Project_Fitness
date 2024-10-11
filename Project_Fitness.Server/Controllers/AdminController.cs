@@ -82,25 +82,60 @@ namespace Project_Fitness.Server.Controllers
         {
             if (id <= 0)
             {
-                return BadRequest("the id can not be zero or negative value");
+                return BadRequest("The ID cannot be zero or negative.");
             }
-            var gym = await _context.Gyms.FirstOrDefaultAsync(x => x.GymId == id);
 
+            var gym = await _context.Gyms.FirstOrDefaultAsync(x => x.GymId == id);
             if (gym == null)
             {
-                return BadRequest("There is no Gym founded");
+                return NotFound("No Gym found with the specified ID.");
             }
 
-            gym.GymName = updateGymDTO.GymName ?? gym.GymName;
-            gym.GymLocation = updateGymDTO.GymLocation ?? gym.GymLocation;
-            gym.Price = updateGymDTO.Price ?? gym.Price;
-            gym.GymDescription = updateGymDTO.GymDescription ?? gym.GymDescription;
-            gym.StartTime = updateGymDTO.StartTime ?? gym.StartTime;
-            gym.EndTime = updateGymDTO.EndTime ?? gym.EndTime;
-            gym.GymImage = updateGymDTO.GymImage.FileName ?? gym.GymImage;
+            try
+            {
+                if (updateGymDTO.GymImage != null && updateGymDTO.GymImage.Length > 0)
+                {
+                    var uploadsFolder = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/images");
 
-            return Ok();
+                    
+                    if (!Directory.Exists(uploadsFolder))
+                    {
+                        Directory.CreateDirectory(uploadsFolder);
+                    }
+
+                    var uniqueFileName = Guid.NewGuid().ToString() + "_" + updateGymDTO.GymImage.FileName;
+                    var filePathWwwroot = Path.Combine(uploadsFolder, uniqueFileName);
+
+                   
+                    using (var fileStream = new FileStream(filePathWwwroot, FileMode.Create))
+                    {
+                        await updateGymDTO.GymImage.CopyToAsync(fileStream);
+                    }
+
+                  
+                    gym.GymImage = $"/images/{uniqueFileName}";
+                }
+
+                
+                gym.GymName = updateGymDTO.GymName ?? gym.GymName;
+                gym.GymLocation = updateGymDTO.GymLocation ?? gym.GymLocation;
+                gym.Price = updateGymDTO.Price ?? gym.Price;
+                gym.GymDescription = updateGymDTO.GymDescription ?? gym.GymDescription;
+                gym.StartTime = updateGymDTO.StartTime ?? gym.StartTime;
+                gym.EndTime = updateGymDTO.EndTime ?? gym.EndTime;
+
+              
+                await _context.SaveChangesAsync();
+
+                return Ok(gym); 
+            }
+            catch (Exception ex)
+            {
+               
+                return StatusCode(500, "An error occurred while processing your request.");
+            }
         }
+
 
         [HttpDelete("DeletGymById/{id}")]
         public async Task<IActionResult> DeleteGymById(int id)
