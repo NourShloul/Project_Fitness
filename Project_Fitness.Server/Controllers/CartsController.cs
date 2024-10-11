@@ -127,46 +127,46 @@ namespace Project_Fitness.Server.Controllers
             return NoContent();
         }
 
-        //// POST: api/Carts/placeOrder/5
-        //// Place an order and empty the cart after that
-        //[HttpPost("placeOrder/{cartId}")]
-        //public async Task<IActionResult> PlaceOrder(int cartId)
-        //{
-        //    var cart = await _context.Carts
-        //        .Include(c => c.CartItems)
-        //        .FirstOrDefaultAsync(c => c.Id == cartId);
+        // POST: api/Carts/placeOrder/5
+        // Place an order and empty the cart after that
+        [HttpPost("placeOrder/{cartId}")]
+        public async Task<IActionResult> PlaceOrder(int cartId)
+        {
+            var cart = await _context.Carts
+                .Include(c => c.CartItems)
+                .FirstOrDefaultAsync(c => c.Id == cartId);
 
-        //    if (cart == null)
-        //    {
-        //        return NotFound("Cart not found.");
-        //    }
+            if (cart == null)
+            {
+                return NotFound("Cart not found.");
+            }
 
-        //    if (cart.CartItems == null || !cart.CartItems.Any())
-        //    {
-        //        return BadRequest("Cart is empty.");
-        //    }
+            if (cart.CartItems == null || !cart.CartItems.Any())
+            {
+                return BadRequest("Cart is empty.");
+            }
 
-        //    // Create the order
-        //    var order = new Order
-        //    {
-        //        UserId = cart.UserId.Value,
-        //        OrderDate = DateTime.Now,
-        //        TotalAmount = cart.CartItems.Sum(item => item.Quantity * item.Price),
-        //        OrderItem = cart.CartItems.Select(item => new OrderItem
-        //        {
-        //            ProductId = item.ProductId,
-        //            Quantity = item.Quantity,
-        //            Price = item.Price
-        //        }).ToList()
-        //    };
+            // Create the order
+            var order = new Order
+            {
+                UserId = cart.UserId.Value,
+                OrderDate = DateTime.Now,
+                TotalAmount = cart.CartItems.Sum(item => item.Quantity * item.Price),
+                OrderItems = cart.CartItems.Select(item => new OrderItem
+                {
+                    ProductId = item.ProductId,
+                    Quantity = item.Quantity,
+                    Price = item.Price
+                }).ToList()
+            };
 
-        //    // Add the order and remove the cart items (empty the cart)
-        //    _context.Orders.Add(order);
-        //    cart.CartItems.Clear();
-        //    await _context.SaveChangesAsync();
+     
+            _context.Orders.Add(order);
+            cart.CartItems.Clear();
+            await _context.SaveChangesAsync();
 
-        //    return Ok("Order placed successfully and cart is now empty.");
-        //}
+            return Ok("Order placed successfully and cart is now empty.");
+        }
 
         private bool CartExists(int id)
         {
