@@ -1,7 +1,7 @@
 import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
+import { FormsModule } from '@angular/forms';/////
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NutrotionPageOneComponent } from './Nutrition/nutrotion-page-one/nutrotion-page-one.component';
@@ -12,6 +12,8 @@ import { FooterComponent } from './footer/footer.component';
 import { HomePageComponent } from './home-page/home-page.component';
 import { SupRecipeComponent } from './Nutrition/sup-recipe/sup-recipe.component';
 import { SubRecipeDetailsComponent } from './Nutrition/sub-recipe-details/sub-recipe-details.component';
+import { RegisterComponent } from './mustafa/register/register.component';
+import { LoginComponent } from './mustafa/login/login.component';
 
 @NgModule({
   declarations: [
@@ -22,9 +24,12 @@ import { SubRecipeDetailsComponent } from './Nutrition/sub-recipe-details/sub-re
     FooterComponent,
     HomePageComponent,
     SupRecipeComponent,
-    SubRecipeDetailsComponent
+    SubRecipeDetailsComponent,
+    RegisterComponent,  // أضف RegisterComponent هنا
+    LoginComponent 
   ],
   imports: [
+    FormsModule,
     BrowserModule, HttpClientModule,
     AppRoutingModule,
     RouterModule.forRoot(
@@ -32,7 +37,10 @@ import { SubRecipeDetailsComponent } from './Nutrition/sub-recipe-details/sub-re
         { path: "NutritionPageOne", component: NutrotionPageOneComponent },
         { path: "Recips", component: RecipsComponent },
         { path: "SupRecipe/:id", component: SupRecipeComponent },
-        { path: "SupRecipeDetails/:id", component: SubRecipeDetailsComponent }
+        { path: "SupRecipeDetails/:id", component: SubRecipeDetailsComponent },
+        { path: "Register", component: RegisterComponent },
+        { path: "Login", component: LoginComponent },
+         { path: "Home", component: HomePageComponent }
        
       ])
   ],
