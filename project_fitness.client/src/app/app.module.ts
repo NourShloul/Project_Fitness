@@ -1,7 +1,8 @@
 import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { FormsModule } from '@angular/forms';/////
+import { FormsModule } from '@angular/forms';
+
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NutrotionPageOneComponent } from './Nutrition/nutrotion-page-one/nutrotion-page-one.component';
@@ -12,7 +13,17 @@ import { FooterComponent } from './footer/footer.component';
 import { HomePageComponent } from './home-page/home-page.component';
 import { SupRecipeComponent } from './Nutrition/sup-recipe/sup-recipe.component';
 import { SubRecipeDetailsComponent } from './Nutrition/sub-recipe-details/sub-recipe-details.component';
+import { ContactUsComponent } from './Rahaf/contact-us/contact-us.component';
+import { CategoryComponent } from './Rahaf/category/category.component';
+import { ProductComponent } from './Rahaf/product/product.component';
+import { ProductDetailsComponent } from './Rahaf/product-details/product-details.component';
+import { AboutUsComponent } from './Rahaf/about-us/about-us.component';
+import { PolicesComponent } from './Rahaf/polices/polices.component';
+import { CartComponent } from './Rahaf/cart/cart.component';
+import { PaymentComponent } from './Rahaf/payment/payment.component';
 
+import { CartService } from './Rahaf/cart.service';
+import { ProductService } from './Rahaf/product.service';
 
 @NgModule({
   declarations: [
@@ -23,23 +34,44 @@ import { SubRecipeDetailsComponent } from './Nutrition/sub-recipe-details/sub-re
     FooterComponent,
     HomePageComponent,
     SupRecipeComponent,
-    SubRecipeDetailsComponent
+    SubRecipeDetailsComponent,
+    ContactUsComponent,
+    CategoryComponent,
+    ProductComponent,
+    ProductDetailsComponent,
+    AboutUsComponent,
+    PolicesComponent,
+    CartComponent,
+    PaymentComponent
   ],
   imports: [
-    BrowserModule, HttpClientModule,
+    BrowserModule,
+    HttpClientModule,
     AppRoutingModule,
-    FormsModule ,
+    FormsModule,
     RouterModule.forRoot(
       [
         { path: "", component: HomePageComponent, pathMatch: "full" },
         { path: "NutritionPageOne", component: NutrotionPageOneComponent },
         { path: "Recips", component: RecipsComponent },
         { path: "SupRecipe/:id", component: SupRecipeComponent },
-        { path: "SupRecipeDetails/:id", component: SubRecipeDetailsComponent }
-       
-      ])
+        { path: "SupRecipeDetails/:id", component: SubRecipeDetailsComponent },
+        { path: "contact-us", component: ContactUsComponent },
+        { path: "categories", component: CategoryComponent },
+        { path: 'Product/:id', component: ProductComponent },
+        { path: 'ProductDetails/:id', component: ProductDetailsComponent },
+        { path: 'about-us', component: AboutUsComponent },
+        { path: 'policies', component: PolicesComponent },
+        { path: 'cart', component: CartComponent },
+        { path: 'payment', component: PaymentComponent },
+        { path: "**", redirectTo: "", pathMatch: "full" }
+      ]
+    )
   ],
-  providers: [],
+  providers: [
+    CartService,
+    ProductService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
