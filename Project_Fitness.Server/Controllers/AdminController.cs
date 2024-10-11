@@ -129,9 +129,58 @@ namespace Project_Fitness.Server.Controllers
         }
 
         [HttpPost("AddNewFitnessClass")]
-        public async Task<IActionResult> AddNewFitnessClass() 
-        { 
-            return Ok();
+        public async Task<IActionResult> AddNewFitnessClass(AddFitnessClassDTO add) 
+        {
+            if (add.FitnessClassesImage != null && add.FitnessClassesImage.Length > 0)
+            {
+                var uploadsFolder = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/images");
+
+                try
+                {
+
+                    if (!Directory.Exists(uploadsFolder))
+                    {
+                        Directory.CreateDirectory(uploadsFolder);
+                    }
+
+                    var uniqueFileName = Guid.NewGuid().ToString() + "_" + add.FitnessClassesImage.FileName;
+                    var filePathWwwroot = Path.Combine(uploadsFolder, uniqueFileName);
+
+
+                    using (var fileStream = new FileStream(filePathWwwroot, FileMode.Create))
+                    {
+                        await add.FitnessClassesImage.CopyToAsync(fileStream);
+                    }
+
+
+                    var fitness = new FitnessClass
+                    {
+                        FitnessClassesName = add.FitnessClassesName,
+                        FitnessClassesImage = $"/images/{uniqueFileName}",
+                        FitnessClassesDescription = add.FitnessClassesDescription,
+                        Price = add.Price,
+                        FitnessClassesLocation = add.FitnessClassesLocation,
+                        Days = add.Days,
+                        StartTime = TimeOnly.Parse( add.StartTime),
+                        EndTime = TimeOnly.Parse( add.EndTime)
+                    };
+
+
+                    _context.FitnessClasses.Add(fitness);
+                    await _context.SaveChangesAsync();
+
+                    return Ok(fitness);
+                }
+                catch (Exception ex)
+                {
+
+                    return StatusCode(500, "An error occurred while processing your request.");
+                }
+            }
+
+
+            return BadRequest("Invalid data or missing image.");
+           
         }
     }
 }
