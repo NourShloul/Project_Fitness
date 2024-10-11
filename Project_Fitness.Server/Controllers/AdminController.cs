@@ -82,25 +82,60 @@ namespace Project_Fitness.Server.Controllers
         {
             if (id <= 0)
             {
-                return BadRequest("the id can not be zero or negative value");
+                return BadRequest("The ID cannot be zero or negative.");
             }
-            var gym = await _context.Gyms.FirstOrDefaultAsync(x => x.GymId == id);
 
+            var gym = await _context.Gyms.FirstOrDefaultAsync(x => x.GymId == id);
             if (gym == null)
             {
-                return BadRequest("There is no Gym founded");
+                return NotFound("No Gym found with the specified ID.");
             }
 
-            gym.GymName = updateGymDTO.GymName ?? gym.GymName;
-            gym.GymLocation = updateGymDTO.GymLocation ?? gym.GymLocation;
-            gym.Price = updateGymDTO.Price ?? gym.Price;
-            gym.GymDescription = updateGymDTO.GymDescription ?? gym.GymDescription;
-            gym.StartTime = updateGymDTO.StartTime ?? gym.StartTime;
-            gym.EndTime = updateGymDTO.EndTime ?? gym.EndTime;
-            gym.GymImage = updateGymDTO.GymImage.FileName ?? gym.GymImage;
+            try
+            {
+                if (updateGymDTO.GymImage != null && updateGymDTO.GymImage.Length > 0)
+                {
+                    var uploadsFolder = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/images");
 
-            return Ok();
+                    
+                    if (!Directory.Exists(uploadsFolder))
+                    {
+                        Directory.CreateDirectory(uploadsFolder);
+                    }
+
+                    var uniqueFileName = Guid.NewGuid().ToString() + "_" + updateGymDTO.GymImage.FileName;
+                    var filePathWwwroot = Path.Combine(uploadsFolder, uniqueFileName);
+
+                   
+                    using (var fileStream = new FileStream(filePathWwwroot, FileMode.Create))
+                    {
+                        await updateGymDTO.GymImage.CopyToAsync(fileStream);
+                    }
+
+                  
+                    gym.GymImage = $"/images/{uniqueFileName}";
+                }
+
+                
+                gym.GymName = updateGymDTO.GymName ?? gym.GymName;
+                gym.GymLocation = updateGymDTO.GymLocation ?? gym.GymLocation;
+                gym.Price = updateGymDTO.Price ?? gym.Price;
+                gym.GymDescription = updateGymDTO.GymDescription ?? gym.GymDescription;
+                gym.StartTime = updateGymDTO.StartTime ?? gym.StartTime;
+                gym.EndTime = updateGymDTO.EndTime ?? gym.EndTime;
+
+              
+                await _context.SaveChangesAsync();
+
+                return Ok(gym); 
+            }
+            catch (Exception ex)
+            {
+               
+                return StatusCode(500, "An error occurred while processing your request.");
+            }
         }
+
 
         [HttpDelete("DeletGymById/{id}")]
         public async Task<IActionResult> DeleteGymById(int id)
@@ -137,7 +172,7 @@ namespace Project_Fitness.Server.Controllers
 
                 try
                 {
-                   
+
                     if (!Directory.Exists(uploadsFolder))
                     {
                         Directory.CreateDirectory(uploadsFolder);
@@ -146,20 +181,20 @@ namespace Project_Fitness.Server.Controllers
                     var uniqueFileName = Guid.NewGuid().ToString() + "_" + add.FitnessClassesImage.FileName;
                     var filePathWwwroot = Path.Combine(uploadsFolder, uniqueFileName);
 
-                    
+
                     using (var fileStream = new FileStream(filePathWwwroot, FileMode.Create))
                     {
                         await add.FitnessClassesImage.CopyToAsync(fileStream);
                     }
 
-                   
+
                     if (!TimeOnly.TryParse(add.StartTime, out TimeOnly startTime) ||
                         !TimeOnly.TryParse(add.EndTime, out TimeOnly endTime))
                     {
                         return BadRequest("Invalid start or end time format.");
                     }
 
-                    
+
                     var fitness = new FitnessClass
                     {
                         FitnessClassesName = add.FitnessClassesName,
@@ -172,7 +207,7 @@ namespace Project_Fitness.Server.Controllers
                         EndTime = endTime
                     };
 
-                    
+
                     _context.FitnessClasses.Add(fitness);
                     await _context.SaveChangesAsync();
 
@@ -180,7 +215,7 @@ namespace Project_Fitness.Server.Controllers
                 }
                 catch (Exception ex)
                 {
-                    
+
                     return StatusCode(500, "An error occurred while processing your request.");
                 }
             }
@@ -207,8 +242,86 @@ namespace Project_Fitness.Server.Controllers
                 return Ok(carts);
             }
 
-           
+
             return BadRequest("Invalid data or missing image.");
+        }
+        [HttpPut("UpdateFitnessClassById/{id}")]
+        public async Task<IActionResult> UpdateFitnessClassById(int id, [FromForm] AddFitnessClassDTO updateFitnessClassDTO)
+        {
+            if (id <= 0)
+            {
+                return BadRequest("The id can not be zero or negative value");
+            }
+            if (updateFitnessClassDTO.FitnessClassesImage != null && updateFitnessClassDTO.FitnessClassesImage.Length > 0)
+            {
+                var uploadsFolder = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/images");
+
+                try
+                {
+
+                    if (!Directory.Exists(uploadsFolder))
+                    {
+                        Directory.CreateDirectory(uploadsFolder);
+                    }
+
+                    var uniqueFileName = Guid.NewGuid().ToString() + "_" + updateFitnessClassDTO.FitnessClassesImage.FileName;
+                    var filePathWwwroot = Path.Combine(uploadsFolder, uniqueFileName);
+
+
+                    using (var fileStream = new FileStream(filePathWwwroot, FileMode.Create))
+                    {
+                        await updateFitnessClassDTO.FitnessClassesImage.CopyToAsync(fileStream);
+                    }
+
+
+                    var fitness = await _context.FitnessClasses.FirstOrDefaultAsync(x => x.FitnessClassesId == id);
+
+                    fitness.FitnessClassesName = updateFitnessClassDTO.FitnessClassesName ?? fitness.FitnessClassesName;
+                    fitness.FitnessClassesName = updateFitnessClassDTO.FitnessClassesName ?? fitness.FitnessClassesName;
+                    fitness.Price = updateFitnessClassDTO.Price ?? fitness.Price;
+                    fitness.FitnessClassesName = updateFitnessClassDTO.FitnessClassesName ?? fitness.FitnessClassesName;
+                    if (!string.IsNullOrEmpty(updateFitnessClassDTO.StartTime))
+                    {
+                        fitness.StartTime = TimeOnly.Parse(updateFitnessClassDTO.StartTime);
+                    }
+
+                    if (!string.IsNullOrEmpty(updateFitnessClassDTO.EndTime))
+                    {
+                        fitness.EndTime = TimeOnly.Parse(updateFitnessClassDTO.EndTime);
+                    }
+                    fitness.Days = updateFitnessClassDTO.Days ?? fitness.Days;
+                    fitness.FitnessClassesImage = updateFitnessClassDTO.FitnessClassesImage.FileName ?? fitness.FitnessClassesImage;
+
+
+                    _context.FitnessClasses.Update(fitness);
+                    await _context.SaveChangesAsync();
+
+                    return Ok(fitness);
+                }
+                catch (Exception ex)
+                {
+
+                    return StatusCode(500, "An error occurred while processing your request.");
+                }
+
+            }
+            return BadRequest("Invalid data or missing image.");
+        }
+        [HttpDelete("DeleteFitnessClassById/{id}")]
+        public async Task<IActionResult> DeleteFitnessClassById(int id)
+        {
+            if (id <= 0)
+            {
+                return BadRequest("The id can not be zero or negative value");
+            }
+            var fitness = await _context.FitnessClasses.FirstOrDefaultAsync(x => x.FitnessClassesId == id);
+            if (fitness == null)
+            {
+                return BadRequest("No Fitness Class found with this id");
+            }
+            _context.FitnessClasses.Remove(fitness);
+            await _context.SaveChangesAsync();
+            return Ok();
         }
 
     }
