@@ -34,6 +34,7 @@ import { CartService } from './Rahaf/cart.service';
 import { ProductService } from './Rahaf/product.service';
 import { GymDetailsComponent } from './Services(a,m)/gym-details/gym-details.component';
 import { AdminNavBarComponent } from './Admin/admin-nav-bar/admin-nav-bar.component';
+import { TipsComponent } from './Nutrition/tips/tips.component';
 
 @NgModule({
   declarations: [
@@ -60,6 +61,8 @@ import { AdminNavBarComponent } from './Admin/admin-nav-bar/admin-nav-bar.compon
     ContactComponent,
     GymDetailsComponent,
     AdminNavBarComponent
+    GymDetailsComponent,
+    TipsComponent
   ],
   imports: [
     BrowserModule,
@@ -71,6 +74,7 @@ import { AdminNavBarComponent } from './Admin/admin-nav-bar/admin-nav-bar.compon
       { path: "NutritionPageOne", component: NutrotionPageOneComponent },
       { path: "Recips", component: RecipsComponent },
       { path: "SupRecipe/:id", component: SupRecipeComponent },
+      { path: "Tips", component: TipsComponent },
       { path: "SupRecipeDetails/:id", component: SubRecipeDetailsComponent },
       { path: "categories", component: CategoryComponent },
       { path: 'Product/:id', component: ProductComponent },
@@ -85,12 +89,16 @@ import { AdminNavBarComponent } from './Admin/admin-nav-bar/admin-nav-bar.compon
       { path: "About", component: AboutComponent },
       { path: "services", component: MainServicesComponent },
       { path: "Contact", component: ContactComponent },
+      { path: "GymDetails/:id", component: GymDetailsComponent },
       
       { path: "Contact", component: ContactComponent },
       { path: "AllFitness", component: FitnessComponent },
       { path: "admin", component: AdminNavBarComponent },
       { path: "**", redirectTo: "", pathMatch: "full" },
       { path: "GymDetails/:id", component: GymDetailsComponent },
+
+      
+    
 
       
     

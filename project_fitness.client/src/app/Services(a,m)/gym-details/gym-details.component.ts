@@ -1,28 +1,33 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { URLService } from '../../url/url.service';
 import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-gym-details',
   templateUrl: './gym-details.component.html',
-  styleUrl: './gym-details.component.css'
+  styleUrls: ['./gym-details.component.css']  
 })
-export class GymDetailsComponent {
-  parameter: any
-  array: any
-  ngOnInit() {
-    this.parameter = this._rout.snapshot.paramMap.get('id');
-    this.getDetails(this.parameter)
-    console.log(this.DetailsArray, "details")
-  }
-  constructor(private _ser: URLService, private _rout: ActivatedRoute) { }
+export class GymDetailsComponent implements OnInit {
 
+
+  parameter: any 
   DetailsArray: any
+
+
+  ngOnInit() {
+    debugger
+    this.parameter = this._route.snapshot.paramMap.get("id"); 
+    this.getDetails(this.parameter);
+    
+  }
+
+  constructor(private _ser: URLService, private _route: ActivatedRoute) { }
+
   getDetails(id: any) {
-    this._ser.getGymDeyails(id).subscribe((data:any) => {
-
-      this.DetailsArray = data
-    })
-
+    debugger
+    this._ser.getGymDetails(id).subscribe((data: any) => {
+        this.DetailsArray = data;  
+        console.log(this.DetailsArray, 'details');
+      })
   }
 }
