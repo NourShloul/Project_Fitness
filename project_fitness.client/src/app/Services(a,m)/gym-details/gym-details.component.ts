@@ -30,4 +30,8 @@ export class GymDetailsComponent implements OnInit {
         console.log(this.DetailsArray, 'details');
       })
   }
+  
+  addsubscribtion(price: number, months: number) {
+    console.log(`Subscription selected: ${months} months, total price: ${price} JD`);
+  }
 }
