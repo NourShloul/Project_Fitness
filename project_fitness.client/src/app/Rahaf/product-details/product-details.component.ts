@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import Swal from 'sweetalert2';
-import { Router } from '@angular/router'; // Import Router
+import { ActivatedRoute, Router } from '@angular/router'; // Import Router
+import { ProductDetailsService } from '../product-details.service';
 
 @Component({
   selector: 'app-product-details',
@@ -8,9 +9,22 @@ import { Router } from '@angular/router'; // Import Router
   styleUrls: ['./product-details.component.css']
 })
 export class ProductDetailsComponent {
-  product: any; 
+  product: any;
+  parameter:any
+  ngOnInit() {
+    this.parameter = this._route.snapshot.paramMap.get("id");
+    this.getServicesDetails(this.parameter);
+  }
 
-  constructor(private router: Router) { } 
+  constructor(private router: Router, private _route: ActivatedRoute, private _ser: ProductDetailsService) { }
+
+
+  getServicesDetails(id: any) {
+    this._ser.getProductDetails(id).subscribe((data) => {
+      this.product = data
+      console.log("this.product", this.product)
+    })
+  }
 
   addToCart(product: any): void {
    
