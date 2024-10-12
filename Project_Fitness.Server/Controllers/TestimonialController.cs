@@ -34,8 +34,8 @@ namespace Project_Fitness.Server.Controllers
             var addtestimonial = new Testimonial
             {
                 UserId = id,
-                TestimonialMessege= addtestimonialDTO.TheTestimonial,
-                IsAccept=false,
+                TestimonialMessege = addtestimonialDTO.TheTestimonial,
+                IsAccept = false,
 
 
             };
