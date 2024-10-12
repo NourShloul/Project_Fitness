@@ -35,6 +35,7 @@ import { ProductService } from './Rahaf/product.service';
 import { GymDetailsComponent } from './Services(a,m)/gym-details/gym-details.component';
 import { AdminNavBarComponent } from './Admin/admin-nav-bar/admin-nav-bar.component';
 import { TipsComponent } from './Nutrition/tips/tips.component';
+import { FitnessDetailsComponent } from './Services(a,m)/fitness-details/fitness-details.component';
 
 @NgModule({
   declarations: [
@@ -90,12 +91,14 @@ import { TipsComponent } from './Nutrition/tips/tips.component';
       { path: "services", component: MainServicesComponent },
       { path: "Contact", component: ContactComponent },
       { path: "GymDetails/:id", component: GymDetailsComponent },
-      
-      { path: "Contact", component: ContactComponent },
       { path: "AllFitness", component: FitnessComponent },
+      { path: "FitnessDetails/:id", component: FitnessDetailsComponent },
+
+      { path: "Contact", component: ContactComponent },
+      
       { path: "admin", component: AdminNavBarComponent },
       { path: "**", redirectTo: "", pathMatch: "full" },
-      { path: "GymDetails/:id", component: GymDetailsComponent },
+      
 
       
     
