@@ -33,6 +33,7 @@ import { ContactComponent } from './AOQ/contact/contact.component';
 
 import { CartService } from './Rahaf/cart.service';
 import { ProductService } from './Rahaf/product.service';
+import { GymDetailsComponent } from './Services(a,m)/gym-details/gym-details.component';
 
 @NgModule({
   declarations: [
@@ -56,7 +57,8 @@ import { ProductService } from './Rahaf/product.service';
     GymComponent,
     FitnessComponent,
     AboutComponent,
-    ContactComponent
+    ContactComponent,
+    GymDetailsComponent
   ],
   imports: [
     BrowserModule,
@@ -85,7 +87,8 @@ import { ProductService } from './Rahaf/product.service';
       
       { path: "Contact", component: ContactComponent },
       { path: "AllFitness", component: FitnessComponent },
-      { path: "**", redirectTo: "", pathMatch: "full" }
+      { path: "**", redirectTo: "", pathMatch: "full" },
+      { path: "GymDetails/:id", component: GymDetailsComponent },
     
 
       ])
