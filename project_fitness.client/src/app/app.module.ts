@@ -86,8 +86,13 @@ import { ProductService } from './Rahaf/product.service';
       { path: "About", component: AboutComponent },
       { path: "services", component: MainServicesComponent },
       { path: "Contact", component: ContactComponent },
+      
+      { path: "Contact", component: ContactComponent },
+      { path: "AllFitness", component: FitnessComponent },
       { path: "**", redirectTo: "", pathMatch: "full" }
-    ])
+    
+
+      ])
   ],
   providers: [
     CartService,
