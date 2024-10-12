@@ -1,6 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import Swal from 'sweetalert2';
-import { ActivatedRoute, Router } from '@angular/router'; // Import Router
+import { ActivatedRoute, Router } from '@angular/router';
 import { ProductDetailsService } from '../product-details.service';
 
 @Component({
@@ -8,22 +8,26 @@ import { ProductDetailsService } from '../product-details.service';
   templateUrl: './product-details.component.html',
   styleUrls: ['./product-details.component.css']
 })
-export class ProductDetailsComponent {
+export class ProductDetailsComponent implements OnInit {
   product: any;
-  parameter:any
+  parameter: any;
+
+  constructor(
+    private router: Router,
+    private _route: ActivatedRoute,
+    private _ser: ProductDetailsService
+  ) { }
+
   ngOnInit() {
     this.parameter = this._route.snapshot.paramMap.get("id");
     this.getServicesDetails(this.parameter);
   }
 
-  constructor(private router: Router, private _route: ActivatedRoute, private _ser: ProductDetailsService) { }
-
-
   getServicesDetails(id: any) {
     this._ser.getProductDetails(id).subscribe((data) => {
-      this.product = data
-      console.log("this.product", this.product)
-    })
+      this.product = data;
+      console.log("this.product", this.product);
+    });
   }
 
   cartItemObj: any = {
@@ -41,6 +45,7 @@ export class ProductDetailsComponent {
     this.cartItemObj.price = price;
     this._ser.addToCart({ ...this.cartItemObj });
 
+  addToCart(product: any): void {
     Swal.fire({
       title: 'Success!',
       text: 'Item added to cart successfully! Go to the cart to make an order.',
@@ -50,10 +55,8 @@ export class ProductDetailsComponent {
       showCancelButton: true
     }).then((result) => {
       if (result.isConfirmed) {
-   
         this.router.navigate(['/cart']);
       } else if (result.isDismissed) {
-     
         console.log('Continuing shopping...');
       }
     });
