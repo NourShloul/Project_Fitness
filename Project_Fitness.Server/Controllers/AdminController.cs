@@ -329,6 +329,23 @@ namespace Project_Fitness.Server.Controllers
             await _context.SaveChangesAsync();
             return Ok();
         }
+        [HttpGet("GetGymById/{id:int}")]
+        public async Task<IActionResult> GetGym(int id)
+        {
+            if (id <= 0)
+            {
+                return BadRequest("ID cannot be zero or less.");
+            }
+
+            var gym = await _context.Gyms.FindAsync(id);
+            if (gym == null)
+            {
+                return NotFound();
+            }
+
+            return Ok(gym);
+        }
+
 
     }
 }
