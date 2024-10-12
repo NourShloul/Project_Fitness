@@ -8,6 +8,7 @@ import { URLService } from '../../url/url.service';
   styleUrl: './sup-recipe.component.css'
 })
 export class SupRecipeComponent {
+
   parameter: any
   servicesArray: any
   ngOnInit() {

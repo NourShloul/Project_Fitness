@@ -1,3 +1,4 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
 @Injectable({
@@ -5,5 +6,10 @@ import { Injectable } from '@angular/core';
 })
 export class ProductDetailsService {
 
-  constructor() { }
+  constructor(private http: HttpClient) { }
+  staticData = "https://localhost:7072/api";
+
+  getProductDetails(id: any) {
+    return this.http.get<any>(`${this.staticData}/Products/${id}`)
+  }
 }

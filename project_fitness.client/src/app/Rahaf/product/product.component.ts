@@ -34,8 +34,8 @@ export class ProductComponent implements OnInit {
       alert(`${product.quantity} units of ${product.productName} added to cart!`);
     }
   }
-  onViewDetails(product: any): void {
+  onViewDetails(id: any): void {
     // Navigate to the product details page, passing the product ID as a route parameter
-    this.router.navigate(['/ProductDetails', product.id]);
+    this.router.navigate([`/ProductDetails/${id}`]);
   }
 }

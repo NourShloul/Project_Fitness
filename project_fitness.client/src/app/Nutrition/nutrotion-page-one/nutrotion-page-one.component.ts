@@ -7,10 +7,5 @@ import { Router } from '@angular/router';
   styleUrl: './nutrotion-page-one.component.css'
 })
 export class NutrotionPageOneComponent {
-  constructor(private router: Router) { }
 
-  navigateToRecipe() {
-    
-    this.router.navigate(['/Recips']);
-  }
 }

@@ -12,15 +12,15 @@
 //        private readonly MyDbContext _db;
 //        public TipsController(MyDbContext db) { _db = db; }
 
-//        [HttpGet("Nutrition/GetAllTips")]
-//        public IActionResult GetAllTips() 
-//        {
-//            var tip = _db.Tips.ToList();
-//            if (tip == null) 
-//            {
-//                return NoContent();
-//            }
-//            return Ok(tip);
+        [HttpGet("Nutrition/GetAllTips")]
+        public IActionResult GetAllTips() 
+        {
+            var tip = _db.Tips.ToList();
+            if (tip == null) 
+            {
+                return NoContent();
+            }
+            return Ok(tip);
 
 //        }
 
