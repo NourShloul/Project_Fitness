@@ -14,7 +14,6 @@ import { HomePageComponent } from './home-page/home-page.component';
 import { SupRecipeComponent } from './Nutrition/sup-recipe/sup-recipe.component';
 import { SubRecipeDetailsComponent } from './Nutrition/sub-recipe-details/sub-recipe-details.component';
 
-
 import { CategoryComponent } from './Rahaf/category/category.component';
 import { ProductComponent } from './Rahaf/product/product.component';
 import { ProductDetailsComponent } from './Rahaf/product-details/product-details.component';
