@@ -30,16 +30,17 @@ namespace Project_Fitness.Server.Controllers
         //        return NotFound("User not found");
         //    }
 
-        //    var addtestimonial = new Testimonial
-        //    {
-        //        UserId = id,
-        //        UserName = user.UserName,
-        //        Email = user.Email,
-        //        TheTestimonial = addtestimonialDTO.TheTestimonial
-        //    };
-        //    _db.Testimonials.Add(addtestimonial);
-        //    _db.SaveChanges();
-        //    return Ok();
-        //}
+            var addtestimonial = new Testimonial
+            {
+                UserId = id,
+                TestimonialMessege= addtestimonialDTO.TheTestimonial,
+                IsAccept=false,
+
+
+            };
+            _db.Testimonials.Add(addtestimonial);
+            _db.SaveChanges();
+            return Ok();
+        }
     }
 }
