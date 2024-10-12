@@ -26,8 +26,20 @@ export class ProductDetailsComponent {
     })
   }
 
-  addToCart(product: any): void {
-   
+  cartItemObj: any = {
+    
+  "productId": 0,
+  "quantity": 0,
+  "price": 0,
+  "cartId": 0
+
+  }
+
+  addToCart(productID: any, price: any): void {
+    debugger;
+    this.cartItemObj.productId = productID;
+    this.cartItemObj.price = price;
+    this._ser.addToCart({ ...this.cartItemObj });
 
     Swal.fire({
       title: 'Success!',

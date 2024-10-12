@@ -7,9 +7,10 @@ import { BehaviorSubject } from 'rxjs';
   providedIn: 'root'
 })
 export class ProductDetailsService {
-
+  logedINuser:any
   constructor(private http: HttpClient, private URLService: URLService) {
     this.URLService.emailaddress.subscribe(email => {
+      this.logedINuser = email
       console.log('Email from another service:', email);
     });
   }
@@ -24,12 +25,18 @@ export class ProductDetailsService {
   cartItemObser = this.cartItemSubject.asObservable(); // ناخذ منه الداتا
 
   addToCart(data: any) {
-    var recode = this.cartItem.find((x: any) => x.productId == data.productId);
-    if (recode) {
-      alert("product already exist")
-    } else {
-      this.cartItem.push(data);
-      this.cartItemSubject.next(this.cartItem);
+    if (this.logedINuser == "") {
+      debugger;
+      var recode = this.cartItem.find((x: any) => x.productId == data.productId);
+      if (recode) {
+        alert("product already exist")
+      } else {
+        this.cartItem.push(data);
+        this.cartItemSubject.next(this.cartItem);
+      }
+    }
+    else {
+
     }
 
 
