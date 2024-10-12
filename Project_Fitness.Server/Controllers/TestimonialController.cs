@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Project_Fitness.Server.DTO;
 using Project_Fitness.Server.Models;
 
@@ -41,6 +42,23 @@ namespace Project_Fitness.Server.Controllers
             _db.Testimonials.Add(addtestimonial);
             _db.SaveChanges();
             return Ok();
+        }
+
+        [HttpGet("GetAllAcceptedTestimonial")]
+        public IActionResult GetAllAcceptedTestimonial()
+        {
+            var testimonials = _db.Testimonials
+     .Include(c => c.User) 
+     .Where(d => d.IsAccept == true) 
+     .Select(c => new {
+         Username = c.User.UserName, 
+         userimage=c.User.UserImage,
+         TestimonialText = c.TestimonialMessege    
+     }).ToList();
+           
+
+            return Ok(testimonials);
+
         }
     }
 }
