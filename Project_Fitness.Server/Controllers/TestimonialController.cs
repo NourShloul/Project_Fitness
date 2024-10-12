@@ -33,9 +33,10 @@ namespace Project_Fitness.Server.Controllers
             var addtestimonial = new Testimonial
             {
                 UserId = id,
-                UserName = user.UserName,
-                Email = user.Email,
-                TheTestimonial = addtestimonialDTO.TheTestimonial
+                TestimonialMessege= addtestimonialDTO.TheTestimonial,
+                IsAccept=false,
+
+
             };
             _db.Testimonials.Add(addtestimonial);
             _db.SaveChanges();
