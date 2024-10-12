@@ -14,7 +14,6 @@ import { HomePageComponent } from './home-page/home-page.component';
 import { SupRecipeComponent } from './Nutrition/sup-recipe/sup-recipe.component';
 import { SubRecipeDetailsComponent } from './Nutrition/sub-recipe-details/sub-recipe-details.component';
 
-
 import { CategoryComponent } from './Rahaf/category/category.component';
 import { ProductComponent } from './Rahaf/product/product.component';
 import { ProductDetailsComponent } from './Rahaf/product-details/product-details.component';
@@ -33,6 +32,7 @@ import { ContactComponent } from './AOQ/contact/contact.component';
 
 import { CartService } from './Rahaf/cart.service';
 import { ProductService } from './Rahaf/product.service';
+import { GymDetailsComponent } from './Services(a,m)/gym-details/gym-details.component';
 
 @NgModule({
   declarations: [
@@ -56,7 +56,8 @@ import { ProductService } from './Rahaf/product.service';
     GymComponent,
     FitnessComponent,
     AboutComponent,
-    ContactComponent
+    ContactComponent,
+    GymDetailsComponent
   ],
   imports: [
     BrowserModule,
@@ -83,8 +84,10 @@ import { ProductService } from './Rahaf/product.service';
       { path: "services", component: MainServicesComponent },
       { path: "Contact", component: ContactComponent },
       
+      { path: "Contact", component: ContactComponent },
       { path: "AllFitness", component: FitnessComponent },
-      { path: "**", redirectTo: "", pathMatch: "full" }
+      { path: "**", redirectTo: "", pathMatch: "full" },
+      { path: "GymDetails/:id", component: GymDetailsComponent },
     
 
       ])
