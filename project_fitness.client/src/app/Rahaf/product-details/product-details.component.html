@@ -1,0 +1,54 @@
+<div class="product-details-wrapper">
+  <div class="container">
+    <!-- Breadcrumb Navigation -->
+    <nav aria-label="breadcrumb">
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a [routerLink]="['/']">Home</a></li>
+        <li class="breadcrumb-item"><a [routerLink]="['/products']">Products</a></li>
+        <li class="breadcrumb-item active" aria-current="page">{{ product.productName }}</li>
+      </ol>
+    </nav>
+
+    <!-- Product Header -->
+    <div class="product-header">
+      <h1>{{ product.productName }}</h1>
+    </div>
+
+    <!-- Product Details Section -->
+    <div class="product-details-container d-flex">
+      <!-- Product Image Section -->
+      <div class="product-image">
+        <img *ngIf="product.image; else noImage" [src]="product.image" alt="{{ product.productName }}" class="img-fluid">
+        <ng-template #noImage>
+          <img src="assets/images/no-image-available.png" alt="No image available" class="img-fluid"> <!-- Placeholder image -->
+        </ng-template>
+      </div>
+
+      <!-- Product Info Section -->
+      <div class="product-info">
+        <p class="product-description">{{ product.description }}</p>
+
+        <!-- Pricing Section -->
+        <div class="product-pricing">
+          <strong class="price">${{ product.price | number: '1.2-2' }}</strong>
+          <span *ngIf="product.discount" class="discount-badge">{{ product.discount }}% OFF</span>
+        </div>
+
+        <!-- Stock Information -->
+        <p class="stock-info">
+          <strong>Stock Quantity:</strong>
+          <span [ngClass]="{'in-stock': product.stockQuantity > 0, 'out-of-stock': product.stockQuantity === 0}">
+            {{ product.stockQuantity > 0 ? product.stockQuantity + ' available' : 'Out of stock' }}
+          </span>
+        </p>
+
+        <!-- Add to Cart Button -->
+        <div class="action-buttons">
+          <button class="btn btn-primary btn-lg" (click)="addToCart(product)" [disabled]="product.stockQuantity === 0">
+            <i class="fas fa-cart-plus"></i> Add to Cart
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

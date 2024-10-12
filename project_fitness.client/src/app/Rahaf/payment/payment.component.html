@@ -1,0 +1,23 @@
+<form (ngSubmit)="onSubmit()">
+  <div class="form-group">
+    <label for="cardNumber">Card Number</label>
+    <input type="text" id="cardNumber" class="form-control" [(ngModel)]="paymentDetails.cardNumber" name="cardNumber" required>
+  </div>
+
+  <div class="form-group">
+    <label for="cardHolder">Card Holder</label>
+    <input type="text" id="cardHolder" class="form-control" [(ngModel)]="paymentDetails.cardHolder" name="cardHolder" required>
+  </div>
+
+  <div class="form-group">
+    <label for="expiryDate">Expiry Date</label>
+    <input type="text" id="expiryDate" class="form-control" [(ngModel)]="paymentDetails.expiryDate" name="expiryDate" required>
+  </div>
+
+  <div class="form-group">
+    <label for="cvv">CVV</label>
+    <input type="text" id="cvv" class="form-control" [(ngModel)]="paymentDetails.cvv" name="cvv" required>
+  </div>
+
+  <button type="submit" class="btn btn-success">Submit Payment</button>
+</form>

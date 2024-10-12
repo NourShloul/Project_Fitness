@@ -1,0 +1,124 @@
+.about-us-container {
+  font-family: 'Roboto', sans-serif;
+  color: #333;
+}
+
+.hero-section {
+  background-color:azure;
+  background-size: cover;
+  padding: 100px 0;
+  color: #fff;
+  text-align: center;
+  position: relative;
+}
+
+.hero-title {
+  font-size: 48px;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+.hero-subtitle {
+  font-size: 24px;
+  margin-bottom: 15px;
+}
+
+.hero-description {
+  font-size: 18px;
+}
+
+.mission-section {
+  padding: 50px 0;
+}
+
+  .mission-section h2 {
+    font-size: 32px;
+    color: #ff5722;
+  }
+
+.icon-box {
+  padding: 30px;
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  margin-bottom: 30px;
+}
+
+  .icon-box i {
+    color: #ff5722;
+    margin-bottom: 20px;
+  }
+
+.services-section h2 {
+  font-size: 32px;
+  color: #ff5722;
+  margin-bottom: 30px;
+}
+
+.service-box {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+  .service-box img {
+    border-radius: 10px;
+    width: 100%;
+    margin-bottom: 20px;
+  }
+
+  .service-box h4 {
+    font-size: 20px;
+    margin-bottom: 10px;
+  }
+
+  .service-box i {
+    color: #ff5722;
+    margin-right: 10px;
+  }
+
+.testimonials-section {
+  background-color: #f7f7f7;
+  padding: 50px 0;
+}
+
+  .testimonials-section h2 {
+    font-size: 32px;
+    color: #ff5722;
+    margin-bottom: 30px;
+  }
+
+.testimonial {
+  margin-bottom: 30px;
+}
+
+  .testimonial p {
+    font-size: 16px;
+    font-style: italic;
+    color: #666;
+  }
+
+  .testimonial h5 {
+    font-size: 18px;
+    margin-top: 10px;
+    color: #333;
+  }
+
+.cta-section {
+  background-color: #ff5722;
+  color: #fff;
+  padding: 50px 0;
+}
+
+  .cta-section h2 {
+    font-size: 28px;
+    margin-bottom: 20px;
+  }
+
+  .cta-section .btn {
+    background-color: #fff;
+    color: #ff5722;
+    padding: 10px 20px;
+    font-weight: bold;
+    text-transform: uppercase;
+    font-size: 16px;
+  }

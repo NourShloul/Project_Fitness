@@ -1,0 +1,27 @@
+<!--<div *ngIf="cartItems.length > 0; else emptyCart">
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Product</th>
+        <th>Quantity</th>
+        <th>Price</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let item of cartItems">
+        <td>{{ item.productName }}</td>
+        <td>{{ item.quantity }}</td>
+        <td>${{ item.price * item.quantity | number: '1.2-2' }}</td>
+        <td><button class="btn btn-danger" (click)="removeFromCart(item)">Remove</button></td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h3>Total: ${{ cartTotal | number: '1.2-2' }}</h3>
+  <button class="btn btn-primary" (click)="goToPayment()">Proceed to Payment</button>
+</div>
+
+<ng-template #emptyCart>
+  <p>Your cart is empty.</p>
+</ng-template>-->

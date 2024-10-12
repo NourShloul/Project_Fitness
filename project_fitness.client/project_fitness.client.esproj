@@ -14,6 +14,7 @@
     <TypeScriptConfiguration Remove="src\Nour\**" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="src\app\AOQ\" />
     <Folder Include="src\app\Services%28a,m%29\" />
   </ItemGroup>
 </Project>

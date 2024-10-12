@@ -23,6 +23,11 @@ namespace Project_Fitness.Server.Controllers
             {
                 return BadRequest("Passwords do not match");
             }
+            var existingUser = _Db.Users.FirstOrDefault(u => u.UserEmail == dto.UserEmail);
+            if (existingUser != null)
+            {
+                return BadRequest("Email already exists");
+            }
             //byte[] passwordHash;
             //byte[] passwordSalt;
             passwordHasherMethod.CreatePasswordHash(dto.UserPassword, out string passwordHash, out string passwordSalt);
@@ -47,6 +52,9 @@ namespace Project_Fitness.Server.Controllers
         {
             var user = _Db.Users.FirstOrDefault(x => x.UserEmail == dto.UserEmail);
 
+            if (user == null) {
+                return BadRequest();
+            }
 
             if (User == null || !passwordHasherMethod.VerifyPassword(dto.UserPassword, user.HashPassword, user.SaltPassword))
             {
