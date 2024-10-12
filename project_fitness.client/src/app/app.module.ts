@@ -86,11 +86,12 @@ import { TipsComponent } from './Nutrition/tips/tips.component';
       { path: "About", component: AboutComponent },
       { path: "services", component: MainServicesComponent },
       { path: "Contact", component: ContactComponent },
+      { path: "GymDetails/:id", component: GymDetailsComponent },
       
       { path: "Contact", component: ContactComponent },
       { path: "AllFitness", component: FitnessComponent },
       { path: "**", redirectTo: "", pathMatch: "full" },
-      { path: "GymDetails/:id", component: GymDetailsComponent },
+      
     
 
       ])
