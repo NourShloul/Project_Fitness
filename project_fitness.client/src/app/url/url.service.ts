@@ -8,8 +8,8 @@ import { Observable } from 'rxjs';
 })
 export class URLService {
 
-  email: BehaviorSubject<string> = new BehaviorSubject<string>("");
-  emailaddress = this.email.asObservable();
+  UserEmail: BehaviorSubject<string> = new BehaviorSubject<string>("");
+  emailaddress = this.UserEmail.asObservable();
   constructor(private http: HttpClient) { }
 
 
