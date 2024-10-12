@@ -51,5 +51,6 @@ export class URLService {
   getGymDetails(id: any): Observable<any> {
     return this.http.get<any>(`${this.staticData}/Admin/GetGymById/${id}`)
   }
+  
 
 }

@@ -8,28 +8,26 @@ import { ActivatedRoute } from '@angular/router';
   styleUrls: ['./gym-details.component.css']  
 })
 export class GymDetailsComponent implements OnInit {
-  parameter: any;  
-  DetailsArray: any[] = []; 
+
+
+  parameter: any 
+  DetailsArray: any
+
+
+  ngOnInit() {
+    debugger
+    this.parameter = this._route.snapshot.paramMap.get("id"); 
+    this.getDetails(this.parameter);
+    
+  }
 
   constructor(private _ser: URLService, private _route: ActivatedRoute) { }
 
-  ngOnInit(): void {
-    this.parameter = this._route.snapshot.paramMap.get('id'); 
-    if (this.parameter) {
-      this.getDetails(this.parameter);
-    } else {
-      console.error('No ID parameter found in the route.');
-    }
-  }
-
-  getDetails(id: string): void {
-    this._ser.getGymDetails(id).subscribe(
-      (data: any) => {
+  getDetails(id: any) {
+    debugger
+    this._ser.getGymDetails(id).subscribe((data: any) => {
         this.DetailsArray = data;  
-        console.log(this.DetailsArray, 'details');        },
-      (error: any) => {
-        console.error('Error fetching gym details:', error);  
-      }
-    );
+        console.log(this.DetailsArray, 'details');
+      })
   }
 }

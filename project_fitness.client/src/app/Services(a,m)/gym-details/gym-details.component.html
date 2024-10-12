@@ -1,13 +1,15 @@
-<div class="row g-0 bg-light position-relative" *ngFor="let item of DetailsArray">
+
+
+<div class="row g-0 custom-bg position-relative">
   <div class="col-md-6 mb-md-0 p-md-4">
-    <img src="https://localhost:7072{{item.gymImage}}" class="w-100" alt="...">
+    <img src="https://localhost:7072{{DetailsArray.gymImage}}" class="img-hover" alt="..." style="height:250px;width:250px;">
   </div>
   <div class="col-md-6 p-4 ps-md-0">
-    <h5 class="mt-0">{{item.gymName}}</h5>
-    <p>{{item.gymDescription}}</p>
-    
+    <h5 class="mt-0 text-white">{{DetailsArray.gymName}}</h5>
+    <p class="text-white">{{DetailsArray.gymDescription}}</p>
   </div>
 </div>
+
 <main>
   <div class="container-fluid bg-trasparent my-4 p-3" style="position: relative;">
     <div class="row row-cols-1 row-cols-xs-2 row-cols-sm-2 row-cols-lg-4 g-3">

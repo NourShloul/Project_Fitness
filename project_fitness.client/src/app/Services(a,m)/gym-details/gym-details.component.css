@@ -231,3 +231,25 @@ footer {
   height: 80px;
   color: #fff
 }
+
+.custom-bg {
+  background: linear-gradient(to right, black, lightgray);
+  transition: background 0.5s ease;
+}
+
+  .custom-bg:hover {
+    background: linear-gradient(to right, darkgray, lightgray);
+  }
+
+.text-white {
+  color: white;
+}
+
+.img-hover {
+  transition: transform 0.3s ease;
+}
+
+  .img-hover:hover {
+    transform: scale(1.05);
+  }
+
