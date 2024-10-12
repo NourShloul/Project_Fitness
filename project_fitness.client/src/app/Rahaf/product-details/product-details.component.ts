@@ -45,7 +45,7 @@ export class ProductDetailsComponent implements OnInit {
     this.cartItemObj.price = price;
     this._ser.addToCart({ ...this.cartItemObj });
 
-  addToCart(product: any): void {
+
     Swal.fire({
       title: 'Success!',
       text: 'Item added to cart successfully! Go to the cart to make an order.',
