@@ -8,10 +8,12 @@
     <BuildOutputFolder>$(MSBuildProjectDirectory)\dist\project_fitness.client\browser\</BuildOutputFolder>
   </PropertyGroup>
   <ItemGroup>
-    <Folder Include="src\app\assets\" />
+    <None Remove="src\app\assets\**" />
+    <None Remove="src\Nour\**" />
+    <TypeScriptConfiguration Remove="src\app\assets\**" />
+    <TypeScriptConfiguration Remove="src\Nour\**" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="src\app\Services%28a,m%29\" />
-    <Folder Include="src\Nour\" />
   </ItemGroup>
 </Project>
