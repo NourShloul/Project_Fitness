@@ -33,6 +33,7 @@ import { ContactComponent } from './AOQ/contact/contact.component';
 import { CartService } from './Rahaf/cart.service';
 import { ProductService } from './Rahaf/product.service';
 import { GymDetailsComponent } from './Services(a,m)/gym-details/gym-details.component';
+import { TipsComponent } from './Nutrition/tips/tips.component';
 
 @NgModule({
   declarations: [
@@ -57,7 +58,8 @@ import { GymDetailsComponent } from './Services(a,m)/gym-details/gym-details.com
     FitnessComponent,
     AboutComponent,
     ContactComponent,
-    GymDetailsComponent
+    GymDetailsComponent,
+    TipsComponent
   ],
   imports: [
     BrowserModule,
@@ -69,6 +71,7 @@ import { GymDetailsComponent } from './Services(a,m)/gym-details/gym-details.com
       { path: "NutritionPageOne", component: NutrotionPageOneComponent },
       { path: "Recips", component: RecipsComponent },
       { path: "SupRecipe/:id", component: SupRecipeComponent },
+      { path: "Tips", component: TipsComponent },
       { path: "SupRecipeDetails/:id", component: SubRecipeDetailsComponent },
       { path: "categories", component: CategoryComponent },
       { path: 'Product/:id', component: ProductComponent },
