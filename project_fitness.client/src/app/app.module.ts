@@ -33,6 +33,7 @@ import { ContactComponent } from './AOQ/contact/contact.component';
 import { CartService } from './Rahaf/cart.service';
 import { ProductService } from './Rahaf/product.service';
 import { GymDetailsComponent } from './Services(a,m)/gym-details/gym-details.component';
+import { AdminNavBarComponent } from './Admin/admin-nav-bar/admin-nav-bar.component';
 import { TipsComponent } from './Nutrition/tips/tips.component';
 
 @NgModule({
@@ -58,6 +59,8 @@ import { TipsComponent } from './Nutrition/tips/tips.component';
     FitnessComponent,
     AboutComponent,
     ContactComponent,
+    GymDetailsComponent,
+    AdminNavBarComponent,
     GymDetailsComponent,
     TipsComponent
   ],
@@ -90,7 +93,13 @@ import { TipsComponent } from './Nutrition/tips/tips.component';
       
       { path: "Contact", component: ContactComponent },
       { path: "AllFitness", component: FitnessComponent },
+      { path: "admin", component: AdminNavBarComponent },
       { path: "**", redirectTo: "", pathMatch: "full" },
+      { path: "GymDetails/:id", component: GymDetailsComponent },
+
+      
+    
+
       
     
 

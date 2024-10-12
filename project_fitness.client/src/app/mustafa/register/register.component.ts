@@ -36,7 +36,7 @@ export class RegisterComponent {
         text: 'You have been registered successfully.',
         confirmButtonText: 'OK'
       }).then(() => {
-        this._router.navigate(['/login']);
+        this._router.navigate(['/Login']);
       });
     },
       (error) => {
