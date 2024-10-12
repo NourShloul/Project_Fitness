@@ -8,3 +8,37 @@
     <p class="card-text">{{DetailsArray.preparationTime}}</p>
   </div>
 </div>
+
+
+<!--<section class="dark">
+  <div class="container py-4">
+    <h1 class="h1 text-center" id="pageHeaderTitle">All Healthy Recipe</h1>
+
+    <article class="postcard dark blue" *ngFor="let item of subRecipeData">
+      <a class="postcard__img_link" [routerLink]="['/SupRecipeDetails', item.subRecipeId]">
+        <img class="postcard__img" [src]="item.subRecipeImage" alt="{{item.subRecipeName}}" />
+      </a>
+      <div class="postcard__text">
+        <h1 class="postcard__title blue">
+          <a [routerLink]="['/SupRecipeDetails', item.subRecipeId]">{{item.subRecipeName}}</a>
+        </h1>
+        <div class="postcard__subtitle small">
+          <time datetime="2020-05-25 12:00:00">
+            <i class="fas fa-calendar-alt mr-2"></i>Mon, May 25th 2020
+          </time>
+        </div>
+        <div class="postcard__bar"></div>
+        <div class="postcard__preview-txt">
+          {{item.subRecipeDescription}}
+        </div>
+        <ul class="postcard__tagbox">
+          <li class="tag__item"><i class="fas fa-tag mr-2"></i>Category: {{item.category}}</li>
+          <li class="tag__item"><i class="fas fa-clock mr-2"></i>Time: {{item.cookingTime}} mins.</li>
+          <li class="tag__item play blue">
+            <a [routerLink]="['/SupRecipeDetails', item.subRecipeId]"><i class="fas fa-play mr-2"></i>View Details</a>
+          </li>
+        </ul>
+      </div>
+    </article>
+  </div>
+</section>-->
