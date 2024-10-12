@@ -379,7 +379,7 @@ namespace Project_Fitness.Server.Controllers
             }
 
             var gyms = await _context.Gyms
-                                     .Where(x => x.GymName.Equals(name, StringComparison.OrdinalIgnoreCase))
+                                     .Where(x => x.GymName==name)
                                      .ToListAsync();
 
             if (!gyms.Any()) 
@@ -397,7 +397,7 @@ namespace Project_Fitness.Server.Controllers
             }
 
             var Fitness = await _context.FitnessClasses
-                                     .Where(x => x.FitnessClassesName.Equals(name, StringComparison.OrdinalIgnoreCase))
+                                     .Where(x => x.FitnessClassesName==name)
                                      .ToListAsync();
 
             if (!Fitness.Any())
