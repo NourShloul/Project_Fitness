@@ -60,7 +60,7 @@ import { TipsComponent } from './Nutrition/tips/tips.component';
     AboutComponent,
     ContactComponent,
     GymDetailsComponent,
-    AdminNavBarComponent
+    AdminNavBarComponent,
     GymDetailsComponent,
     TipsComponent
   ],
