@@ -16,30 +16,30 @@ namespace Project_Fitness.Server.Controllers
             _db = db;
         }
 
-        [HttpPost("AddTestimonial/{id}")]
-        public IActionResult Addtestimonial(int id, [FromBody] AddtestimonialDTO addtestimonialDTO)
-        {
-            if (id == null || id == 0)
-            {
-                return BadRequest("The id is null or 0 here");
-            }
+        //[HttpPost("AddTestimonial/{id}")]
+        //public IActionResult Addtestimonial(int id, [FromBody] AddtestimonialDTO addtestimonialDTO)
+        //{
+        //    if (id == null || id == 0)
+        //    {
+        //        return BadRequest("The id is null or 0 here");
+        //    }
 
-            var user = _db.Users.FirstOrDefault(u => u.UserId == id);
-            if (user == null)
-            {
-                return NotFound("User not found");
-            }
+        //    var user = _db.Users.FirstOrDefault(u => u.UserId == id);
+        //    if (user == null)
+        //    {
+        //        return NotFound("User not found");
+        //    }
 
-            var addtestimonial = new Testimonial
-            {
-                UserId = id,
-                UserName = user.UserName,
-                Email = user.Email,
-                TheTestimonial = addtestimonialDTO.TheTestimonial
-            };
-            _db.Testimonials.Add(addtestimonial);
-            _db.SaveChanges();
-            return Ok();
-        }
+        //    var addtestimonial = new Testimonial
+        //    {
+        //        UserId = id,
+        //        UserName = user.UserName,
+        //        Email = user.Email,
+        //        TheTestimonial = addtestimonialDTO.TheTestimonial
+        //    };
+        //    _db.Testimonials.Add(addtestimonial);
+        //    _db.SaveChanges();
+        //    return Ok();
+        //}
     }
 }
