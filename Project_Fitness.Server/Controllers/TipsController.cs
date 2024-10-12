@@ -13,10 +13,10 @@ namespace Project_Fitness.Server.Controllers
         public TipsController(MyDbContext db) { _db = db; }
 
         [HttpGet("Nutrition/GetAllTips")]
-        public IActionResult GetAllTips() 
+        public IActionResult GetAllTips()
         {
             var tip = _db.Tips.ToList();
-            if (tip == null) 
+            if (tip == null)
             {
                 return NoContent();
             }
