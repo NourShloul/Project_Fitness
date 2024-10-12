@@ -53,4 +53,11 @@ export class URLService {
   }
   
 
+
+
+  GetAllTips(): Observable<any> {
+    return this.http.get<any>(`${this.staticData}/Tips/Nutrition/GetAllTips`);
+  }
+
+
 }
