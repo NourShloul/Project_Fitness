@@ -1,7 +1,8 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Project_Fitness.Server.Models;
 
-namespace Project_Fitness.Server.Models
+namespace Project_Fitness.Server.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
