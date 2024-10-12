@@ -1,0 +1,61 @@
+
+
+    <article class="postcard dark blue" style="margin-left:1%;margin-right:1%">
+      <a class="postcard__img_link" href="#">
+        <img class="postcard__img" src="https://localhost:7072{{DetailsArray.gymImage}}" alt="Image Title" />
+      </a>
+      <div class="postcard__text">
+        <h1 class="postcard__title blue"><a href="#">{{DetailsArray.gymName}}</a></h1>
+        <div class="postcard__subtitle small">
+          <time datetime="2020-05-25 12:00:00">
+            <i class="fas fa-calendar-alt mr-2"></i>Work Time : {{DetailsArray.startTime}} AM - {{DetailsArray.endTime}} PM
+          </time>
+        </div>
+        <div class="postcard__bar"></div>
+        <div class="postcard__preview-txt">{{DetailsArray.gymDescription}}</div>
+        <ul class="postcard__tagbox">
+          <li class="tag__item pt-2"><i class="fas fa-tag mr-2"></i>The Location : {{DetailsArray.gymLocation}}</li>
+          <li class="tag__item pt-2"><i class="fas fa-clock mr-2"></i>Monthly subscription : {{DetailsArray.price}} JD</li>
+         
+        </ul>
+      </div>
+    </article>
+
+
+
+<main>
+  <div class="container-fluid bg-trasparent my-4 p-3" style="position: relative;">
+    <div class="row row-cols-1 row-cols-xs-2 row-cols-sm-2 row-cols-lg-4 g-3">
+      <div class="col">
+        <div class="card h-100 shadow-lg">
+          <img src="https://www.freepnglogos.com/uploads/notebook-png/download-laptop-notebook-png-image-png-image-pngimg-2.png" class="card-img-top" alt="...">
+          <div class="card-body">
+            <div class="clearfix mb-3">
+              <span class="float-start badge rounded-pill bg-primary">ASUS Rog</span>
+              <span class="float-end price-hp">12354.00&euro;</span>
+            </div>
+            <h5 class="card-title">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Veniam quidem eaque ut eveniet aut quis rerum. Asperiores accusamus harum ducimus velit odit ut. Saepe, iste optio laudantium sed aliquam sequi.</h5>
+            <div class="text-center my-4">
+              <a href="#" class="btn btn-warning">Check offer</a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col">
+        <div class="card h-100 shadow-lg">
+          <img src="https://www.freepnglogos.com/uploads/notebook-png/notebook-laptop-png-images-you-can-download-mashtrelo-14.png" class="card-img-top" alt="...">
+          <div class="card-body">
+            <div class="clearfix mb-3">
+              <span class="float-start badge rounded-pill bg-success">12354.00&euro;</span>
+              <span class="float-end"><a href="#">Example</a></span>
+            </div>
+            <h5 class="card-title">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Veniam quidem eaque ut eveniet aut quis rerum. Asperiores accusamus harum ducimus velit odit ut. Saepe, iste optio laudantium sed aliquam sequi.</h5>
+            <div class="d-grid gap-2 my-4">
+              <a href="#" class="btn btn-warning">Check offer</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>

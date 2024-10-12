@@ -48,5 +48,15 @@ export class URLService {
   GetAllFitness(): Observable<any> {
     return this.http.get<any>(`${this.staticData}/Admin/GetAllFitnessClass`);
   }
+  getGymDetails(id: any): Observable<any> {
+    return this.http.get<any>(`${this.staticData}/Admin/GetGymById/${id}`)
+  }
+  getClassDetails(id: any): Observable<any>{
+    return this.http.get<any>(`${this.staticData}/api/Admin/GetClassById/${id}`)
+  }
+  GetAllTips(): Observable<any> {
+    return this.http.get<any>(`${this.staticData}/Tips/Nutrition/GetAllTips`);
+  }
+
 
 }

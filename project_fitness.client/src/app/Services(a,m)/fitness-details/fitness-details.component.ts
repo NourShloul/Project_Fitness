@@ -1,0 +1,27 @@
+import { Component } from '@angular/core';
+import { URLService } from '../../url/url.service';
+import { ActivatedRoute } from '@angular/router';
+
+@Component({
+  selector: 'app-fitness-details',
+  templateUrl: './fitness-details.component.html',
+  styleUrl: './fitness-details.component.css'
+})
+export class FitnessDetailsComponent {
+
+  parameter: any
+  Details: any
+  ngOnInit() {
+    this.parameter = this._route.snapshot.paramMap.get("id")
+    this.getDetails(this.parameter)
+  }
+  constructor(private _ser: URLService, private _route: ActivatedRoute) { }
+  getDetails(id: any) {
+    this._ser.getClassDetails(id).subscribe((data: any) => {
+      this.Details = data;
+      console.log(this.Details,'details')
+    }
+    )
+  }
+
+}

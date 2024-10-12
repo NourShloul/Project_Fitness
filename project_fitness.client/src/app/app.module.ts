@@ -14,11 +14,10 @@ import { HomePageComponent } from './home-page/home-page.component';
 import { SupRecipeComponent } from './Nutrition/sup-recipe/sup-recipe.component';
 import { SubRecipeDetailsComponent } from './Nutrition/sub-recipe-details/sub-recipe-details.component';
 
-import { ContactUsComponent } from './Rahaf/contact-us/contact-us.component';
 import { CategoryComponent } from './Rahaf/category/category.component';
 import { ProductComponent } from './Rahaf/product/product.component';
 import { ProductDetailsComponent } from './Rahaf/product-details/product-details.component';
-import { AboutUsComponent } from './Rahaf/about-us/about-us.component';
+
 import { PolicesComponent } from './Rahaf/polices/polices.component';
 import { CartComponent } from './Rahaf/cart/cart.component';
 import { PaymentComponent } from './Rahaf/payment/payment.component';
@@ -33,6 +32,9 @@ import { ContactComponent } from './AOQ/contact/contact.component';
 
 import { CartService } from './Rahaf/cart.service';
 import { ProductService } from './Rahaf/product.service';
+import { GymDetailsComponent } from './Services(a,m)/gym-details/gym-details.component';
+import { AdminNavBarComponent } from './Admin/admin-nav-bar/admin-nav-bar.component';
+import { TipsComponent } from './Nutrition/tips/tips.component';
 
 @NgModule({
   declarations: [
@@ -44,11 +46,9 @@ import { ProductService } from './Rahaf/product.service';
     HomePageComponent,
     SupRecipeComponent,
     SubRecipeDetailsComponent,
-    ContactUsComponent,
     CategoryComponent,
     ProductComponent,
     ProductDetailsComponent,
-    AboutUsComponent,
     PolicesComponent,
     CartComponent,
     PaymentComponent,
@@ -58,7 +58,11 @@ import { ProductService } from './Rahaf/product.service';
     GymComponent,
     FitnessComponent,
     AboutComponent,
-    ContactComponent
+    ContactComponent,
+    GymDetailsComponent,
+    AdminNavBarComponent,
+    GymDetailsComponent,
+    TipsComponent
   ],
   imports: [
     BrowserModule,
@@ -70,12 +74,11 @@ import { ProductService } from './Rahaf/product.service';
       { path: "NutritionPageOne", component: NutrotionPageOneComponent },
       { path: "Recips", component: RecipsComponent },
       { path: "SupRecipe/:id", component: SupRecipeComponent },
+      { path: "Tips", component: TipsComponent },
       { path: "SupRecipeDetails/:id", component: SubRecipeDetailsComponent },
-      { path: "contact-us", component: ContactUsComponent },
       { path: "categories", component: CategoryComponent },
       { path: 'Product/:id', component: ProductComponent },
       { path: 'ProductDetails/:id', component: ProductDetailsComponent },
-      { path: 'about-us', component: AboutUsComponent },
       { path: 'policies', component: PolicesComponent },
       { path: 'cart', component: CartComponent },
       { path: 'payment', component: PaymentComponent },
@@ -86,10 +89,18 @@ import { ProductService } from './Rahaf/product.service';
       { path: "About", component: AboutComponent },
       { path: "services", component: MainServicesComponent },
       { path: "Contact", component: ContactComponent },
+      { path: "GymDetails/:id", component: GymDetailsComponent },
       
       { path: "Contact", component: ContactComponent },
       { path: "AllFitness", component: FitnessComponent },
-      { path: "**", redirectTo: "", pathMatch: "full" }
+      { path: "admin", component: AdminNavBarComponent },
+      { path: "**", redirectTo: "", pathMatch: "full" },
+      { path: "GymDetails/:id", component: GymDetailsComponent },
+
+      
+    
+
+      
     
 
       ])

@@ -1,4 +1,4 @@
-<!--<div *ngIf="cartItems.length > 0; else emptyCart">
+<div *ngIf="cartItems.length > 0; else emptyCart">
   <table class="table">
     <thead>
       <tr>
@@ -18,10 +18,10 @@
     </tbody>
   </table>
 
-  <h3>Total: ${{ cartTotal | number: '1.2-2' }}</h3>
+  <h3>Total: ${{ getCartTotal() | number: '1.2-2' }}</h3>
   <button class="btn btn-primary" (click)="goToPayment()">Proceed to Payment</button>
 </div>
 
 <ng-template #emptyCart>
   <p>Your cart is empty.</p>
-</ng-template>-->
+</ng-template>
