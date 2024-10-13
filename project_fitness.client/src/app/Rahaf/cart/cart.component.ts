@@ -33,19 +33,23 @@ export class CartComponent implements OnInit {
     });
 
     if (this.userId != null) {
-      this.cartService.getCartItems(this.userId).subscribe(
-        (items) => {
-          this.cartItems = items; // Assign fetched items to cartItems
-        },
-        (error) => {
-          console.error('Error fetching cart items:', error); // Handle errors
-        }
-      );
+      this.getCartItemsUser()
     }
 
     // Fetch cart items when the component is initialized
     
     this.getCartItemsLocal()
+  }
+
+  getCartItemsUser() {
+    this.cartService.getCartItems(this.userId).subscribe(
+      (items) => {
+        this.cartItems = items; // Assign fetched items to cartItems
+      },
+      (error) => {
+        console.error('Error fetching cart items:', error); // Handle errors
+      }
+    );
   }
 
   getCartItemsLocal() {
@@ -92,9 +96,10 @@ export class CartComponent implements OnInit {
     } else {
       this.ProductService.APIincreaseQ(id).subscribe(
         (response) => {
-          console.log('Quantity increased:', response);
-          this.test555 = response.quantity
-          this.router.navigate(['/cart']); // Navigate after the API call is successful
+          //console.log('Quantity increased:', response);
+          //this.test555 = response.quantity
+          //this.router.navigate(['/cart']); // Navigate after the API call is successful
+          this.getCartItemsUser()
         },
         (error) => {
           console.error('Error increasing quantity:', error);
@@ -109,9 +114,10 @@ export class CartComponent implements OnInit {
     } else {
       this.ProductService.APIdecreaseQ(id).subscribe(
         (response) => {
-          console.log('Quantity increased:', response);
-          this.test555 = response.quantity
-          this.router.navigate(['/cart']); // Navigate after the API call is successful
+          //console.log('Quantity increased:', response);
+          //this.test555 = response.quantity
+          //this.router.navigate(['/cart']); // Navigate after the API call is successful
+          this.getCartItemsUser()
         },
         (error) => {
           console.error('Error increasing quantity:', error);
@@ -124,10 +130,11 @@ export class CartComponent implements OnInit {
   remove(productId: any, id: any) {
     debugger;
     if (this.test == "") {
-      this.ProductService.deleteItem(id);
+      this.ProductService.deleteItem(productId);
     } else {
-      this.cartService.deleteCartItem(productId).subscribe();
-      this.router.navigate(['/cart']);
+      this.cartService.deleteCartItem(id).subscribe();
+      //  this.router.navigate(['/cart']);
+      this.getCartItemsUser()
     }
     
   }

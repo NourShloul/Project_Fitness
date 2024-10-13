@@ -10,8 +10,8 @@
     </thead>
     <tbody>
       <tr *ngFor="let item of cartItems">
-        <td>{{ item.productName }}</td>
-        <td><button (click)="minusQ(item.productId, item.id)">-</button><input type="number" value="{{item.quantity}}" readonly  [(ngModel)] ="test555"/><button (click)="incrimentQ(item.productId, item.id)">+</button></td>
+        <td>{{ item.product.productName }}</td>
+        <td><button (click)="minusQ(item.productId, item.id)">-</button><input type="number" value="{{item.quantity}}" readonly  /><button (click)="incrimentQ(item.productId, item.id)">+</button></td>
         <td>${{ item.price * item.quantity | number: '1.2-2' }}</td>
         <td><button class="btn btn-danger" (click)="remove(item.productId, item.id)">Remove</button></td>
       </tr>

@@ -73,8 +73,11 @@ namespace Project_Fitness.Server.Controllers
         [HttpGet("getCartItemsByUserId/{id}")]
         public IActionResult getCartItemsByUserId(int id) {
             var cart = _context.Carts.FirstOrDefault(c => c.UserId == id);
-            var cartItem = _context.CartItems.Where(c => c.CartId == cart.Id).ToList();
-            return Ok(cartItem); 
+            var cartItems = _context.CartItems
+                                        .Where(c => c.CartId == cart.Id)
+                                        .Include(c => c.Product)  // Eagerly load the product details
+                                        .ToList();
+            return Ok(cartItems); 
         }
 
         // Get all products in the user's cart
