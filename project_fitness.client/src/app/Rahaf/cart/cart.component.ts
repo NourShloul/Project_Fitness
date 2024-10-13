@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { CartService } from '../cart.service';
+import { ProductDetailsService } from '../product-details.service';
+import { URLService } from '../../url/url.service';
 
 @Component({
   selector: 'app-cart',
@@ -9,8 +11,14 @@ import { CartService } from '../cart.service';
 })
 export class CartComponent implements OnInit {
   cartItems: any[] = [];
+  logedINuser: any
 
-  constructor(private cartService: CartService, private router: Router) { }
+  constructor(private cartService: CartService, private router: Router, private ProductService: ProductDetailsService, private URLService: URLService) {
+    this.URLService.emailaddress.subscribe(email => {
+      this.logedINuser = email
+      console.log('Email from another service:', email);
+    });
+  }
 
   ngOnInit(): void {
     // Fetch cart items when the component is initialized
@@ -22,6 +30,13 @@ export class CartComponent implements OnInit {
         console.error('Error fetching cart items:', error); // Handle errors
       }
     );
+    this.getCartItemsLocal()
+  }
+
+  getCartItemsLocal() {
+    this.ProductService.cartItemObser.subscribe((data) =>
+      this.cartItems = data
+    )
   }
 
   // Remove an item from the cart
@@ -44,6 +59,11 @@ export class CartComponent implements OnInit {
 
   // Navigate to the payment page
   goToPayment(): void {
-    this.router.navigate(['/payment']); // Navigate to the payment route
+    if (this.logedINuser == "") {
+      this.router.navigate(['/Login']); // Navigate to the payment route
+    } else {
+      this.router.navigate(['/payment']);
+    }
+     // Navigate to the payment route
   }
 }

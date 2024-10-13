@@ -7,15 +7,14 @@ import { URLService } from '../../url/url.service';
   styleUrl: './tips.component.css'
 })
 export class TipsComponent {
-  ngOnInit() {
+  ngOnInit()
+  {
     this.GetTips()
   }
   constructor(private _ser:
     URLService) { }
-
   TipsArray: any
   GetTips() {
-    debugger
     this._ser.GetAllTips().subscribe((data) => {
       this.TipsArray = data
       console.log(this.TipsArray)
