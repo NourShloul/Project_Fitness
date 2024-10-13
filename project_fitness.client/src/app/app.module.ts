@@ -1,7 +1,7 @@
 import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms'; // Import ReactiveFormsModule
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -45,6 +45,9 @@ import { UpdategymComponent } from './Admin/updategym/updategym.component';
 import { UpdatefitnessclassComponent } from './Admin/updatefitnessclass/updatefitnessclass.component';
 import { AddgymComponent } from './Admin/addgym/addgym.component';
 import { AddfitnessComponent } from './Admin/addfitness/addfitness.component';
+import { ProductListComponent } from './Admin/product-list/product-list.component'; // Add ProductListComponent
+import { AddProductComponent } from './Admin/add-product/add-product.component'; // Add AddProductComponent
+import { UpdateProductComponent } from './Admin/update-product/update-product.component'; // Add UpdateProductComponent
 
 @NgModule({
   declarations: [
@@ -70,27 +73,28 @@ import { AddfitnessComponent } from './Admin/addfitness/addfitness.component';
     AboutComponent,
     ContactComponent,
     GymDetailsComponent,
-    GymDetailsComponent,
     TipsComponent,
     DashboardComponent,
     AllGymsComponent,
     ShopComponent,
-    TipsComponent,
     TestimonialComponent,
     ProfileComponent,
     ThankyouComponent,
-    TestimonialComponent,
     AllFitnessclassComponent,
     UpdategymComponent,
     UpdatefitnessclassComponent,
     AddgymComponent,
     AddfitnessComponent,
+    ProductListComponent, // Add ProductListComponent
+    AddProductComponent,  // Add AddProductComponent
+    UpdateProductComponent // Add UpdateProductComponent
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
     AppRoutingModule,
     FormsModule,
+    ReactiveFormsModule, // Import ReactiveFormsModule
     RouterModule.forRoot([
       { path: "", component: HomePageComponent, pathMatch: "full" },
       { path: "NutritionPageOne", component: NutrotionPageOneComponent },
@@ -114,12 +118,16 @@ import { AddfitnessComponent } from './Admin/addfitness/addfitness.component';
       { path: "GymDetails/:id", component: GymDetailsComponent },
       { path: "AllFitness", component: FitnessComponent },
       { path: "FitnessDetails/:id", component: FitnessDetailsComponent },
-      { path: "Testimonial ", component: TestimonialComponent },
+      { path: "Testimonial", component: TestimonialComponent },
       { path: "shop", component: ShopComponent },
       {
         path: "Dashboard", component: DashboardComponent, children: [
           { path: "AllGymAdmin", component: AllGymsComponent },
           { path: "editgym/:id", component: UpdategymComponent },
+          { path: "editgym", component: UpdategymComponent },
+          { path: "addproduct", component: AddProductComponent }, // Route for adding products
+          { path: "editproduct/:id", component: UpdateProductComponent }, // Route for updating products
+          { path: "products", component: ProductListComponent }, // Route for listing products
           { path: "AllFitnessAdmin", component: AllFitnessclassComponent },
 
 
@@ -127,22 +135,7 @@ import { AddfitnessComponent } from './Admin/addfitness/addfitness.component';
       },
       { path: "Profile", component: ProfileComponent },
       { path: "Thankyou", component: ThankyouComponent },
-
-
-
-
-
-
-
-      { path: "**", redirectTo: "", pathMatch: "full" },
-
-
-
-
-
-
-
-
+      { path: "**", redirectTo: "", pathMatch: "full" } // Fallback route
     ])
   ],
   providers: [
