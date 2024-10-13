@@ -47,6 +47,7 @@ import { UpdateProductComponent } from './Admin/update-product/update-product.co
 import { AddRecipeAdminComponent } from './Admin/add-recipe-admin/add-recipe-admin.component';
 import { RecipeAdmainComponent } from './Admin/recipe-admain/recipe-admain.component';
 import { UpdateRecipeAdminComponent } from './Admin/update-recipe-admin/update-recipe-admin.component';
+import { AdminCategoryComponent } from './Admin/admin-category/admin-category.component';
 
 @NgModule({
   declarations: [
@@ -88,6 +89,7 @@ import { UpdateRecipeAdminComponent } from './Admin/update-recipe-admin/update-r
     ThankyouComponent,
     UpdateProductComponent,
     ShopComponent,
+    AdminCategoryComponent,
 
   ],
   imports: [

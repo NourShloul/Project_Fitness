@@ -1,0 +1,67 @@
+import { Injectable } from '@angular/core';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { Observable, throwError } from 'rxjs';
+import { catchError } from 'rxjs/operators';
+
+interface Category {
+  id?: number;
+  categoryName: string;
+  description: string;
+  image?: string;
+}
+
+@Injectable({
+  providedIn: 'root'
+})
+export class CategoryService {
+
+  private baseUrl = 'https://localhost:7072/api/Categories';  // Adjust the base URL to match your API endpoint
+
+  constructor(private http: HttpClient) { }
+
+  // Get all categories
+  getCategories(): Observable<Category[]> {
+    return this.http.get<Category[]>(this.baseUrl)
+      .pipe(
+        catchError(this.handleError)
+      );
+  }
+
+  // Get category by ID
+  getCategoryById(id: number): Observable<Category> {
+    return this.http.get<Category>(`${this.baseUrl}/${id}`)
+      .pipe(
+        catchError(this.handleError)
+      );
+  }
+
+  // Add a new category
+  addCategory(category: Category): Observable<Category> {
+    return this.http.post<Category>(this.baseUrl, category)
+      .pipe(
+        catchError(this.handleError)
+      );
+  }
+
+  // Update an existing category by ID
+  updateCategory(id: number, category: Category): Observable<Category> {
+    return this.http.put<Category>(`${this.baseUrl}/${id}`, category)
+      .pipe(
+        catchError(this.handleError)
+      );
+  }
+
+  // Delete a category by ID
+  deleteCategory(id: number): Observable<void> {
+    return this.http.delete<void>(`${this.baseUrl}/${id}`)
+      .pipe(
+        catchError(this.handleError)
+      );
+  }
+
+  // Error handling
+  private handleError(error: HttpErrorResponse): Observable<never> {
+    console.error('An error occurred:', error);
+    return throwError('Something went wrong; please try again later.');
+  }
+}

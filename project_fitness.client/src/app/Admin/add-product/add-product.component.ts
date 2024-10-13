@@ -34,7 +34,7 @@ export class AddProductComponent implements OnInit {
       this.productService.addProduct(this.productForm.value).subscribe(
         (response) => {
           console.log('Product added successfully!', response);
-          this.router.navigate(['/dashboard/products']); 
+          this.router.navigate(['/Dashboard/products']); 
         },
         (error) => {
           console.error('Error adding product:', error);
