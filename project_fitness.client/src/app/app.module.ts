@@ -101,6 +101,8 @@ import { UpdategymComponent } from './Admin/updategym/updategym.component';
       { path: "GymDetails/:id", component: GymDetailsComponent },
       { path: "AllFitness", component: FitnessComponent },
       { path: "FitnessDetails/:id", component: FitnessDetailsComponent },
+      { path: "Testimonial ", component: TestimonialComponent },
+
       {
         path: "Dashboard", component: DashboardComponent, children: [
           { path: "AllGymAdmin", component: AllGymsComponent },
@@ -109,9 +111,6 @@ import { UpdategymComponent } from './Admin/updategym/updategym.component';
 
         ]
       },
-
-      
-
       
      
       { path: "**", redirectTo: "", pathMatch: "full" },
