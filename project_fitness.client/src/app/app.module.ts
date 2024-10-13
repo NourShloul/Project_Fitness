@@ -47,6 +47,8 @@ import { UpdateProductComponent } from './Admin/update-product/update-product.co
 import { AddRecipeAdminComponent } from './Admin/add-recipe-admin/add-recipe-admin.component';
 import { RecipeAdmainComponent } from './Admin/recipe-admain/recipe-admain.component';
 import { UpdateRecipeAdminComponent } from './Admin/update-recipe-admin/update-recipe-admin.component';
+import { AddgymComponent } from './Admin/addgym/addgym.component';
+import { AddfitnessComponent } from './Admin/addfitness/addfitness.component';
 
 @NgModule({
   declarations: [
@@ -120,6 +122,9 @@ import { UpdateRecipeAdminComponent } from './Admin/update-recipe-admin/update-r
       { path: "AllFitness", component: FitnessComponent },
       { path: "FitnessDetails/:id", component: FitnessDetailsComponent },
       { path: "Testimonial", component: TestimonialComponent },
+      { path: "addgym", component: AddgymComponent },
+      { path: "addfitness", component: AddfitnessComponent },
+     
       { path: "shop", component: ShopComponent },
       {
         path: "Dashboard", component: DashboardComponent, children: [
