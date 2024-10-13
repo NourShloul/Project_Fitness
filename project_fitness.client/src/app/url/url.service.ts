@@ -72,6 +72,10 @@ export class URLService {
     return this.http.post<any>(`${this.staticData}/AOQContact/AddContact`, data)
   }
 
+  updateService(id: any, data: any): Observable<any> {
+    return this.http.put(`${this.staticData}/Admin/UpdateGymById/${id}`, data)
+  }
+
   //////////// Admin Gym APIs ///////////////////
 
   addGym(data: any): Observable<any> {

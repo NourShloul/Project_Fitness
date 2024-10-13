@@ -70,6 +70,13 @@ namespace Project_Fitness.Server.Controllers
             return Ok();
         }
 
+        [HttpGet("getCartItemsByUserId/{id}")]
+        public IActionResult getCartItemsByUserId(int id) {
+            var cart = _context.Carts.FirstOrDefault(c => c.UserId == id);
+            var cartItem = _context.CartItems.Where(c => c.CartId == cart.Id).ToList();
+            return Ok(cartItem); 
+        }
+
         // Get all products in the user's cart
         [HttpGet("getallitems/{id}")]
         public IActionResult GetAllProducts(int id)
@@ -119,35 +126,35 @@ namespace Project_Fitness.Server.Controllers
         }
 
         // Update multiple cart items
-        [HttpPut("cartitem/updateMulti")]
-        public IActionResult UpdateCartItems([FromBody] List<CartitemDTO> cartItems)
-        {
-            foreach (var item in cartItems)
-            {
-                var cartItem = _context.CartItems
-                    .FirstOrDefault(ci => ci.ProductId == item.ProductId && ci.Cart.UserId == item.ProductId);
+        //[HttpPut("cartitem/updateMulti")]
+        //public IActionResult UpdateCartItems([FromBody] List<CartitemDTO> cartItems)
+        //{
+        //    foreach (var item in cartItems)
+        //    {
+        //        var cartItem = _context.CartItems
+        //            .FirstOrDefault(ci => ci.ProductId == item.ProductId && ci.Cart.UserId == item.ProductId);
 
-                if (cartItem != null)
-                {
-                    cartItem.Quantity = item.Quantity;
-                    _context.Update(cartItem);
-                }
-                else
-                {
-                    var newCartItem = new CartItem
-                    {
-                        ProductId = item.ProductId,
-                        Quantity = item.Quantity,
-                        CartId = _context.Carts.FirstOrDefault(c => c.UserId == item.ProductId)?.Id
-                    };
+        //        if (cartItem != null)
+        //        {
+        //            cartItem.Quantity = item.Quantity;
+        //            _context.Update(cartItem);
+        //        }
+        //        else
+        //        {
+        //            var newCartItem = new CartItem
+        //            {
+        //                ProductId = item.ProductId,
+        //                Quantity = item.Quantity,
+        //                CartId = _context.Carts.FirstOrDefault(c => c.UserId == item.ProductId)?.Id
+        //            };
 
-                    _context.CartItems.Add(newCartItem);
-                }
-            }
+        //            _context.CartItems.Add(newCartItem);
+        //        }
+        //    }
 
-            _context.SaveChanges();
-            return Ok(cartItems);
-        }
+        //    _context.SaveChanges();
+        //    return Ok(cartItems);
+        //}
 
         // Delete a cart item
         [HttpDelete("cartitem/deleteitem/{id}")]

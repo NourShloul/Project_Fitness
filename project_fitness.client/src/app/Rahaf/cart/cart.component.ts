@@ -11,25 +11,40 @@ import { URLService } from '../../url/url.service';
 })
 export class CartComponent implements OnInit {
   cartItems: any[] = [];
-  logedINuser: any
+  logedINuser: any;
+  userId: any;
 
   constructor(private cartService: CartService, private router: Router, private ProductService: ProductDetailsService, private URLService: URLService) {
     this.URLService.emailaddress.subscribe(email => {
       this.logedINuser = email
-      console.log('Email from another service:', email);
+      console.log('Email from another service:', this.logedINuser);
     });
   }
 
   ngOnInit(): void {
+    this.URLService.emailaddress.subscribe(email => {
+      this.logedINuser = email
+      console.log('Email from another service:', this.logedINuser);
+    });
+
+    this.URLService.UserIdmm.subscribe(user => {
+      this.userId = user
+      console.log('Email from another service:', this.userId);
+    });
+
+    if (this.userId != null) {
+      this.cartService.getCartItems(this.userId).subscribe(
+        (items) => {
+          this.cartItems = items; // Assign fetched items to cartItems
+        },
+        (error) => {
+          console.error('Error fetching cart items:', error); // Handle errors
+        }
+      );
+    }
+
     // Fetch cart items when the component is initialized
-    this.cartService.getCartItems().subscribe(
-      (items) => {
-        this.cartItems = items; // Assign fetched items to cartItems
-      },
-      (error) => {
-        console.error('Error fetching cart items:', error); // Handle errors
-      }
-    );
+    
     this.getCartItemsLocal()
   }
 
