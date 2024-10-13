@@ -22,7 +22,7 @@ namespace Project_Fitness.Server.Controllers
 
         }
         [HttpPost("AddNewGym")]
-        public async Task<IActionResult> AddNewGym(AddGymDTO add)
+        public async Task<IActionResult> AddNewGym([FromForm]AddGymDTO add)
         {
             if (add.GymImage != null && add.GymImage.Length > 0)
             {

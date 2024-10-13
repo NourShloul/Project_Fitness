@@ -1,0 +1,39 @@
+import { Component } from '@angular/core';
+import { URLService } from '../../url/url.service';
+import { ActivatedRoute } from '@angular/router';
+
+@Component({
+  selector: 'app-updategym',
+  templateUrl: './updategym.component.html',
+  styleUrl: './updategym.component.css'
+})
+export class UpdategymComponent {
+
+  param: any
+  ngOnInit() {
+    this.param = this._active.snapshot.paramMap.get('id');
+
+  }
+
+  imageFile: any
+  changeImageevent(event: any) {
+
+    this.imageFile = event.target.files[0]
+  }
+
+  constructor(private _ser: URLService, private _active: ActivatedRoute) { }
+
+  updateServices(data: any) {
+
+    var form = new FormData();
+
+    for (let key in data) {
+      form.append(key, data[key])
+    }
+    form.append("gymImage", this.imageFile)
+
+    this._ser.updateService(this.param, form).subscribe((data) => { alert("service updated successfully") })
+
+  }
+
+}

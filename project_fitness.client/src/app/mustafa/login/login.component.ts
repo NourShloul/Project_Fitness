@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { URLService } from '../../url/url.service';
 import { Router } from '@angular/router';
 import Swal from 'sweetalert2';
+import { ProductDetailsService } from '../../Rahaf/product-details.service';
 
 
 @Component({
@@ -13,21 +14,28 @@ export class LoginComponent {
 
 
   ngOnInit() { }
-  constructor(private _ser: URLService, private _router: Router) { }
+  constructor(private _ser: URLService, private _router: Router, private ProductDetails: ProductDetailsService) { }
   loginNewUser(data: any) {
-    debugger
+    
     var form = new FormData();
     for (let key in data) {
       form.append(key, data[key]);
     }
 
     this._ser.loginUser(form).subscribe((newData) => {
+      debugger;
       console.log("what is this" + newData.userEmail);
       this._ser['isAdmin'].next(newData.isAdmin);
       console.log(this._ser['isAdmin'].next(newData.isAdmin))
 
       this._ser['userEmail'].next(newData.userEmail);
       console.log(this._ser['userEmail'].next(newData.userEmail))
+      this._ser['userId'].next(newData.userId);
+      console.log(this._ser['userId'].next(newData.userId))
+
+
+      debugger;
+      this.ProductDetails.addLocalTouser(newData.userEmail);
 
       if (newData.isAdmin) {
         // عرض رسالة نجاح للمشرف (admin)
@@ -37,7 +45,8 @@ export class LoginComponent {
           text: 'Welcome Admin!',
           confirmButtonText: 'OK'
         }).then(() => {
-          this._router.navigate(['/admin']);
+          
+          this._router.navigate(['/Dashboard']);
         });
 
       } else {

@@ -63,7 +63,7 @@ namespace Project_Fitness.Server.Controllers
             }
 
             // إعادة البيانات مع is_admin
-            return Ok(new { user.UserEmail, user.IsAdmin });
+            return Ok(new { user.UserEmail, user.IsAdmin ,user.UserId });
         }
 
 

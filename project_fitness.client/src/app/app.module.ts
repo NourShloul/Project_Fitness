@@ -35,6 +35,11 @@ import { ProductService } from './Rahaf/product.service';
 import { GymDetailsComponent } from './Services(a,m)/gym-details/gym-details.component';
 import { TipsComponent } from './Nutrition/tips/tips.component';
 import { FitnessDetailsComponent } from './Services(a,m)/fitness-details/fitness-details.component';
+import { DashboardComponent } from './Admin/dashboard/dashboard.component';
+import { AllGymsComponent } from './Admin/all-gyms/all-gyms.component';
+import { TestimonialComponent } from './AOQ/testimonial/testimonial.component';
+import { AllFitnessclassComponent } from './Admin/all-fitnessclass/all-fitnessclass.component';
+import { UpdategymComponent } from './Admin/updategym/updategym.component';
 
 @NgModule({
   declarations: [
@@ -61,7 +66,14 @@ import { FitnessDetailsComponent } from './Services(a,m)/fitness-details/fitness
     ContactComponent,
     GymDetailsComponent,
     GymDetailsComponent,
-    TipsComponent
+    TipsComponent,
+    DashboardComponent,
+    AllGymsComponent,
+    
+    TipsComponent,
+    TestimonialComponent,
+    AllFitnessclassComponent,
+    UpdategymComponent
   ],
   imports: [
     BrowserModule,
@@ -91,8 +103,16 @@ import { FitnessDetailsComponent } from './Services(a,m)/fitness-details/fitness
       { path: "GymDetails/:id", component: GymDetailsComponent },
       { path: "AllFitness", component: FitnessComponent },
       { path: "FitnessDetails/:id", component: FitnessDetailsComponent },
+      { path: "Testimonial ", component: TestimonialComponent },
 
-      { path: "Contact", component: ContactComponent },
+      {
+        path: "Dashboard", component: DashboardComponent, children: [
+          { path: "AllGymAdmin", component: AllGymsComponent },
+          { path: "editgym", component: UpdategymComponent },
+
+
+        ]
+      },
       
      
       { path: "**", redirectTo: "", pathMatch: "full" },
