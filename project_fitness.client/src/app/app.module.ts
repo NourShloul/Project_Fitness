@@ -43,6 +43,8 @@ import { ThankyouComponent } from './thankyou/thankyou.component';
 import { AllFitnessclassComponent } from './Admin/all-fitnessclass/all-fitnessclass.component';
 import { UpdategymComponent } from './Admin/updategym/updategym.component';
 import { UpdatefitnessclassComponent } from './Admin/updatefitnessclass/updatefitnessclass.component';
+import { AddgymComponent } from './Admin/addgym/addgym.component';
+import { AddfitnessComponent } from './Admin/addfitness/addfitness.component';
 import { ProductListComponent } from './Admin/product-list/product-list.component'; // Add ProductListComponent
 import { AddProductComponent } from './Admin/add-product/add-product.component'; // Add AddProductComponent
 import { UpdateProductComponent } from './Admin/update-product/update-product.component'; // Add UpdateProductComponent
@@ -81,6 +83,8 @@ import { UpdateProductComponent } from './Admin/update-product/update-product.co
     AllFitnessclassComponent,
     UpdategymComponent,
     UpdatefitnessclassComponent,
+    AddgymComponent,
+    AddfitnessComponent,
     ProductListComponent, // Add ProductListComponent
     AddProductComponent,  // Add AddProductComponent
     UpdateProductComponent // Add UpdateProductComponent
@@ -120,7 +124,7 @@ import { UpdateProductComponent } from './Admin/update-product/update-product.co
         path: "Dashboard", component: DashboardComponent, children: [
           { path: "AllGymAdmin", component: AllGymsComponent },
           { path: "editgym/:id", component: UpdategymComponent },
-          { path: "editgym", component: UpdategymComponent },
+          { path: "editFitnessclass/:id", component: UpdatefitnessclassComponent },
           { path: "addproduct", component: AddProductComponent }, // Route for adding products
           { path: "editproduct/:id", component: UpdateProductComponent }, // Route for updating products
           { path: "products", component: ProductListComponent }, // Route for listing products
