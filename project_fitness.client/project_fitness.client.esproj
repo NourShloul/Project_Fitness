@@ -9,10 +9,8 @@
   </PropertyGroup>
   <ItemGroup>
     <None Remove="src\app\assets\**" />
-    <None Remove="src\app\mustafa\**" />
     <None Remove="src\Nour\**" />
     <TypeScriptConfiguration Remove="src\app\assets\**" />
-    <TypeScriptConfiguration Remove="src\app\mustafa\**" />
     <TypeScriptConfiguration Remove="src\Nour\**" />
   </ItemGroup>
   <ItemGroup>

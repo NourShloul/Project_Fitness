@@ -119,10 +119,14 @@ import { UpdateProductComponent } from './Admin/update-product/update-product.co
       {
         path: "Dashboard", component: DashboardComponent, children: [
           { path: "AllGymAdmin", component: AllGymsComponent },
+          { path: "editgym/:id", component: UpdategymComponent },
           { path: "editgym", component: UpdategymComponent },
           { path: "addproduct", component: AddProductComponent }, // Route for adding products
           { path: "editproduct/:id", component: UpdateProductComponent }, // Route for updating products
           { path: "products", component: ProductListComponent }, // Route for listing products
+          { path: "AllFitnessAdmin", component: AllFitnessclassComponent },
+
+
         ]
       },
       { path: "Profile", component: ProfileComponent },
