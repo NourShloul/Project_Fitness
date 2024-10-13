@@ -43,11 +43,11 @@ import { ThankyouComponent } from './thankyou/thankyou.component';
 import { AllFitnessclassComponent } from './Admin/all-fitnessclass/all-fitnessclass.component';
 import { UpdategymComponent } from './Admin/updategym/updategym.component';
 import { UpdatefitnessclassComponent } from './Admin/updatefitnessclass/updatefitnessclass.component';
+import { ProductListComponent } from './Admin/product-list/product-list.component'; 
+import { AddProductComponent } from './Admin/add-product/add-product.component'; 
+import { UpdateProductComponent } from './Admin/update-product/update-product.component'; 
 import { AddgymComponent } from './Admin/addgym/addgym.component';
 import { AddfitnessComponent } from './Admin/addfitness/addfitness.component';
-import { ProductListComponent } from './Admin/product-list/product-list.component'; // Add ProductListComponent
-import { AddProductComponent } from './Admin/add-product/add-product.component'; // Add AddProductComponent
-import { UpdateProductComponent } from './Admin/update-product/update-product.component'; // Add UpdateProductComponent
 import { AddRecipeAdminComponent } from './Admin/add-recipe-admin/add-recipe-admin.component';
 import { RecipeAdmainComponent } from './Admin/recipe-admain/recipe-admain.component';
 import { UpdateRecipeAdminComponent } from './Admin/update-recipe-admin/update-recipe-admin.component';
@@ -120,6 +120,15 @@ import { UpdateRecipeAdminComponent } from './Admin/update-recipe-admin/update-r
       {
         path: "Dashboard", component: DashboardComponent, children: [
           { path: "AllGymAdmin", component: AllGymsComponent },
+          { path: "editgym/:id", component: UpdategymComponent },
+          { path: "editFitnessclass/:id", component: UpdatefitnessclassComponent },
+          { path: "addproduct", component: AddProductComponent }, // Route for adding products
+          { path: "editproduct/:id", component: UpdateProductComponent }, // Route for updating products
+          { path: "products", component: ProductListComponent }, // Route for listing products
+          { path: "AllFitnessAdmin", component: AllFitnessclassComponent },
+          { path: "Addgym", component: AddgymComponent },
+          { path: "addfitness", component: AddfitnessComponent },
+
           { path: "RecipeAdmin", component: RecipeAdmainComponent },
           { path: "AddRecipeAdmin", component: AddRecipeAdminComponent },
           { path: "UpdateRecipeAdmin/:id", component: UpdateRecipeAdminComponent },
@@ -127,7 +136,7 @@ import { UpdateRecipeAdminComponent } from './Admin/update-recipe-admin/update-r
       },
       { path: "Profile", component: ProfileComponent },
       { path: "Thankyou", component: ThankyouComponent },
-      { path: "**", redirectTo: "", pathMatch: "full" } // Fallback route
+      { path: "**", redirectTo: "", pathMatch: "full" } 
     ])
   ],
   providers: [
