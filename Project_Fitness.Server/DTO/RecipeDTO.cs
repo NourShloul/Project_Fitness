@@ -4,6 +4,6 @@
     {
         public string RecipeName { get; set; } = null!;
 
-        public string? RecipeImage { get; set; }
+        public IFormFile? RecipeImage { get; set; }
     }
 }

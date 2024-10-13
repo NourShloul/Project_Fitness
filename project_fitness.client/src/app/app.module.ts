@@ -38,6 +38,9 @@ import { FitnessDetailsComponent } from './Services(a,m)/fitness-details/fitness
 import { DashboardComponent } from './Admin/dashboard/dashboard.component';
 import { AllGymsComponent } from './Admin/all-gyms/all-gyms.component';
 import { TestimonialComponent } from './AOQ/testimonial/testimonial.component';
+import { AddRecipeAdminComponent } from './Admin/add-recipe-admin/add-recipe-admin.component';
+import { RecipeAdmainComponent } from './Admin/recipe-admain/recipe-admain.component';
+import { UpdateRecipeAdminComponent } from './Admin/update-recipe-admin/update-recipe-admin.component';
 
 @NgModule({
   declarations: [
@@ -69,7 +72,10 @@ import { TestimonialComponent } from './AOQ/testimonial/testimonial.component';
     AllGymsComponent,
     
     TipsComponent,
-    TestimonialComponent
+    TestimonialComponent,
+    RecipeAdmainComponent,
+    AddRecipeAdminComponent,
+    UpdateRecipeAdminComponent
   ],
   imports: [
     BrowserModule,
@@ -102,7 +108,9 @@ import { TestimonialComponent } from './AOQ/testimonial/testimonial.component';
       {
         path: "Dashboard", component: DashboardComponent, children: [
           { path: "AllGymAdmin", component: AllGymsComponent },
-
+          { path: "RecipeAdmin", component: RecipeAdmainComponent },
+          { path: "AddRecipeAdmin", component: AddRecipeAdminComponent },
+          { path: "UpdateRecipeAdmin/:id", component: UpdateRecipeAdminComponent },
         ]
       },
 

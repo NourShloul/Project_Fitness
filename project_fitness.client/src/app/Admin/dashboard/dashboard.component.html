@@ -24,13 +24,19 @@
             </a>
             <ul class="collapse show nav flex-column ms-1" id="submenu1" data-bs-parent="#menu">
               <li class="w-100">
-                <a href="#" class="nav-link px-0"> <span class="d-none d-sm-inline">Resipe</span> </a>
+                <a [routerLink]="['/RecipeAdmin']" class="nav-link px-0">
+                  <span class="d-none d-sm-inline">Recipe</span>
+                </a>
               </li>
               <li>
-                <a href="#" class="nav-link px-0"> <span class="d-none d-sm-inline">Subresipes</span> </a>
+                <a [routerLink]="['/subrecipes']" class="nav-link px-0">
+                  <span class="d-none d-sm-inline">Subrecipes</span>
+                </a>
               </li>
               <li>
-                <a href="#" class="nav-link px-0"> <span class="d-none d-sm-inline">Tips</span>  </a>
+                <a [routerLink]="['/tips']" class="nav-link px-0">
+                  <span class="d-none d-sm-inline">Tips</span>
+                </a>
               </li>
             </ul>
            
