@@ -15,15 +15,17 @@ export class LoginComponent {
   ngOnInit() { }
   constructor(private _ser: URLService, private _router: Router) { }
   loginNewUser(data: any) {
+    debugger
     var form = new FormData();
     for (let key in data) {
       form.append(key, data[key]);
     }
 
     this._ser.loginUser(form).subscribe((newData) => {
-      this._ser['email'].next(newData.email);
+      console.log(newData);
+      this._ser['UserEmail'].next(newData.UserEmail);
 
-      if (newData.email === 'admin@gmail.com') {
+      if (newData.isAdmin) {
         // عرض رسالة نجاح للمشرف (admin)
         Swal.fire({
           icon: 'success',
@@ -31,7 +33,7 @@ export class LoginComponent {
           text: 'Welcome Admin!',
           confirmButtonText: 'OK'
         }).then(() => {
-          this._router.navigate(['/dashboard']);
+          this._router.navigate(['/admin']);
         });
 
       } else {
