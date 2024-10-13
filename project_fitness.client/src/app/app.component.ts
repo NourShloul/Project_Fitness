@@ -26,6 +26,7 @@ export class AppComponent implements OnInit {
     this.getForecasts();
     this._ser.emailaddress.subscribe((data) => {
       this.isAdmin = data;
+      
       console.log(this.isAdmin)
   
     })

@@ -10,10 +10,9 @@
   </thead>
   <tbody>
     <tr *ngFor="let item of servicesArray">
-      <td><img src="" alt="Service Image" width="100"></td>
+      <td><img class="postcard__img" style="height:100px; width:100px;" src="https://localhost:7072{{item.fitnessClassesImage}}" alt="Image Title" /></td>
       <td>{{item.fitnessClassesName}}</td>
       <td>{{item.fitnessClassesDescription}}</td>
-      <td>{{item.fitnessClassesImage}}</td>
       <td>{{item.fitnessClassesLocation}}</td>
       <td>{{item.price}}</td>
       <td>{{item.days}}</td>
