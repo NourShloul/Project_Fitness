@@ -52,17 +52,18 @@ namespace Project_Fitness.Server.Controllers
         {
             var user = _Db.Users.FirstOrDefault(x => x.UserEmail == dto.UserEmail);
 
-            if (user == null) {
+            if (user == null)
+            {
                 return BadRequest();
             }
 
-            if (User == null || !passwordHasherMethod.VerifyPassword(dto.UserPassword, user.HashPassword, user.SaltPassword))
+            if (user == null || !passwordHasherMethod.VerifyPassword(dto.UserPassword, user.HashPassword, user.SaltPassword))
             {
                 return Unauthorized("Invalid username or password.");
             }
-            return Ok(user);
 
-
+            // إعادة البيانات مع is_admin
+            return Ok(new { user.UserEmail, user.IsAdmin });
         }
 
 

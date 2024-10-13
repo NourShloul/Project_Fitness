@@ -337,7 +337,7 @@ namespace Project_Fitness.Server.Controllers
                 return BadRequest("ID cannot be zero or less.");
             }
 
-            var gym = await _context.Gyms.FindAsync(id);
+            var gym = await _context.Gyms.Where(c => c.GymId == id).FirstOrDefaultAsync();
             if (gym == null)
             {
                 return NotFound();
@@ -345,7 +345,69 @@ namespace Project_Fitness.Server.Controllers
 
             return Ok(gym);
         }
+        [HttpGet("GetClassById/{id:int}")]
+        public async Task<IActionResult> GetClass(int id)
+        {
+            if (id <= 0)
+            {
+                return BadRequest("ID cannot be zero or less.");
+            }
 
+            var Fitness = await _context.FitnessClasses.FindAsync(id);
+            if (Fitness == null)
+            {
+                return NotFound();
+            }
+
+            return Ok(Fitness);
+        }
+        //[HttpGet("GetGymByName")]
+        //public async Task<IActionResult> GetGymByName([FromBody] string name) {
+        //    if (string.IsNullOrEmpty(name)) {
+        //        return BadRequest("name can not be empty or null");
+        //    }
+        //    var gyms= await _context.Gyms.Where(x=>x.GymName==name).ToListAsync();
+        //    if (gyms == null) { return NotFound("no gym under this name "); }
+        //    return Ok(gyms);
+        //}
+        [HttpGet("GetGymByName")]
+        public async Task<IActionResult> GetGymByName([FromQuery] string name)
+        {
+            if (string.IsNullOrEmpty(name))
+            {
+                return BadRequest("Name cannot be empty or null.");
+            }
+
+            var gyms = await _context.Gyms
+                                     .Where(x => x.GymName==name)
+                                     .ToListAsync();
+
+            if (!gyms.Any()) 
+            {
+                return NotFound("No gym found with this name.");
+            }
+
+            return Ok(gyms);
+        }
+        [HttpGet("GetClassByName")]
+        public async Task<IActionResult> GetClassByName([FromQuery] string name) {
+            if (string.IsNullOrEmpty(name))
+            {
+                return BadRequest("Name cannot be empty or null.");
+            }
+
+            var Fitness = await _context.FitnessClasses
+                                     .Where(x => x.FitnessClassesName==name)
+                                     .ToListAsync();
+
+            if (!Fitness.Any())
+            {
+                return NotFound("No Class found with this name.");
+            }
+
+            return Ok(Fitness);
+
+        }
 
     }
 }

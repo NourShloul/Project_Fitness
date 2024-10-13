@@ -32,6 +32,10 @@ import { ContactComponent } from './AOQ/contact/contact.component';
 
 import { CartService } from './Rahaf/cart.service';
 import { ProductService } from './Rahaf/product.service';
+import { GymDetailsComponent } from './Services(a,m)/gym-details/gym-details.component';
+import { AdminNavBarComponent } from './Admin/admin-nav-bar/admin-nav-bar.component';
+import { TipsComponent } from './Nutrition/tips/tips.component';
+import { FitnessDetailsComponent } from './Services(a,m)/fitness-details/fitness-details.component';
 
 @NgModule({
   declarations: [
@@ -55,7 +59,11 @@ import { ProductService } from './Rahaf/product.service';
     GymComponent,
     FitnessComponent,
     AboutComponent,
-    ContactComponent
+    ContactComponent,
+    GymDetailsComponent,
+    AdminNavBarComponent,
+    GymDetailsComponent,
+    TipsComponent
   ],
   imports: [
     BrowserModule,
@@ -67,6 +75,7 @@ import { ProductService } from './Rahaf/product.service';
       { path: "NutritionPageOne", component: NutrotionPageOneComponent },
       { path: "Recips", component: RecipsComponent },
       { path: "SupRecipe/:id", component: SupRecipeComponent },
+      { path: "Tips", component: TipsComponent },
       { path: "SupRecipeDetails/:id", component: SubRecipeDetailsComponent },
       { path: "categories", component: CategoryComponent },
       { path: 'Product/:id', component: ProductComponent },
@@ -81,11 +90,23 @@ import { ProductService } from './Rahaf/product.service';
       { path: "About", component: AboutComponent },
       { path: "services", component: MainServicesComponent },
       { path: "Contact", component: ContactComponent },
-      
-      { path: "Contact", component: ContactComponent },
+      { path: "GymDetails/:id", component: GymDetailsComponent },
       { path: "AllFitness", component: FitnessComponent },
-      { path: "**", redirectTo: "", pathMatch: "full" }
-    ])
+      { path: "FitnessDetails/:id", component: FitnessDetailsComponent },
+
+      { path: "Contact", component: ContactComponent },
+      
+      { path: "admin", component: AdminNavBarComponent },
+      { path: "**", redirectTo: "", pathMatch: "full" },
+      
+
+      
+    
+
+      
+    
+
+      ])
   ],
   providers: [
     CartService,
