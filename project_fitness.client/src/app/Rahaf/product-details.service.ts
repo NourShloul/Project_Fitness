@@ -118,6 +118,21 @@ export class ProductDetailsService {
     }
   }
 
+  deleteItem(id: any) {
+    debugger;
+    // Find the index of the item in the cart array
+    const productIndex = this.cartItem.findIndex((x: any) => x.productId == id);
+
+    // If the item is found, remove it from the array
+    if (productIndex !== -1) {
+      this.cartItem.splice(productIndex, 1);  // Remove the item from the array
+
+      // Notify subscribers about the updated cart items
+      this.cartItemSubject.next(this.cartItem); // Update the BehaviorSubject
+    }
+  }
+
+
   APIincreaseQ(id: any): Observable<any> {
     return this.http.get<any>(`${this.staticData}/CartItems/increaseQuantity/${id}`)
   }
