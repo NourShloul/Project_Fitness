@@ -32,11 +32,9 @@ import { ContactComponent } from './AOQ/contact/contact.component';
 
 import { CartService } from './Rahaf/cart.service';
 import { ProductService } from './Rahaf/product.service';
-import { ShopService } from './Rahaf/shop.service';  // Added ShopService
 import { GymDetailsComponent } from './Services(a,m)/gym-details/gym-details.component';
 import { TipsComponent } from './Nutrition/tips/tips.component';
 import { FitnessDetailsComponent } from './Services(a,m)/fitness-details/fitness-details.component';
-import { ShopComponent } from './Rahaf/shop/shop.component';
 import { DashboardComponent } from './Admin/dashboard/dashboard.component';
 import { AllGymsComponent } from './Admin/all-gyms/all-gyms.component';
 import { TestimonialComponent } from './AOQ/testimonial/testimonial.component';
@@ -70,15 +68,11 @@ import { UpdatefitnessclassComponent } from './Admin/updatefitnessclass/updatefi
     AboutComponent,
     ContactComponent,
     GymDetailsComponent,
-    AdminNavBarComponent,
-    TipsComponent,
-    FitnessDetailsComponent,
-    ShopComponent
     GymDetailsComponent,
     TipsComponent,
     DashboardComponent,
     AllGymsComponent,
-    
+
     TipsComponent,
     TestimonialComponent,
     ProfileComponent,
@@ -94,32 +88,18 @@ import { UpdatefitnessclassComponent } from './Admin/updatefitnessclass/updatefi
     AppRoutingModule,
     FormsModule,
     RouterModule.forRoot([
-      { path: '', component: HomePageComponent, pathMatch: 'full' },
-      { path: 'NutritionPageOne', component: NutrotionPageOneComponent },
-      { path: 'Recips', component: RecipsComponent },
-      { path: 'SupRecipe/:id', component: SupRecipeComponent },
-      { path: 'Tips', component: TipsComponent },
-      { path: 'SupRecipeDetails/:id', component: SubRecipeDetailsComponent },
-      { path: 'categories', component: CategoryComponent },
+      { path: "", component: HomePageComponent, pathMatch: "full" },
+      { path: "NutritionPageOne", component: NutrotionPageOneComponent },
+      { path: "Recips", component: RecipsComponent },
+      { path: "SupRecipe/:id", component: SupRecipeComponent },
+      { path: "Tips", component: TipsComponent },
+      { path: "SupRecipeDetails/:id", component: SubRecipeDetailsComponent },
+      { path: "categories", component: CategoryComponent },
       { path: 'Product/:id', component: ProductComponent },
       { path: 'ProductDetails/:id', component: ProductDetailsComponent },
       { path: 'policies', component: PolicesComponent },
       { path: 'cart', component: CartComponent },
       { path: 'payment', component: PaymentComponent },
-      { path: 'Register', component: RegisterComponent },
-      { path: 'Login', component: LoginComponent },
-      { path: 'Home', component: HomePageComponent },
-      { path: 'AllGyms', component: GymComponent },
-      { path: 'About', component: AboutComponent },
-      { path: 'services', component: MainServicesComponent },
-      { path: 'Contact', component: ContactComponent },
-      { path: 'GymDetails/:id', component: GymDetailsComponent },
-      { path: 'AllFitness', component: FitnessComponent },
-      { path: 'FitnessDetails/:id', component: FitnessDetailsComponent },
-      { path: 'shop', component: ShopComponent },  // <-- Added Shop route here
-      { path: 'admin', component: AdminNavBarComponent },
-      { path: '**', redirectTo: '', pathMatch: 'full' },
-    ])
       { path: "Register", component: RegisterComponent },
       { path: "Login", component: LoginComponent },
       { path: "Home", component: HomePageComponent },
@@ -143,27 +123,26 @@ import { UpdatefitnessclassComponent } from './Admin/updatefitnessclass/updatefi
       { path: "Profile", component: ProfileComponent },
       { path: "Thankyou", component: ThankyouComponent },
 
-      
 
-      
-     
-      
-     
+
+
+
+
+
       { path: "**", redirectTo: "", pathMatch: "full" },
-      
 
-      
-    
 
-      
-    
 
-      ])
+
+
+
+
+
+    ])
   ],
   providers: [
     CartService,
-    ProductService,
-    ShopService  // Added ShopService
+    ProductService
   ],
   bootstrap: [AppComponent]
 })
