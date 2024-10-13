@@ -89,6 +89,19 @@ namespace Project_Fitness.Server.Controllers
         }
 
 
+        [HttpGet("GetAllTestimonialsByNew")]
+        public IActionResult GetThree()
+        {
+            var testimonials = _db.Testimonials
+                .OrderByDescending(t => t.CreatedTestimonialAt) 
+                .Take(3) 
+                .ToList();
+
+            return Ok(testimonials);
+        }
+
+
+
         [HttpDelete("DeleteTestimonial/{id}")]
         public IActionResult DeleteTestimonial(int id)
         {
