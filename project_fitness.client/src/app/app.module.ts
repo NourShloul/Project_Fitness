@@ -131,7 +131,6 @@ import { AddfitnessComponent } from './Admin/addfitness/addfitness.component';
         path: "Dashboard", component: DashboardComponent, children: [
           { path: "AllGymAdmin", component: AllGymsComponent },
           { path: "editgym/:id", component: UpdategymComponent },
-          { path: "editgym", component: UpdategymComponent },
           { path: "addproduct", component: AddProductComponent },
           { path: "editproduct/:id", component: UpdateProductComponent },
           { path: "products", component: ProductListComponent },
@@ -141,6 +140,7 @@ import { AddfitnessComponent } from './Admin/addfitness/addfitness.component';
           { path: "UpdateRecipeAdmin/:id", component: UpdateRecipeAdminComponent },
           { path: "addgym", component: AddgymComponent },
           { path: "addfitness", component: AddfitnessComponent },
+          { path: "editFitnessclass/:id", component: UpdatefitnessclassComponent },
         ]
       },
       { path: "Profile", component: ProfileComponent },

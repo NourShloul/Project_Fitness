@@ -10,9 +10,8 @@
   </thead>
   <tbody>
     <tr *ngFor="let item of servicesArray" >
-      <td><img src="" alt="Service Image" width="100"></td>
+      <td><img class="postcard__img" style="height:100px; width:100px;" src="https://localhost:7072{{item.gymImage}}" alt="Image Title" /></td>
       <td>{{item.gymName}}</td>
-      <td>{{item.gymImage}}</td>
       <td>{{item.gymDescription}}</td>
       <td>{{item.gymLocation}}</td>
       <td>{{item.price}}</td>
@@ -21,7 +20,7 @@
  
      
       <td>
-        <a routerLink="/Dashboard/editgym/{{item.gymId}}" class="btn btn-primary">Edit</a>
+        <a routerLink="/Dashboard/editgym/{{item.gymId}}" class="btn btn-secondary">Edit</a>
 
       </td>
       <td>

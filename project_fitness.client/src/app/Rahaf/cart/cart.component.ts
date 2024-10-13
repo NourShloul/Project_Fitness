@@ -121,9 +121,14 @@ export class CartComponent implements OnInit {
   }
 
 
-  remove(id: any) {
+  remove(productId: any, id: any) {
     debugger;
-    this.cartService.deleteCartItem(id).subscribe();
-    this.router.navigate(['/cart']);
+    if (this.test == "") {
+      this.ProductService.deleteItem(id);
+    } else {
+      this.cartService.deleteCartItem(productId).subscribe();
+      this.router.navigate(['/cart']);
+    }
+    
   }
 }
