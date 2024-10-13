@@ -1,5 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using Project_Fitness.Server.Models;
+using Project_Fitness.Server.services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -11,7 +12,7 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddDbContext<MyDbContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("YourConnectionString")));
-
+builder.Services.AddScoped<PayPalPaymentService>();
 builder.Services.AddCors(options =>
 
 options.AddPolicy("Development", builder =>
