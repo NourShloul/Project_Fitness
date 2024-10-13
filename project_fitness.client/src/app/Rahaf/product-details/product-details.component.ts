@@ -33,16 +33,17 @@ export class ProductDetailsComponent implements OnInit {
   cartItemObj: any = {
     
   "productId": 0,
-  "quantity": 0,
+  "quantity": 1,
   "price": 0,
-  "cartId": 0
+  "cartId": 0,
+  "productName": ""
 
   }
 
-  addToCart(productID: any, price: any): void {
-    debugger;
+  addToCart(productID: any, price: any, productName: any): void {
     this.cartItemObj.productId = productID;
     this.cartItemObj.price = price;
+    this.cartItemObj.productName = productName;
     this._ser.addToCart({ ...this.cartItemObj });
 
 
