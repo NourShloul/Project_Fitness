@@ -95,7 +95,8 @@ import { TestimonialComponent } from './AOQ/testimonial/testimonial.component';
       { path: "FitnessDetails/:id", component: FitnessDetailsComponent },
 
       { path: "Contact", component: ContactComponent },
-      
+
+      { path: "Testimonial ", component: TestimonialComponent },
      
       { path: "**", redirectTo: "", pathMatch: "full" },
       
