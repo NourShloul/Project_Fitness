@@ -22,7 +22,7 @@ namespace Project_Fitness.Server.Controllers
 
         }
         [HttpPost("AddNewGym")]
-        public async Task<IActionResult> AddNewGym([FromForm]AddGymDTO add)
+        public async Task<IActionResult> AddNewGym([FromForm] AddGymDTO add)
         {
             if (add.GymImage != null && add.GymImage.Length > 0)
             {
@@ -102,7 +102,7 @@ namespace Project_Fitness.Server.Controllers
                 {
                     var uploadsFolder = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/images");
 
-                    
+
                     if (!Directory.Exists(uploadsFolder))
                     {
                         Directory.CreateDirectory(uploadsFolder);
@@ -111,17 +111,17 @@ namespace Project_Fitness.Server.Controllers
                     var uniqueFileName = Guid.NewGuid().ToString() + "_" + updateGymDTO.GymImage.FileName;
                     var filePathWwwroot = Path.Combine(uploadsFolder, uniqueFileName);
 
-                   
+
                     using (var fileStream = new FileStream(filePathWwwroot, FileMode.Create))
                     {
                         await updateGymDTO.GymImage.CopyToAsync(fileStream);
                     }
 
-                  
+
                     gym.GymImage = $"/images/{uniqueFileName}";
                 }
 
-                
+
                 gym.GymName = updateGymDTO.GymName ?? gym.GymName;
                 gym.GymLocation = updateGymDTO.GymLocation ?? gym.GymLocation;
                 gym.Price = updateGymDTO.Price ?? gym.Price;
@@ -129,14 +129,14 @@ namespace Project_Fitness.Server.Controllers
                 gym.StartTime = updateGymDTO.StartTime ?? gym.StartTime;
                 gym.EndTime = updateGymDTO.EndTime ?? gym.EndTime;
 
-              
+
                 await _context.SaveChangesAsync();
 
-                return Ok(gym); 
+                return Ok(gym);
             }
             catch (Exception ex)
             {
-               
+
                 return StatusCode(500, "An error occurred while processing your request.");
             }
         }
@@ -226,7 +226,7 @@ namespace Project_Fitness.Server.Controllers
             }
             // GET: api/Carts
             [HttpGet("get/cartDate")]
-             async Task<ActionResult<IEnumerable<CartDTO>>> GetCarts()
+            async Task<ActionResult<IEnumerable<CartDTO>>> GetCarts()
             {
                 var carts = await _context.Carts
                     .Include(c => c.CartItems)
@@ -358,7 +358,7 @@ namespace Project_Fitness.Server.Controllers
                 return BadRequest("ID cannot be zero or less.");
             }
 
-            var Fitness = await _context.FitnessClasses.Where(c=>c.FitnessClassesId==id).FirstOrDefaultAsync();
+            var Fitness = await _context.FitnessClasses.Where(c => c.FitnessClassesId == id).FirstOrDefaultAsync();
             if (Fitness == null)
             {
                 return NotFound();
@@ -384,10 +384,10 @@ namespace Project_Fitness.Server.Controllers
             }
 
             var gyms = await _context.Gyms
-                                     .Where(x => x.GymName==name)
+                                     .Where(x => x.GymName == name)
                                      .ToListAsync();
 
-            if (!gyms.Any()) 
+            if (!gyms.Any())
             {
                 return NotFound("No gym found with this name.");
             }
@@ -395,14 +395,15 @@ namespace Project_Fitness.Server.Controllers
             return Ok(gyms);
         }
         [HttpGet("GetClassByName")]
-        public async Task<IActionResult> GetClassByName([FromQuery] string name) {
+        public async Task<IActionResult> GetClassByName([FromQuery] string name)
+        {
             if (string.IsNullOrEmpty(name))
             {
                 return BadRequest("Name cannot be empty or null.");
             }
 
             var Fitness = await _context.FitnessClasses
-                                     .Where(x => x.FitnessClassesName==name)
+                                     .Where(x => x.FitnessClassesName == name)
                                      .ToListAsync();
 
             if (!Fitness.Any())
@@ -447,7 +448,7 @@ namespace Project_Fitness.Server.Controllers
                 {
                     _paymentService.CreateSubscriptionAndPayment(
                         (int)request.UserId,
-                       request.GymId != 0 ? request.GymId : (int?)null, 
+                       request.GymId != 0 ? request.GymId : (int?)null,
                        request.FitnessClassId != 0 ? request.FitnessClassId : (int?)null,
                         request.StartDate,
                         request.EndDate,

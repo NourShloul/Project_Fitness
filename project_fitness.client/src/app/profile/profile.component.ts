@@ -16,7 +16,7 @@ export class ProfileComponent {
   //RecipeArray: any
   //GetAllOrder() {
 
-  //  this._ser.GetTypeOfRecipe().subscribe((data) => {
+  //  this._ser.GetUserID().subscribe((data) => {
   //    this.RecipeArray = data
   //    console.log(this.RecipeArray)
 
