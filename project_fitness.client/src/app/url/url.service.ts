@@ -8,8 +8,13 @@ import { Observable } from 'rxjs';
 })
 export class URLService {
 
-  UserEmail: BehaviorSubject<string> = new BehaviorSubject<string>("");
-  emailaddress = this.UserEmail.asObservable();
+  isAdmin: BehaviorSubject<string> = new BehaviorSubject<string>("");
+  emailaddress = this.isAdmin.asObservable();
+
+  userEmail: BehaviorSubject<string> = new BehaviorSubject<string>("");
+  emailaddressUser = this.userEmail.asObservable();
+  userId: BehaviorSubject<string> = new BehaviorSubject<string>("");
+  UserIdmm = this.userId.asObservable();
   constructor(private http: HttpClient) { }
 
 
@@ -52,7 +57,8 @@ export class URLService {
     return this.http.get<any>(`${this.staticData}/Admin/GetGymById/${id}`)
   }
   getClassDetails(id: any): Observable<any>{
-    return this.http.get<any>(`${this.staticData}/api/Admin/GetClassById/${id}`)
+    debugger
+    return this.http.get<any>(`${this.staticData}/Admin/GetClassById/${id}`)
   }
   GetAllTips(): Observable<any> {
     return this.http.get<any>(`${this.staticData}/Tips/Nutrition/GetAllTips`);
