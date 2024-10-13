@@ -35,6 +35,8 @@ import { ProductService } from './Rahaf/product.service';
 import { GymDetailsComponent } from './Services(a,m)/gym-details/gym-details.component';
 import { TipsComponent } from './Nutrition/tips/tips.component';
 import { FitnessDetailsComponent } from './Services(a,m)/fitness-details/fitness-details.component';
+import { DashboardComponent } from './Admin/dashboard/dashboard.component';
+import { AllGymsComponent } from './Admin/all-gyms/all-gyms.component';
 import { TestimonialComponent } from './AOQ/testimonial/testimonial.component';
 
 @NgModule({
@@ -62,6 +64,10 @@ import { TestimonialComponent } from './AOQ/testimonial/testimonial.component';
     ContactComponent,
     GymDetailsComponent,
     GymDetailsComponent,
+    TipsComponent,
+    DashboardComponent,
+    AllGymsComponent,
+    
     TipsComponent,
     TestimonialComponent
   ],
@@ -93,7 +99,16 @@ import { TestimonialComponent } from './AOQ/testimonial/testimonial.component';
       { path: "GymDetails/:id", component: GymDetailsComponent },
       { path: "AllFitness", component: FitnessComponent },
       { path: "FitnessDetails/:id", component: FitnessDetailsComponent },
+      {
+        path: "Dashboard", component: DashboardComponent, children: [
+          { path: "AllGymAdmin", component: AllGymsComponent },
 
+        ]
+      },
+
+      
+
+      
       { path: "Contact", component: ContactComponent },
 
       { path: "Testimonial ", component: TestimonialComponent },
