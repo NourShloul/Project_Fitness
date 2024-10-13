@@ -2,8 +2,8 @@
 using Microsoft.EntityFrameworkCore;
 using Project_Fitness.Server.DTO;
 using Project_Fitness.Server.Models;
+using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 
 namespace Project_Fitness.Server.Controllers
 {
@@ -18,137 +18,162 @@ namespace Project_Fitness.Server.Controllers
             _context = context;
         }
 
-        // GET: api/Carts/{userId}
-        // Fetch the cart for a specific user by userId
-        [HttpGet("{userId}")]
-        public async Task<ActionResult<CartDTO>> GetCartByUser(int userId)
+        // Add product to cart
+        [HttpPost]
+        public IActionResult AddToCart([FromBody] AddToCartDTO cart)
         {
-            var cart = await _context.Carts
-                .Include(c => c.CartItems)
-                .Where(c => c.UserId == userId)
-                .Select(c => new CartDTO
-                {
-                    Id = c.Id,
-                    UserId = c.UserId,
-                    CreatedDate = c.CreatedDate,
-                    CartItems = c.CartItems.Select(ci => new CartitemDTO
-                    {
-                        ProductId = ci.ProductId,
-                        Quantity = ci.Quantity,
-                        Price = ci.Price
-                    }).ToList()
-                })
-                .FirstOrDefaultAsync();
-
-            if (cart == null)
+            var product = _context.Products.FirstOrDefault(p => p.Id == cart.ProductId);
+            if (product == null)
             {
-                return NotFound("Cart not found.");
+                return NotFound("Product not found");
             }
 
-            return Ok(cart);
-        }
-        [HttpPost("add/{userId}")]
-        public async Task<IActionResult> AddToCart(int userId, [FromBody] CartitemDTO cartItemDto)
-        {
-            var cart = await _context.Carts
-                .Include(c => c.CartItems)
-                .FirstOrDefaultAsync(c => c.UserId == userId);
+            // Calculate price after discount
+            decimal priceAfterDiscount = product.Discount.HasValue && product.Discount.Value > 0
+                ? product.Price - (product.Price * (product.Discount.Value / 100))
+                : product.Price;
 
-            if (cart == null)
+            var existingCartItem = _context.Carts
+                .FirstOrDefault(c => c.UserId == cart.UserId && c.CartItems.Any(ci => ci.ProductId == cart.ProductId));
+
+            if (existingCartItem != null)
             {
-                cart = new Cart
+                var cartItem = existingCartItem.CartItems.FirstOrDefault(ci => ci.ProductId == cart.ProductId);
+                if (cartItem != null)
                 {
-                    UserId = userId,
-                    CreatedDate = DateTime.Now,
-                    CartItems = new List<CartItem>()
-                };
-                _context.Carts.Add(cart);
-            }
-
-            var existingItem = cart.CartItems.FirstOrDefault(ci => ci.ProductId == cartItemDto.ProductId);
-
-            if (existingItem != null)
-            {
-                existingItem.Quantity += cartItemDto.Quantity;
+                    cartItem.Quantity += 1;
+                    cartItem.Price = priceAfterDiscount; 
+                    _context.Update(cartItem);
+                }
             }
             else
             {
-                cart.CartItems.Add(new CartItem
+                var newCartItem = new CartItem
                 {
-                    ProductId = cartItemDto.ProductId,
-                    Quantity = cartItemDto.Quantity,
-                    Price = cartItemDto.Price
-                });
+                    ProductId = cart.ProductId,
+                    Quantity = 1,
+                    Price = priceAfterDiscount,
+                };
+
+                var newCart = new Cart
+                {
+                    UserId = cart.UserId,
+                    CreatedDate = System.DateTime.Now,
+                    CartItems = new List<CartItem> { newCartItem }
+                };
+
+                _context.Carts.Add(newCart);
             }
 
-            await _context.SaveChangesAsync();
+            _context.SaveChanges();
 
-            return Ok("Item added to cart successfully");
+            return Ok();
         }
 
-        // DELETE: api/Carts/remove/{productId}
-        // Remove an item from the cart
-        [HttpDelete("remove/{productId}")]
-        public async Task<IActionResult> RemoveFromCart(int userId, int productId)
+        // Get all products in the user's cart
+        [HttpGet("getallitems/{id}")]
+        public IActionResult GetAllProducts(int id)
         {
-            var cart = await _context.Carts
+            var cart = _context.Carts
                 .Include(c => c.CartItems)
-                .FirstOrDefaultAsync(c => c.UserId == userId);
+                .ThenInclude(ci => ci.Product)
+                .FirstOrDefault(c => c.UserId == id);
 
             if (cart == null)
             {
-                return NotFound("Cart not found.");
+                return NotFound("Cart not found for the user.");
             }
 
-            var cartItem = cart.CartItems.FirstOrDefault(ci => ci.ProductId == productId);
-            if (cartItem == null)
+            var cartDTO = new CartDTO
             {
-                return NotFound("Product not found in the cart.");
-            }
-
-            cart.CartItems.Remove(cartItem);
-            await _context.SaveChangesAsync();
-
-            return Ok("Item removed from cart.");
-        }
-
-        // POST: api/Carts/placeOrder/{cartId}
-        // Convert cart to order after checkout
-        [HttpPost("placeOrder/{cartId}")]
-        public async Task<IActionResult> PlaceOrder(int cartId)
-        {
-            var cart = await _context.Carts
-                .Include(c => c.CartItems)
-                .FirstOrDefaultAsync(c => c.Id == cartId);
-
-            if (cart == null)
-            {
-                return NotFound("Cart not found.");
-            }
-
-            if (cart.CartItems == null || !cart.CartItems.Any())
-            {
-                return BadRequest("Cart is empty.");
-            }
-
-            var order = new Order
-            {
-                UserId = cart.UserId.Value,
-                OrderDate = DateTime.Now,
-                TotalAmount = cart.CartItems.Sum(item => item.Quantity * item.Price),
-                OrderItems = cart.CartItems.Select(item => new OrderItem
+                Id = cart.Id,
+                UserId = cart.UserId,
+                CreatedDate = cart.CreatedDate,
+                CartItems = cart.CartItems.Select(ci => new CartitemDTO
                 {
-                    ProductId = item.ProductId,
-                    Quantity = item.Quantity,
-                    Price = item.Price
+                    ProductId = ci.ProductId,
+                    Quantity = ci.Quantity,
+                    Price = ci.Price,
+                    CartId = ci.CartId
                 }).ToList()
             };
 
-            _context.Orders.Add(order);
-            cart.CartItems.Clear();
-            await _context.SaveChangesAsync();
+            return Ok(cartDTO);
+        }
 
-            return Ok("Order placed successfully.");
+        // Update a single cart item
+        [HttpPut("cartitem/updateitem/{id}")]
+        public IActionResult EditProduct(int id, [FromBody] CartitemDTO obj)
+        {
+            var cartItem = _context.CartItems.Find(id);
+            if (cartItem == null)
+            {
+                return NotFound("Cart item not found");
+            }
+
+            cartItem.Quantity = obj.Quantity;
+
+            _context.Update(cartItem);
+            _context.SaveChanges();
+            return Ok(cartItem);
+        }
+
+        // Update multiple cart items
+        [HttpPut("cartitem/updateMulti")]
+        public IActionResult UpdateCartItems([FromBody] List<CartitemDTO> cartItems)
+        {
+            foreach (var item in cartItems)
+            {
+                var cartItem = _context.CartItems
+                    .FirstOrDefault(ci => ci.ProductId == item.ProductId && ci.Cart.UserId == item.ProductId);
+
+                if (cartItem != null)
+                {
+                    cartItem.Quantity = item.Quantity;
+                    _context.Update(cartItem);
+                }
+                else
+                {
+                    var newCartItem = new CartItem
+                    {
+                        ProductId = item.ProductId,
+                        Quantity = item.Quantity,
+                        CartId = _context.Carts.FirstOrDefault(c => c.UserId == item.ProductId)?.Id
+                    };
+
+                    _context.CartItems.Add(newCartItem);
+                }
+            }
+
+            _context.SaveChanges();
+            return Ok(cartItems);
+        }
+
+        // Delete a cart item
+        [HttpDelete("cartitem/deleteitem/{id}")]
+        public IActionResult DeleteItem(int id)
+        {
+            var cartItem = _context.CartItems.Find(id);
+            if (cartItem == null)
+            {
+                return NotFound("Cart item not found");
+            }
+
+            _context.CartItems.Remove(cartItem);
+            _context.SaveChanges();
+            return Ok();
+        }
+
+        // Get total number of items in the cart for a user
+        [HttpGet("cartItemsSum/{id}")]
+        public IActionResult CartItemsSum(int id)
+        {
+            var count = _context.Carts
+                .Where(c => c.UserId == id)
+                .SelectMany(c => c.CartItems)
+                .Count();
+
+            return Ok(count);
         }
     }
 }

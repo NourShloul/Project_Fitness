@@ -8,17 +8,17 @@ import { catchError } from 'rxjs/operators';
 })
 export class CartService {
 
-  private apiUrl = 'https://localhost:7072/api/Carts'; // Base API URL
+  private apiUrl = 'https://localhost:7072/api/Carts';
 
   constructor(private http: HttpClient) { }
 
-  // Add product to cart with userId
+
   addToCart(userId: number, product: any): Observable<any> {
     const payload = { productId: product.id, quantity: product.quantity || 1 };
-    console.log('Adding product to cart:', payload); // Log the payload
-    return this.http.post(`${this.apiUrl}/add/${userId}`, payload) // Include userId in the URL
+    console.log('Adding product to cart:', payload); 
+    return this.http.post(`${this.apiUrl}/add/${userId}`, payload) 
       .pipe(
-        catchError(this.handleError) // Catch and handle errors
+        catchError(this.handleError) 
       );
   }
 
