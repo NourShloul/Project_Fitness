@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
+import { URLService } from './url/url.service';
 
 interface WeatherForecast {
   date: string;
@@ -16,10 +17,22 @@ interface WeatherForecast {
 export class AppComponent implements OnInit {
   public forecasts: WeatherForecast[] = [];
 
-  constructor(private http: HttpClient) {}
+  isAdmin = ""
+  userEmail = ""
+  constructor(private http: HttpClient, private _ser: URLService) {}
 
   ngOnInit() {
     this.getForecasts();
+    this._ser.emailaddress.subscribe((data) => {
+      this.isAdmin = data;
+      console.log(this.isAdmin)
+  
+    })
+    this._ser.emailaddressUser.subscribe((data) => {
+      this.userEmail = data;
+      console.log(this.userEmail)
+
+    })
   }
 
   getForecasts() {
