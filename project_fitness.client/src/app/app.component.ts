@@ -19,6 +19,7 @@ export class AppComponent implements OnInit {
 
   isAdmin = ""
   userEmail = ""
+  userId :(any)
   constructor(private http: HttpClient, private _ser: URLService) {}
 
   ngOnInit() {
@@ -31,6 +32,11 @@ export class AppComponent implements OnInit {
     this._ser.emailaddressUser.subscribe((data) => {
       this.userEmail = data;
       console.log(this.userEmail)
+
+    })
+    this._ser.UserIdmm.subscribe((data) => {
+      this.userId = data;
+      console.log(this.userId)
 
     })
   }

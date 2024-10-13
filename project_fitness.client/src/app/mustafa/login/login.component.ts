@@ -28,6 +28,8 @@ export class LoginComponent {
 
       this._ser['userEmail'].next(newData.userEmail);
       console.log(this._ser['userEmail'].next(newData.userEmail))
+      this._ser['userId'].next(newData.userId);
+      console.log(this._ser['userId'].next(newData.userId))
 
       if (newData.isAdmin) {
         // عرض رسالة نجاح للمشرف (admin)

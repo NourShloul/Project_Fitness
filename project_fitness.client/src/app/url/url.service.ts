@@ -13,6 +13,8 @@ export class URLService {
 
   userEmail: BehaviorSubject<string> = new BehaviorSubject<string>("");
   emailaddressUser = this.userEmail.asObservable();
+  userId: BehaviorSubject<string> = new BehaviorSubject<string>("");
+  UserIdmm = this.userId.asObservable();
   constructor(private http: HttpClient) { }
 
 
