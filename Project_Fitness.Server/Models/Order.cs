@@ -15,19 +15,11 @@ public partial class Order
 
     public string? Status { get; set; }
 
-    public int? LoyaltyPoints { get; set; }
-
     public int? TransactionId { get; set; }
-
-    public int? ProductId { get; set; }
-
-    public int? Quantity { get; set; }
 
     public virtual ICollection<OrderItem> OrderItems { get; set; } = new List<OrderItem>();
 
     public virtual ICollection<Payment> Payments { get; set; } = new List<Payment>();
-
-    public virtual Product? Product { get; set; }
 
     public virtual User? User { get; set; }
 }

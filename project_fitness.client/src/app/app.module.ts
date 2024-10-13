@@ -17,11 +17,9 @@ import { SubRecipeDetailsComponent } from './Nutrition/sub-recipe-details/sub-re
 import { CategoryComponent } from './Rahaf/category/category.component';
 import { ProductComponent } from './Rahaf/product/product.component';
 import { ProductDetailsComponent } from './Rahaf/product-details/product-details.component';
-
 import { PolicesComponent } from './Rahaf/polices/polices.component';
 import { CartComponent } from './Rahaf/cart/cart.component';
 import { PaymentComponent } from './Rahaf/payment/payment.component';
-
 import { RegisterComponent } from './mustafa/register/register.component';
 import { LoginComponent } from './mustafa/login/login.component';
 import { MainServicesComponent } from './Services(a,m)/main-services/main-services.component';
@@ -43,11 +41,9 @@ import { ThankyouComponent } from './thankyou/thankyou.component';
 import { AllFitnessclassComponent } from './Admin/all-fitnessclass/all-fitnessclass.component';
 import { UpdategymComponent } from './Admin/updategym/updategym.component';
 import { UpdatefitnessclassComponent } from './Admin/updatefitnessclass/updatefitnessclass.component';
-import { ProductListComponent } from './Admin/product-list/product-list.component'; 
-import { AddProductComponent } from './Admin/add-product/add-product.component'; 
-import { UpdateProductComponent } from './Admin/update-product/update-product.component'; 
-import { AddgymComponent } from './Admin/addgym/addgym.component';
-import { AddfitnessComponent } from './Admin/addfitness/addfitness.component';
+import { ProductListComponent } from './Admin/product-list/product-list.component';
+import { AddProductComponent } from './Admin/add-product/add-product.component';
+import { UpdateProductComponent } from './Admin/update-product/update-product.component';
 import { AddRecipeAdminComponent } from './Admin/add-recipe-admin/add-recipe-admin.component';
 import { RecipeAdmainComponent } from './Admin/recipe-admain/recipe-admain.component';
 import { UpdateRecipeAdminComponent } from './Admin/update-recipe-admin/update-recipe-admin.component';
@@ -79,12 +75,20 @@ import { UpdateRecipeAdminComponent } from './Admin/update-recipe-admin/update-r
     TipsComponent,
     DashboardComponent,
     AllGymsComponent,
-    
-    TipsComponent,
+    AddProductComponent,
     TestimonialComponent,
     RecipeAdmainComponent,
     AddRecipeAdminComponent,
-    UpdateRecipeAdminComponent
+    UpdateRecipeAdminComponent,
+    UpdategymComponent,
+    AllFitnessclassComponent,
+    UpdatefitnessclassComponent,
+    ProductListComponent,
+    ProfileComponent,
+    ThankyouComponent,
+    UpdateProductComponent,
+    ShopComponent,
+
   ],
   imports: [
     BrowserModule,
@@ -122,12 +126,10 @@ import { UpdateRecipeAdminComponent } from './Admin/update-recipe-admin/update-r
           { path: "AllGymAdmin", component: AllGymsComponent },
           { path: "editgym/:id", component: UpdategymComponent },
           { path: "editgym", component: UpdategymComponent },
-          { path: "addproduct", component: AddProductComponent }, 
-          { path: "editproduct/:id", component: UpdateProductComponent }, 
-          { path: "products", component: ProductListComponent }, 
+          { path: "addproduct", component: AddProductComponent },
+          { path: "editproduct/:id", component: UpdateProductComponent },
+          { path: "products", component: ProductListComponent },
           { path: "AllFitnessAdmin", component: AllFitnessclassComponent },
-
-
           { path: "RecipeAdmin", component: RecipeAdmainComponent },
           { path: "AddRecipeAdmin", component: AddRecipeAdminComponent },
           { path: "UpdateRecipeAdmin/:id", component: UpdateRecipeAdminComponent },
@@ -135,7 +137,7 @@ import { UpdateRecipeAdminComponent } from './Admin/update-recipe-admin/update-r
       },
       { path: "Profile", component: ProfileComponent },
       { path: "Thankyou", component: ThankyouComponent },
-      { path: "**", redirectTo: "", pathMatch: "full" } 
+      { path: "**", redirectTo: "", pathMatch: "full" }
     ])
   ],
   providers: [
