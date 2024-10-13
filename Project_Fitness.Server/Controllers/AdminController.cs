@@ -353,7 +353,7 @@ namespace Project_Fitness.Server.Controllers
                 return BadRequest("ID cannot be zero or less.");
             }
 
-            var Fitness = await _context.FitnessClasses.FindAsync(id);
+            var Fitness = await _context.FitnessClasses.Where(c=>c.FitnessClassesId==id).FirstOrDefaultAsync();
             if (Fitness == null)
             {
                 return NotFound();
