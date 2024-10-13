@@ -7,7 +7,7 @@ import { BehaviorSubject, Observable, observable } from 'rxjs';
   providedIn: 'root'
 })
 export class ProductDetailsService {
-  logedINuser:any
+  logedINuser = "";
   constructor(private http: HttpClient, private URLService: URLService) {
   }
   staticData = "https://localhost:7072/api";
@@ -30,12 +30,10 @@ export class ProductDetailsService {
     }
 
   addToCart(data: any) {
-    this.URLService.emailaddress.subscribe(email => {
+    this.URLService.userEmail.subscribe(email => {
       this.logedINuser = email
       console.log('Email from another service:', email);
     });
-    this.logedINuser = "ayah@gmail.com"
-    debugger;
     if (this.logedINuser == "") {
       var recode = this.cartItem.find((x: any) => x.productId == data.productId);
       if (recode) {
@@ -66,5 +64,36 @@ export class ProductDetailsService {
   addcartItemToDatabase(data: any): Observable<any> {
     return this.http.post<any>(`${this.staticData}/CartItems/addcartitem`, data)
 
+  }
+
+  addLocalTouser(email: any) {
+    for (let i = 0; i < this.cartItem.length; i++) {
+      console.log(this.cartItem[i]);
+
+      // Create a new apiPost object for each iteration
+      let apiPost = {
+        productId: this.cartItem[i].productId,
+        quantity: this.cartItem[i].quantity,
+        price: this.cartItem[i].price,
+        cartId: this.cartItem[i].cartId,
+        email: email
+      };
+
+      // Capture the index so we know which item to remove later
+      let currentIndex = i;
+
+      // Add cart item to the database
+      this.addcartItemToDatabase(apiPost).subscribe(
+        (data) => {
+          console.log('Successfully added:', data);
+
+          // Remove the item from the cart after successful API call
+          this.cartItem.splice(currentIndex, 1);
+        },
+        (error) => {
+          console.error('Error adding cart item:', error);
+        }
+      );
     }
+  }
 }

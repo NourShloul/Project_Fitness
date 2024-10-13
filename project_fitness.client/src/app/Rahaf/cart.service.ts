@@ -23,12 +23,17 @@ export class CartService {
   }
 
   // Get all cart items from the backend
-  getCartItems(): Observable<any[]> {
-    return this.http.get<any[]>(`${this.apiUrl}/items`)
-      .pipe(
-        catchError(this.handleError)
-      );
+  //getCartItems(): Observable<any[]> {
+  //  return this.http.get<any[]>(`${this.apiUrl}/items`)
+  //    .pipe(
+  //      catchError(this.handleError)
+  //    );
+  //}
+
+  getCartItems(id: any): Observable<any> {
+    return this.http.get<any>(`${this.apiUrl}/getCartItemsByUserId/${id}`)
   }
+
 
   // Remove product from cart on the backend
   removeFromCart(productId: number): Observable<any> {

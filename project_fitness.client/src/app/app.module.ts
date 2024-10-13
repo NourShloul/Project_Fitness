@@ -34,10 +34,17 @@ import { CartService } from './Rahaf/cart.service';
 import { ProductService } from './Rahaf/product.service';
 import { ShopService } from './Rahaf/shop.service';  // Added ShopService
 import { GymDetailsComponent } from './Services(a,m)/gym-details/gym-details.component';
-import { AdminNavBarComponent } from './Admin/admin-nav-bar/admin-nav-bar.component';
 import { TipsComponent } from './Nutrition/tips/tips.component';
 import { FitnessDetailsComponent } from './Services(a,m)/fitness-details/fitness-details.component';
 import { ShopComponent } from './Rahaf/shop/shop.component';
+import { DashboardComponent } from './Admin/dashboard/dashboard.component';
+import { AllGymsComponent } from './Admin/all-gyms/all-gyms.component';
+import { TestimonialComponent } from './AOQ/testimonial/testimonial.component';
+import { ProfileComponent } from './profile/profile.component';
+import { ThankyouComponent } from './thankyou/thankyou.component';
+import { AllFitnessclassComponent } from './Admin/all-fitnessclass/all-fitnessclass.component';
+import { UpdategymComponent } from './Admin/updategym/updategym.component';
+import { UpdatefitnessclassComponent } from './Admin/updatefitnessclass/updatefitnessclass.component';
 
 @NgModule({
   declarations: [
@@ -67,6 +74,19 @@ import { ShopComponent } from './Rahaf/shop/shop.component';
     TipsComponent,
     FitnessDetailsComponent,
     ShopComponent
+    GymDetailsComponent,
+    TipsComponent,
+    DashboardComponent,
+    AllGymsComponent,
+    
+    TipsComponent,
+    TestimonialComponent,
+    ProfileComponent,
+    ThankyouComponent
+    TestimonialComponent,
+    AllFitnessclassComponent,
+    UpdategymComponent,
+    UpdatefitnessclassComponent
   ],
   imports: [
     BrowserModule,
@@ -100,6 +120,45 @@ import { ShopComponent } from './Rahaf/shop/shop.component';
       { path: 'admin', component: AdminNavBarComponent },
       { path: '**', redirectTo: '', pathMatch: 'full' },
     ])
+      { path: "Register", component: RegisterComponent },
+      { path: "Login", component: LoginComponent },
+      { path: "Home", component: HomePageComponent },
+      { path: "AllGyms", component: GymComponent },
+      { path: "About", component: AboutComponent },
+      { path: "services", component: MainServicesComponent },
+      { path: "Contact", component: ContactComponent },
+      { path: "GymDetails/:id", component: GymDetailsComponent },
+      { path: "AllFitness", component: FitnessComponent },
+      { path: "FitnessDetails/:id", component: FitnessDetailsComponent },
+      { path: "Testimonial ", component: TestimonialComponent },
+
+      {
+        path: "Dashboard", component: DashboardComponent, children: [
+          { path: "AllGymAdmin", component: AllGymsComponent },
+          { path: "editgym", component: UpdategymComponent },
+
+
+        ]
+      },
+      { path: "Profile", component: ProfileComponent },
+      { path: "Thankyou", component: ThankyouComponent },
+
+      
+
+      
+     
+      
+     
+      { path: "**", redirectTo: "", pathMatch: "full" },
+      
+
+      
+    
+
+      
+    
+
+      ])
   ],
   providers: [
     CartService,

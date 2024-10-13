@@ -8,8 +8,13 @@ import { Observable } from 'rxjs';
 })
 export class URLService {
 
-  UserEmail: BehaviorSubject<string> = new BehaviorSubject<string>("");
-  emailaddress = this.UserEmail.asObservable();
+  isAdmin: BehaviorSubject<string> = new BehaviorSubject<string>("");
+  emailaddress = this.isAdmin.asObservable();
+
+  userEmail: BehaviorSubject<string> = new BehaviorSubject<string>("");
+  emailaddressUser = this.userEmail.asObservable();
+  userId: BehaviorSubject<string> = new BehaviorSubject<string>("");
+  UserIdmm = this.userId.asObservable();
   constructor(private http: HttpClient) { }
 
 
@@ -52,7 +57,8 @@ export class URLService {
     return this.http.get<any>(`${this.staticData}/Admin/GetGymById/${id}`)
   }
   getClassDetails(id: any): Observable<any>{
-    return this.http.get<any>(`${this.staticData}/api/Admin/GetClassById/${id}`)
+    debugger
+    return this.http.get<any>(`${this.staticData}/Admin/GetClassById/${id}`)
   }
   GetAllTips(): Observable<any> {
     return this.http.get<any>(`${this.staticData}/Tips/Nutrition/GetAllTips`);
@@ -63,6 +69,42 @@ export class URLService {
   }
 
   addContact(data: any): Observable<any> {
-    return this.http.post<any>(`${this.staticData}/Contact`, data)
+    return this.http.post<any>(`${this.staticData}/AOQContact/AddContact`, data)
   }
+
+  //updateService(id: any, data: any): Observable<any> {
+  //  return this.http.put(`${this.staticData}/Admin/UpdateGymById/${id}`, data)
+  //}
+
+  //////////// Admin Gym APIs ///////////////////
+
+  addGym(data: any): Observable<any> {
+
+    return this.http.post<any>(`${this.staticData}/Admin/AddNewGym`, data)
+
+  }
+  PUTgym(id: any, data: any): Observable<any> {
+
+    return this.http.put<any>(`${this.staticData}/Admin/UpdateGymById/${id}`, data)
+  }
+  deletgym(id: any): Observable<any> {
+
+    return this.http.delete<any>(`${this.staticData}/Admin/DeletGymById/${id}`)
+  }
+  //////////// Admin Fitness Class APIs ///////////////////
+  addfitnessclass(data: any): Observable<any> {
+
+    return this.http.post<any>(`${this.staticData}/Admin/AddNewFitnessClass`, data)
+
+  }
+  PUTfitnessclass(id: any, data: any): Observable<any> {
+
+    return this.http.put<any>(`${this.staticData}/Admin/UpdateFitnessClassById/${id}`, data)
+  }
+  deletfitnessclass(id: any): Observable<any> {
+
+    return this.http.delete<any>(`${this.staticData}/Admin/DeleteFitnessClassById/${id}`)
+  }
+
+
 }

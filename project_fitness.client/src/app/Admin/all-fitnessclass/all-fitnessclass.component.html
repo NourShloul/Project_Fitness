@@ -1,0 +1,31 @@
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th scope="col">Image</th>
+      <th scope="col">Service Name</th>
+      <th scope="col">Description</th>
+      <th scope="col">Actions</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let item of servicesArray">
+      <td><img src="" alt="Service Image" width="100"></td>
+      <td>{{item.fitnessClassesName}}</td>
+      <td>{{item.fitnessClassesDescription}}</td>
+      <td>{{item.fitnessClassesImage}}</td>
+      <td>{{item.fitnessClassesLocation}}</td>
+      <td>{{item.price}}</td>
+      <td>{{item.days}}</td>
+      <td>{{item.startTime}}</td>
+      <td>{{item.endTime}}</td>
+      
+      <td>
+        <a routerLink="/Dashboard/EditService/" class="btn btn-primary">Edit</a>
+      </td>
+      <td>
+        <button class="btn btn-danger" (click)="deleteFitnessClassById(item.fitnessClassesId)" >Delete</button>
+      </td>
+    </tr>
+  </tbody>
+</table>

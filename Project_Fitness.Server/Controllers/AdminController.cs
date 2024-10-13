@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Project_Fitness.Server.DTO;
 using Project_Fitness.Server.Models;
+using Project_Fitness.Server.Services;
 
 namespace Project_Fitness.Server.Controllers
 {
@@ -11,13 +12,17 @@ namespace Project_Fitness.Server.Controllers
     public class AdminController : ControllerBase
     {
         private readonly MyDbContext _context;
-        public AdminController(MyDbContext context)
+        private readonly PayPalPaymentServiceForSub _paymentService;
+
+        public AdminController(MyDbContext context, PayPalPaymentServiceForSub paymentService)
+
         {
+            _paymentService = paymentService;
             _context = context;
 
         }
         [HttpPost("AddNewGym")]
-        public async Task<IActionResult> AddNewGym(AddGymDTO add)
+        public async Task<IActionResult> AddNewGym([FromForm]AddGymDTO add)
         {
             if (add.GymImage != null && add.GymImage.Length > 0)
             {
@@ -353,7 +358,7 @@ namespace Project_Fitness.Server.Controllers
                 return BadRequest("ID cannot be zero or less.");
             }
 
-            var Fitness = await _context.FitnessClasses.FindAsync(id);
+            var Fitness = await _context.FitnessClasses.Where(c=>c.FitnessClassesId==id).FirstOrDefaultAsync();
             if (Fitness == null)
             {
                 return NotFound();
@@ -408,6 +413,58 @@ namespace Project_Fitness.Server.Controllers
             return Ok(Fitness);
 
         }
+        [HttpPost("create-payment")]
+        public IActionResult CreatePayment([FromBody] CreatePaymentRequestDto request)
+        {
+            try
+            {
+                var payment = _paymentService.CreatePayment(request.RedirectUrl, request.Total, request.Message, request.UserId);
 
+                // Find the approval URL
+                var approvalUrl = payment.links.FirstOrDefault(l => l.rel == "approval_url")?.href;
+                if (approvalUrl != null)
+                {
+                    return Ok(new { approvalUrl });
+                }
+
+                return BadRequest("Payment could not be created.");
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, $"Internal server error: {ex.Message}");
+            }
+        }
+
+        // Step 2: Execute PayPal payment
+        [HttpPost("execute-payment")]
+        public IActionResult ExecutePayment([FromBody] ExecutePaymentRequestDto request)
+        {
+            try
+            {
+                var executedPayment = _paymentService.ExecutePayment(request.PaymentId, request.PayerId);
+
+                if (executedPayment.state.ToLower() == "approved")
+                {
+                    _paymentService.CreateSubscriptionAndPayment(
+                        (int)request.UserId,
+                       request.GymId != 0 ? request.GymId : (int?)null, 
+                       request.FitnessClassId != 0 ? request.FitnessClassId : (int?)null,
+                        request.StartDate,
+                        request.EndDate,
+                        request.Total,
+                        "PayPal",
+                        request.PaymentId,
+                        executedPayment.id);
+
+                    return Ok("Payment executed and subscription created successfully.");
+                }
+
+                return BadRequest("Payment could not be approved.");
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, $"Internal server error: {ex.Message}");
+            }
+        }
     }
 }
