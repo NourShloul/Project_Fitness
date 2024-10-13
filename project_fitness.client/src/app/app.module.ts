@@ -1,7 +1,7 @@
 import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms'; // Import ReactiveFormsModule
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -29,7 +29,7 @@ import { GymComponent } from './Services(a,m)/gym/gym.component';
 import { FitnessComponent } from './Services(a,m)/fitness/fitness.component';
 import { AboutComponent } from './AOQ/about/about.component';
 import { ContactComponent } from './AOQ/contact/contact.component';
-
+import { ShopComponent } from './Rahaf/shop/shop.component';
 import { CartService } from './Rahaf/cart.service';
 import { ProductService } from './Rahaf/product.service';
 import { GymDetailsComponent } from './Services(a,m)/gym-details/gym-details.component';
@@ -43,6 +43,14 @@ import { ThankyouComponent } from './thankyou/thankyou.component';
 import { AllFitnessclassComponent } from './Admin/all-fitnessclass/all-fitnessclass.component';
 import { UpdategymComponent } from './Admin/updategym/updategym.component';
 import { UpdatefitnessclassComponent } from './Admin/updatefitnessclass/updatefitnessclass.component';
+import { ProductListComponent } from './Admin/product-list/product-list.component'; 
+import { AddProductComponent } from './Admin/add-product/add-product.component'; 
+import { UpdateProductComponent } from './Admin/update-product/update-product.component'; 
+import { AddgymComponent } from './Admin/addgym/addgym.component';
+import { AddfitnessComponent } from './Admin/addfitness/addfitness.component';
+import { AddRecipeAdminComponent } from './Admin/add-recipe-admin/add-recipe-admin.component';
+import { RecipeAdmainComponent } from './Admin/recipe-admain/recipe-admain.component';
+import { UpdateRecipeAdminComponent } from './Admin/update-recipe-admin/update-recipe-admin.component';
 
 @NgModule({
   declarations: [
@@ -68,25 +76,22 @@ import { UpdatefitnessclassComponent } from './Admin/updatefitnessclass/updatefi
     AboutComponent,
     ContactComponent,
     GymDetailsComponent,
-    GymDetailsComponent,
     TipsComponent,
     DashboardComponent,
     AllGymsComponent,
-
+    
     TipsComponent,
     TestimonialComponent,
-    ProfileComponent,
-    ThankyouComponent,
-    TestimonialComponent,
-    AllFitnessclassComponent,
-    UpdategymComponent,
-    UpdatefitnessclassComponent,
+    RecipeAdmainComponent,
+    AddRecipeAdminComponent,
+    UpdateRecipeAdminComponent
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
     AppRoutingModule,
     FormsModule,
+    ReactiveFormsModule, // Import ReactiveFormsModule
     RouterModule.forRoot([
       { path: "", component: HomePageComponent, pathMatch: "full" },
       { path: "NutritionPageOne", component: NutrotionPageOneComponent },
@@ -110,34 +115,28 @@ import { UpdatefitnessclassComponent } from './Admin/updatefitnessclass/updatefi
       { path: "GymDetails/:id", component: GymDetailsComponent },
       { path: "AllFitness", component: FitnessComponent },
       { path: "FitnessDetails/:id", component: FitnessDetailsComponent },
-      { path: "Testimonial ", component: TestimonialComponent },
-
+      { path: "Testimonial", component: TestimonialComponent },
+      { path: "shop", component: ShopComponent },
       {
         path: "Dashboard", component: DashboardComponent, children: [
           { path: "AllGymAdmin", component: AllGymsComponent },
-          { path: "editgym", component: UpdategymComponent },
+          { path: "editgym/:id", component: UpdategymComponent },
+          { path: "editFitnessclass/:id", component: UpdatefitnessclassComponent },
+          { path: "addproduct", component: AddProductComponent }, // Route for adding products
+          { path: "editproduct/:id", component: UpdateProductComponent }, // Route for updating products
+          { path: "products", component: ProductListComponent }, // Route for listing products
+          { path: "AllFitnessAdmin", component: AllFitnessclassComponent },
+          { path: "Addgym", component: AddgymComponent },
+          { path: "addfitness", component: AddfitnessComponent },
 
-
+          { path: "RecipeAdmin", component: RecipeAdmainComponent },
+          { path: "AddRecipeAdmin", component: AddRecipeAdminComponent },
+          { path: "UpdateRecipeAdmin/:id", component: UpdateRecipeAdminComponent },
         ]
       },
       { path: "Profile", component: ProfileComponent },
       { path: "Thankyou", component: ThankyouComponent },
-
-
-
-
-
-
-
-      { path: "**", redirectTo: "", pathMatch: "full" },
-
-
-
-
-
-
-
-
+      { path: "**", redirectTo: "", pathMatch: "full" } 
     ])
   ],
   providers: [
