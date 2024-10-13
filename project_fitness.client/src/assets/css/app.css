@@ -4257,3 +4257,7 @@ footer.error-page .copyright {
   -webkit-transition: all 0.3s ease;
   transition: all 0.3s ease;
 }
+
+a.btn_wrapper {
+  color: white;
+}

@@ -1,0 +1,32 @@
+<div class="container mt-5">
+  <h2>Product List</h2>
+
+  <table class="table table-hover">
+    <thead>
+      <tr>
+        <th>Product Name</th>
+        <th>Price</th>
+        <th>Stock Quantity</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let product of products">
+        <td>{{ product.productName }}</td>
+        <td>{{ product.price | currency }}</td>
+        <td>{{ product.stockQuantity }}</td>
+        <td>
+          <!-- Check if product.id is defined before passing it to editProduct -->
+          <button class="btn btn-primary" (click)="product.id ? editProduct(product.id) : null">Edit</button>
+
+          <!-- Check if product.id is defined before passing it to deleteProduct -->
+          <button class="btn btn-danger" (click)="product.id ? deleteProduct(product.id) : null">Delete</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="text-center">
+    <button class="btn btn-success" routerLink="/addproduct">Add New Product</button>
+  </div>
+</div>
