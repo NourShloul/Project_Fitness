@@ -35,6 +35,7 @@ import { ProductService } from './Rahaf/product.service';
 import { GymDetailsComponent } from './Services(a,m)/gym-details/gym-details.component';
 import { TipsComponent } from './Nutrition/tips/tips.component';
 import { FitnessDetailsComponent } from './Services(a,m)/fitness-details/fitness-details.component';
+import { TestimonialComponent } from './AOQ/testimonial/testimonial.component';
 
 @NgModule({
   declarations: [
@@ -61,7 +62,8 @@ import { FitnessDetailsComponent } from './Services(a,m)/fitness-details/fitness
     ContactComponent,
     GymDetailsComponent,
     GymDetailsComponent,
-    TipsComponent
+    TipsComponent,
+    TestimonialComponent
   ],
   imports: [
     BrowserModule,
