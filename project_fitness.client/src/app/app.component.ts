@@ -21,11 +21,12 @@ export class AppComponent implements OnInit {
   userEmail = ""
   userId :(any)
   constructor(private http: HttpClient, private _ser: URLService) {}
-
+  bool = "false";
   ngOnInit() {
     this.getForecasts();
     this._ser.emailaddress.subscribe((data) => {
       this.isAdmin = data;
+      debugger
       console.log(this.isAdmin)
   
     })

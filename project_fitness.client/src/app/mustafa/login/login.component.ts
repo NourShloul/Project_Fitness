@@ -15,7 +15,7 @@ export class LoginComponent {
   ngOnInit() { }
   constructor(private _ser: URLService, private _router: Router) { }
   loginNewUser(data: any) {
-    debugger
+    
     var form = new FormData();
     for (let key in data) {
       form.append(key, data[key]);
@@ -39,6 +39,7 @@ export class LoginComponent {
           text: 'Welcome Admin!',
           confirmButtonText: 'OK'
         }).then(() => {
+          
           this._router.navigate(['/admin']);
         });
 
