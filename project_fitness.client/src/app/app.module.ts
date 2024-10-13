@@ -40,6 +40,9 @@ import { AllGymsComponent } from './Admin/all-gyms/all-gyms.component';
 import { TestimonialComponent } from './AOQ/testimonial/testimonial.component';
 import { ProfileComponent } from './profile/profile.component';
 import { ThankyouComponent } from './thankyou/thankyou.component';
+import { AllFitnessclassComponent } from './Admin/all-fitnessclass/all-fitnessclass.component';
+import { UpdategymComponent } from './Admin/updategym/updategym.component';
+import { UpdatefitnessclassComponent } from './Admin/updatefitnessclass/updatefitnessclass.component';
 
 @NgModule({
   declarations: [
@@ -74,6 +77,10 @@ import { ThankyouComponent } from './thankyou/thankyou.component';
     TestimonialComponent,
     ProfileComponent,
     ThankyouComponent
+    TestimonialComponent,
+    AllFitnessclassComponent,
+    UpdategymComponent,
+    UpdatefitnessclassComponent
   ],
   imports: [
     BrowserModule,
@@ -103,9 +110,13 @@ import { ThankyouComponent } from './thankyou/thankyou.component';
       { path: "GymDetails/:id", component: GymDetailsComponent },
       { path: "AllFitness", component: FitnessComponent },
       { path: "FitnessDetails/:id", component: FitnessDetailsComponent },
+      { path: "Testimonial ", component: TestimonialComponent },
+
       {
         path: "Dashboard", component: DashboardComponent, children: [
           { path: "AllGymAdmin", component: AllGymsComponent },
+          { path: "editgym", component: UpdategymComponent },
+
 
         ]
       },
@@ -114,6 +125,8 @@ import { ThankyouComponent } from './thankyou/thankyou.component';
 
       
 
+      
+     
       
      
       { path: "**", redirectTo: "", pathMatch: "full" },
