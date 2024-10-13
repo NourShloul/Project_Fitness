@@ -43,9 +43,9 @@ import { ThankyouComponent } from './thankyou/thankyou.component';
 import { AllFitnessclassComponent } from './Admin/all-fitnessclass/all-fitnessclass.component';
 import { UpdategymComponent } from './Admin/updategym/updategym.component';
 import { UpdatefitnessclassComponent } from './Admin/updatefitnessclass/updatefitnessclass.component';
-import { ProductListComponent } from './Admin/product-list/product-list.component'; // Add ProductListComponent
-import { AddProductComponent } from './Admin/add-product/add-product.component'; // Add AddProductComponent
-import { UpdateProductComponent } from './Admin/update-product/update-product.component'; // Add UpdateProductComponent
+import { ProductListComponent } from './Admin/product-list/product-list.component'; 
+import { AddProductComponent } from './Admin/add-product/add-product.component'; 
+import { UpdateProductComponent } from './Admin/update-product/update-product.component'; 
 
 @NgModule({
   declarations: [
@@ -121,9 +121,9 @@ import { UpdateProductComponent } from './Admin/update-product/update-product.co
           { path: "AllGymAdmin", component: AllGymsComponent },
           { path: "editgym/:id", component: UpdategymComponent },
           { path: "editgym", component: UpdategymComponent },
-          { path: "addproduct", component: AddProductComponent }, // Route for adding products
-          { path: "editproduct/:id", component: UpdateProductComponent }, // Route for updating products
-          { path: "products", component: ProductListComponent }, // Route for listing products
+          { path: "addproduct", component: AddProductComponent }, 
+          { path: "editproduct/:id", component: UpdateProductComponent }, 
+          { path: "products", component: ProductListComponent }, 
           { path: "AllFitnessAdmin", component: AllFitnessclassComponent },
 
 
@@ -131,7 +131,7 @@ import { UpdateProductComponent } from './Admin/update-product/update-product.co
       },
       { path: "Profile", component: ProfileComponent },
       { path: "Thankyou", component: ThankyouComponent },
-      { path: "**", redirectTo: "", pathMatch: "full" } // Fallback route
+      { path: "**", redirectTo: "", pathMatch: "full" } 
     ])
   ],
   providers: [
