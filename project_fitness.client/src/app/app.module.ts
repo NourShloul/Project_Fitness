@@ -33,7 +33,6 @@ import { ContactComponent } from './AOQ/contact/contact.component';
 import { CartService } from './Rahaf/cart.service';
 import { ProductService } from './Rahaf/product.service';
 import { GymDetailsComponent } from './Services(a,m)/gym-details/gym-details.component';
-import { AdminNavBarComponent } from './Admin/admin-nav-bar/admin-nav-bar.component';
 import { TipsComponent } from './Nutrition/tips/tips.component';
 import { FitnessDetailsComponent } from './Services(a,m)/fitness-details/fitness-details.component';
 
@@ -61,7 +60,6 @@ import { FitnessDetailsComponent } from './Services(a,m)/fitness-details/fitness
     AboutComponent,
     ContactComponent,
     GymDetailsComponent,
-    AdminNavBarComponent,
     GymDetailsComponent,
     TipsComponent
   ],
@@ -96,7 +94,7 @@ import { FitnessDetailsComponent } from './Services(a,m)/fitness-details/fitness
 
       { path: "Contact", component: ContactComponent },
       
-      { path: "admin", component: AdminNavBarComponent },
+     
       { path: "**", redirectTo: "", pathMatch: "full" },
       
 

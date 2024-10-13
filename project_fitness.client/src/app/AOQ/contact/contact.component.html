@@ -23,45 +23,38 @@
             <div class="col-lg-6 col-sm-10">
               <div class="fill-up-form">
                 <div class="title text-center">Write Us</div>
-                <form class="form">
-                  <div class="row">
-                    <div class="col-lg-6">
-                      <div class="form-group">
-                        <input type="text" name="firstname" class="user-input" placeholder="FIRST NAME" required="">
-                      </div>
-                    </div>
-                    <div class="col-lg-6">
-                      <div class="form-group">
-                        <input type="text" name="lastname" class="user-input" placeholder="LAST NAME" required="">
-                      </div>
-                    </div>
-                    <div class="col-12">
-                      <div class="form-group">
-                        <input type="email" name="email" class="user-input" placeholder="E-MAIL" required="">
-                      </div>
-                    </div>
-                    <div class="col-12">
-                      <div class="form-group">
-                        <input type="text" name="telephone" class="user-input" placeholder="PHONE NO." required="">
-                      </div>
-                    </div>
-                    <div class="col-12">
-                      <div class="form-group">
-                        <!-- <input type="text" name="subject" class="user-input" placeholder="SUBJECT"> -->
-                        <select class="user-input" required=''>
-                          <option value="0">SELECT SUBJECT</option>
-                          <option value="1">AEROBIC EXERCISE</option>
-                          <option value="2">BODYBUILDING</option>
-                          <option value="3">PHYSICAL EXERCISE</option>
-                        </select>
-                      </div>
-                    </div>
-                    <div class="col-12">
-                      <div class="form-group">
-                        <textarea type="text" name="massage" class="user-input" placeholder="WRITE YOUR CONSERN" rows="6" required=""></textarea>
-                      </div>
-                    </div>
-                  </div>
+
+
+                <form class="form" #CreateContact="ngForm" (ngSubmit)="AddNewMessage(CreateContact.value)">
+									<div class="row">
+
+										<div class="col-12">
+											<div class="form-group">
+												<input type="text" name="name" class="user-input" placeholder="Your Name" required="">
+											</div>
+										</div>
+
+										<div class="col-12">
+											<div class="form-group">
+												<input type="email" name="email" class="user-input" placeholder="E-MAIL" required="">
+											</div>
+										</div>
+
+										<div class="col-12">
+											<div class="form-group">
+												<input type="text" name="phoneNumber" class="user-input" placeholder="PHONE NO." required="">
+											</div>
+										</div>
+
+										
+
+										<div class="col-12">
+											<div class="form-group">
+												<textarea type="text" name="message" class="user-input" placeholder="WRITE YOUR CONSERN" rows="6" required=""></textarea>
+											</div>
+										</div>
+
+									</div>
                   <button type="submit" class="btn_wrapper w-100 justify-content-center">CONTACT US</button>
                 </form>
               </div>
