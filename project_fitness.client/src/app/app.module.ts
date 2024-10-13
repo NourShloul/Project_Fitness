@@ -32,10 +32,12 @@ import { ContactComponent } from './AOQ/contact/contact.component';
 
 import { CartService } from './Rahaf/cart.service';
 import { ProductService } from './Rahaf/product.service';
+import { ShopService } from './Rahaf/shop.service';  // Added ShopService
 import { GymDetailsComponent } from './Services(a,m)/gym-details/gym-details.component';
 import { AdminNavBarComponent } from './Admin/admin-nav-bar/admin-nav-bar.component';
 import { TipsComponent } from './Nutrition/tips/tips.component';
 import { FitnessDetailsComponent } from './Services(a,m)/fitness-details/fitness-details.component';
+import { ShopComponent } from './Rahaf/shop/shop.component';
 
 @NgModule({
   declarations: [
@@ -62,8 +64,9 @@ import { FitnessDetailsComponent } from './Services(a,m)/fitness-details/fitness
     ContactComponent,
     GymDetailsComponent,
     AdminNavBarComponent,
-    GymDetailsComponent,
-    TipsComponent
+    TipsComponent,
+    FitnessDetailsComponent,
+    ShopComponent
   ],
   imports: [
     BrowserModule,
@@ -71,46 +74,37 @@ import { FitnessDetailsComponent } from './Services(a,m)/fitness-details/fitness
     AppRoutingModule,
     FormsModule,
     RouterModule.forRoot([
-      { path: "", component: HomePageComponent, pathMatch: "full" },
-      { path: "NutritionPageOne", component: NutrotionPageOneComponent },
-      { path: "Recips", component: RecipsComponent },
-      { path: "SupRecipe/:id", component: SupRecipeComponent },
-      { path: "Tips", component: TipsComponent },
-      { path: "SupRecipeDetails/:id", component: SubRecipeDetailsComponent },
-      { path: "categories", component: CategoryComponent },
+      { path: '', component: HomePageComponent, pathMatch: 'full' },
+      { path: 'NutritionPageOne', component: NutrotionPageOneComponent },
+      { path: 'Recips', component: RecipsComponent },
+      { path: 'SupRecipe/:id', component: SupRecipeComponent },
+      { path: 'Tips', component: TipsComponent },
+      { path: 'SupRecipeDetails/:id', component: SubRecipeDetailsComponent },
+      { path: 'categories', component: CategoryComponent },
       { path: 'Product/:id', component: ProductComponent },
       { path: 'ProductDetails/:id', component: ProductDetailsComponent },
       { path: 'policies', component: PolicesComponent },
       { path: 'cart', component: CartComponent },
       { path: 'payment', component: PaymentComponent },
-      { path: "Register", component: RegisterComponent },
-      { path: "Login", component: LoginComponent },
-      { path: "Home", component: HomePageComponent },
-      { path: "AllGyms", component: GymComponent },
-      { path: "About", component: AboutComponent },
-      { path: "services", component: MainServicesComponent },
-      { path: "Contact", component: ContactComponent },
-      { path: "GymDetails/:id", component: GymDetailsComponent },
-      { path: "AllFitness", component: FitnessComponent },
-      { path: "FitnessDetails/:id", component: FitnessDetailsComponent },
-
-      { path: "Contact", component: ContactComponent },
-      
-      { path: "admin", component: AdminNavBarComponent },
-      { path: "**", redirectTo: "", pathMatch: "full" },
-      
-
-      
-    
-
-      
-    
-
-      ])
+      { path: 'Register', component: RegisterComponent },
+      { path: 'Login', component: LoginComponent },
+      { path: 'Home', component: HomePageComponent },
+      { path: 'AllGyms', component: GymComponent },
+      { path: 'About', component: AboutComponent },
+      { path: 'services', component: MainServicesComponent },
+      { path: 'Contact', component: ContactComponent },
+      { path: 'GymDetails/:id', component: GymDetailsComponent },
+      { path: 'AllFitness', component: FitnessComponent },
+      { path: 'FitnessDetails/:id', component: FitnessDetailsComponent },
+      { path: 'shop', component: ShopComponent },  // <-- Added Shop route here
+      { path: 'admin', component: AdminNavBarComponent },
+      { path: '**', redirectTo: '', pathMatch: 'full' },
+    ])
   ],
   providers: [
     CartService,
-    ProductService
+    ProductService,
+    ShopService  // Added ShopService
   ],
   bootstrap: [AppComponent]
 })
