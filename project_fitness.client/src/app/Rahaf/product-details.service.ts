@@ -7,7 +7,7 @@ import { BehaviorSubject, Observable, observable } from 'rxjs';
   providedIn: 'root'
 })
 export class ProductDetailsService {
-  logedINuser:any
+  logedINuser = "";
   constructor(private http: HttpClient, private URLService: URLService) {
   }
   staticData = "https://localhost:7072/api";
@@ -31,6 +31,7 @@ export class ProductDetailsService {
 
   addToCart(data: any) {
     this.URLService.emailaddress.subscribe(email => {
+      debugger;
       this.logedINuser = email
       console.log('Email from another service:', email);
     });
