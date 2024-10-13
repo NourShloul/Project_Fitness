@@ -11,25 +11,25 @@ import { URLService } from '../../url/url.service';
 })
 export class CartComponent implements OnInit {
   cartItems: any[] = [];
-  logedINuser: any;
+  logedINuser = "";
   userId: any;
+  test = "";
 
   constructor(private cartService: CartService, private router: Router, private ProductService: ProductDetailsService, private URLService: URLService) {
-    this.URLService.emailaddress.subscribe(email => {
-      this.logedINuser = email
-      console.log('Email from another service:', this.logedINuser);
-    });
   }
 
   ngOnInit(): void {
-    this.URLService.emailaddress.subscribe(email => {
-      this.logedINuser = email
+    this.URLService.emailaddressUser.subscribe(email => {
+      this.logedINuser = email;
+      this.test = email;
+      
       console.log('Email from another service:', this.logedINuser);
+      console.log('this is the test output', this.test);
     });
 
     this.URLService.UserIdmm.subscribe(user => {
       this.userId = user
-      console.log('Email from another service:', this.userId);
+      console.log('user ID from Cart:', this.userId);
     });
 
     if (this.userId != null) {
@@ -80,5 +80,50 @@ export class CartComponent implements OnInit {
       this.router.navigate(['/payment']);
     }
      // Navigate to the payment route
+  }
+
+
+
+
+  test555 : any
+  incrimentQ(productId: any, id: any) {
+    if (this.test == "") {
+      this.ProductService.increaseQ(productId);
+    } else {
+      this.ProductService.APIincreaseQ(id).subscribe(
+        (response) => {
+          console.log('Quantity increased:', response);
+          this.test555 = response.quantity
+          this.router.navigate(['/cart']); // Navigate after the API call is successful
+        },
+        (error) => {
+          console.error('Error increasing quantity:', error);
+        }
+      );
+    }
+  }
+
+  minusQ(productId: any, id: any) {
+    if (this.test == "") {
+      this.ProductService.decreaseQ(productId);
+    } else {
+      this.ProductService.APIdecreaseQ(id).subscribe(
+        (response) => {
+          console.log('Quantity increased:', response);
+          this.test555 = response.quantity
+          this.router.navigate(['/cart']); // Navigate after the API call is successful
+        },
+        (error) => {
+          console.error('Error increasing quantity:', error);
+        }
+      );
+    }
+  }
+
+
+  remove(id: any) {
+    debugger;
+    this.cartService.deleteCartItem(id).subscribe();
+    this.router.navigate(['/cart']);
   }
 }

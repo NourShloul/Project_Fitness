@@ -70,7 +70,6 @@ export class ProductDetailsService {
     for (let i = 0; i < this.cartItem.length; i++) {
       console.log(this.cartItem[i]);
 
-      // Create a new apiPost object for each iteration
       let apiPost = {
         productId: this.cartItem[i].productId,
         quantity: this.cartItem[i].quantity,
@@ -95,5 +94,34 @@ export class ProductDetailsService {
         }
       );
     }
+  }
+
+
+
+
+
+  increaseQ(id: any) {
+    var product = this.cartItem.find((x: any) => x.productId == id)
+    if (product) {
+      product.quantity += 1;
+
+      this.cartItemSubject.next(this.cartItem); /// next UPDATES and we use it for behavior subject 
+    }
+  }
+
+  decreaseQ(id: any) {
+    var product = this.cartItem.find((x: any) => x.productId == id)
+    if (product) {
+      product.quantity -= 1;
+
+      this.cartItemSubject.next(this.cartItem); /// next UPDATES and we use it for behavior subject 
+    }
+  }
+
+  APIincreaseQ(id: any): Observable<any> {
+    return this.http.get<any>(`${this.staticData}/CartItems/increaseQuantity/${id}`)
+  }
+  APIdecreaseQ(id: any): Observable<any> {
+    return this.http.get<any>(`${this.staticData}/CartItems/decreaseQuantity/${id}`)
   }
 }
