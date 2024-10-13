@@ -11,5 +11,6 @@ namespace Project_Fitness.Server.Controllers
         private readonly MyDbContext _db;
         public ProfileController(MyDbContext db) { _db = db; }
 
+
     }
 }
