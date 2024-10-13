@@ -62,5 +62,7 @@ export class URLService {
     return this.http.get<any>(`${this.staticData}/`)
   }
 
-
+  addContact(data: any): Observable<any> {
+    return this.http.post<any>(`${this.staticData}/Contact`, data)
+  }
 }
