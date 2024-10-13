@@ -52,7 +52,7 @@ namespace Project_Fitness.Server.Services
                     redirect_urls = new RedirectUrls
                     {
                         cancel_url = $"{redirectUrl}/cancel",
-                        return_url = $"{redirectUrl}/success?userId={userId}"
+                        return_url = $"{redirectUrl}/Thankyou"
                     }
                 };
 

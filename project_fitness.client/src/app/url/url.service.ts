@@ -16,6 +16,8 @@ export class URLService {
   emailaddressUser = this.userEmail.asObservable();
   userId: BehaviorSubject<string> = new BehaviorSubject<string>("");
   UserIdmm = this.userId.asObservable();
+  month: BehaviorSubject<number> = new BehaviorSubject<number>(0);
+  monthforsave = this.userId.asObservable();
   constructor(private http: HttpClient) { }
 
 
@@ -126,10 +128,24 @@ export class URLService {
     const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
     return this.http.post<any>(`${this.staticData}/Admin/create-payment`, request, { headers });
   }
+  executePayment(request: ExecutePaymentRequestDto): Observable<any> {
+    const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
+    return this.http.post<any>(`${this.staticData}/Admin/execute-payment`, request, { headers });
+  }
 }
 export interface CreatePaymentRequestDto {
   redirectUrl: string;
   total: number;
   message?: string;
   userId: number;
+}
+export interface ExecutePaymentRequestDto {
+  PaymentId: string;
+  PayerId: string;
+  UserId: number;
+  GymId?: number | null;
+  FitnessClassId?: number | null;
+  StartDate: Date;
+  EndDate: Date;
+  Total: number;
 }

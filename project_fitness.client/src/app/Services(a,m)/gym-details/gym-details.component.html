@@ -86,7 +86,7 @@
                              <span>{{DetailsArray.price}} JD</span>
                              <p>For 1 Month</p>
                            </div>
-                           <a href="#" class="btn_wrapper mt-2 mx-auto">Subscribtion</a>
+                           <a href="javascript:void(0)" class="btn_wrapper mt-2 mx-auto" (click)="addsubscribtion(DetailsArray.price, 1)">Subscription</a>
                          </div>
                        </div>
                        <div class="col-4">
@@ -103,7 +103,7 @@
                              <span>{{(DetailsArray.price*3)-(DetailsArray.price*3*0.2)}} JD</span>
                              <p>For 3 Month</p>
                            </div>
-                           <a href="#" class="btn_wrapper mt-2 mx-auto" (click)="addsubscribtion((DetailsArray.price * 3) - (DetailsArray.price * 3 * 0.2), 3)">Subscription</a>
+                           <a href="javascript:void(0)" class="btn_wrapper mt-2 mx-auto" (click)="addsubscribtion((DetailsArray.price * 3) - (DetailsArray.price * 3 * 0.2), 3)">Subscription</a>
                          </div>
                        </div>
                        <div class="col-4">
@@ -120,7 +120,7 @@
                              <span>{{(DetailsArray.price*6)-(DetailsArray.price*6*0.3)}} JD</span>
                              <p>For 6 Month</p>
                            </div>
-                           <a href="#" class="btn_wrapper mt-2 mx-auto">Subscribtion</a>
+                           <a href="javascript:void(0)" class="btn_wrapper mt-2 mx-auto" (click)="addsubscribtion((DetailsArray.price * 6) - (DetailsArray.price * 6 * 0.2), 6)">Subscription</a>
                          </div>
                        </div>
                      </div>
