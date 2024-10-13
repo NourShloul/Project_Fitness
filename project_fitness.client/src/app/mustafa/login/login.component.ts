@@ -22,8 +22,14 @@ export class LoginComponent {
     }
 
     this._ser.loginUser(form).subscribe((newData) => {
-      console.log(newData);
-      this._ser['UserEmail'].next(newData.UserEmail);
+      console.log("what is this" + newData.userEmail);
+      this._ser['isAdmin'].next(newData.isAdmin);
+      console.log(this._ser['isAdmin'].next(newData.isAdmin))
+
+      this._ser['userEmail'].next(newData.userEmail);
+      console.log(this._ser['userEmail'].next(newData.userEmail))
+      this._ser['userId'].next(newData.userId);
+      console.log(this._ser['userId'].next(newData.userId))
 
       if (newData.isAdmin) {
         // عرض رسالة نجاح للمشرف (admin)

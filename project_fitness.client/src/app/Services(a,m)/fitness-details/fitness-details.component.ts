@@ -22,7 +22,7 @@ export class FitnessDetailsComponent {
   getDetails(id: any) {
     debugger
     this._ser.getClassDetails(id).subscribe((data: any) => {
-      this.Details = data;
+      this.Details= data;
       console.log(this.Details,'details')
     }
     )
