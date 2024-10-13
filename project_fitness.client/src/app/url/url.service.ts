@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 import { Observable } from 'rxjs';
 
+
 @Injectable({
   providedIn: 'root'
 })
@@ -17,7 +18,11 @@ export class URLService {
   userId: BehaviorSubject<string> = new BehaviorSubject<string>("");
   UserIdmm = this.userId.asObservable();
   month: BehaviorSubject<number> = new BehaviorSubject<number>(0);
-  monthforsave = this.userId.asObservable();
+  monthforsave = this.month.asObservable();
+  GymId: BehaviorSubject<number|undefined> = new BehaviorSubject<number|undefined>(0);
+  GymID = this.GymId.asObservable();
+  total: BehaviorSubject<number> = new BehaviorSubject<number>(0);
+  totalforsub = this.total.asObservable();
   constructor(private http: HttpClient) { }
 
 

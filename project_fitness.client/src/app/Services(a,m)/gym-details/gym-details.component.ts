@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { URLService, CreatePaymentRequestDto, ExecutePaymentRequestDto } from '../../url/url.service';
 
+
 @Component({
   selector: 'app-gym-details',
   templateUrl: './gym-details.component.html',
@@ -11,7 +12,9 @@ export class GymDetailsComponent implements OnInit {
 
   parameter: any;
   DetailsArray: any;
-  userId:any
+  userId: any
+  amount: any
+  gymid:any
 
   constructor(private _ser: URLService, private _route: ActivatedRoute, private URLService: URLService) { }
 
@@ -24,6 +27,7 @@ export class GymDetailsComponent implements OnInit {
       this.userId = user
       console.log('user ID from Cart:', this.userId);
     });
+    
   }
 
 
@@ -35,12 +39,18 @@ export class GymDetailsComponent implements OnInit {
 
   }
 
-  addsubscribtion(price: number, months: number): void {
+  addsubscribtion(price: number, months: number, gymId: number):  void {
     debugger
-    this._ser['month'].next(months);
-    this._ser['month'].subscribe((value) => {
-      console.log('Current months value:', value);  // Logs the emitted value
-    });
+    this._ser.month.next(months);
+    localStorage.setItem('moth', months.toString())
+    this._ser.GymId.next(gymId);
+    localStorage.setItem('GymId', gymId.toString())
+    this._ser.total.next(price);
+    localStorage.setItem('price', price.toString())
+
+    console.log('Current months value:', months);
+    console.log('Current gymId value:', gymId);
+    console.log('Current price value:', price);
     const request: CreatePaymentRequestDto = {
       redirectUrl: window.location.origin,  
       total: price,  
