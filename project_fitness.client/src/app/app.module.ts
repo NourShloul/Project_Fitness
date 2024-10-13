@@ -46,6 +46,14 @@ import { UpdatefitnessclassComponent } from './Admin/updatefitnessclass/updatefi
 import { ProductListComponent } from './Admin/product-list/product-list.component'; 
 import { AddProductComponent } from './Admin/add-product/add-product.component'; 
 import { UpdateProductComponent } from './Admin/update-product/update-product.component'; 
+import { AddgymComponent } from './Admin/addgym/addgym.component';
+import { AddfitnessComponent } from './Admin/addfitness/addfitness.component';
+import { ProductListComponent } from './Admin/product-list/product-list.component'; // Add ProductListComponent
+import { AddProductComponent } from './Admin/add-product/add-product.component'; // Add AddProductComponent
+import { UpdateProductComponent } from './Admin/update-product/update-product.component'; // Add UpdateProductComponent
+import { AddRecipeAdminComponent } from './Admin/add-recipe-admin/add-recipe-admin.component';
+import { RecipeAdmainComponent } from './Admin/recipe-admain/recipe-admain.component';
+import { UpdateRecipeAdminComponent } from './Admin/update-recipe-admin/update-recipe-admin.component';
 
 @NgModule({
   declarations: [
@@ -74,16 +82,12 @@ import { UpdateProductComponent } from './Admin/update-product/update-product.co
     TipsComponent,
     DashboardComponent,
     AllGymsComponent,
-    ShopComponent,
+    
+    TipsComponent,
     TestimonialComponent,
-    ProfileComponent,
-    ThankyouComponent,
-    AllFitnessclassComponent,
-    UpdategymComponent,
-    UpdatefitnessclassComponent,
-    ProductListComponent, // Add ProductListComponent
-    AddProductComponent,  // Add AddProductComponent
-    UpdateProductComponent // Add UpdateProductComponent
+    RecipeAdmainComponent,
+    AddRecipeAdminComponent,
+    UpdateRecipeAdminComponent
   ],
   imports: [
     BrowserModule,
@@ -127,6 +131,9 @@ import { UpdateProductComponent } from './Admin/update-product/update-product.co
           { path: "AllFitnessAdmin", component: AllFitnessclassComponent },
 
 
+          { path: "RecipeAdmin", component: RecipeAdmainComponent },
+          { path: "AddRecipeAdmin", component: AddRecipeAdminComponent },
+          { path: "UpdateRecipeAdmin/:id", component: UpdateRecipeAdminComponent },
         ]
       },
       { path: "Profile", component: ProfileComponent },
