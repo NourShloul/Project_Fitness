@@ -43,6 +43,8 @@ import { ThankyouComponent } from './thankyou/thankyou.component';
 import { AllFitnessclassComponent } from './Admin/all-fitnessclass/all-fitnessclass.component';
 import { UpdategymComponent } from './Admin/updategym/updategym.component';
 import { UpdatefitnessclassComponent } from './Admin/updatefitnessclass/updatefitnessclass.component';
+import { AddgymComponent } from './Admin/addgym/addgym.component';
+import { AddfitnessComponent } from './Admin/addfitness/addfitness.component';
 
 @NgModule({
   declarations: [
@@ -81,6 +83,8 @@ import { UpdatefitnessclassComponent } from './Admin/updatefitnessclass/updatefi
     AllFitnessclassComponent,
     UpdategymComponent,
     UpdatefitnessclassComponent,
+    AddgymComponent,
+    AddfitnessComponent,
   ],
   imports: [
     BrowserModule,
@@ -116,7 +120,6 @@ import { UpdatefitnessclassComponent } from './Admin/updatefitnessclass/updatefi
         path: "Dashboard", component: DashboardComponent, children: [
           { path: "AllGymAdmin", component: AllGymsComponent },
           { path: "editgym/:id", component: UpdategymComponent },
-          { path: "editgym", component: UpdategymComponent },
           { path: "AllFitnessAdmin", component: AllFitnessclassComponent },
 
 
