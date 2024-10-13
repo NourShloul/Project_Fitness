@@ -72,8 +72,7 @@ import { UpdategymComponent } from './Admin/updategym/updategym.component';
     
     TipsComponent,
     TestimonialComponent,
-    AllFitnessclassComponent
-    TestimonialComponent,
+    AllFitnessclassComponent,
     UpdategymComponent
   ],
   imports: [
