@@ -71,4 +71,36 @@ export class URLService {
   addContact(data: any): Observable<any> {
     return this.http.post<any>(`${this.staticData}/AOQContact/AddContact`, data)
   }
+
+  //////////// Admin Gym APIs ///////////////////
+
+  addGym(data: any): Observable<any> {
+
+    return this.http.post<any>(`${this.staticData}/Admin/AddNewGym`, data)
+
+  }
+  PUTgym(id: any, data: any): Observable<any> {
+
+    return this.http.put<any>(`${this.staticData}/Admin/UpdateGymById/${id}`, data)
+  }
+  deletgym(id: any): Observable<any> {
+
+    return this.http.delete<any>(`${this.staticData}/Admin/DeletGymById/${id}`)
+  }
+  //////////// Admin Fitness Class APIs ///////////////////
+  addfitnessclass(data: any): Observable<any> {
+
+    return this.http.post<any>(`${this.staticData}/Admin/AddNewFitnessClass`, data)
+
+  }
+  PUTfitnessclass(id: any, data: any): Observable<any> {
+
+    return this.http.put<any>(`${this.staticData}/Admin/UpdateFitnessClassById/${id}`, data)
+  }
+  deletfitnessclass(id: any): Observable<any> {
+
+    return this.http.delete<any>(`${this.staticData}/Admin/DeleteFitnessClassById/${id}`)
+  }
+
+
 }
