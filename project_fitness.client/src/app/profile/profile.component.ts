@@ -7,19 +7,19 @@ import { URLService } from '../url/url.service';
   styleUrl: './profile.component.css'
 })
 export class ProfileComponent {
-  ngOnInit() {
-    this.GetAllOrder()
-  }
-  constructor(private _ser:
-    URLService) { }
+  //ngOnInit() {
+  //  this.GetAllOrder()
+  //}
+  //constructor(private _ser:
+  //  URLService) { }
 
-  RecipeArray: any
-  GetAllOrder() {
+  //RecipeArray: any
+  //GetAllOrder() {
 
-    this._ser.GetUserID().subscribe((data) => {
-      this.RecipeArray = data
-      console.log(this.RecipeArray)
+  //  this._ser.GetUserID().subscribe((data) => {
+  //    this.RecipeArray = data
+  //    console.log(this.RecipeArray)
 
-    })
-  }
+  //  })
+  //}
 }
