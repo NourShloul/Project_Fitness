@@ -42,6 +42,10 @@ export class URLService {
   getSubRecipe(id: any): Observable<any> {
     return this.http.get<any>(`${this.staticData}/Subrecipe/Recipe/GetSubrecipeByRecipeId/${id}`);
   }
+
+  getAllRecipes(): Observable<any> {
+    return this.http.get<any>(`${this.staticData}/Subrecipe/Recipe/GetAllSubrecipe`);
+  }
   AddRecipeTaype(data: any): Observable<any> {
     return this.http.post<any>(`${this.staticData}/Recipe/Nutrition/CreateRecipe`, data)
   }

@@ -2,21 +2,21 @@ import { Component } from '@angular/core';
 import { URLService } from '../../url/url.service';
 
 @Component({
-  selector: 'app-recipe-admain',
-  templateUrl: './recipe-admain.component.html',
-  styleUrl: './recipe-admain.component.css'
+  selector: 'app-sub-recipes-admin',
+  templateUrl: './sub-recipes-admin.component.html',
+  styleUrl: './sub-recipes-admin.component.css'
 })
-export class RecipeAdmainComponent {
+export class SubRecipesAdminComponent {
   ngOnInit() {
-    this.GetAllRecipe()
+    this.GetAllSubRecipe()
   }
   constructor(private _ser:
     URLService) { }
 
   RecipeArray: any
-  GetAllRecipe() {
+  GetAllSubRecipe() {
 
-    this._ser.GetTypeOfRecipe().subscribe((data) => {
+    this._ser.getAllRecipes().subscribe((data) => {
       this.RecipeArray = data
       console.log(this.RecipeArray)
 
@@ -25,9 +25,8 @@ export class RecipeAdmainComponent {
 
   deletrecipe(id: any) {
     this._ser.deletrecipe(id).subscribe(() => {
-      alert("Recipes deleted successfully")
-      this.GetAllRecipe();
+      alert("Sub-Recipe deleted successfully")
+      this.GetAllSubRecipe();
     })
   }
 }
-
