@@ -13,5 +13,7 @@ public partial class Testimonial
 
     public bool? IsAccept { get; set; }
 
+    public DateTime? CreatedTestimonialAt { get; set; }
+
     public virtual User? User { get; set; }
 }

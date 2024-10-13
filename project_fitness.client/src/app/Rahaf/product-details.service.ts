@@ -30,13 +30,10 @@ export class ProductDetailsService {
     }
 
   addToCart(data: any) {
-    this.URLService.emailaddress.subscribe(email => {
-      debugger;
+    this.URLService.userEmail.subscribe(email => {
       this.logedINuser = email
       console.log('Email from another service:', email);
     });
-    this.logedINuser = "ayah@gmail.com"
-    debugger;
     if (this.logedINuser == "") {
       var recode = this.cartItem.find((x: any) => x.productId == data.productId);
       if (recode) {
@@ -67,5 +64,64 @@ export class ProductDetailsService {
   addcartItemToDatabase(data: any): Observable<any> {
     return this.http.post<any>(`${this.staticData}/CartItems/addcartitem`, data)
 
+  }
+
+  addLocalTouser(email: any) {
+    for (let i = 0; i < this.cartItem.length; i++) {
+      console.log(this.cartItem[i]);
+
+      let apiPost = {
+        productId: this.cartItem[i].productId,
+        quantity: this.cartItem[i].quantity,
+        price: this.cartItem[i].price,
+        cartId: this.cartItem[i].cartId,
+        email: email
+      };
+
+      // Capture the index so we know which item to remove later
+      let currentIndex = i;
+
+      // Add cart item to the database
+      this.addcartItemToDatabase(apiPost).subscribe(
+        (data) => {
+          console.log('Successfully added:', data);
+
+          // Remove the item from the cart after successful API call
+          this.cartItem.splice(currentIndex, 1);
+        },
+        (error) => {
+          console.error('Error adding cart item:', error);
+        }
+      );
     }
+  }
+
+
+
+
+
+  increaseQ(id: any) {
+    var product = this.cartItem.find((x: any) => x.productId == id)
+    if (product) {
+      product.quantity += 1;
+
+      this.cartItemSubject.next(this.cartItem); /// next UPDATES and we use it for behavior subject 
+    }
+  }
+
+  decreaseQ(id: any) {
+    var product = this.cartItem.find((x: any) => x.productId == id)
+    if (product) {
+      product.quantity -= 1;
+
+      this.cartItemSubject.next(this.cartItem); /// next UPDATES and we use it for behavior subject 
+    }
+  }
+
+  APIincreaseQ(id: any): Observable<any> {
+    return this.http.get<any>(`${this.staticData}/CartItems/increaseQuantity/${id}`)
+  }
+  APIdecreaseQ(id: any): Observable<any> {
+    return this.http.get<any>(`${this.staticData}/CartItems/decreaseQuantity/${id}`)
+  }
 }

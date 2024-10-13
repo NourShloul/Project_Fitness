@@ -11,25 +11,40 @@ import { URLService } from '../../url/url.service';
 })
 export class CartComponent implements OnInit {
   cartItems: any[] = [];
-  logedINuser: any
+  logedINuser = "";
+  userId: any;
+  test = "";
 
   constructor(private cartService: CartService, private router: Router, private ProductService: ProductDetailsService, private URLService: URLService) {
-    this.URLService.emailaddress.subscribe(email => {
-      this.logedINuser = email
-      console.log('Email from another service:', email);
-    });
   }
 
   ngOnInit(): void {
+    this.URLService.emailaddressUser.subscribe(email => {
+      this.logedINuser = email;
+      this.test = email;
+      
+      console.log('Email from another service:', this.logedINuser);
+      console.log('this is the test output', this.test);
+    });
+
+    this.URLService.UserIdmm.subscribe(user => {
+      this.userId = user
+      console.log('user ID from Cart:', this.userId);
+    });
+
+    if (this.userId != null) {
+      this.cartService.getCartItems(this.userId).subscribe(
+        (items) => {
+          this.cartItems = items; // Assign fetched items to cartItems
+        },
+        (error) => {
+          console.error('Error fetching cart items:', error); // Handle errors
+        }
+      );
+    }
+
     // Fetch cart items when the component is initialized
-    this.cartService.getCartItems().subscribe(
-      (items) => {
-        this.cartItems = items; // Assign fetched items to cartItems
-      },
-      (error) => {
-        console.error('Error fetching cart items:', error); // Handle errors
-      }
-    );
+    
     this.getCartItemsLocal()
   }
 
@@ -65,5 +80,50 @@ export class CartComponent implements OnInit {
       this.router.navigate(['/payment']);
     }
      // Navigate to the payment route
+  }
+
+
+
+
+  test555 : any
+  incrimentQ(productId: any, id: any) {
+    if (this.test == "") {
+      this.ProductService.increaseQ(productId);
+    } else {
+      this.ProductService.APIincreaseQ(id).subscribe(
+        (response) => {
+          console.log('Quantity increased:', response);
+          this.test555 = response.quantity
+          this.router.navigate(['/cart']); // Navigate after the API call is successful
+        },
+        (error) => {
+          console.error('Error increasing quantity:', error);
+        }
+      );
+    }
+  }
+
+  minusQ(productId: any, id: any) {
+    if (this.test == "") {
+      this.ProductService.decreaseQ(productId);
+    } else {
+      this.ProductService.APIdecreaseQ(id).subscribe(
+        (response) => {
+          console.log('Quantity increased:', response);
+          this.test555 = response.quantity
+          this.router.navigate(['/cart']); // Navigate after the API call is successful
+        },
+        (error) => {
+          console.error('Error increasing quantity:', error);
+        }
+      );
+    }
+  }
+
+
+  remove(id: any) {
+    debugger;
+    this.cartService.deleteCartItem(id).subscribe();
+    this.router.navigate(['/cart']);
   }
 }

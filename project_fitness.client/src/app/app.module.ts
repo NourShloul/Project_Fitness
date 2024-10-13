@@ -1,7 +1,7 @@
 import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms'; // Import ReactiveFormsModule
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -29,7 +29,7 @@ import { GymComponent } from './Services(a,m)/gym/gym.component';
 import { FitnessComponent } from './Services(a,m)/fitness/fitness.component';
 import { AboutComponent } from './AOQ/about/about.component';
 import { ContactComponent } from './AOQ/contact/contact.component';
-
+import { ShopComponent } from './Rahaf/shop/shop.component';
 import { CartService } from './Rahaf/cart.service';
 import { ProductService } from './Rahaf/product.service';
 import { GymDetailsComponent } from './Services(a,m)/gym-details/gym-details.component';
@@ -38,6 +38,16 @@ import { FitnessDetailsComponent } from './Services(a,m)/fitness-details/fitness
 import { DashboardComponent } from './Admin/dashboard/dashboard.component';
 import { AllGymsComponent } from './Admin/all-gyms/all-gyms.component';
 import { TestimonialComponent } from './AOQ/testimonial/testimonial.component';
+import { ProfileComponent } from './profile/profile.component';
+import { ThankyouComponent } from './thankyou/thankyou.component';
+import { AllFitnessclassComponent } from './Admin/all-fitnessclass/all-fitnessclass.component';
+import { UpdategymComponent } from './Admin/updategym/updategym.component';
+import { UpdatefitnessclassComponent } from './Admin/updatefitnessclass/updatefitnessclass.component';
+import { AddgymComponent } from './Admin/addgym/addgym.component';
+import { AddfitnessComponent } from './Admin/addfitness/addfitness.component';
+import { ProductListComponent } from './Admin/product-list/product-list.component'; // Add ProductListComponent
+import { AddProductComponent } from './Admin/add-product/add-product.component'; // Add AddProductComponent
+import { UpdateProductComponent } from './Admin/update-product/update-product.component'; // Add UpdateProductComponent
 import { AddRecipeAdminComponent } from './Admin/add-recipe-admin/add-recipe-admin.component';
 import { RecipeAdmainComponent } from './Admin/recipe-admain/recipe-admain.component';
 import { UpdateRecipeAdminComponent } from './Admin/update-recipe-admin/update-recipe-admin.component';
@@ -66,7 +76,6 @@ import { UpdateRecipeAdminComponent } from './Admin/update-recipe-admin/update-r
     AboutComponent,
     ContactComponent,
     GymDetailsComponent,
-    GymDetailsComponent,
     TipsComponent,
     DashboardComponent,
     AllGymsComponent,
@@ -82,6 +91,7 @@ import { UpdateRecipeAdminComponent } from './Admin/update-recipe-admin/update-r
     HttpClientModule,
     AppRoutingModule,
     FormsModule,
+    ReactiveFormsModule, // Import ReactiveFormsModule
     RouterModule.forRoot([
       { path: "", component: HomePageComponent, pathMatch: "full" },
       { path: "NutritionPageOne", component: NutrotionPageOneComponent },
@@ -105,6 +115,8 @@ import { UpdateRecipeAdminComponent } from './Admin/update-recipe-admin/update-r
       { path: "GymDetails/:id", component: GymDetailsComponent },
       { path: "AllFitness", component: FitnessComponent },
       { path: "FitnessDetails/:id", component: FitnessDetailsComponent },
+      { path: "Testimonial", component: TestimonialComponent },
+      { path: "shop", component: ShopComponent },
       {
         path: "Dashboard", component: DashboardComponent, children: [
           { path: "AllGymAdmin", component: AllGymsComponent },
@@ -113,21 +125,10 @@ import { UpdateRecipeAdminComponent } from './Admin/update-recipe-admin/update-r
           { path: "UpdateRecipeAdmin/:id", component: UpdateRecipeAdminComponent },
         ]
       },
-
-      
-
-      
-     
-      { path: "**", redirectTo: "", pathMatch: "full" },
-      
-
-      
-    
-
-      
-    
-
-      ])
+      { path: "Profile", component: ProfileComponent },
+      { path: "Thankyou", component: ThankyouComponent },
+      { path: "**", redirectTo: "", pathMatch: "full" } // Fallback route
+    ])
   ],
   providers: [
     CartService,

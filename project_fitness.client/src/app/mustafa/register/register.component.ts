@@ -21,7 +21,6 @@ export class RegisterComponent {
   }
 
   addnewUser(data: any) {
-    debugger
     var form = new FormData();
 
     for (let key in data) {

@@ -10,29 +10,47 @@ namespace Project_Fitness.Server.Controllers
     {
         private readonly MyDbContext _db;
         public ProfileController(MyDbContext db) { _db = db; }
-        [HttpGet("Profile/GetAllUsers")]
-        public IActionResult GetAllUser() {
-            var user = _db.Users.ToList();
-            if (user == null)
-            {
-                return NoContent();
-            }
-            return Ok(user);
-        }
         [HttpGet("Profile/GetUserById/{id}")]
-        public IActionResult GetProfile(int id) 
+        public IActionResult GetUser(int id)
         {
             if (id <= 0)
             {
                 return BadRequest("Invalid User ID");
             }
-            var user = _db.Recipes.Where(p => p.RecipeId == id).FirstOrDefault();
+            var user = _db.Users.Where(p => p.UserId == id).FirstOrDefault();
             if (user == null)
             {
-                return NotFound("No Recipe found for the given Recipe ID");
+                return NotFound("The user not found or doesnt register in the website");
             }
             return Ok(user);
         }
-
+        [HttpGet("Profile/GetOrdersByUserId/{id}")]
+        public IActionResult GetOrders(int id) 
+        {
+            if (id <= 0)
+            {
+                return BadRequest("Invalid User ID");
+            }
+            var order = _db.Orders.Where(p => p.UserId == id).FirstOrDefault();
+            if (order == null)
+            {
+                return NotFound("The user not found or doesnt register in the website");
+            }
+            return Ok(order);
+        }
+        [HttpGet("Profile/GetUserSubscriptionsbyUserId/{id}")]
+        public IActionResult GetUserSubsriptions(int id) 
+        {
+            if (id <= 0)
+            {
+                return BadRequest("Invalid User ID");
+            }
+            var user = _db.Subscriptions.Where(p => p.UserId == id).FirstOrDefault();
+            if (user == null)
+            {
+                return NotFound("The user not found or doesnt register in the website");
+            }
+            return Ok(user);
+        }
     }
 }
