@@ -76,11 +76,11 @@ import { UpdatefitnessclassComponent } from './Admin/updatefitnessclass/updatefi
     TipsComponent,
     TestimonialComponent,
     ProfileComponent,
-    ThankyouComponent
+    ThankyouComponent,
     TestimonialComponent,
     AllFitnessclassComponent,
     UpdategymComponent,
-    UpdatefitnessclassComponent
+    UpdatefitnessclassComponent,
   ],
   imports: [
     BrowserModule,
