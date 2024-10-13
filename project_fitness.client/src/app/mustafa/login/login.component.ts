@@ -40,7 +40,7 @@ export class LoginComponent {
           confirmButtonText: 'OK'
         }).then(() => {
           
-          this._router.navigate(['/admin']);
+          this._router.navigate(['/Dashboard']);
         });
 
       } else {

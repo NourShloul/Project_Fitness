@@ -38,6 +38,7 @@ import { FitnessDetailsComponent } from './Services(a,m)/fitness-details/fitness
 import { DashboardComponent } from './Admin/dashboard/dashboard.component';
 import { AllGymsComponent } from './Admin/all-gyms/all-gyms.component';
 import { TestimonialComponent } from './AOQ/testimonial/testimonial.component';
+import { UpdategymComponent } from './Admin/updategym/updategym.component';
 
 @NgModule({
   declarations: [
@@ -69,7 +70,8 @@ import { TestimonialComponent } from './AOQ/testimonial/testimonial.component';
     AllGymsComponent,
     
     TipsComponent,
-    TestimonialComponent
+    TestimonialComponent,
+    UpdategymComponent
   ],
   imports: [
     BrowserModule,
@@ -102,6 +104,8 @@ import { TestimonialComponent } from './AOQ/testimonial/testimonial.component';
       {
         path: "Dashboard", component: DashboardComponent, children: [
           { path: "AllGymAdmin", component: AllGymsComponent },
+          { path: "editgym", component: UpdategymComponent },
+
 
         ]
       },
