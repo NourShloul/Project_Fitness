@@ -9,14 +9,14 @@
       </ol>
     </nav>
 
-    <!-- Product Header -->
+
     <div class="product-header">
       <h1>{{ product.productName }}</h1>
     </div>
 
-    <!-- Product Details Section -->
+
     <div class="product-details-container d-flex">
-      <!-- Product Image Section -->
+  
       <div class="product-image">
         <img *ngIf="product.image; else noImage" [src]="product.image" alt="{{ product.productName }}" class="img-fluid">
         <ng-template #noImage>
@@ -24,17 +24,17 @@
         </ng-template>
       </div>
 
-      <!-- Product Info Section -->
+  
       <div class="product-info">
         <p class="product-description">{{ product.description }}</p>
 
-        <!-- Pricing Section -->
+    
         <div class="product-pricing">
           <strong class="price">${{ product.price | number: '1.2-2' }}</strong>
           <span *ngIf="product.discount" class="discount-badge">{{ product.discount }}% OFF</span>
         </div>
 
-        <!-- Stock Information -->
+
         <p class="stock-info">
           <strong>Stock Quantity:</strong>
           <input type="number" [(ngModel)]="cartItemObj.quantity" min="1" />
@@ -43,7 +43,7 @@
           </span>
         </p>
 
-        <!-- Add to Cart Button -->
+      
         <div class="action-buttons">
           <button class="btn btn-primary btn-lg" (click)="addToCart(product.id, product.price, product.productName)" [disabled]="product.stockQuantity === 0">
             <i class="fas fa-cart-plus"></i> Add to Cart
