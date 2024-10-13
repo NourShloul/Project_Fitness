@@ -32,7 +32,7 @@ export class UpdategymComponent {
       form.append(key, data[key])
     }
     form.append("gymImage", this.imageFile)
-
+    debugger
     this._ser.PUTgym(this.param, form).subscribe((data) => { alert("service updated successfully") })
 
   }

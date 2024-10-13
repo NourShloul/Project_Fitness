@@ -21,9 +21,7 @@
  
      
       <td>
-        <a [routerLink]="['/Dashboard/editgym']" [queryParams]="{ id: item.gymId }" class="btn btn-primary">
-          Edit
-        </a>
+        <a routerLink="/Dashboard/editgym/{{item.gymId}}" class="btn btn-primary">Edit</a>
 
       </td>
       <td>

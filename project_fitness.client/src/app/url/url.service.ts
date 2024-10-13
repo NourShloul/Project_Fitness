@@ -84,7 +84,7 @@ export class URLService {
 
   }
   PUTgym(id: any, data: any): Observable<any> {
-
+    debugger
     return this.http.put<any>(`${this.staticData}/Admin/UpdateGymById/${id}`, data)
   }
   deletgym(id: any): Observable<any> {
