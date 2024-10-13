@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 import { Observable } from 'rxjs';
@@ -6,6 +6,7 @@ import { Observable } from 'rxjs';
 @Injectable({
   providedIn: 'root'
 })
+
 export class URLService {
 
   isAdmin: BehaviorSubject<string> = new BehaviorSubject<string>("");
@@ -121,7 +122,15 @@ export class URLService {
 
     return this.http.delete<any>(`${this.staticData}/Admin/DeleteFitnessClassById/${id}`)
   }
-
-
-
+  
+  createPayment(request: CreatePaymentRequestDto): Observable<any> {
+    const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
+    return this.http.post<any>(`${this.staticData}/Admin/create-payment`, request, { headers });
+  }
+}
+export interface CreatePaymentRequestDto {
+  redirectUrl: string;
+  total: number;
+  message?: string;
+  userId: number;
 }

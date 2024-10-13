@@ -93,8 +93,8 @@ namespace Project_Fitness.Server.Controllers
         public IActionResult GetThree()
         {
             var testimonials = _db.Testimonials
-                .OrderByDescending(t => t.CreatedTestimonialAt) 
-                .Take(3) 
+                .OrderByDescending(t => t.CreatedTestimonialAt)
+                .Take(3)
                 .ToList();
 
             return Ok(testimonials);
