@@ -46,7 +46,8 @@ export class URLService {
     return this.http.post<any>(`${this.staticData}/Recipe/Nutrition/CreateRecipe`, data)
   }
   UpdateRecipe(id: any, data: any): Observable<any> {
-    return this.http.put(`https://localhost:7130/api/Recipe/Nutrition/UpdateRecipe/${id}`, data)
+    debugger
+    return this.http.put(`https://localhost:7072/api/Recipe/Nutrition/UpdateRecipe/${id}`, data)
   }
 
   deletrecipe(id: any): Observable<any> {

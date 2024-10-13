@@ -20,13 +20,14 @@ export class UpdateRecipeAdminComponent {
 
 
   UpdateRecipeAdmin(data: any) {
+    
     var form = new FormData();
     for (let key in data) {
       form.append(key, data[key])
     }
-    form.append("ImageRecipe", this.imageFile)
+    form.append("RecipeImage", this.imageFile)
     this._ser.UpdateRecipe(this.param, form).subscribe((data) => {
-      alert("Services Updated Sucessfully")
+      alert("Services Updated Successfully")
     })
   }
 }
