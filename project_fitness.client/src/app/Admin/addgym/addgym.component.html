@@ -1,13 +1,13 @@
-<form #add="ngForm" (ngSubmit)="addnewService(add.value)" style="max-width: 600px; margin: 0 auto; padding: 20px; border: 1px solid #ccc; border-radius: 10px; background-color: #f9f9f9;">
+<form #addGYM="ngForm" (ngSubmit)="addnewGym(addGYM.value)" style="max-width: 600px; margin: 0 auto; padding: 20px; border: 1px solid #ccc; border-radius: 10px; background-color: #f9f9f9;">
   <!-- CSRF Token (if needed) -->
   <input type="hidden" name="__RequestVerificationToken" value="TOKEN_VALUE">
 
-  <h2 style="text-align: center; margin-bottom: 20px;">Update Service</h2>
+  <h2 style="text-align: center; margin-bottom: 20px;">Add GYM</h2>
 
   <div class="form-container">
     <!-- Title Field -->
     <div class="form-group" style="margin-bottom: 15px;">
-      <label for="Title" class="form-label" style="display: block; font-weight: bold; margin-bottom: 5px;">gem name</label>
+      <label for="Title" class="form-label" style="display: block; font-weight: bold; margin-bottom: 5px;">Gym name</label>
       <input type="text" id="Title" name="gymName" class="form-control" required="required" style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 5px;" ngModel>
       <span class="text-danger" id="Title-error" style="color: red; font-size: 0.875em;"></span>
     </div>
@@ -20,30 +20,28 @@
     </div>
 
     <div class="form-group" style="margin-bottom: 15px;">
-      <label for="Title" class="form-label" style="display: block; font-weight: bold; margin-bottom: 5px;">GymLocation</label>
+      <label for="Title" class="form-label" style="display: block; font-weight: bold; margin-bottom: 5px;">Gym Location</label>
       <input type="text" id="" name="gymLocation" class="form-control" required="required" style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 5px;" ngModel>
       <span class="text-danger" id="Title-error" style="color: red; font-size: 0.875em;"></span>
     </div>
 
     <div class="form-group" style="margin-bottom: 15px;">
-      <label for="Title" class="form-label" style="display: block; font-weight: bold; margin-bottom: 5px;">StartTime</label>
+      <label for="Title" class="form-label" style="display: block; font-weight: bold; margin-bottom: 5px;">Gym StartTime</label>
       <input type="text" id="" name="startTime" class="form-control" required="required" style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 5px;" ngModel>
       <span class="text-danger" id="Title-error" style="color: red; font-size: 0.875em;"></span>
     </div>
     <div class="form-group" style="margin-bottom: 15px;">
-      <label for="Title" class="form-label" style="display: block; font-weight: bold; margin-bottom: 5px;">EndTime</label>
+      <label for="Title" class="form-label" style="display: block; font-weight: bold; margin-bottom: 5px;">Gym EndTime</label>
       <input type="text" id="" name="endTime" class="form-control" required="required" style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 5px;" ngModel>
       <span class="text-danger" id="Title-error" style="color: red; font-size: 0.875em;"></span>
     </div>
 
     <!-- Title Field -->
     <div class="form-group" style="margin-bottom: 15px;">
-      <label for="Title" class="form-label" style="display: block; font-weight: bold; margin-bottom: 5px;">GymImage</label>
+      <label for="Title" class="form-label" style="display: block; font-weight: bold; margin-bottom: 5px;">Gym Image</label>
       <input type="file" id="" name="gymImage" class="form-control" required="required" style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 5px;" ngModel (change)="changeImage($event)">
       <span class="text-danger" id="Title-error" style="color: red; font-size: 0.875em;"></span>
     </div>
-
-
 
 
 

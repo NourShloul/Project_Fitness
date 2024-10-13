@@ -21,15 +21,15 @@ interface Product {
 })
 export class ProductListComponent implements OnInit {
 
-  products: Product[] = []; // Array to hold the list of products
+  products: Product[] = []; 
 
   constructor(private productService: ProductService, private router: Router) { }
 
   ngOnInit(): void {
-    // Fetch all products when the component initializes
+
     this.productService.getProducts().subscribe(
       (data: Product[]) => {
-        this.products = data; // Assign the fetched products to the products array
+        this.products = data; 
       },
       (error) => {
         console.error('Error fetching products:', error);
@@ -37,17 +37,16 @@ export class ProductListComponent implements OnInit {
     );
   }
 
-  // Method to navigate to the edit page for a product
   editProduct(id: number): void {
-    this.router.navigate([`/editproduct/${id}`]); // Navigate to the edit page with the product ID
+    this.router.navigate([`/editproduct/${id}`]); 
   }
 
-  // Method to delete a product
+
   deleteProduct(id: number | undefined): void {
-    if (id) { // Ensure the ID is defined before calling the delete function
+    if (id) { 
       this.productService.deleteProduct(id).subscribe(() => {
         console.log(`Product with id ${id} deleted`);
-        // Remove the deleted product from the local array
+    
         this.products = this.products.filter(product => product.id !== id);
       }, (error) => {
         console.error('Error deleting product:', error);

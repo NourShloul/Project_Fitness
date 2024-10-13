@@ -31,19 +31,28 @@ export class ProductDetailsComponent implements OnInit {
   }
 
   cartItemObj: any = {
-    
-  "productId": 0,
-  "quantity": 1,
-  "price": 0,
-  "cartId": 0,
-  "productName": ""
 
+    "cartId": 0,
+    "productId": 0,
+    "quantity": 1,
+    "price": 0,
+    "product": {
+      "id": 0,
+      "categoryId": 0,
+      "productName": "",
+      "description": "",
+      "price": 0,
+      "image": ""
+
+    }
   }
+  
 
-  addToCart(productID: any, price: any, productName: any): void {
+  addToCart(productID: any, price: any, productName: any, productImage: any): void {
     this.cartItemObj.productId = productID;
     this.cartItemObj.price = price;
-    this.cartItemObj.productName = productName;
+    this.cartItemObj.product.productName = productName;
+    this.cartItemObj.product.image = productImage;
     this._ser.addToCart({ ...this.cartItemObj });
 
 

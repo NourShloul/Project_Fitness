@@ -49,6 +49,7 @@ import { RecipeAdmainComponent } from './Admin/recipe-admain/recipe-admain.compo
 import { UpdateRecipeAdminComponent } from './Admin/update-recipe-admin/update-recipe-admin.component';
 import { AddgymComponent } from './Admin/addgym/addgym.component';
 import { AddfitnessComponent } from './Admin/addfitness/addfitness.component';
+import { SubRecipesAdminComponent } from './Admin/sub-recipes-admin/sub-recipes-admin.component';
 
 @NgModule({
   declarations: [
@@ -92,6 +93,7 @@ import { AddfitnessComponent } from './Admin/addfitness/addfitness.component';
     ShopComponent,
     AddgymComponent,
     AddfitnessComponent,
+    SubRecipesAdminComponent,
 
   ],
   imports: [
@@ -109,6 +111,7 @@ import { AddfitnessComponent } from './Admin/addfitness/addfitness.component';
       { path: "SupRecipeDetails/:id", component: SubRecipeDetailsComponent },
       { path: "categories", component: CategoryComponent },
       { path: 'Product/:id', component: ProductComponent },
+      { path: "RecipeAdmin", component: RecipeAdmainComponent },
       { path: 'ProductDetails/:id', component: ProductDetailsComponent },
       { path: 'policies', component: PolicesComponent },
       { path: 'cart', component: CartComponent },
@@ -131,16 +134,17 @@ import { AddfitnessComponent } from './Admin/addfitness/addfitness.component';
         path: "Dashboard", component: DashboardComponent, children: [
           { path: "AllGymAdmin", component: AllGymsComponent },
           { path: "editgym/:id", component: UpdategymComponent },
-          { path: "editgym", component: UpdategymComponent },
           { path: "addproduct", component: AddProductComponent },
           { path: "editproduct/:id", component: UpdateProductComponent },
           { path: "products", component: ProductListComponent },
           { path: "AllFitnessAdmin", component: AllFitnessclassComponent },
           { path: "RecipeAdmin", component: RecipeAdmainComponent },
+          { path: "SubRecipeAdmin", component: SubRecipesAdminComponent },
           { path: "AddRecipeAdmin", component: AddRecipeAdminComponent },
           { path: "UpdateRecipeAdmin/:id", component: UpdateRecipeAdminComponent },
           { path: "addgym", component: AddgymComponent },
           { path: "addfitness", component: AddfitnessComponent },
+          { path: "editFitnessclass/:id", component: UpdatefitnessclassComponent },
         ]
       },
       { path: "Profile", component: ProfileComponent },

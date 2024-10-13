@@ -23,7 +23,6 @@ export class LoginComponent {
     }
 
     this._ser.loginUser(form).subscribe((newData) => {
-      debugger;
       console.log("what is this" + newData.userEmail);
       this._ser['isAdmin'].next(newData.isAdmin);
       console.log(this._ser['isAdmin'].next(newData.isAdmin))
@@ -35,7 +34,6 @@ export class LoginComponent {
       console.log("ssssssssssssss",this._ser['userId'].next(newData.userId))
 
 
-      debugger;
       this.ProductDetails.addLocalTouser(newData.userEmail);
 
       if (newData.isAdmin) {

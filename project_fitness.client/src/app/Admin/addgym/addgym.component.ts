@@ -19,7 +19,7 @@ export class AddgymComponent {
   }
 
 
-  addnewService(data: any) {
+  addnewGym(data: any) {
     debugger
     var form = new FormData();
 
@@ -27,11 +27,15 @@ export class AddgymComponent {
       form.append(key, data[key])
     }
 
-    form.append("ServiceImage", this.image)
+    form.append("gymImage", this.image)
 
     this._ser.addGym(form).subscribe(() => {
-      alert("service added successfully")
-    })
+      alert("Gym added successfully")
+    },
+      (error) => {
+
+        alert(error.error)
+      })
   }
 
 }
