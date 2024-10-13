@@ -24,6 +24,7 @@ export class UpdategymComponent {
   constructor(private _ser: URLService, private _active: ActivatedRoute) { }
 
   updateServices(data: any) {
+    debugger
 
     var form = new FormData();
 
@@ -32,7 +33,7 @@ export class UpdategymComponent {
     }
     form.append("gymImage", this.imageFile)
 
-    this._ser.updateService(this.param, form).subscribe((data) => { alert("service updated successfully") })
+    this._ser.PUTgym(this.param, form).subscribe((data) => { alert("service updated successfully") })
 
   }
 
