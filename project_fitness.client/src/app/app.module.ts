@@ -90,6 +90,8 @@ import { AddfitnessComponent } from './Admin/addfitness/addfitness.component';
     ThankyouComponent,
     UpdateProductComponent,
     ShopComponent,
+    AddgymComponent,
+    AddfitnessComponent,
 
   ],
   imports: [
@@ -122,8 +124,7 @@ import { AddfitnessComponent } from './Admin/addfitness/addfitness.component';
       { path: "AllFitness", component: FitnessComponent },
       { path: "FitnessDetails/:id", component: FitnessDetailsComponent },
       { path: "Testimonial", component: TestimonialComponent },
-      { path: "addgym", component: AddgymComponent },
-      { path: "addfitness", component: AddfitnessComponent },
+    
      
       { path: "shop", component: ShopComponent },
       {
@@ -138,6 +139,8 @@ import { AddfitnessComponent } from './Admin/addfitness/addfitness.component';
           { path: "RecipeAdmin", component: RecipeAdmainComponent },
           { path: "AddRecipeAdmin", component: AddRecipeAdminComponent },
           { path: "UpdateRecipeAdmin/:id", component: UpdateRecipeAdminComponent },
+          { path: "addgym", component: AddgymComponent },
+          { path: "addfitness", component: AddfitnessComponent },
         ]
       },
       { path: "Profile", component: ProfileComponent },
