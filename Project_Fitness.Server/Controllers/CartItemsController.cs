@@ -68,5 +68,25 @@ namespace Project_Fitness.Server.Controllers
             }
 
         }
+
+        [HttpGet("increaseQuantity/{id}")]
+        public IActionResult increaseQuantity(int id)
+        {
+            var cartItem = _context.CartItems.FirstOrDefault(x => x.Id == id);
+            cartItem.Quantity = cartItem.Quantity + 1;
+            _context.CartItems.Update(cartItem);
+            _context.SaveChanges();
+            return Ok(cartItem);
+        }
+
+        [HttpGet("decreaseQuantity/{id}")]
+        public IActionResult decreaseQuantity(int id)
+        {
+            var cartItem = _context.CartItems.FirstOrDefault(x => x.Id == id);
+            cartItem.Quantity = cartItem.Quantity - 1;
+            _context.CartItems.Update(cartItem);
+            _context.SaveChanges();
+            return Ok(cartItem);
+        }
     }
 }

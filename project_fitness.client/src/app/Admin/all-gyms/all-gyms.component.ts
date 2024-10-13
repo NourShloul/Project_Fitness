@@ -31,7 +31,7 @@ export class AllGymsComponent {
   
   deleteGymById(id: any) {
     this._ser.deletgym(id).subscribe(() => {
-      alert("Sevice deleted successfully")
+      alert("Gym deleted successfully")
       this.getGyms();
     })
   }

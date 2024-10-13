@@ -28,7 +28,7 @@ export class AllFitnessclassComponent {
 
   deleteFitnessClassById(id: any) {
     this._ser.deletfitnessclass(id).subscribe(() => {
-      alert("Sevice deleted successfully")
+      alert("Fitness Class deleted successfully")
       this.getFitnessClass();
     })
   }

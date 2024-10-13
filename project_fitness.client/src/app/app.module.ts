@@ -29,7 +29,7 @@ import { GymComponent } from './Services(a,m)/gym/gym.component';
 import { FitnessComponent } from './Services(a,m)/fitness/fitness.component';
 import { AboutComponent } from './AOQ/about/about.component';
 import { ContactComponent } from './AOQ/contact/contact.component';
-
+import { ShopComponent } from './Rahaf/shop/shop.component';
 import { CartService } from './Rahaf/cart.service';
 import { ProductService } from './Rahaf/product.service';
 import { GymDetailsComponent } from './Services(a,m)/gym-details/gym-details.component';
@@ -72,7 +72,7 @@ import { UpdatefitnessclassComponent } from './Admin/updatefitnessclass/updatefi
     TipsComponent,
     DashboardComponent,
     AllGymsComponent,
-
+    ShopComponent,
     TipsComponent,
     TestimonialComponent,
     ProfileComponent,
@@ -111,11 +111,13 @@ import { UpdatefitnessclassComponent } from './Admin/updatefitnessclass/updatefi
       { path: "AllFitness", component: FitnessComponent },
       { path: "FitnessDetails/:id", component: FitnessDetailsComponent },
       { path: "Testimonial ", component: TestimonialComponent },
-
+      { path: "shop", component: ShopComponent },
       {
         path: "Dashboard", component: DashboardComponent, children: [
           { path: "AllGymAdmin", component: AllGymsComponent },
           { path: "editgym/:id", component: UpdategymComponent },
+          { path: "editgym", component: UpdategymComponent },
+          { path: "AllFitnessAdmin", component: AllFitnessclassComponent },
 
 
         ]

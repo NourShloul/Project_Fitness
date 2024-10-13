@@ -52,4 +52,26 @@ export class CartService {
     }
     return throwError('Error processing cart request. Please try again later.');
   }
+
+
+
+
+  deleteCartItem(id: any): Observable<any> {
+    return this.http.delete<any>(`https://localhost:7072/api/Carts/cartitem/deleteitem/${id}`)
+  }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 }
