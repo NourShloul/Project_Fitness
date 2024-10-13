@@ -99,19 +99,15 @@ import { TestimonialComponent } from './AOQ/testimonial/testimonial.component';
       { path: "GymDetails/:id", component: GymDetailsComponent },
       { path: "AllFitness", component: FitnessComponent },
       { path: "FitnessDetails/:id", component: FitnessDetailsComponent },
+      { path: "Testimonial ", component: TestimonialComponent },
+
       {
         path: "Dashboard", component: DashboardComponent, children: [
           { path: "AllGymAdmin", component: AllGymsComponent },
 
         ]
       },
-
       
-
-      
-      { path: "Contact", component: ContactComponent },
-
-      { path: "Testimonial ", component: TestimonialComponent },
      
       { path: "**", redirectTo: "", pathMatch: "full" },
       
