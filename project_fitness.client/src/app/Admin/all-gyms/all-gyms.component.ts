@@ -9,6 +9,7 @@ import { URLService } from '../../url/url.service';
 export class AllGymsComponent {
 
   ngOnInit() {
+   
 
     this.getGyms();
   }
@@ -20,6 +21,7 @@ export class AllGymsComponent {
   servicesArray: any
 
   getGyms() {
+  
     this._ser.GetAllGyms().subscribe((data) => {
       this.servicesArray = data
       console.log(this.servicesArray, "this.servicesArray")
