@@ -116,7 +116,7 @@ import { UpdatefitnessclassComponent } from './Admin/updatefitnessclass/updatefi
         path: "Dashboard", component: DashboardComponent, children: [
           { path: "AllGymAdmin", component: AllGymsComponent },
           { path: "editgym/:id", component: UpdategymComponent },
-          { path: "editgym", component: UpdategymComponent },
+          { path: "editFitnessclass/:id", component: UpdatefitnessclassComponent },
           { path: "AllFitnessAdmin", component: AllFitnessclassComponent },
 
 
