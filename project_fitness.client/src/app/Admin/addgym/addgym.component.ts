@@ -13,24 +13,29 @@ export class AddgymComponent {
 
   image: any
   changeImage(event: any) {
+    debugger
     this.image = event.target.files[0]
 
   }
 
 
-  addnewService(data: any) {
-
+  addnewGym(data: any) {
+    debugger
     var form = new FormData();
 
     for (let key in data) {
       form.append(key, data[key])
     }
 
-    form.append("ServiceImage", this.image)
+    form.append("gymImage", this.image)
 
     this._ser.addGym(form).subscribe(() => {
-      alert("service added successfully")
-    })
+      alert("Gym added successfully")
+    },
+      (error) => {
+
+        alert(error.error)
+      })
   }
 
 }
