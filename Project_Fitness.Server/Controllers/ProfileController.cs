@@ -34,5 +34,6 @@ namespace Project_Fitness.Server.Controllers
             return Ok(user);
         }
 
+
     }
 }
