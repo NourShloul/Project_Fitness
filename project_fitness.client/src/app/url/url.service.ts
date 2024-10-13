@@ -8,8 +8,11 @@ import { Observable } from 'rxjs';
 })
 export class URLService {
 
-  UserEmail: BehaviorSubject<string> = new BehaviorSubject<string>("");
-  emailaddress = this.UserEmail.asObservable();
+  isAdmin: BehaviorSubject<string> = new BehaviorSubject<string>("");
+  emailaddress = this.isAdmin.asObservable();
+
+  userEmail: BehaviorSubject<string> = new BehaviorSubject<string>("");
+  emailaddressUser = this.userEmail.asObservable();
   constructor(private http: HttpClient) { }
 
 
@@ -63,6 +66,6 @@ export class URLService {
   }
 
   addContact(data: any): Observable<any> {
-    return this.http.post<any>(`${this.staticData}/Contact`, data)
+    return this.http.post<any>(`${this.staticData}/AOQContact/AddContact`, data)
   }
 }
