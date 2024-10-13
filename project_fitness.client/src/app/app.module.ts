@@ -38,6 +38,7 @@ import { FitnessDetailsComponent } from './Services(a,m)/fitness-details/fitness
 import { DashboardComponent } from './Admin/dashboard/dashboard.component';
 import { AllGymsComponent } from './Admin/all-gyms/all-gyms.component';
 import { TestimonialComponent } from './AOQ/testimonial/testimonial.component';
+import { AllFitnessclassComponent } from './Admin/all-fitnessclass/all-fitnessclass.component';
 import { UpdategymComponent } from './Admin/updategym/updategym.component';
 
 @NgModule({
@@ -71,6 +72,7 @@ import { UpdategymComponent } from './Admin/updategym/updategym.component';
     
     TipsComponent,
     TestimonialComponent,
+    AllFitnessclassComponent,
     UpdategymComponent
   ],
   imports: [
