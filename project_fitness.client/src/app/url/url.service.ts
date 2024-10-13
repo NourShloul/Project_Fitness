@@ -57,7 +57,8 @@ export class URLService {
     return this.http.get<any>(`${this.staticData}/Admin/GetGymById/${id}`)
   }
   getClassDetails(id: any): Observable<any>{
-    return this.http.get<any>(`${this.staticData}/api/Admin/GetClassById/${id}`)
+    debugger
+    return this.http.get<any>(`${this.staticData}/Admin/GetClassById/${id}`)
   }
   GetAllTips(): Observable<any> {
     return this.http.get<any>(`${this.staticData}/Tips/Nutrition/GetAllTips`);
