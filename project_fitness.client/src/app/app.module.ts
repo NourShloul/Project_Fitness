@@ -37,6 +37,7 @@ import { TipsComponent } from './Nutrition/tips/tips.component';
 import { FitnessDetailsComponent } from './Services(a,m)/fitness-details/fitness-details.component';
 import { DashboardComponent } from './Admin/dashboard/dashboard.component';
 import { AllGymsComponent } from './Admin/all-gyms/all-gyms.component';
+import { TestimonialComponent } from './AOQ/testimonial/testimonial.component';
 
 @NgModule({
   declarations: [
@@ -67,6 +68,8 @@ import { AllGymsComponent } from './Admin/all-gyms/all-gyms.component';
     DashboardComponent,
     AllGymsComponent,
     
+    TipsComponent,
+    TestimonialComponent
   ],
   imports: [
     BrowserModule,

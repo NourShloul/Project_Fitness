@@ -86,7 +86,7 @@
                             <span>{{Details.price}} JD</span>
                             <p>For 1 Month</p>
                           </div>
-                          <a href="#" class="btn_wrapper mt-2 mx-auto">Subscribtion</a>
+                          <a href="#" class="btn_wrapper mt-2 mx-auto" (click)="addsubscribtion((Details.price * 3) - (Details.price * 3 * 0.2), 3)">Subscribtion</a>
                         </div>
                       </div>
                       <div class="col-4">
@@ -120,7 +120,7 @@
                             <span>{{(Details.price*6)-(Details.price*6*0.3)}} JD</span>
                             <p>For 6 Month</p>
                           </div>
-                          <a href="#" class="btn_wrapper mt-2 mx-auto">Subscribtion</a>
+                          <a href="#" class="btn_wrapper mt-2 mx-auto" (click)="addsubscribtion((Details.price * 3) - (Details.price * 3 * 0.2), 3)">Subscribtion</a>
                         </div>
                       </div>
                     </div>
