@@ -55,6 +55,7 @@ import { SubRecipesAdminComponent } from './Admin/sub-recipes-admin/sub-recipes-
 import { ContactUsComponent } from './Admin/contact-us/contact-us.component';
 import { AddSubrecipeAdminComponent } from './Admin/add-subrecipe-admin/add-subrecipe-admin.component';
 import { UpdateSubRecipesAdminComponent } from './Admin/update-sub-recipes-admin/update-sub-recipes-admin.component';
+import { EditPersonalInfoComponent } from './edit-personal-info/edit-personal-info.component';
 
 
 @NgModule({
@@ -106,6 +107,7 @@ import { UpdateSubRecipesAdminComponent } from './Admin/update-sub-recipes-admin
     AddSubrecipeAdminComponent,
     UpdateSubRecipesAdminComponent,
       ContactUsComponent,
+      EditPersonalInfoComponent,
 
   ],
   imports: [
@@ -163,8 +165,9 @@ import { UpdateSubRecipesAdminComponent } from './Admin/update-sub-recipes-admin
           { path: "ContactAdmin", component: ContactUsComponent },
         ]
       },
-      { path: 'profile', component: ProfileComponent },
+      { path: "profile", component: ProfileComponent },
       { path: "Thankyou", component: ThankyouComponent },
+      { path: "EditPersonalInfo", component: EditPersonalInfoComponent },
       { path: "**", redirectTo: "", pathMatch: "full" }
     ])
   ],

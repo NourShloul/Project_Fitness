@@ -24,7 +24,8 @@ namespace Project_Fitness.Server.Controllers
                 .Include(u => u.Subscriptions) // جلب الاشتراكات
            
                 .Where(u => u.UserId == id).Select(c=> new {
-                    username=c.UserName,
+                    userImage=c.UserImage,
+                    username =c.UserName,
                     useremail=c.UserEmail,
                     userphone=c.UserPhone,
                     useraddres=c.UserAddress,
@@ -58,8 +59,9 @@ namespace Project_Fitness.Server.Controllers
             return Ok(user);
         }
 
+
         [HttpGet("Profile/GetOrdersByUserId/{id}")]
-        public IActionResult GetOrders(int id) 
+        public IActionResult GetOrders(int id)
         {
             if (id <= 0)
             {
@@ -73,7 +75,7 @@ namespace Project_Fitness.Server.Controllers
             return Ok(order);
         }
         [HttpGet("Profile/GetUserSubscriptionsbyUserId/{id}")]
-        public IActionResult GetUserSubsriptions(int id) 
+        public IActionResult GetUserSubsriptions(int id)
         {
             if (id <= 0)
             {
@@ -86,5 +88,6 @@ namespace Project_Fitness.Server.Controllers
             }
             return Ok(user);
         }
+
     }
 }
