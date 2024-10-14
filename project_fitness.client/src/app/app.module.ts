@@ -49,6 +49,9 @@ import { RecipeAdmainComponent } from './Admin/recipe-admain/recipe-admain.compo
 import { UpdateRecipeAdminComponent } from './Admin/update-recipe-admin/update-recipe-admin.component';
 import { AddgymComponent } from './Admin/addgym/addgym.component';
 import { AddfitnessComponent } from './Admin/addfitness/addfitness.component';
+import { AlluserComponent } from './Admin/alluser/alluser.component';
+import { FilterUsersPipe } from './Admin/filter-users.pipe';
+
 
 @NgModule({
   declarations: [
@@ -92,6 +95,9 @@ import { AddfitnessComponent } from './Admin/addfitness/addfitness.component';
     ShopComponent,
     AddgymComponent,
     AddfitnessComponent,
+    AlluserComponent,
+    FilterUsersPipe,
+
 
   ],
   imports: [
@@ -141,6 +147,7 @@ import { AddfitnessComponent } from './Admin/addfitness/addfitness.component';
           { path: "addgym", component: AddgymComponent },
           { path: "addfitness", component: AddfitnessComponent },
           { path: "editFitnessclass/:id", component: UpdatefitnessclassComponent },
+          { path: "allusers", component: AlluserComponent },
         ]
       },
       { path: "Profile", component: ProfileComponent },

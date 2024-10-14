@@ -60,6 +60,9 @@ export class URLService {
   GetAllGyms(): Observable<any> {
     return this.http.get<any>(`${this.staticData}/Admin/GetAllGym`);
   }
+  GetAllusers(): Observable<any> {
+    return this.http.get<any>(`${this.staticData}/Users`);
+  }
 
   GetAllFitness(): Observable<any> {
     return this.http.get<any>(`${this.staticData}/Admin/GetAllFitnessClass`);

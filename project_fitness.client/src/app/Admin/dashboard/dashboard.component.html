@@ -10,16 +10,40 @@
             <a href="/dashboard/AddService" class="nav-link align-middle px-0">
               <i class="fs-4 bi-house"></i> <span class="ms-1 d-none d-sm-inline">Add Service</span>
             </a>
-          </li>  <li class="nav-item">
-            <a routerLink="/Dashboard/addgym" class="nav-link align-middle px-0">
-              <i class="fs-4 bi-house"></i> <span class="ms-1 d-none d-sm-inline">Add gym</span>
-            </a>
           </li>
           <li class="nav-item">
-            <a routerLink="/Dashboard/AllGymAdmin" class="nav-link align-middle px-0">
-              <i class="fs-4 bi-house"></i> <span class="ms-1 d-none d-sm-inline">All Services</span>
+            <a href="/Dashboard/allusers" class="nav-link align-middle px-0">
+              <i class="fs-4 bi-house"></i> <span class="ms-1 d-none d-sm-inline">all users</span>
             </a>
           </li>
+        <li class="nav-item dropdown">
+  <a class="nav-link dropdown-toggle align-middle px-0" href="#" id="gymDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    <i class="fs-4 bi-house"></i> <span class="ms-1 d-none d-sm-inline">Gyms & Fitness</span>
+  </a>
+  <ul class="dropdown-menu" aria-labelledby="gymDropdown">
+    <li>
+      <a routerLink="/Dashboard/addgym" class="dropdown-item">
+        Add Gym
+      </a>
+    </li>
+    <li>
+      <a routerLink="/Dashboard/AllGymAdmin" class="dropdown-item">
+        All Gyms
+      </a>
+    </li>
+    <li>
+      <a routerLink="/Dashboard/addfitness" class="dropdown-item">
+        Add Fitness
+      </a>
+    </li>
+    <li>
+      <a routerLink="/Dashboard/AllFitnessAdmin" class="dropdown-item">
+        All Fitness
+      </a>
+    </li>
+  </ul>
+</li>
+
 
 
           <li>
