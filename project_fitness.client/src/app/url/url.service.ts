@@ -113,6 +113,15 @@ export class URLService {
     return this.http.put(`${this.staticData}/Admin/UpdateGymById/${id}`, data)
   }
 
+  GetCntact(): Observable<any> {
+    return this.http.get<any>(`${this.staticData}/AOQContact/GetByDesc`);
+
+  }
+
+  deletContact(id: any): Observable<any> {
+
+    return this.http.delete<any>(`${this.staticData}/AOQContact/DeleteContact/${id}`)
+  }
   //////////// Admin Gym APIs ///////////////////
 
   addGym(data: any): Observable<any> {
