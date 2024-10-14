@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { URLService } from '../url/url.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-profile',
@@ -9,7 +10,7 @@ import { URLService } from '../url/url.service';
 export class ProfileComponent implements OnInit {
   UserArray: any; // تأكد من استخدام النوع المناسب
 
-  constructor(private userService: URLService) { }
+  constructor(private userService: URLService, private router: Router) { }
   userId: any;
 
   ngOnInit(): void {
@@ -28,7 +29,9 @@ export class ProfileComponent implements OnInit {
       this.UserArray.orderItems = this.flattenOrderItems(data.orders);
     });
   }
-
+  //redirectToEdit() {
+  //  this.router.navigate([`/EditPersonalInfo/${this.userId}`]);  
+  //}
   private flattenOrderItems(orders: any[]): any[] {
     
     return orders.reduce((acc, order) => {

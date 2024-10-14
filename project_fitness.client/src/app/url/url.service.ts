@@ -201,6 +201,9 @@ export class URLService {
     const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
     return this.http.post<any>(`${this.staticData}/Admin/execute-payment`, request, { headers });
   }
+  updateUserProfile(userId: number, formData: FormData): Observable<any> {
+    return this.http.post(`${this.staticData}/Profile/UpdateUserInfo/${userId}`, formData);
+  }
 }
 export interface CreatePaymentRequestDto {
   redirectUrl: string;
