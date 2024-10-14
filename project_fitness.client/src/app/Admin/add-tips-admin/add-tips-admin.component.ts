@@ -2,12 +2,11 @@ import { Component } from '@angular/core';
 import { URLService } from '../../url/url.service';
 
 @Component({
-  selector: 'app-add-recipe-admin',
-  templateUrl: './add-recipe-admin.component.html',
-  styleUrl: './add-recipe-admin.component.css'
+  selector: 'app-add-tips-admin',
+  templateUrl: './add-tips-admin.component.html',
+  styleUrl: './add-tips-admin.component.css'
 })
-export class AddRecipeAdminComponent {
-
+export class AddTipsAdminComponent {
 
   constructor(private _src: URLService) {
 
@@ -20,13 +19,13 @@ export class AddRecipeAdminComponent {
 
   }
 
-  AddNewRecipeType(data: any) {
+  AddNewTips(data: any) {
     var form = new FormData();
     for (let key in data) {
       form.append(key, data[key])
     }
-    form.append("RecipeImage", this.image)
-    this._src.AddRecipeTaype(form).subscribe(() => {
+    form.append("tipsImage", this.image)
+    this._src.AddTips(form).subscribe(() => {
       alert("added")
     })
   }

@@ -55,6 +55,9 @@ import { SubRecipesAdminComponent } from './Admin/sub-recipes-admin/sub-recipes-
 import { ContactUsComponent } from './Admin/contact-us/contact-us.component';
 import { AddSubrecipeAdminComponent } from './Admin/add-subrecipe-admin/add-subrecipe-admin.component';
 import { UpdateSubRecipesAdminComponent } from './Admin/update-sub-recipes-admin/update-sub-recipes-admin.component';
+import { TipsAdminComponent } from './Admin/tips-admin/tips-admin.component';
+import { AddTipsAdminComponent } from './Admin/add-tips-admin/add-tips-admin.component';
+import { UpdateTipsAdminComponent } from './Admin/update-tips-admin/update-tips-admin.component';
 
 
 @NgModule({
@@ -106,6 +109,9 @@ import { UpdateSubRecipesAdminComponent } from './Admin/update-sub-recipes-admin
     AddSubrecipeAdminComponent,
     UpdateSubRecipesAdminComponent,
       ContactUsComponent,
+      TipsAdminComponent,
+      AddTipsAdminComponent,
+      UpdateTipsAdminComponent,
 
   ],
   imports: [
@@ -155,15 +161,18 @@ import { UpdateSubRecipesAdminComponent } from './Admin/update-sub-recipes-admin
           { path: "AddRecipeAdmin", component: AddRecipeAdminComponent },
           { path: "AddSubRecipeAdmin", component: AddSubrecipeAdminComponent },
           { path: "UpdateRecipeAdmin/:id", component: UpdateRecipeAdminComponent },
-          { path: "UpdateSubRecipeAdmin/:id", component:UpdateSubRecipesAdminComponent },
+          { path: "UpdateSubRecipeAdmin/:id", component: UpdateSubRecipesAdminComponent },
+          { path: "TipsAdmin", component: TipsAdminComponent },
           { path: "addgym", component: AddgymComponent },
+          { path: "AddTips", component: AddTipsAdminComponent },
+          { path: "UpdateTipsAdmin/:id", component:UpdateTipsAdminComponent },
           { path: "addfitness", component: AddfitnessComponent },
           { path: "editFitnessclass/:id", component: UpdatefitnessclassComponent },
           { path: "allusers", component: AlluserComponent },
           { path: "ContactAdmin", component: ContactUsComponent },
         ]
       },
-      { path: "Profile", component: ProfileComponent },
+      { path: 'profile', component: ProfileComponent },
       { path: "Thankyou", component: ThankyouComponent },
       { path: "**", redirectTo: "", pathMatch: "full" }
     ])
