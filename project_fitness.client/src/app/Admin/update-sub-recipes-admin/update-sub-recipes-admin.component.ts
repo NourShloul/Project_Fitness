@@ -59,8 +59,8 @@ export class UpdateSubRecipesAdminComponent implements OnInit {
   param: any;
   imageFile: any;
   DetailsArray: any = {};  // تعريف المتغير الذي سيحمل البيانات
-
-  constructor(private _ser: URLService, private _active: ActivatedRoute) {
+  RecipeArray: any[] = [];
+  constructor(private _ser: URLService, private _active: ActivatedRoute, private _src: URLService) {
     // جلب ID من الرابط
     this.param = this._active.snapshot.paramMap.get('id');
   }
@@ -68,6 +68,7 @@ export class UpdateSubRecipesAdminComponent implements OnInit {
   // استخدام ngOnInit لتحميل البيانات عند تهيئة المكون
   ngOnInit() {
     this.getDetails(this.param);  // استدعاء الدالة لتحميل التفاصيل بناءً على ID
+    this.GetAllRecipe(); // استدعاء الدالة عند التحميل
   }
 
   // دالة لتغيير صورة المنتج
@@ -94,4 +95,12 @@ export class UpdateSubRecipesAdminComponent implements OnInit {
       this.DetailsArray = data;  // وضع البيانات في المتغير ليتم عرضها في الفورم
     });
   }
+
+  GetAllRecipe() {
+    this._src.GetTypeOfRecipe().subscribe((data) => {
+      this.RecipeArray = data;
+      console.log("All Recipes: ", this.RecipeArray);
+    });
+  }
 }
+
