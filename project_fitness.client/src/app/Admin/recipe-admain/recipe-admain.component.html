@@ -6,20 +6,17 @@
 <button class="btn btn-success mb-0" [routerLink]="['/Dashboard/AddRecipeAdmin']">Add Recipe Type</button>
 
 <!-- الجدول -->
-<table class="table table-striped">
+<table class="table table-striped table-hover text-center" style="margin-top: 20px;">
   <thead>
     <tr>
-      <th scope="col">#</th>
-      <th scope="col">Recipe Name</th>
       <th scope="col">Image</th>
+      <th scope="col">Recipe Name</th>
       <th scope="col">Actions</th>
     </tr>
   </thead>
   <tbody>
     <tr *ngFor="let item of filteredRecipeArray">
       <!-- هنا يجب استخدام filteredRecipeArray بدلاً من RecipeArray -->
-      <th scope="row">{{item.recipeId}}</th>
-      <td>{{item.recipeName}}</td>
       <td>
         <a class="postcard__img_link">
           <img class="postcard__img"
@@ -28,12 +25,14 @@
                style="width: 100px; height: 100px;" /> <!-- تعديل حجم الصورة هنا -->
         </a>
       </td>
+      <td>{{item.recipeName}}</td>
+
       <td>
         <!-- زر Edit -->
-        <button class="btn btn-primary" [routerLink]="['/Dashboard/UpdateRecipeAdmin', item.recipeId]">Edit</button>
+        <button class="btn btn-secondary" style="width: 80px;" [routerLink]="['/Dashboard/UpdateRecipeAdmin', item.recipeId]">Edit</button>
 
         <!-- زر Delete -->
-        <button class="btn btn-danger" (click)="deletrecipe(item.recipeId)">Delete</button>
+        <button class="btn btn-danger" style="width: 80px;" (click)="deletrecipe(item.recipeId)">Delete</button>
       </td>
     </tr>
   </tbody>
