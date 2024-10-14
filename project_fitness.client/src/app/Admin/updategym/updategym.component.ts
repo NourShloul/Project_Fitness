@@ -1,50 +1,65 @@
 import { Component } from '@angular/core';
 import { URLService } from '../../url/url.service';
 import { ActivatedRoute } from '@angular/router';
+import Swal from 'sweetalert2';  // استيراد SweetAlert2
 
 @Component({
   selector: 'app-updategym',
   templateUrl: './updategym.component.html',
-  styleUrl: './updategym.component.css'
+  styleUrls: ['./updategym.component.css']
 })
 export class UpdategymComponent {
 
-  param: any
+  param: any;
+  imageFile: any;
+  DetailsArray: any;
+
+  constructor(private _ser: URLService, private _active: ActivatedRoute) { }
+
   ngOnInit() {
     this.param = this._active.snapshot.paramMap.get('id');
     this.getDetails(this.param);
   }
 
-  imageFile: any
   changeImageevent(event: any) {
-
-    this.imageFile = event.target.files[0]
+    this.imageFile = event.target.files[0];
   }
-
-  constructor(private _ser: URLService, private _active: ActivatedRoute) { }
 
   updateServices(data: any) {
-    debugger
+    debugger;
 
     var form = new FormData();
-
     for (let key in data) {
-      form.append(key, data[key])
+      form.append(key, data[key]);
     }
-    form.append("gymImage", this.imageFile)
-    debugger
-    this._ser.PUTgym(this.param, form).subscribe((data) => { alert("service updated successfully") })
 
+    form.append("gymImage", this.imageFile);
+
+    debugger;
+    this._ser.PUTgym(this.param, form).subscribe(() => {
+      // عرض رسالة نجاح باستخدام SweetAlert2
+      Swal.fire({
+        icon: 'success',
+        title: 'Update Successful!',
+        text: 'The gym has been updated successfully.',
+        confirmButtonText: 'OK'
+      });
+    },
+      (error) => {
+        // عرض رسالة خطأ في حالة الفشل
+        Swal.fire({
+          icon: 'error',
+          title: 'Update Failed',
+          text: 'There was an error updating the gym. Please try again.',
+          confirmButtonText: 'Try Again'
+        });
+      });
   }
-
-  DetailsArray: any
 
   getDetails(id: any) {
     this._ser.getGymDetails(id).subscribe((data: any) => {
       this.DetailsArray = data;
       console.log(this.DetailsArray, 'details');
     });
-
   }
-
 }
