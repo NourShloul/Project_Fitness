@@ -16,6 +16,7 @@ export class ThankyouComponent implements OnInit {
   month: any;
   amount: any;
   gymid: any;
+  classid:any
   ngOnInit(): void {
     this.URLService.UserIdmm.subscribe(user => {
       this.userId = user
@@ -46,9 +47,9 @@ export class ThankyouComponent implements OnInit {
       const executePaymentRequest: ExecutePaymentRequestDto = {
         PaymentId: paymentId,
         PayerId: payerId,
-        UserId: 1,
-        GymId: Number(localStorage.getItem('GymId')),   
-        FitnessClassId: null,  
+        UserId: Number( localStorage.getItem('UserId')),
+        GymId: localStorage.getItem('GymId') ? Number(localStorage.getItem('GymId')) : null,
+        FitnessClassId: localStorage.getItem('ClassID') ? Number(localStorage.getItem('ClassID')) : null,
         StartDate: new Date(),
         EndDate: new Date(new Date().setMonth(new Date().getMonth() + Number(localStorage.getItem('moth')))),  
         Total: Number(localStorage.getItem('price')) 
@@ -58,9 +59,13 @@ export class ThankyouComponent implements OnInit {
       this._ser.executePayment(executePaymentRequest).subscribe(
         (response: any) => {
           console.log('Payment executed successfully:', response);
+          localStorage.removeItem('GymId');
+          localStorage.removeItem('ClassID')
         },
         (error: any) => {
           console.error('Error executing payment:', error);
+          localStorage.removeItem('GymId');
+          localStorage.removeItem('ClassID')
         }
       );
     } else {

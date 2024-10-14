@@ -1,8 +1,12 @@
+<div class="form-group mb-3">
+  <input type="text" class="form-control" placeholder="Search by Recipe Name" [(ngModel)]="searchTerm" (ngModelChange)="filterRecipes()">
+</div>
+
 <!-- زر Add Recipe Type -->
 <button class="btn btn-success mb-0" [routerLink]="['/Dashboard/AddRecipeAdmin']">Add Recipe Type</button>
 
 <!-- الجدول -->
-<table class="table">
+<table class="table table-striped">
   <thead>
     <tr>
       <th scope="col">#</th>
@@ -12,7 +16,8 @@
     </tr>
   </thead>
   <tbody>
-    <tr *ngFor="let item of RecipeArray">
+    <tr *ngFor="let item of filteredRecipeArray">
+      <!-- هنا يجب استخدام filteredRecipeArray بدلاً من RecipeArray -->
       <th scope="row">{{item.recipeId}}</th>
       <td>{{item.recipeName}}</td>
       <td>
@@ -33,4 +38,3 @@
     </tr>
   </tbody>
 </table>
-

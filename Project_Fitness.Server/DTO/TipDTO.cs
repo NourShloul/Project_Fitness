@@ -6,6 +6,6 @@
 
         public string TipsDescription { get; set; } = null!;
 
-        public string? TipsImage { get; set; }
+        public IFormFile? TipsImage { get; set; }
     }
 }
