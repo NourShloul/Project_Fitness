@@ -25,6 +25,7 @@ export class GymDetailsComponent implements OnInit {
       this.userId = user
       console.log('user ID from Cart:', this.userId);
     });
+    this.userId = localStorage.getItem('UserId')
     this.getDetails(this.parameter);
     this.checkForPaymentExecution();
   }

@@ -58,6 +58,7 @@ import { UpdateSubRecipesAdminComponent } from './Admin/update-sub-recipes-admin
 import { TipsAdminComponent } from './Admin/tips-admin/tips-admin.component';
 import { AddTipsAdminComponent } from './Admin/add-tips-admin/add-tips-admin.component';
 import { UpdateTipsAdminComponent } from './Admin/update-tips-admin/update-tips-admin.component';
+import { EditPersonalInfoComponent } from './edit-personal-info/edit-personal-info.component';
 
 
 @NgModule({
@@ -112,6 +113,7 @@ import { UpdateTipsAdminComponent } from './Admin/update-tips-admin/update-tips-
       TipsAdminComponent,
       AddTipsAdminComponent,
       UpdateTipsAdminComponent,
+      EditPersonalInfoComponent,
 
   ],
   imports: [
@@ -172,8 +174,9 @@ import { UpdateTipsAdminComponent } from './Admin/update-tips-admin/update-tips-
           { path: "ContactAdmin", component: ContactUsComponent },
         ]
       },
-      { path: 'profile', component: ProfileComponent },
+      { path: "profile", component: ProfileComponent },
       { path: "Thankyou", component: ThankyouComponent },
+      { path: "EditPersonalInfo", component: EditPersonalInfoComponent },
       { path: "**", redirectTo: "", pathMatch: "full" }
     ])
   ],

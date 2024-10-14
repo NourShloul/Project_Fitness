@@ -22,6 +22,7 @@ export class FitnessDetailsComponent {
       this.userId = user
       console.log('user ID from Cart:', this.userId);
     });
+    this.userId = localStorage.getItem('UserId')
     this.getDetails(this.parameter)
   }
   constructor(private _ser: URLService, private _route: ActivatedRoute, private URLService: URLService) { }
