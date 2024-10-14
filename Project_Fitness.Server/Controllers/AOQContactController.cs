@@ -47,5 +47,24 @@ namespace Project_Fitness.Server.Controllers
             return Ok(new { message = "Contact added successfully" });
         }
 
+
+        [HttpDelete("DeleteContact/{id}")]
+        public IActionResult DeleteContact(int id)
+        {
+            if (id <= 0)
+            {
+                return BadRequest("No Contact For This ID");
+            }
+
+            var cintact = _db.ContactUs.FirstOrDefault(u => u.Id == id);
+            if (cintact == null)
+            {
+                return NotFound();
+            }
+            _db.ContactUs.Remove(cintact);
+            _db.SaveChanges();
+            return Ok();
+        }
+
     }
 }

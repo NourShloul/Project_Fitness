@@ -17,6 +17,8 @@ interface WeatherForecast {
 export class AppComponent implements OnInit {
   public forecasts: WeatherForecast[] = [];
 
+  searchTerm: string = '';
+  allusers: any[] = [];
   isAdmin = ""
   userEmail = ""
   userId :(any)
