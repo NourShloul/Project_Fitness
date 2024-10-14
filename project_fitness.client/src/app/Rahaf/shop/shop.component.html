@@ -12,7 +12,7 @@
         <h5 class="filter-heading">Categories</h5>
         <ul class="category-list">
           <li *ngFor="let category of categories">
-            <a href="#" (click)="selectedCategory = category.id; filterProducts()">
+            <a (click)="selectedCategory = category.id; filterProducts()">
               {{ category.categoryName }}
             </a>
           </li>

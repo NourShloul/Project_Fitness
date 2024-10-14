@@ -10,7 +10,7 @@ interface Product {
   description: string;
   price: number;
   stockQuantity: number;
-  image: string;
+  image: string;  // URL of the image, not a file object
   discount: number;
 }
 
@@ -18,19 +18,19 @@ interface Product {
   providedIn: 'root'
 })
 export class ProductService {
-  private baseUrl = 'https://localhost:7072/api'; // Adjust this to your actual API
+  private baseUrl = 'https://localhost:7072/api';
 
   constructor(private http: HttpClient) { }
 
-  // Add a new product
-  addProduct(product: Product): Observable<Product> {
-    return this.http.post<Product>(`${this.baseUrl}/Products`, product)
+  // Add a new product with FormData for handling images
+  addProduct(formData: FormData): Observable<any> {
+    return this.http.post(`${this.baseUrl}/Products`, formData)
       .pipe(catchError(this.handleError));
   }
 
-  // Update an existing product by ID
-  updateProduct(id: number, product: Product): Observable<Product> {
-    return this.http.put<Product>(`${this.baseUrl}/Products/${id}`, product)
+  // Update an existing product by ID with FormData
+  updateProduct(id: number, formData: FormData): Observable<any> {
+    return this.http.put(`${this.baseUrl}/Products/${id}`, formData)
       .pipe(catchError(this.handleError));
   }
 
@@ -46,11 +46,13 @@ export class ProductService {
       .pipe(catchError(this.handleError));
   }
 
-  // Delete a product by ID
   deleteProduct(id: number): Observable<void> {
     return this.http.delete<void>(`${this.baseUrl}/Products/${id}`)
-      .pipe(catchError(this.handleError));
+      .pipe(
+        catchError(this.handleError) // Handle errors
+      );
   }
+
 
   // Error handler
   private handleError(error: HttpErrorResponse): Observable<never> {

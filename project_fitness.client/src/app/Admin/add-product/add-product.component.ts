@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { ProductService } from '../../Admin/update-product/services/product.service'; // Ensure this path is correct
+import { ProductService } from '../../Admin/update-product/services/product.service';
 import { Router } from '@angular/router';
 
 @Component({
@@ -10,6 +10,7 @@ import { Router } from '@angular/router';
 })
 export class AddProductComponent implements OnInit {
   productForm!: FormGroup;
+  selectedFile: File | null = null;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -29,12 +30,34 @@ export class AddProductComponent implements OnInit {
     });
   }
 
-  onSubmit() {
+  // Handle file selection
+  onFileSelected(event: any): void {
+    debugger;
+    const file = event.target.files[0];
+    if (file) {
+      this.selectedFile = file;
+    }
+  }
+
+  onSubmit(): void {
+    debugger;
     if (this.productForm.valid) {
-      this.productService.addProduct(this.productForm.value).subscribe(
+      const formData = new FormData();
+      formData.append('categoryId', this.productForm.get('categoryId')?.value);
+      formData.append('productName', this.productForm.get('productName')?.value);
+      formData.append('description', this.productForm.get('description')?.value);
+      formData.append('price', this.productForm.get('price')?.value);
+      formData.append('stockQuantity', this.productForm.get('stockQuantity')?.value);
+      formData.append('discount', this.productForm.get('discount')?.value);
+
+      if (this.selectedFile) {
+        formData.append('image', this.selectedFile); 
+      }
+
+      this.productService.addProduct(formData).subscribe(
         (response) => {
           console.log('Product added successfully!', response);
-          this.router.navigate(['/Dashboard/products']); 
+          this.router.navigate(['/Dashboard/products']);
         },
         (error) => {
           console.error('Error adding product:', error);
