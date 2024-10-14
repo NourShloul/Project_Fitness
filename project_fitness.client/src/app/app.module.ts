@@ -68,6 +68,7 @@ import { ManageOrdersComponent } from './Admin/manage-orders/manage-orders.compo
     AppComponent,
     NutrotionPageOneComponent,
     RecipsComponent,
+    EditPersonalInfoComponent,
     NavBarComponent,
     FooterComponent,
     HomePageComponent,
@@ -118,7 +119,6 @@ import { ManageOrdersComponent } from './Admin/manage-orders/manage-orders.compo
       TipsAdminComponent,
       AddTipsAdminComponent,
       UpdateTipsAdminComponent,
-      EditPersonalInfoComponent,
       ManageOrdersComponent,
 
   ],

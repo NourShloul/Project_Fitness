@@ -18,7 +18,8 @@ body {
 }
 
 .dark {
-  background: #110f16;
+  /*background: #110f16;*/
+  background: linear-gradient(to right, #383737, #241324, #191818);
 }
 
 
@@ -42,7 +43,7 @@ a, a:hover {
 .postcard {
   flex-wrap: wrap;
   display: flex;
-  box-shadow: 0 4px 21px -12px rgba(0, 0, 0, 0.66);
+  box-shadow: 0 4px 15px -2px black;
   border-radius: 10px;
   margin: 0 0 2rem 0;
   overflow: hidden;
