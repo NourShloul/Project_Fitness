@@ -53,6 +53,7 @@ import { AlluserComponent } from './Admin/alluser/alluser.component';
 import { FilterUsersPipe } from './Admin/filter-users.pipe';
 import { SubRecipesAdminComponent } from './Admin/sub-recipes-admin/sub-recipes-admin.component';
 import { ContactUsComponent } from './Admin/contact-us/contact-us.component';
+import { TestimonialAdminComponent } from './Admin/testimonial-admin/testimonial-admin.component';
 
 
 @NgModule({
@@ -101,7 +102,9 @@ import { ContactUsComponent } from './Admin/contact-us/contact-us.component';
     FilterUsersPipe,
 
     SubRecipesAdminComponent,
-      ContactUsComponent,
+    ContactUsComponent,
+    TestimonialComponent,
+    TestimonialAdminComponent,
 
   ],
   imports: [
@@ -155,6 +158,7 @@ import { ContactUsComponent } from './Admin/contact-us/contact-us.component';
           { path: "editFitnessclass/:id", component: UpdatefitnessclassComponent },
           { path: "allusers", component: AlluserComponent },
           { path: "ContactAdmin", component: ContactUsComponent },
+          { path: "TestimonialAdmin", component: TestimonialAdminComponent },
         ]
       },
       { path: "Profile", component: ProfileComponent },
