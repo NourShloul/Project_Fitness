@@ -37,6 +37,7 @@ namespace Project_Fitness.Server.Controllers
                 UserName = dto.UserName,
                 UserEmail = dto.UserEmail,
                 UserPassword=dto.UserPassword,
+                CreatedAt = DateTime.Now,
                 HashPassword = passwordHash,
                 SaltPassword = passwordSalt
 
