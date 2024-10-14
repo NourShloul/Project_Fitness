@@ -1,39 +1,50 @@
 import { Component } from '@angular/core';
 import { URLService } from '../../url/url.service';
 import { Router } from '@angular/router';
+import Swal from 'sweetalert2';  // استيراد SweetAlert2
 
 @Component({
   selector: 'app-addfitness',
   templateUrl: './addfitness.component.html',
-  styleUrl: './addfitness.component.css'
+  styleUrls: ['./addfitness.component.css']
 })
 export class AddfitnessComponent {
   ngOnInit() { }
 
   constructor(private _ser: URLService, private _router: Router) { }
 
-  // هذا الكود حتى يتم الصورة من ملف اسمه تارجيت وداخل ملف ملف اخر اسمه فايلز والانديكس صفر
   image: any
   changeImage(event: any) {
-
-    debugger
-    this.image = event.target.files[0]
-
+    this.image = event.target.files[0];
   }
 
   addNewfitnessclass(data: any) {
-    debugger
-    var form = new FormData();//تحويل الداتا التي تأتي من الفورم لشكل يفهمه سواجر وهو الفورم داتا
+    var form = new FormData();
     for (let key in data) {
-      form.append(key, data[key])
+      form.append(key, data[key]);
     }
+
     form.append("fitnessClassesImage", this.image);
+
     this._ser.addfitnessclass(form).subscribe(() => {
-      alert("Fitness Class added succesfully")
+      // عرض رسالة نجاح باستخدام SweetAlert2
+      Swal.fire({
+        icon: 'success',
+        title: 'Fitness Class Added!',
+        text: 'The fitness class has been added successfully.',
+        confirmButtonText: 'OK'
+      });
+      // يمكنك توجيه المستخدم إلى صفحة أخرى بعد نجاح العملية
+      this._router.navigate(['/Dashboard']);
     },
       (error) => {
-        //هذا الكود يظهر رسالة الخطأ التي وضعتها في سواجر على شكل اليرت  في حال حدوث خطأ
-        alert(error.error)
-      })
+        // عرض رسالة خطأ في حالة الفشل
+        Swal.fire({
+          icon: 'error',
+          title: 'Error',
+          text: error.error || 'There was an error adding the fitness class.',
+          confirmButtonText: 'Try Again'
+        });
+      });
   }
 }

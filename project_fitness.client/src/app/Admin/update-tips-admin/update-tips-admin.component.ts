@@ -8,9 +8,13 @@ import { ActivatedRoute } from '@angular/router';
   styleUrl: './update-tips-admin.component.css'
 })
 export class UpdateTipsAdminComponent {
-  ogOnInit() { }
+  ngOnInit() {
+    this.getTipsDetails(this.param);
+}
   param: any
   imageFile: any
+  DetailsArray: any = {}; 
+
   changeImage(event: any) {
     this.imageFile = event.target.files[0]
   }
@@ -29,5 +33,10 @@ export class UpdateTipsAdminComponent {
     this._ser.UpdateTips(this.param, form).subscribe((data) => {
       alert("Tips Updated Successfully")
     })
+  }
+  getTipsDetails(id: any) {
+    this._ser.getTipsDetailbyID(id).subscribe((data) => {
+      this.DetailsArray = data;  // وضع البيانات في المتغير ليتم عرضها في الفورم
+    });
   }
 }

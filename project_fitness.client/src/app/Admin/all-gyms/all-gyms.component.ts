@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { URLService } from '../../url/url.service';
+import Swal from 'sweetalert2'; // استيراد مكتبة SweetAlert2
 
 @Component({
   selector: 'app-all-gyms',
@@ -37,9 +38,35 @@ export class AllGymsComponent implements OnInit {
   }
 
   deleteGymById(id: any) {
-    this._ser.deletgym(id).subscribe(() => {
-      alert("Gym deleted successfully");
-      this.getGyms();
+    // عرض نافذة التأكيد
+    Swal.fire({
+      title: 'Are you sure?',
+      text: 'Do you want to delete this gym? This action cannot be undone!',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonText: 'Yes, delete it!',
+      cancelButtonText: 'Cancel'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        // تنفيذ عملية الحذف إذا تم التأكيد
+        this._ser.deletgym(id).subscribe(() => {
+          Swal.fire({
+            icon: 'success',
+            title: 'Deleted!',
+            text: 'The gym has been deleted successfully.',
+            confirmButtonText: 'OK'
+          });
+          this.getGyms();  // تحديث قائمة الصالات بعد الحذف
+        },
+          (error) => {
+            Swal.fire({
+              icon: 'error',
+              title: 'Error!',
+              text: 'There was an error deleting the gym.',
+              confirmButtonText: 'OK'
+            });
+          });
+      }
     });
   }
 }

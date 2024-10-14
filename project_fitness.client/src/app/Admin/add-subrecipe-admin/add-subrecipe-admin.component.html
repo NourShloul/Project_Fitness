@@ -5,12 +5,16 @@
   <h2 style="text-align: center; margin-bottom: 20px;">Add  subRecipes</h2>
 
   <div class="form-container">
-    
+
     <div class="form-group" style="margin-bottom: 15px;">
-      <label for="Title" class="form-label" style="display: block; font-weight: bold; margin-bottom: 5px;">recipeId</label>
-      <input type="text" id="Title" name="recipeId" class="form-control" required="required" style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 5px;" ngModel>
-      <span class="text-danger" id="Title-error" style="color: red; font-size: 0.875em;"></span>
+      <label for="recipeId" class="form-label" style="display: block; font-weight: bold; margin-bottom: 5px;">Recipe</label>
+      <select id="recipeId" name="recipeId" class="form-control" required="required" style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 5px;" ngModel>
+        <option value="" disabled selected>Select a recipe</option>
+        <option *ngFor="let recipe of RecipeArray" [value]="recipe.recipeId">{{ recipe.recipeName }}</option>
+      </select>
+      <span class="text-danger" id="recipeId-error" style="color: red; font-size: 0.875em;"></span>
     </div>
+
     <div class="form-group" style="margin-bottom: 15px;">
       <label for="Title" class="form-label" style="display: block; font-weight: bold; margin-bottom: 5px;">subRecipeName</label>
       <input type="text" id="Title" name="subRecipeName" class="form-control" required="required" style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 5px;" ngModel>
@@ -35,14 +39,13 @@
 
 
 
-     Main Image Field 
+
     <div class="form-group" style="margin-bottom: 15px;">
       <label for="Image" class="form-label" style="display: block; font-weight: bold; margin-bottom: 5px;">Main Image</label>
       <input type="file" id="Image" name="subRecipeImage" class="form-control" required="required" style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 5px;" ngModel (change)="changeImage($event)">
       <span class="text-danger" id="Image-error" style="color: red; font-size: 0.875em;"></span>
     </div>
 
-     Submit Button 
     <div class="form-group" style="text-align: center;">
       <button type="submit" class="btn btn-primary" style="padding: 10px 20px; background-color: #e21dfb; border: none; border-radius: 5px; color: white; font-size: 1em; cursor: pointer;">Submit</button>
     </div>
