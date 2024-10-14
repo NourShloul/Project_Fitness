@@ -64,12 +64,21 @@ export class URLService {
     return this.http.post<any>(`${this.staticData}/Recipe/Nutrition/CreateRecipe`, data)
   }
 
+  AddTips(data: any): Observable<any> {
+    return this.http.post<any>(`${this.staticData}/Tips/Nutrition/CreateTips`, data)
+  }
   AddSubRecipe(data: any): Observable<any> {
     return this.http.post<any>(`${this.staticData}/Subrecipe/Nutrition/CreateSubRecipe`, data)
   }
+
   UpdateRecipe(id: any, data: any): Observable<any> {
    
     return this.http.put(`https://localhost:7072/api/Recipe/Nutrition/UpdateRecipe/${id}`, data)
+  }
+
+  UpdateTips(id: any, data: any): Observable<any> {
+
+    return this.http.put(`https://localhost:7072/api/Tips/Nutrition/UpdateTips/${id}`, data)
   }
 
   UpdateSubRecipe(id: any, data: any): Observable<any> {
@@ -79,6 +88,10 @@ export class URLService {
   deletrecipe(id: any): Observable<any> {
 
     return this.http.delete<any>(`${this.staticData}/Recipe/Nutritiom/DeleteRecipe/${id}`)
+  }
+  deletTips(id: any): Observable<any> {
+
+    return this.http.delete<any>(`${this.staticData}/Tips/Nutritiom/DeleteTips/${id}`)
   }
 
   deletSubrecipe(id: any): Observable<any> {
