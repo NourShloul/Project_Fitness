@@ -132,13 +132,27 @@ export class URLService {
   //  return this.http.put(`${this.staticData}/Admin/UpdateGymById/${id}`, data)
   //}
   GetTestimonial(): Observable<any> {
-    return this.http.get<any>(`${this.staticData}/Testimonial/GetAllTestimonialsByNew`);
+    return this.http.get<any>(`${this.staticData}/Testimonial/GetAllAcceptedTestimonial`);
   
   }
 
-  updateService(id: any, data: any): Observable<any> {
-    return this.http.put(`${this.staticData}/Admin/UpdateGymById/${id}`, data)
+  GetAllTestimonialToAccept(): Observable<any> {
+    return this.http.get<any>(`${this.staticData}/Testimonial/GetAllNotAcceptedTestimonial`);
+
   }
+
+  UpdateTestimonial(id: any): Observable<any> {
+    return this.http.put(`${this.staticData}/Testimonial/AcceptTestimonial/${id}`, {})
+  }
+
+  deleteTestimonial(id: any): Observable<any> {
+
+    return this.http.delete<any>(`${this.staticData}/Testimonial/DeleteTestimonial/${id}`)
+  }
+
+  //updateService(id: any, data: any): Observable<any> {
+  //  return this.http.put(`${this.staticData}/Admin/UpdateGymById/${id}`, data)
+  //}
 
   GetCntact(): Observable<any> {
     return this.http.get<any>(`${this.staticData}/AOQContact/GetByDesc`);
