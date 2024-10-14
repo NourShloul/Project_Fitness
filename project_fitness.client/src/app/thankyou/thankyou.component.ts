@@ -47,7 +47,7 @@ export class ThankyouComponent implements OnInit {
       const executePaymentRequest: ExecutePaymentRequestDto = {
         PaymentId: paymentId,
         PayerId: payerId,
-        UserId:1,
+        UserId: Number( localStorage.getItem('UserId')),
         GymId: localStorage.getItem('GymId') ? Number(localStorage.getItem('GymId')) : null,
         FitnessClassId: localStorage.getItem('ClassID') ? Number(localStorage.getItem('ClassID')) : null,
         StartDate: new Date(),
