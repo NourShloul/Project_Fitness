@@ -33,7 +33,7 @@ export class LoginComponent {
       this._ser['userId'].next(newData.userId);
       console.log("ssssssssssssss",this._ser['userId'].next(newData.userId))
 
-
+      localStorage.setItem('UserId', newData.userId);
       this.ProductDetails.addLocalTouser(newData.userEmail);
 
       if (newData.isAdmin) {

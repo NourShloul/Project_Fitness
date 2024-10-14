@@ -21,18 +21,7 @@ namespace Project_Fitness.Server.Controllers
         [HttpGet]
         public IActionResult GetProducts()
         {
-            var products = _context.Products
-                .Select(p => new ProductsDTO
-                {
-                    Id = p.Id,
-                    CategoryId = p.CategoryId,
-                    ProductName = p.ProductName,
-                    Description = p.Description,
-                    Price = p.Price,
-                    StockQuantity = p.StockQuantity,
-                    Image = p.Image,
-                    Discount = p.Discount
-                }).ToList();
+            var products = _context.Products.ToList();
 
             return Ok(products);
         }
@@ -41,19 +30,7 @@ namespace Project_Fitness.Server.Controllers
         [HttpGet("{id}")]
         public IActionResult GetProduct(int id)
         {
-            var product = _context.Products
-            .Where(p => p.Id == id)
-                .Select(p => new ProductsDTO
-                {
-                    Id = p.Id,
-                    CategoryId = p.CategoryId,
-                    ProductName = p.ProductName,
-                    Description = p.Description,
-                    Price = p.Price,
-                    StockQuantity = p.StockQuantity,
-                    Image = p.Image,
-                    Discount = p.Discount
-                }).FirstOrDefault();
+            var product = _context.Products.Find(id);
 
             if (product == null)
             {
@@ -73,7 +50,7 @@ namespace Project_Fitness.Server.Controllers
             }
 
             // Check if image file exists
-            if (productDto.ImageFile != null && productDto.ImageFile.Length > 0)
+            if (productDto.Image != null && productDto.Image.Length > 0)
             {
                 var uploadsFolder = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/images");
 
@@ -85,13 +62,13 @@ namespace Project_Fitness.Server.Controllers
                     }
 
                     // Generate a unique file name for the image
-                    var uniqueFileName = Guid.NewGuid().ToString() + "_" + productDto.ImageFile.FileName;
+                    var uniqueFileName = Guid.NewGuid().ToString() + "_" + productDto.Image.FileName;
                     var filePath = Path.Combine(uploadsFolder, uniqueFileName);
 
                     // Save the image to the server synchronously
                     using (var fileStream = new FileStream(filePath, FileMode.Create))
                     {
-                        productDto.ImageFile.CopyTo(fileStream);
+                        productDto.Image.CopyTo(fileStream);
                     }
 
                     // Create a new product with the image path
@@ -122,20 +99,34 @@ namespace Project_Fitness.Server.Controllers
             }
         }
 
-        // DELETE: api/Products/5
         [HttpDelete("{id}")]
         public IActionResult DeleteProduct(int id)
         {
+            // Try to find the product by its ID
             var product = _context.Products.Find(id);
+
             if (product == null)
             {
-                return NotFound();
+                // If the product does not exist, return 404 Not Found
+                return NotFound(new { Message = "Product not found." });
             }
 
-            _context.Products.Remove(product);
-            _context.SaveChanges();
+            try
+            {
+                // Remove the product from the context
+                _context.Products.Remove(product);
 
-            return NoContent();
+                // Save the changes to the database
+                _context.SaveChanges();
+
+                // Return a 204 No Content to indicate successful deletion
+                return NoContent();
+            }
+            catch (Exception ex)
+            {
+                // Catch any exceptions and return a 500 Internal Server Error
+                return StatusCode(500, new { Message = "Error deleting product", Details = ex.Message });
+            }
         }
 
         private bool ProductExists(int id)
