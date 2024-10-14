@@ -42,7 +42,7 @@ export class URLService {
 
   ////////  start Profile    //////
   GetUserID(id: any): Observable<any> {
-    return this.http.get<any>(`${this.staticData}/Profile/Profile/GetUserById/${id}`);
+    return this.http.get<any>(`${this.staticData}/Profile/Profile/GetUserById/1`);
   }
   GetOrderUserID(id: any): Observable<any> {
     return this.http.get<any>(`${this.staticData}/Profile/Profile/GetOrdersByUserId/${id}`);

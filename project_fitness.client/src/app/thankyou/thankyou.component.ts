@@ -37,7 +37,6 @@ export class ThankyouComponent implements OnInit {
   }
 
   executePayment(): void {
-    debugger
     const urlParams = new URLSearchParams(window.location.search);
     const paymentId = urlParams.get('paymentId');
     const payerId = urlParams.get('PayerID');

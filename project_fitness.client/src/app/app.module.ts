@@ -172,7 +172,7 @@ import { UpdateTipsAdminComponent } from './Admin/update-tips-admin/update-tips-
           { path: "ContactAdmin", component: ContactUsComponent },
         ]
       },
-      { path: "Profile", component: ProfileComponent },
+      { path: 'profile', component: ProfileComponent },
       { path: "Thankyou", component: ThankyouComponent },
       { path: "**", redirectTo: "", pathMatch: "full" }
     ])
