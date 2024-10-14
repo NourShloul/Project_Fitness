@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { URLService, CreatePaymentRequestDto, ExecutePaymentRequestDto } from '../../url/url.service';
+import Swal from 'sweetalert2';
 
 
 @Component({
@@ -20,14 +21,12 @@ export class GymDetailsComponent implements OnInit {
 
   ngOnInit() {
     this.parameter = this._route.snapshot.paramMap.get("id");
-    this.getDetails(this.parameter);
-    this.checkForPaymentExecution();
-
     this.URLService.UserIdmm.subscribe(user => {
       this.userId = user
       console.log('user ID from Cart:', this.userId);
     });
-    
+    this.getDetails(this.parameter);
+    this.checkForPaymentExecution();
   }
 
 
@@ -41,6 +40,18 @@ export class GymDetailsComponent implements OnInit {
 
   addsubscribtion(price: number, months: number, gymId: number):  void {
     debugger
+    if (this.userId == null || this.userId == 0 || this.userId == undefined) {
+
+      Swal.fire({
+        icon: "info",
+        title: "You must be logged in!",
+        showConfirmButton: false,
+        timer: 2000
+      }).then(() => {
+        
+        window.location.href = '/Login'; 
+      });
+    }
     this._ser.month.next(months);
     localStorage.setItem('moth', months.toString())
     this._ser.GymId.next(gymId);
@@ -77,7 +88,7 @@ export class GymDetailsComponent implements OnInit {
     const urlParams = new URLSearchParams(window.location.search);
     const paymentId = urlParams.get('paymentId');
     const payerId = urlParams.get('PayerID');
-
+   
     if (paymentId && payerId) {
       const executePaymentRequest: ExecutePaymentRequestDto = {
         PaymentId: paymentId,

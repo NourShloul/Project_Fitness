@@ -30,9 +30,5 @@ export class AddRecipeAdminComponent {
       alert("added")
     })
   }
-
-
-
-
 }
 
