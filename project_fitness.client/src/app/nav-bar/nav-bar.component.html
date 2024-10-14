@@ -45,8 +45,11 @@
           <li class="nav-item">
             <a class="nav-link" routerLink="/Contact">Contact Us</a>
           </li>
-          <li>
+          <li *ngIf="!userId">
             <a routerLink="/Login">Login</a>
+          </li>
+          <li *ngIf="userId">
+            <a (click)="logout()" >Logout</a>
           </li>
         </ul>
       </div>
@@ -64,7 +67,7 @@
           <a routerLink="/shop" class="nav-link">
             <i class="fas fa-shopping-bag"></i>
           </a>
-          <a routerLink="/profile" class="nav-link">
+          <a routerLink="/profile" class="nav-link" *ngIf="userId">
             <i class="fas fa-user"></i>
           </a>
 

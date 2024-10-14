@@ -161,7 +161,7 @@ import { ManageOrdersComponent } from './Admin/manage-orders/manage-orders.compo
           { path: "AllGymAdmin", component: AllGymsComponent },
           { path: "editgym/:id", component: UpdategymComponent },
           { path: "addproduct", component: AddProductComponent },
-          { path: 'editproduct/:id', component: UpdateProductComponent }, 
+          { path: 'update-product/:id', component: UpdateProductComponent }, 
 
           { path: "admin-category", component: AdminCategoryComponent},
           { path: "products", component: ProductListComponent },
