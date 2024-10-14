@@ -163,7 +163,7 @@ import { UpdateSubRecipesAdminComponent } from './Admin/update-sub-recipes-admin
           { path: "ContactAdmin", component: ContactUsComponent },
         ]
       },
-      { path: "Profile", component: ProfileComponent },
+      { path: 'profile', component: ProfileComponent },
       { path: "Thankyou", component: ThankyouComponent },
       { path: "**", redirectTo: "", pathMatch: "full" }
     ])
