@@ -104,9 +104,17 @@ export class ProductDetailsService {
 
   decreaseQ(id: any) {
     const product = this.cartItem.find((x: any) => x.productId === id);
+    const productIndex = this.cartItem.findIndex((x: any) => x.productId === id);
     if (product) {
       product.quantity -= 1;
-      this.cartItemSubject.next(this.cartItem);
+
+      if (product.quantity <= 0) {
+        this.cartItem.splice(productIndex, 1);
+        this.cartItemSubject.next(this.cartItem);
+      } else {
+        this.cartItemSubject.next(this.cartItem);
+      }
+      
     }
   }
 

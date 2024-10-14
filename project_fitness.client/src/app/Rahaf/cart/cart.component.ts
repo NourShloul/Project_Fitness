@@ -77,6 +77,7 @@ export class CartComponent implements OnInit {
   // Navigate to the payment page
   goToPayment(): void {
     if (this.logedINuser == "") {
+      localStorage.setItem("Cart","Cart");
       this.router.navigate(['/Login']); // Navigate to the payment route
     } else {
       this.router.navigate(['/payment']);
