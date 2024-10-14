@@ -7,10 +7,19 @@ import { URLService } from '../url/url.service';
   styleUrl: './profile.component.css'
 })
 export class ProfileComponent {
+  userId = 1;
   ngOnInit() {
-    const userId = 1;
-    this.GetAllOrder(userId);
-    this.GetOrderUserID(userId);
+    
+    this._ser.UserIdmm.subscribe((data) => {
+      this.userId = Number(data);
+      console.log("batoolas", this.userId)
+
+      this.GetAllOrder(this.userId);
+      this.GetOrderUserID(this.userId);
+    })
+
+   
+    
   }
   constructor(private _ser:
     URLService) { }

@@ -1,4 +1,8 @@
 import { Component } from '@angular/core';
+import { CartService } from '../cart.service';
+import { Router } from '@angular/router';
+import { ProductDetailsService } from '../product-details.service';
+import { URLService } from '../../url/url.service';
 
 @Component({
   selector: 'app-payment',
@@ -6,28 +10,56 @@ import { Component } from '@angular/core';
   styleUrls: ['./payment.component.css'] // Correct spelling here
 })
 export class PaymentComponent {
-  // Properties for storing payment details
-  paymentDetails = {
-    cardNumber: '',
-    cardHolder: '',
-    expiryDate: '',
-    cvv: ''
-  };
+  cartItems: any[] = [];
+  logedINuser = "";
+  userId: any;
+  test = "";
 
-  onSubmit(): void {
-    if (this.isValidPayment()) {
-      console.log('Payment Details:', this.paymentDetails);
-      alert('Payment submitted successfully!');
-  
-    } else {
-      alert('Please fill out all required fields.');
-    }
+  constructor(private cartService: CartService, private router: Router, private ProductService: ProductDetailsService, private URLService: URLService) {
   }
 
+  ngOnInit(): void {
+    this.URLService.emailaddressUser.subscribe(email => {
+      this.logedINuser = email;
+      this.test = email;
 
-  isValidPayment(): boolean {
-   
-    return !!(this.paymentDetails.cardNumber && this.paymentDetails.cardHolder && this.paymentDetails.expiryDate && this.paymentDetails.cvv);
+    });
+
+    this.URLService.UserIdmm.subscribe(user => {
+      this.userId = user
+    });
+
+
+      this.getCartItemsUser()
+
+    this.getuser(this.userId)
+
+
+  }
+
+  getCartItemsUser() {
+    this.cartService.getCartItems(this.userId).subscribe(
+      (items) => {
+        this.cartItems = items; // Assign fetched items to cartItems
+      },
+      (error) => {
+        console.error('Error fetching cart items:', error); // Handle errors
+      }
+    );
+  }
+
+  // Calculate the total price of the items in the cart
+  getCartTotal(): number {
+    return this.cartItems.reduce((total, item) => total + (item.price * item.quantity), 0);
+  }
+
+  userDATA: any
+  getuser(id: any) {
+    debugger;
+    this.ProductService.getUSER(id).subscribe((data) =>
+      this.userDATA = data
+    )
+    console.log( "user data " + this.userDATA)
   }
 
 }
