@@ -21,14 +21,12 @@ export class GymDetailsComponent implements OnInit {
 
   ngOnInit() {
     this.parameter = this._route.snapshot.paramMap.get("id");
-    this.getDetails(this.parameter);
-    this.checkForPaymentExecution();
-
     this.URLService.UserIdmm.subscribe(user => {
       this.userId = user
       console.log('user ID from Cart:', this.userId);
     });
-    
+    this.getDetails(this.parameter);
+    this.checkForPaymentExecution();
   }
 
 
@@ -90,7 +88,7 @@ export class GymDetailsComponent implements OnInit {
     const urlParams = new URLSearchParams(window.location.search);
     const paymentId = urlParams.get('paymentId');
     const payerId = urlParams.get('PayerID');
-
+   
     if (paymentId && payerId) {
       const executePaymentRequest: ExecutePaymentRequestDto = {
         PaymentId: paymentId,
