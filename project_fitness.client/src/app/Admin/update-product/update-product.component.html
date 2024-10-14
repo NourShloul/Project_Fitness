@@ -1,59 +1,49 @@
 <div class="container mt-5">
-  <div class="row justify-content-center">
-    <div class="col-md-8">
-      <div class="card shadow">
-        <div class="card-header bg-success text-white">
-          <h2 class="text-center">Add New Product</h2>
+  <h2 class="mb-4">Update Product</h2>
+
+  <!-- Form to update product -->
+  <div class="card shadow mb-4">
+    <div class="card-header bg-primary text-white">
+      <h3>Edit Product</h3>
+    </div>
+    <div class="card-body">
+      <form [formGroup]="productForm" (ngSubmit)="onSubmit()">
+        <div class="form-row">
+          <div class="form-group col-md-6">
+            <label for="productName">Product Name:</label>
+            <input formControlName="productName" type="text" class="form-control" id="productName" />
+          </div>
+
+          <div class="form-group col-md-6">
+            <label for="price">Price:</label>
+            <input formControlName="price" type="number" class="form-control" id="price" />
+          </div>
         </div>
-        <div class="card-body">
-          <form [formGroup]="productForm" (ngSubmit)="onSubmit()">
-            <div class="form-row">
-              <div class="form-group col-md-6">
-                <label for="categoryId">Category ID:</label>
-                <input formControlName="categoryId" type="number" class="form-control" id="categoryId" placeholder="Enter category ID" />
-              </div>
 
-              <div class="form-group col-md-6">
-                <label for="productName">Product Name:</label>
-                <input formControlName="productName" type="text" class="form-control" id="productName" placeholder="Enter product name" />
-              </div>
-            </div>
-
-            <div class="form-group">
-              <label for="description">Description:</label>
-              <textarea formControlName="description" class="form-control" id="description" placeholder="Enter product description" rows="3"></textarea>
-            </div>
-
-            <div class="form-row">
-              <div class="form-group col-md-6">
-                <label for="price">Price:</label>
-                <input formControlName="price" type="number" class="form-control" id="price" placeholder="Enter price" />
-              </div>
-
-              <div class="form-group col-md-6">
-                <label for="stockQuantity">Stock Quantity:</label>
-                <input formControlName="stockQuantity" type="number" class="form-control" id="stockQuantity" placeholder="Enter stock quantity" />
-              </div>
-            </div>
-
-            <div class="form-row">
-              <div class="form-group col-md-6">
-                <label for="image">Image URL:</label>
-                <input formControlName="image" type="text" class="form-control" id="image" placeholder="Enter image URL" />
-              </div>
-
-              <div class="form-group col-md-6">
-                <label for="discount">Discount:</label>
-                <input formControlName="discount" type="number" class="form-control" id="discount" placeholder="Enter discount percentage" />
-              </div>
-            </div>
-
-            <div class="text-center">
-              <button type="submit" class="btn btn-success btn-lg mt-3">Add Product</button>
-            </div>
-          </form>
+        <div class="form-group">
+          <label for="description">Description:</label>
+          <textarea formControlName="description" class="form-control" id="description" rows="3"></textarea>
         </div>
-      </div>
+
+        <div class="form-row">
+          <div class="form-group col-md-6">
+            <label for="stockQuantity">Stock Quantity:</label>
+            <input formControlName="stockQuantity" type="number" class="form-control" id="stockQuantity" />
+          </div>
+
+          <div class="form-group col-md-6">
+            <label for="discount">Discount:</label>
+            <input formControlName="discount" type="number" class="form-control" id="discount" />
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="image">Image File (optional):</label>
+          <input type="file" class="form-control" id="image" (change)="onFileSelected($event)" />
+        </div>
+
+        <button type="submit" class="btn btn-success mt-3" [disabled]="!productForm.valid">Update Product</button>
+      </form>
     </div>
   </div>
 </div>

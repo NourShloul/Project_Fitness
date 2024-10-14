@@ -1,34 +1,58 @@
-<div class="container">
-  <h2>Category Management</h2>
+<div class="container mt-5">
+  <h2 class="mb-4">Category Management</h2>
 
   <!-- Add New Category Section -->
-  <div class="add-category-section mb-4">
-    <input type="text" class="form-control" [(ngModel)]="newCategory" placeholder="New Category Name">
-    <input type="text" class="form-control mt-2" [(ngModel)]="description" placeholder="Description">
-    <input type="text" class="form-control mt-2" [(ngModel)]="image" placeholder="Image URL">
-    <button class="btn btn-primary mt-2" (click)="addCategory()">Add Category</button>
+  <div class="card shadow mb-4">
+    <div class="card-header bg-primary text-white">
+      <h3>Add New Category</h3>
+    </div>
+    <div class="card-body">
+      <div class="form-group">
+        <label for="newCategory">Category Name:</label>
+        <input type="text" class="form-control" id="newCategory" [(ngModel)]="newCategory" placeholder="Enter category name">
+      </div>
+      <div class="form-group mt-3">
+        <label for="description">Description:</label>
+        <input type="text" class="form-control" id="description" [(ngModel)]="description" placeholder="Enter description">
+      </div>
+      <div class="form-group mt-3">
+        <label for="image">Image File (optional):</label>
+        <input type="file" class="form-control" id="image" (change)="onFileSelected($event)">
+      </div>
+      <button class="btn btn-success mt-3" (click)="addCategory()">Add Category</button>
+    </div>
   </div>
 
   <!-- Categories List -->
-  <table class="table table-hover">
-    <thead>
-      <tr>
-        <th>Category Name</th>
-        <th>Description</th>
-        <th>Image</th>
-        <th>Actions</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor="let category of categories">
-        <td>{{ category.categoryName }}</td>
-        <td>{{ category.description }}</td>
-        <td>{{ category.image }}</td>
-        <td>
-          <button class="btn btn-danger" (click)="deleteCategory(category.id!)">Delete</button>
+  <div *ngIf="categories.length > 0; else noCategories">
+    <table class="table table-hover">
+      <thead>
+        <tr>
+          <th>Category Name</th>
+          <th>Description</th>
+          <th>Image</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let category of categories">
+          <td>{{ category.categoryName }}</td>
+          <td>{{ category.description }}</td>
+          <td>
+            <img [src]="category.image ? 'https://localhost:7072' + category.image : 'No Image'" alt="Category Image" class="img-thumbnail" style="width: 100px; height: 100px;" />
+          </td>
+          <td>
+            <button class="btn btn-danger" (click)="deleteCategory(category.id!)" [disabled]="!category.id">Delete</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
 
-        </td>
-      </tr>
-    </tbody>
-  </table>
+  <!-- No Categories Message -->
+  <ng-template #noCategories>
+    <div class="alert alert-warning">
+      No categories found. Please add a new category.
+    </div>
+  </ng-template>
 </div>

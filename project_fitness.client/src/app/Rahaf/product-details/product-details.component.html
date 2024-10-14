@@ -18,7 +18,7 @@
     <div class="product-details-container d-flex">
   
       <div class="product-image">
-        <img *ngIf="product.image; else noImage" src="https://localhost:7072/images/" alt="{{ product.productName }}" class="img-fluid">
+        <img src="https://localhost:7072/{{product.image}}" alt="Product Image">
         <ng-template #noImage>
           <img src="assets/images/no-image-available.png" alt="No image available" class="img-fluid"> <!-- Placeholder image -->
         </ng-template>

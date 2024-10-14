@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CategoryService } from './category.service';
 
+// Define the Category interface
 interface Category {
   id?: number;
   categoryName: string;
@@ -16,17 +17,18 @@ interface Category {
 export class AdminCategoryComponent implements OnInit {
 
   categories: Category[] = [];
-  newCategory: string = '';
-  description: string = '';
-  image: string = '';
+  newCategory: string = ''; // Ensure this property is declared
+  description: string = ''; // Ensure this property is declared
+  imageFile: File | null = null;  // For storing the selected image file
 
   constructor(private categoryService: CategoryService) { }
 
   ngOnInit(): void {
-    this.getCategories();
+    this.getCategories(); // Fetch categories on component initialization
   }
 
-  getCategories() {
+  // Fetch all categories
+  getCategories(): void {
     this.categoryService.getCategories().subscribe(
       (data: Category[]) => {
         this.categories = data;
@@ -37,19 +39,32 @@ export class AdminCategoryComponent implements OnInit {
     );
   }
 
-  addCategory() {
-    const category: Category = {
-      categoryName: this.newCategory,
-      description: this.description,
-      image: this.image
-    };
+  // Handle file selection for image upload
+  onFileSelected(event: any): void {
+    const file: File = event.target.files[0];
+    if (file) {
+      this.imageFile = file;
+    }
+  }
 
-    this.categoryService.addCategory(category).subscribe(
+  // Add a new category
+  addCategory(): void {
+    if (!this.newCategory || !this.description) {
+      console.error('Category name and description are required.');
+      return;
+    }
+
+    const formData = new FormData();
+    formData.append('CategoryName', this.newCategory); // Category name
+    formData.append('Description', this.description);  // Category description
+    if (this.imageFile) {
+      formData.append('ImageFile', this.imageFile); // Append the selected image file
+    }
+
+    this.categoryService.addCategory(formData).subscribe(
       () => {
         this.getCategories();  // Reload categories after adding
-        this.newCategory = '';
-        this.description = '';
-        this.image = '';
+        this.resetForm();      // Reset the form after success
       },
       (error) => {
         console.error('Error adding category:', error);
@@ -57,14 +72,24 @@ export class AdminCategoryComponent implements OnInit {
     );
   }
 
-  deleteCategory(id: number) {
-    this.categoryService.deleteCategory(id).subscribe(
-      () => {
-        this.getCategories();  // Reload categories after deletion
-      },
-      (error) => {
-        console.error('Error deleting category:', error);
-      }
-    );
+  // Delete a category by ID
+  deleteCategory(id: number): void {
+    if (confirm('Are you sure you want to delete this category?')) {
+      this.categoryService.deleteCategory(id).subscribe(
+        () => {
+          this.getCategories();  // Reload categories after deletion
+        },
+        (error) => {
+          console.error('Error deleting category:', error);
+        }
+      );
+    }
+  }
+
+  // Clear the form inputs
+  resetForm(): void {
+    this.newCategory = '';
+    this.description = '';
+    this.imageFile = null;
   }
 }

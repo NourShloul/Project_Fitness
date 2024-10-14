@@ -1,0 +1,67 @@
+<div class="container mt-5">
+  <h2 class="mb-4">Manage Orders</h2>
+
+  <!-- Order Form (Add/Edit) -->
+  <div class="card shadow mb-4">
+    <div class="card-header bg-primary text-white">
+      <h3>{{ isEditMode ? 'Edit Order' : 'Add New Order' }}</h3>
+    </div>
+    <div class="card-body">
+      <form [formGroup]="orderForm" (ngSubmit)="onSubmit()">
+        <div class="form-group">
+          <label for="customerName">Customer Name</label>
+          <input formControlName="customerName" type="text" class="form-control" id="customerName" placeholder="Enter customer name">
+        </div>
+        <div class="form-group mt-3">
+          <label for="product">Product</label>
+          <input formControlName="product" type="text" class="form-control" id="product" placeholder="Enter product">
+        </div>
+        <div class="form-group mt-3">
+          <label for="quantity">Quantity</label>
+          <input formControlName="quantity" type="number" class="form-control" id="quantity" placeholder="Enter quantity">
+        </div>
+        <div class="form-group mt-3">
+          <label for="totalAmount">Total Amount</label>
+          <input formControlName="totalAmount" type="number" class="form-control" id="totalAmount" placeholder="Enter total amount">
+        </div>
+        <div class="form-group mt-3">
+          <label for="status">Status</label>
+          <select formControlName="status" class="form-control" id="status">
+            <option value="Pending">Pending</option>
+            <option value="Shipped">Shipped</option>
+            <option value="Delivered">Delivered</option>
+            <option value="Cancelled">Cancelled</option>
+          </select>
+        </div>
+        <button type="submit" class="btn btn-success mt-4">{{ isEditMode ? 'Update Order' : 'Add Order' }}</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Orders Table -->
+  <table class="table table-hover mt-5">
+    <thead>
+      <tr>
+        <th>Customer Name</th>
+        <th>Product</th>
+        <th>Quantity</th>
+        <th>Total Amount</th>
+        <th>Status</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let order of orders">
+        <td>{{ order.customerName }}</td>
+        <td>{{ order.product }}</td>
+        <td>{{ order.quantity }}</td>
+        <td>{{ order.totalAmount | currency }}</td>
+        <td>{{ order.status }}</td>
+        <td>
+          <button class="btn btn-primary" (click)="editOrder(order)">Edit</button>
+          <button class="btn btn-danger" (click)="deleteOrder(order.id)">Delete</button> <!-- order.id is now correctly passed -->
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
