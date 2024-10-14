@@ -1,21 +1,23 @@
-<div class="container">
+<div class="container" style="max-width: 500px; margin: 0 auto; padding: 20px; border: 1px solid #ccc; border-radius: 10px; background-color: gainsboro;">
   <form (submit)="onSubmit($event)">
     <div class="mb-3">
       <label for="userName" class="form-label">User Name</label>
-      <input type="text" class="form-control" id="userName" [(ngModel)]="personalInfo.userName" name="userName">
+      <input type="text" class="form-control" id="userName" [(ngModel)]="personalInfo.userName" name="userName" style="width: 100%;">
     </div>
     <div class="mb-3">
       <label for="phoneNumber" class="form-label">Phone Number</label>
-      <input type="text" class="form-control" id="phoneNumber" [(ngModel)]="personalInfo.userPhone" name="userPhone">
+      <input type="text" class="form-control" id="phoneNumber" [(ngModel)]="personalInfo.userPhone" name="userPhone" style="width: 100%;">
     </div>
     <div class="mb-3">
       <label for="address" class="form-label">Address</label>
-      <input type="text" class="form-control" id="address" [(ngModel)]="personalInfo.userAddress" name="userAddress">
+      <input type="text" class="form-control" id="address" [(ngModel)]="personalInfo.userAddress" name="userAddress" style="width: 100%;">
     </div>
     <div class="mb-3">
       <label for="formFile" class="form-label">Profile Picture</label>
-      <input class="form-control" type="file" id="formFile" (change)="onFileSelected($event)">
+      <input class="form-control" type="file" id="formFile" (change)="onFileSelected($event)" style="width: 100%;">
     </div>
-    <button type="submit" class="btn btn-primary">Submit</button>
+    <button type="submit" class="btn w-100" style="background-color: #e955fc;">Submit</button>
   </form>
 </div>
+<br />
+<br />
