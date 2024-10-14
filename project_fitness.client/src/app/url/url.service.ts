@@ -35,8 +35,14 @@ export class URLService {
   }
  
 
-
-
+  ////////  start Profile    //////
+  GetUserID(id: any): Observable<any> {
+    return this.http.get<any>(`${this.staticData}/Profile/Profile/GetUserById/${id}`);
+  }
+  GetOrderUserID(id: any): Observable<any> {
+    return this.http.get<any>(`${this.staticData}/Profile/Profile/GetOrdersByUserId/${id}`);
+  }
+  /////////////// end profile ///////////
   GetTypeOfRecipe(): Observable<any> {
     return this.http.get<any>(`${this.staticData}/Recipe/Nutrition/GetAllRescipe`);
   }
