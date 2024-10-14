@@ -7,19 +7,38 @@ import { URLService } from '../url/url.service';
   styleUrl: './profile.component.css'
 })
 export class ProfileComponent {
-  //ngOnInit() {
-  //  this.GetAllOrder()
-  //}
-  //constructor(private _ser:
-  //  URLService) { }
+  userId = 1;
+  ngOnInit() {
+    
+    this._ser.UserIdmm.subscribe((data) => {
+      this.userId = Number(data);
+      console.log("batoolas", this.userId)
 
-  //RecipeArray: any
-  //GetAllOrder() {
+      this.GetAllOrder(this.userId);
+      this.GetOrderUserID(this.userId);
+    })
 
-  //  this._ser.GetUserID().subscribe((data) => {
-  //    this.RecipeArray = data
-  //    console.log(this.RecipeArray)
+   
+    
+  }
+  constructor(private _ser:
+    URLService) { }
 
-  //  })
-  //}
+  UserArray: any
+  GetAllOrder(id: number) {
+    this._ser.GetUserID(id).subscribe((data) => {
+      this.UserArray = data;
+      console.log(this.UserArray);
+    });
+  }
+  OrderArray: any
+  GetOrderUserID(id: number) {
+    this._ser.GetUserID(id).subscribe((data) => {
+      this.OrderArray = data;
+      console.log(this.OrderArray);
+    });
+  }
+
+
+  
 }

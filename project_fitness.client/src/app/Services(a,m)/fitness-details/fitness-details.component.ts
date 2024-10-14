@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { URLService } from '../../url/url.service';
+import { CreatePaymentRequestDto, URLService } from '../../url/url.service';
 import { ActivatedRoute } from '@angular/router';
 
 @Component({
@@ -22,12 +22,13 @@ export class FitnessDetailsComponent {
   getDetails(id: any) {
     debugger
     this._ser.getClassDetails(id).subscribe((data: any) => {
-      this.Details= data;
-      console.log(this.Details,'details')
+      this.Details = data;
+      console.log(this.Details, 'details')
     }
     )
   }
-  addsubscribtion(price: number, months: number) {
+  addsubscribtion(price: string, months: string) {
+    debugger
     console.log(`Subscription selected: ${months} months, total price: ${price} JD`);
   }
 

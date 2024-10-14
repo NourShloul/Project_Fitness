@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 import { Observable } from 'rxjs';
 
+
 @Injectable({
   providedIn: 'root'
 })
@@ -16,6 +17,12 @@ export class URLService {
   emailaddressUser = this.userEmail.asObservable();
   userId: BehaviorSubject<string> = new BehaviorSubject<string>("");
   UserIdmm = this.userId.asObservable();
+  month: BehaviorSubject<number> = new BehaviorSubject<number>(0);
+  monthforsave = this.month.asObservable();
+  GymId: BehaviorSubject<number|undefined> = new BehaviorSubject<number|undefined>(0);
+  GymID = this.GymId.asObservable();
+  total: BehaviorSubject<number> = new BehaviorSubject<number>(0);
+  totalforsub = this.total.asObservable();
   constructor(private http: HttpClient) { }
 
 
@@ -33,8 +40,14 @@ export class URLService {
   }
  
 
-
-
+  ////////  start Profile    //////
+  GetUserID(id: any): Observable<any> {
+    return this.http.get<any>(`${this.staticData}/Profile/Profile/GetUserById/${id}`);
+  }
+  GetOrderUserID(id: any): Observable<any> {
+    return this.http.get<any>(`${this.staticData}/Profile/Profile/GetOrdersByUserId/${id}`);
+  }
+  /////////////// end profile ///////////
   GetTypeOfRecipe(): Observable<any> {
     return this.http.get<any>(`${this.staticData}/Recipe/Nutrition/GetAllRescipe`);
   }
@@ -64,6 +77,9 @@ export class URLService {
 
   GetAllGyms(): Observable<any> {
     return this.http.get<any>(`${this.staticData}/Admin/GetAllGym`);
+  }
+  GetAllusers(): Observable<any> {
+    return this.http.get<any>(`${this.staticData}/Users`);
   }
 
   GetAllFitness(): Observable<any> {
@@ -131,10 +147,24 @@ export class URLService {
     const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
     return this.http.post<any>(`${this.staticData}/Admin/create-payment`, request, { headers });
   }
+  executePayment(request: ExecutePaymentRequestDto): Observable<any> {
+    const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
+    return this.http.post<any>(`${this.staticData}/Admin/execute-payment`, request, { headers });
+  }
 }
 export interface CreatePaymentRequestDto {
   redirectUrl: string;
   total: number;
   message?: string;
   userId: number;
+}
+export interface ExecutePaymentRequestDto {
+  PaymentId: string;
+  PayerId: string;
+  UserId: number;
+  GymId?: number | null;
+  FitnessClassId?: number | null;
+  StartDate: Date;
+  EndDate: Date;
+  Total: number;
 }
