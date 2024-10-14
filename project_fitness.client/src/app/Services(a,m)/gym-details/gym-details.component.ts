@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { URLService, CreatePaymentRequestDto, ExecutePaymentRequestDto } from '../../url/url.service';
+import Swal from 'sweetalert2';
 
 
 @Component({
@@ -41,6 +42,18 @@ export class GymDetailsComponent implements OnInit {
 
   addsubscribtion(price: number, months: number, gymId: number):  void {
     debugger
+    if (this.userId == null || this.userId == 0 || this.userId == undefined) {
+
+      Swal.fire({
+        icon: "info",
+        title: "You must be logged in!",
+        showConfirmButton: false,
+        timer: 2000
+      }).then(() => {
+        
+        window.location.href = '/Login'; 
+      });
+    }
     this._ser.month.next(months);
     localStorage.setItem('moth', months.toString())
     this._ser.GymId.next(gymId);
