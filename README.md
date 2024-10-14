@@ -43,7 +43,7 @@ When you click on "Shop," you will be taken to our Shop Overview Page:
   - Price
   - Image
   - **"Add to Cart"** button for easy shopping.
-- **Cart Functionality**: Keep track of your selected products and proceed to a secure checkout process with payment options (credit card, PayPal).
+- **Cart Functionality**: heckout process with payment options (PayPal).
 
 ### Meal Plans Overview Page
 - **Search Bar**: Quickly find healthy meal plans that suit your needs.
@@ -93,11 +93,12 @@ When you click on "Shop," you will be taken to our Shop Overview Page:
 4. Figma designs : 
 
 ## Contributors
-- **Nour Shloul** - Scrum Master
+- **Nour Al-Shloul** - Scrum Master
 - **Malik Ibdah** - Product Owner
 - **Ayah bany doumi** - Full Stack Developer
 - **Raneem Halahleh** - Full Stack Developer
 - **Anas Najjar** - Full Stack Developer
 - **Ahmad Qadoomi** - Full Stack Developer
+- **Rahaf Shorman** - Full Stack Developer
 
 We invite you to explore our project, contribute, and provide feedback!
