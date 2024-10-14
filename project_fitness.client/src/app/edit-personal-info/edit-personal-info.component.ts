@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';  // Import ActivatedRoute
+import { ActivatedRoute, Router } from '@angular/router';  // استيراد Router
 import { URLService } from '../url/url.service';
+import Swal from 'sweetalert2';  // استيراد SweetAlert2
 
 @Component({
   selector: 'app-edit-personal-info',
@@ -17,7 +18,7 @@ export class EditPersonalInfoComponent implements OnInit {
   selectedFile: File | null = null;
   userId: number | undefined;
 
-  constructor(private _ser: URLService, private route: ActivatedRoute) { }
+  constructor(private _ser: URLService, private route: ActivatedRoute, private router: Router) { }
 
   ngOnInit(): void {
     // Get the user ID from the route parameters
@@ -44,13 +45,32 @@ export class EditPersonalInfoComponent implements OnInit {
       formData.append('UserImage', this.selectedFile);
     }
 
-    if (this.userId) { 
+    if (this.userId) {
       this._ser.updateUserProfile(this.userId, formData).subscribe({
         next: (response: any) => {
           console.log('Profile updated successfully', response);
+
+          // عرض نافذة نجاح عند نجاح التعديل باستخدام SweetAlert
+          Swal.fire({
+            icon: 'success',
+            title: 'Profile Updated!',
+            text: 'Your profile has been updated successfully.',
+            confirmButtonText: 'OK'
+          }).then(() => {
+            // إعادة توجيه المستخدم إلى صفحة البروفايل
+            this.router.navigate(['/profile']);
+          });
         },
         error: (error: any) => {
           console.error('There was an error!', error);
+
+          // عرض نافذة خطأ في حالة الفشل باستخدام SweetAlert
+          Swal.fire({
+            icon: 'error',
+            title: 'Update Failed',
+            text: 'There was an error updating your profile. Please try again.',
+            confirmButtonText: 'OK'
+          });
         }
       });
     } else {

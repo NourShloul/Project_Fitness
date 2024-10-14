@@ -9,7 +9,7 @@
   <form class="p-3 mt-3" #lognUser="ngForm" (ngSubmit)="loginNewUser(lognUser.value)">
     <div class="form-field d-flex align-items-center">
       <span class="far fa-user"></span>
-      <input type="text" name="UserEmail" id="userName" placeholder="Username"  ngModel>
+      <input type="text" name="UserEmail" id="userName" placeholder="Your Email"  ngModel>
     </div>
     <div class="form-field d-flex align-items-center">
       <span class="fas fa-key"></span>
@@ -18,7 +18,7 @@
     <button class="btn mt-3">Login</button>
   </form>
   <div class="text-center fs-6">
-    <a href="/Register">Register</a>
+    <span>Don't have an account?</span>  <a href="/Register"> Register</a>
   </div>
 </div>
 

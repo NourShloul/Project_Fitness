@@ -1,10 +1,11 @@
 import { Component } from '@angular/core';
 import { URLService } from '../../url/url.service';
+import Swal from 'sweetalert2';  // استيراد SweetAlert2
 
 @Component({
   selector: 'app-addgym',
   templateUrl: './addgym.component.html',
-  styleUrl: './addgym.component.css'
+  styleUrls: ['./addgym.component.css']  // تعديل الاسم ليكون style**s** بدلاً من style
 })
 export class AddgymComponent {
   ngOnInit() { }
@@ -14,28 +15,36 @@ export class AddgymComponent {
   image: any
   changeImage(event: any) {
     debugger
-    this.image = event.target.files[0]
-
+    this.image = event.target.files[0];
   }
-
 
   addnewGym(data: any) {
     debugger
     var form = new FormData();
 
     for (let key in data) {
-      form.append(key, data[key])
+      form.append(key, data[key]);
     }
 
-    form.append("gymImage", this.image)
+    form.append("gymImage", this.image);
 
     this._ser.addGym(form).subscribe(() => {
-      alert("Gym added successfully")
+      // عرض رسالة نجاح باستخدام SweetAlert2
+      Swal.fire({
+        icon: 'success',
+        title: 'Gym Added Successfully!',
+        text: 'The gym has been added successfully.',
+        confirmButtonText: 'OK'
+      });
     },
       (error) => {
-
-        alert(error.error)
-      })
+        // عرض رسالة خطأ في حالة الفشل
+        Swal.fire({
+          icon: 'error',
+          title: 'Error',
+          text: error.error || 'Something went wrong. Please try again.',
+          confirmButtonText: 'Try Again'
+        });
+      });
   }
-
 }
