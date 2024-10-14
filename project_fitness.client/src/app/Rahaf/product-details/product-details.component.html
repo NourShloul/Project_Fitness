@@ -119,7 +119,7 @@
       </div>
       <div class="d-flex align-items-center">
         <input type="number" class="form-control quantity-input" [(ngModel)]="cartItemObj.quantity" min="1">
-        <button class="btn w-25" style="background-color: #e955fc">ADD TO CART</button>
+        <button class="btn w-25" style="background-color: #e955fc"  (click)="addToCart(product.id, product.price, product.productName, product.image)">ADD TO CART</button>
         <!--<button class="btn btn-wishlist">♡</button>-->
       </div>
     </div>
