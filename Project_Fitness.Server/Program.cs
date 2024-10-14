@@ -1,8 +1,10 @@
 using Microsoft.EntityFrameworkCore;
+using Project_Fitness.Server.Controllers;
 using Project_Fitness.Server.Models;
 using Project_Fitness.Server.services;
 using Project_Fitness.Server.Services;
 using System.Text.Json.Serialization;
+using Project_Fitness.Server.DTO;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -36,7 +38,9 @@ options.AddPolicy("Development", builder =>
     builder.AllowAnyHeader();
 })
 );
-
+builder.Services.AddTransient<EmailServiceR>();
+builder.Services.AddScoped<registeruserController>(); // Register ClassesController
+builder.Services.AddHostedService<EmailReminderService>();
 var app = builder.Build();
 
 app.UseDefaultFiles();
