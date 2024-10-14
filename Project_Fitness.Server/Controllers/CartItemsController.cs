@@ -84,9 +84,19 @@ namespace Project_Fitness.Server.Controllers
         {
             var cartItem = _context.CartItems.FirstOrDefault(x => x.Id == id);
             cartItem.Quantity = cartItem.Quantity - 1;
-            _context.CartItems.Update(cartItem);
-            _context.SaveChanges();
-            return Ok(cartItem);
+
+            if (cartItem.Quantity <= 0) {
+                _context.CartItems.Remove(cartItem);
+                _context.SaveChanges();
+                return Ok(cartItem);
+            }
+            else
+            {
+                _context.CartItems.Update(cartItem);
+                _context.SaveChanges();
+                return Ok(cartItem);
+            }
+            
         }
     }
 }

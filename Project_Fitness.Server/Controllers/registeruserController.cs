@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Project_Fitness.Server.DTO;
 using Project_Fitness.Server.Models;
 
@@ -12,10 +13,19 @@ namespace Project_Fitness.Server.Controllers
     public class registeruserController : ControllerBase
     {
         private readonly MyDbContext _Db;
-        public registeruserController(MyDbContext db) 
+        private readonly EmailServiceR _emailServiceR;
+
+        public registeruserController(MyDbContext db, EmailServiceR emailServiceR) 
         {
             _Db = db;
+            _emailServiceR = emailServiceR;
         }
+
+       
+
+     
+      
+
         [HttpPost("register")]
         public IActionResult regester([FromForm] registerDTO dto)
         {
@@ -66,6 +76,46 @@ namespace Project_Fitness.Server.Controllers
             // إعادة البيانات مع is_admin
             return Ok(new { user.UserEmail, user.IsAdmin ,user.UserId });
         }
+
+
+
+
+        ////////////////////////////////////////////////////////////////////////////////////////////
+
+        [HttpPost("send-reminder-emails")]
+        public async Task<IActionResult> SendReminderEmailsAsync()
+        {
+            var currentDate = DateTime.Today;  // الحصول على التاريخ الحالي فقط
+            var reminderDate = currentDate.AddDays(5);  // إضافة 5 أيام للحصول على التاريخ المطلوب
+
+            // التحقق من SubscriptionEndDate مباشرة إذا كان من نوع DateOnly
+            var subscriptions = await _Db.Subscriptions
+                .Include(sub => sub.User)
+                .Where(sub => sub.SubscriptionEndDate <= DateOnly.FromDateTime(reminderDate))
+                .ToListAsync();
+
+            if (!subscriptions.Any())
+            {
+                return Ok("No subscriptions ending in 5 days.");
+            }
+
+            foreach (var subscription in subscriptions)
+            {
+                if (subscription.User != null && !string.IsNullOrWhiteSpace(subscription.User.UserEmail))
+                {
+                    string subject = "Subscription Reminder";
+                    string formattedDate = subscription.SubscriptionEndDate.ToString("yyyy-MM-dd");  // تحويل التاريخ إلى نص
+                    string body = $"<p>Dear Customer Your subscription will end on {formattedDate}. Please Renew your subscription.</p>";
+
+                    await _emailServiceR.SendEmailRAsync(subscription.User.UserEmail, subject, body);
+                }
+            }
+
+            return Ok("Reminder emails sent successfully.");
+        }
+
+
+
 
 
     }

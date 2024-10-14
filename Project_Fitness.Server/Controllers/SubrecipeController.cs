@@ -55,6 +55,7 @@ namespace Project_Fitness.Server.Controllers
 
             return NotFound("No subrecipe found for the given Recipe ID");
         }
+
         [HttpPost("Nutrition/CreateSubRecipe")]
         public IActionResult CreateSubRecipe([FromForm] SubrecipeDTO subrecipeDTO)
         {
@@ -99,7 +100,7 @@ namespace Project_Fitness.Server.Controllers
                 PreparationSteps = subrecipeDTO.PreparationSteps,
                 SubRecipeImage = uniqueFileName, // حفظ اسم الصورة الفريد
                 Benefits = subrecipeDTO.Benefits,
-                RecipeId = subrecipeDTO.RecipeId// قم بتعيين recipe_id هنا
+                RecipeId = subrecipeDTO.RecipeId.Value// قم بتعيين recipe_id هنا
             };
 
             // إضافة الوصفة الفرعية إلى قاعدة البيانات
@@ -159,7 +160,8 @@ namespace Project_Fitness.Server.Controllers
             recipe.PreparationTime = subrecipeDTO.PreparationTime ?? recipe.PreparationTime;
             recipe.PreparationSteps = subrecipeDTO.PreparationSteps ?? recipe.PreparationSteps;
             recipe.Benefits = subrecipeDTO.Benefits ?? recipe.Benefits;
-
+            recipe.RecipeId = subrecipeDTO.RecipeId ?? recipe.RecipeId;
+            
             // التحقق من تحميل صورة جديدة
             if (subrecipeDTO.SubRecipeImage != null && subrecipeDTO.SubRecipeImage.Length > 0)
             {
