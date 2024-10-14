@@ -24,6 +24,7 @@ export class ProfileComponent implements OnInit {
   loadUserData() {
     
     this.userService.GetUserID(this.userId).subscribe(data => {
+      debugger
       this.UserArray = data;
       console.log(this.UserArray)
       this.UserArray.orderItems = this.flattenOrderItems(data.orders);
