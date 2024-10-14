@@ -1,48 +1,51 @@
 <form #AddsubRecipetype="ngForm" (ngSubmit)="AddNewSubRecipe(AddsubRecipetype.value)" style="max-width: 600px; margin: 0 auto; padding: 20px; border: 1px solid #ccc; border-radius: 10px; background-color: #f9f9f9;">
- CSRF Token (if needed) 
-<input type="hidden" name="__RequestVerificationToken" value="TOKEN_VALUE">
 
-<h2 style="text-align: center; margin-bottom: 20px;">Add  subRecipes</h2>
+  <input type="hidden" name="__RequestVerificationToken" value="TOKEN_VALUE">
 
-<div class="form-container">
- Title Field 
-<div class="form-group" style="margin-bottom: 15px;">
-  <label for="Title" class="form-label" style="display: block; font-weight: bold; margin-bottom: 5px;">recipeId</label>
-  <input type="text" id="Title" name="recipeId" class="form-control" required="required" style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 5px;" ngModel>
-  <span class="text-danger" id="Title-error" style="color: red; font-size: 0.875em;"></span>
-</div>
-<div class="form-group" style="margin-bottom: 15px;">
-  <label for="Title" class="form-label" style="display: block; font-weight: bold; margin-bottom: 5px;">subRecipeName</label>
-  <input type="text" id="Title" name="subRecipeName" class="form-control" required="required" style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 5px;" ngModel>
-  <span class="text-danger" id="Title-error" style="color: red; font-size: 0.875em;"></span>
-</div>
+  <h2 style="text-align: center; margin-bottom: 20px;">Add  subRecipes</h2>
 
-<div class="form-group" style="margin-bottom: 15px;">
-  <label for="Title" class="form-label" style="display: block; font-weight: bold; margin-bottom: 5px;">preparationSteps</label>
-  <input type="text" id="Title" name="preparationSteps" class="form-control" required="required" style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 5px;" ngModel>
-  <span class="text-danger" id="Title-error" style="color: red; font-size: 0.875em;"></span>
-</div>
-<div class="form-group" style="margin-bottom: 15px;">
-  <label for="Title" class="form-label" style="display: block; font-weight: bold; margin-bottom: 5px;">preparationTime</label>
-  <input type="text" id="Title" name="preparationTime" class="form-control" required="required" style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 5px;" ngModel>
-  <span class="text-danger" id="Title-error" style="color: red; font-size: 0.875em;"></span>
-</div>
-<div class="form-group" style="margin-bottom: 15px;">
-  <label for="Title" class="form-label" style="display: block; font-weight: bold; margin-bottom: 5px;">benefits</label>
-  <input type="text" id="Title" name="benefits" class="form-control" required="required" style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 5px;" ngModel>
-  <span class="text-danger" id="Title-error" style="color: red; font-size: 0.875em;"></span>
-</div>
- Main Image Field 
-<div class="form-group" style="margin-bottom: 15px;">
-  <label for="Image" class="form-label" style="display: block; font-weight: bold; margin-bottom: 5px;">Main Image</label>
-  <input type="file" id="Image" name="subRecipeImage" class="form-control" required="required" style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 5px;" ngModel (change)="changeImage($event)">
-  <span class="text-danger" id="Image-error" style="color: red; font-size: 0.875em;"></span>
-</div>
- Submit Button 
-<div class="form-group" style="text-align: center;">
+  <div class="form-container">
+    
+    <div class="form-group" style="margin-bottom: 15px;">
+      <label for="Title" class="form-label" style="display: block; font-weight: bold; margin-bottom: 5px;">recipeId</label>
+      <input type="text" id="Title" name="recipeId" class="form-control" required="required" style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 5px;" ngModel>
+      <span class="text-danger" id="Title-error" style="color: red; font-size: 0.875em;"></span>
+    </div>
+    <div class="form-group" style="margin-bottom: 15px;">
+      <label for="Title" class="form-label" style="display: block; font-weight: bold; margin-bottom: 5px;">subRecipeName</label>
+      <input type="text" id="Title" name="subRecipeName" class="form-control" required="required" style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 5px;" ngModel>
+      <span class="text-danger" id="Title-error" style="color: red; font-size: 0.875em;"></span>
+    </div>
+
+    <div class="form-group" style="margin-bottom: 15px;">
+      <label for="Title" class="form-label" style="display: block; font-weight: bold; margin-bottom: 5px;">preparationSteps</label>
+      <input type="text" id="Title" name="preparationSteps" class="form-control" required="required" style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 5px;" ngModel>
+      <span class="text-danger" id="Title-error" style="color: red; font-size: 0.875em;"></span>
+    </div>
+    <div class="form-group" style="margin-bottom: 15px;">
+      <label for="Title" class="form-label" style="display: block; font-weight: bold; margin-bottom: 5px;">preparationTime</label>
+      <input type="text" id="Title" name="preparationTime" class="form-control" required="required" style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 5px;" ngModel>
+      <span class="text-danger" id="Title-error" style="color: red; font-size: 0.875em;"></span>
+    </div>
+    <div class="form-group" style="margin-bottom: 15px;">
+      <label for="Title" class="form-label" style="display: block; font-weight: bold; margin-bottom: 5px;">benefits</label>
+      <input type="text" id="Title" name="benefits" class="form-control" required="required" style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 5px;" ngModel>
+      <span class="text-danger" id="Title-error" style="color: red; font-size: 0.875em;"></span>
+    </div>
+
+
+
+     Main Image Field 
+    <div class="form-group" style="margin-bottom: 15px;">
+      <label for="Image" class="form-label" style="display: block; font-weight: bold; margin-bottom: 5px;">Main Image</label>
+      <input type="file" id="Image" name="subRecipeImage" class="form-control" required="required" style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 5px;" ngModel (change)="changeImage($event)">
+      <span class="text-danger" id="Image-error" style="color: red; font-size: 0.875em;"></span>
+    </div>
+
+     Submit Button 
+    <div class="form-group" style="text-align: center;">
       <button type="submit" class="btn btn-primary" style="padding: 10px 20px; background-color: #e21dfb; border: none; border-radius: 5px; color: white; font-size: 1em; cursor: pointer;">Submit</button>
     </div>
   </div>
 </form>
-
 
