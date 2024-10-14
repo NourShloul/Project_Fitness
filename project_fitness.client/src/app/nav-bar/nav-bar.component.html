@@ -1,4 +1,13 @@
+<head>
+  <!-- Other meta tags and links -->
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
+  />
+
+</head>
 <header class="default-padding pt-0">
+
   <div class="container">
     <nav class="navbar navbar-expand-xxxl">
       <!-- Logo -->
@@ -20,41 +29,24 @@
           <li>
             <a routerLink="/">Home</a>
           </li>
-          <li class="nav-item">
-            <a class="nav-link" routerLink="/NutritionPageOne">Nutrition</a>
-          </li>   <li class="nav-item">
-                    <a class="nav-link" routerLink="/cart">cart</a>
-          </li>
-          <li>
-            <a routerLink="/Login">Login</a>
+          <li class="dropdown">
+            <a href="#!" class="dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+              Our Services
+            </a>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item" routerLink="/shop">Shop</a></li>
+              <li><a class="dropdown-item" routerLink="/NutritionPageOne">Nutrition</a></li>
+              <li><a class="dropdown-item" routerLink="/services">Gym & class</a></li>
+            </ul>
           </li>
           <li>
             <a routerLink="/About">About us</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" routerLink="/shop"> Shop</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" routerLink="/Recips">Recipes</a>
-          </li>
-          <li class="nav-item">
             <a class="nav-link" routerLink="/Contact">Contact Us</a>
           </li>
-          <li class="nav-item">
-            <a class="nav-link" routerLink="/Profile">Profile</a>
-          </li>
-          <li class="dropdown">
-            <a href="#!" class="dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-              Pages
-            </a>
-            <ul class="dropdown-menu">
-              <li><a class="dropdown-item" routerLink="/404">404</a></li>
-              <li><a class="dropdown-item" routerLink="/coming-soon">Coming Soon</a></li>
-              <li><a class="dropdown-item" routerLink="/site-map">Sitemap</a></li>
-            </ul>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" routerLink="/policies">Policies</a>
+          <li>
+            <a routerLink="/Login">Login</a>
           </li>
         </ul>
       </div>
@@ -66,13 +58,15 @@
         <div class="d-flex align-items-center gap-sm-4 gap-3">
           <a routerLink="/cart" class="nav-link">
             <i class="fas fa-shopping-cart"></i>
-            
+
           </a>
           <!-- Shopping Bag Icon -->
           <a routerLink="/shop" class="nav-link">
             <i class="fas fa-shopping-bag"></i>
           </a>
-
+          <a routerLink="/profile" class="nav-link">
+            <i class="fas fa-user"></i>
+          </a>
 
           <button class="hamburger lh-0">
             <span>menu</span>

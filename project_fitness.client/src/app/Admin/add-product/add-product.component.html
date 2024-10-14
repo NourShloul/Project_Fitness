@@ -37,16 +37,16 @@
             </div>
 
             <div class="form-row">
-              <div class="form-group col-md-6">
-                <label for="image">Image URL:</label>
-                <input formControlName="image" type="text" class="form-control" id="image" placeholder="Enter image URL" />
-              </div>
+  <div class="form-group col-md-6">
+    <label for="image">Image:</label>
+    <input formControlName="image" type="file" class="form-control" id="image" (change)="onFileSelected($event)" />
+  </div>
+  <div class="form-group col-md-6">
+    <label for="discount">Discount:</label>
+    <input formControlName="discount" type="number" class="form-control" id="discount" placeholder="Enter discount percentage" />
+  </div>
+</div>
 
-              <div class="form-group col-md-6">
-                <label for="discount">Discount:</label>
-                <input formControlName="discount" type="number" class="form-control" id="discount" placeholder="Enter discount percentage" />
-              </div>
-            </div>
 
             <div class="text-center">
               <button type="submit" class="btn btn-success btn-lg mt-3">Add Product</button>

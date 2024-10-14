@@ -1,42 +1,42 @@
+<!-- إضافة حقل البحث -->
+<div class="form-group mb-3">
+  <input type="text" class="form-control" placeholder="Search by SubRecipe Name" [(ngModel)]="searchTerm" (ngModelChange)="filterRecipes()">
+</div>
+
 <!-- زر Add Recipe Type -->
-<button class="btn btn-success mb-0" [routerLink]="['/Dashboard/AddRecipeAdmin']">Add Recipe Type</button>
+<button class="btn btn-success mb-0" [routerLink]="['/Dashboard/AddSubRecipeAdmin']">Add SubRecipe </button>
 
 <!-- الجدول -->
-<table class="table">
-  <thead>
+<table class="table table-striped table-hover text-center" style="margin-top: 20px;">
+  <thead class="thead-dark">
     <tr>
-      <th scope="col">#</th>
+      <th scope="col">Image</th>
       <th scope="col">Recipes Name</th>
-      <th scope="col">preparation Steps</th>
-      <th scope="col">preparation Time</th>
+      <th scope="col">Preparation Steps</th>
+      <th scope="col">Preparation Time</th>
       <th scope="col">Benefits</th>
-      <th scope="col">Images</th>
-
-     
       <th scope="col">Actions</th>
     </tr>
   </thead>
   <tbody>
-    <tr *ngFor="let item of RecipeArray">
-      <th scope="row">{{item.subRecipeId}}</th>
-      <td>{{item.subRecipeName}}</td>
-      <td>{{item.preparationSteps}}</td>
-      <td>{{item.preparationTime}}</td>
-      <td>{{item.benefits}}</td>
+    <tr *ngFor="let item of filteredRecipeArray" style="vertical-align: middle;">
       <td>
         <a class="postcard__img_link">
           <img class="postcard__img"
                [src]="'https://localhost:7072/api/Recipe/getImages/' + item.subRecipeImage"
                [alt]="item.subRecipeImage"
-               style="width: 100px; height: 100px;" /> <!-- تعديل حجم الصورة هنا -->
+               style="width: 120px; height: 120px; border-radius: 8px; object-fit: cover;" />
         </a>
       </td>
+      <td>{{item.subRecipeName}}</td>
+      <td>{{item.preparationSteps}}</td>
+      <td>{{item.preparationTime}}</td>
+      <td>{{item.benefits}}</td>
       <td>
         <!-- زر Edit -->
-        <button class="btn btn-primary" [routerLink]="['/Dashboard/UpdateRecipeAdmin', item.subRecipeId]">Edit</button>
-
+        <button class="btn btn-secondary" style="width: 80px;" [routerLink]="['/Dashboard/UpdateSubRecipeAdmin', item.subRecipeId]">Edit</button>
         <!-- زر Delete -->
-        <button class="btn btn-danger" (click)="deletrecipe(item.subRecipeId)">Delete</button>
+        <button class="btn btn-danger" style="width: 80px;" (click)="deletSSubrecipe(item.subRecipeId)">Delete</button>
       </td>
     </tr>
   </tbody>

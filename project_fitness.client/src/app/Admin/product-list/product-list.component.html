@@ -5,6 +5,7 @@
     <thead>
       <tr>
         <th>Product Name</th>
+        <th>Image</th>
         <th>Price</th>
         <th>Stock Quantity</th>
         <th>Actions</th>
@@ -13,20 +14,18 @@
     <tbody>
       <tr *ngFor="let product of products">
         <td>{{ product.productName }}</td>
+        <td><img src="https://localhost:7072{{product.image}}" style="height:30px; width:40px;" /></td>
         <td>{{ product.price | currency }}</td>
         <td>{{ product.stockQuantity }}</td>
         <td>
-          <!-- Check if product.id is defined before passing it to editProduct -->
-          <button class="btn btn-primary" (click)="product.id ? editProduct(product.id) : null">Edit</button>
-
-          <!-- Check if product.id is defined before passing it to deleteProduct -->
-          <button class="btn btn-danger" (click)="product.id ? deleteProduct(product.id) : null">Delete</button>
+          <button class="btn btn-primary" (click)="editProduct(product.id)">Edit</button>
+          <button class="btn btn-danger" (click)="deleteProduct(product.id)">Delete</button>
         </td>
       </tr>
     </tbody>
   </table>
 
   <div class="text-center">
-    <button class="btn btn-success" routerLink="/addproduct">Add New Product</button>
+    <button class="btn btn-success" routerLink="/Dashboard/addproduct">Add New Product</button>
   </div>
 </div>

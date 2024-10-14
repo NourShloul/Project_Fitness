@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { ProductService } from '../../Admin/update-product/services/product.service'; // Ensure the correct path to your service
+import { ActivatedRoute, Router } from '@angular/router';
+import { ProductService } from '.././update-product/services/product.service'; // Make sure this service exists and has the necessary methods
 
 @Component({
   selector: 'app-update-product',
@@ -10,43 +10,80 @@ import { ProductService } from '../../Admin/update-product/services/product.serv
 })
 export class UpdateProductComponent implements OnInit {
   productForm!: FormGroup;
-  productId!: number;
+  productId!: number; // Store product ID
+  imageFile: File | null = null; // For storing selected image file
 
   constructor(
-    private route: ActivatedRoute,
-    private productService: ProductService,
     private formBuilder: FormBuilder,
+    private productService: ProductService,
+    private route: ActivatedRoute,
     private router: Router
   ) { }
 
   ngOnInit(): void {
-    // Get the product ID from the route
-    this.productId = this.route.snapshot.params['id'];
+    this.productId = +this.route.snapshot.paramMap.get('id')!; // Fetch product ID from URL
+    this.loadProductDetails();
 
-    // Fetch the product data and initialize the form
-    this.productService.getProduct(this.productId).subscribe((data) => {
-      this.productForm = this.formBuilder.group({
-        categoryId: [data.categoryId, Validators.required],
-        productName: [data.productName, Validators.required],
-        description: [data.description, Validators.required],
-        price: [data.price, [Validators.required, Validators.min(0)]],
-        stockQuantity: [data.stockQuantity, Validators.required],
-        image: [data.image, Validators.required],
-        discount: [data.discount, Validators.required]
-      });
+    // Initialize the form with empty values
+    this.productForm = this.formBuilder.group({
+      productName: ['', Validators.required],
+      price: ['', [Validators.required, Validators.min(0)]],
+      description: ['', Validators.required],
+      stockQuantity: ['', Validators.required],
+      discount: ['', Validators.required],
+      image: ['']
     });
   }
 
+  // Load product details from the server
+  loadProductDetails(): void {
+    this.productService.getProduct(this.productId).subscribe(
+      (product) => {
+        this.productForm.patchValue({
+          productName: product.productName,
+          price: product.price,
+          description: product.description,
+          stockQuantity: product.stockQuantity,
+          discount: product.discount,
+          image: product.image
+        });
+      },
+      (error) => {
+        console.error('Error fetching product details:', error);
+      }
+    );
+  }
+
+  // Handle file selection for image upload
+  onFileSelected(event: any): void {
+    const file: File = event.target.files[0];
+    if (file) {
+      this.imageFile = file;
+    }
+  }
+
+  // Submit the form to update the product
   onSubmit(): void {
     if (this.productForm.valid) {
-      // Call updateProduct with the product ID and updated product data
-      this.productService.updateProduct(this.productId, this.productForm.value)
-        .subscribe(() => {
-          console.log('Product updated successfully');
-          this.router.navigate(['/admin/products']); // Navigate back to the product list
-        }, (error) => {
+      const formData = new FormData();
+      formData.append('productName', this.productForm.get('productName')?.value);
+      formData.append('price', this.productForm.get('price')?.value);
+      formData.append('description', this.productForm.get('description')?.value);
+      formData.append('stockQuantity', this.productForm.get('stockQuantity')?.value);
+      formData.append('discount', this.productForm.get('discount')?.value);
+
+      if (this.imageFile) {
+        formData.append('image', this.imageFile);
+      }
+
+      this.productService.updateProduct(this.productId, formData).subscribe(
+        () => {
+          this.router.navigate(['/products']); // Redirect to products list after successful update
+        },
+        (error) => {
           console.error('Error updating product:', error);
-        });
+        }
+      );
     }
   }
 }

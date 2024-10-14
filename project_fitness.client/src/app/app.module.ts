@@ -13,7 +13,6 @@ import { FooterComponent } from './footer/footer.component';
 import { HomePageComponent } from './home-page/home-page.component';
 import { SupRecipeComponent } from './Nutrition/sup-recipe/sup-recipe.component';
 import { SubRecipeDetailsComponent } from './Nutrition/sub-recipe-details/sub-recipe-details.component';
-
 import { CategoryComponent } from './Rahaf/category/category.component';
 import { ProductComponent } from './Rahaf/product/product.component';
 import { ProductDetailsComponent } from './Rahaf/product-details/product-details.component';
@@ -41,7 +40,7 @@ import { ThankyouComponent } from './thankyou/thankyou.component';
 import { AllFitnessclassComponent } from './Admin/all-fitnessclass/all-fitnessclass.component';
 import { UpdategymComponent } from './Admin/updategym/updategym.component';
 import { UpdatefitnessclassComponent } from './Admin/updatefitnessclass/updatefitnessclass.component';
-import { ProductListComponent } from './Admin/product-list/product-list.component';
+import { ProductListComponent } from './Admin/product-list/product-list.component'; // Make sure this path is correct
 import { AddProductComponent } from './Admin/add-product/add-product.component';
 import { UpdateProductComponent } from './Admin/update-product/update-product.component';
 import { AddRecipeAdminComponent } from './Admin/add-recipe-admin/add-recipe-admin.component';
@@ -54,6 +53,14 @@ import { FilterUsersPipe } from './Admin/filter-users.pipe';
 import { SubRecipesAdminComponent } from './Admin/sub-recipes-admin/sub-recipes-admin.component';
 import { ContactUsComponent } from './Admin/contact-us/contact-us.component';
 import { TestimonialAdminComponent } from './Admin/testimonial-admin/testimonial-admin.component';
+import { AddSubrecipeAdminComponent } from './Admin/add-subrecipe-admin/add-subrecipe-admin.component';
+import { UpdateSubRecipesAdminComponent } from './Admin/update-sub-recipes-admin/update-sub-recipes-admin.component';
+import { TipsAdminComponent } from './Admin/tips-admin/tips-admin.component';
+import { AddTipsAdminComponent } from './Admin/add-tips-admin/add-tips-admin.component';
+import { UpdateTipsAdminComponent } from './Admin/update-tips-admin/update-tips-admin.component';
+import { EditPersonalInfoComponent } from './edit-personal-info/edit-personal-info.component';
+import { AdminCategoryComponent } from './Admin/admin-category/admin-category.component';
+import { ManageOrdersComponent } from './Admin/manage-orders/manage-orders.component';
 
 
 @NgModule({
@@ -91,7 +98,7 @@ import { TestimonialAdminComponent } from './Admin/testimonial-admin/testimonial
     UpdategymComponent,
     AllFitnessclassComponent,
     UpdatefitnessclassComponent,
-    ProductListComponent,
+    ProductListComponent, 
     ProfileComponent,
     ThankyouComponent,
     UpdateProductComponent,
@@ -100,11 +107,19 @@ import { TestimonialAdminComponent } from './Admin/testimonial-admin/testimonial
     AddfitnessComponent,
     AlluserComponent,
     FilterUsersPipe,
-
+    AdminCategoryComponent,
     SubRecipesAdminComponent,
     ContactUsComponent,
     TestimonialComponent,
     TestimonialAdminComponent,
+    AddSubrecipeAdminComponent,
+    UpdateSubRecipesAdminComponent,
+      ContactUsComponent,
+      TipsAdminComponent,
+      AddTipsAdminComponent,
+      UpdateTipsAdminComponent,
+      EditPersonalInfoComponent,
+      ManageOrdersComponent,
 
   ],
   imports: [
@@ -146,23 +161,32 @@ import { TestimonialAdminComponent } from './Admin/testimonial-admin/testimonial
           { path: "AllGymAdmin", component: AllGymsComponent },
           { path: "editgym/:id", component: UpdategymComponent },
           { path: "addproduct", component: AddProductComponent },
-          { path: "editproduct/:id", component: UpdateProductComponent },
+          { path: 'editproduct/:id', component: UpdateProductComponent }, 
+
+          { path: "admin-category", component: AdminCategoryComponent},
           { path: "products", component: ProductListComponent },
           { path: "AllFitnessAdmin", component: AllFitnessclassComponent },
           { path: "RecipeAdmin", component: RecipeAdmainComponent },
           { path: "SubRecipeAdmin", component: SubRecipesAdminComponent },
           { path: "AddRecipeAdmin", component: AddRecipeAdminComponent },
+          { path: "AddSubRecipeAdmin", component: AddSubrecipeAdminComponent },
           { path: "UpdateRecipeAdmin/:id", component: UpdateRecipeAdminComponent },
+          { path: "UpdateSubRecipeAdmin/:id", component: UpdateSubRecipesAdminComponent },
+          { path: "TipsAdmin", component: TipsAdminComponent },
           { path: "addgym", component: AddgymComponent },
+          { path: "AddTips", component: AddTipsAdminComponent },
+          { path: "UpdateTipsAdmin/:id", component:UpdateTipsAdminComponent },
           { path: "addfitness", component: AddfitnessComponent },
           { path: "editFitnessclass/:id", component: UpdatefitnessclassComponent },
           { path: "allusers", component: AlluserComponent },
           { path: "ContactAdmin", component: ContactUsComponent },
           { path: "TestimonialAdmin", component: TestimonialAdminComponent },
+          { path: 'manage-orders', component: ManageOrdersComponent },
         ]
       },
-      { path: "Profile", component: ProfileComponent },
+      { path: "profile", component: ProfileComponent },
       { path: "Thankyou", component: ThankyouComponent },
+      { path: "EditPersonalInfo", component: EditPersonalInfoComponent },
       { path: "**", redirectTo: "", pathMatch: "full" }
     ])
   ],
