@@ -45,7 +45,7 @@
 
       
         <div class="action-buttons">
-          <button class="btn btn-primary btn-lg" (click)="addToCart(product.id, product.price, product.productName)" [disabled]="product.stockQuantity === 0">
+          <button class="btn btn-primary btn-lg" (click)="addToCart(product.id, product.price, product.productName, product.image)" [disabled]="product.stockQuantity === 0">
             <i class="fas fa-cart-plus"></i> Add to Cart
           </button>
         </div>

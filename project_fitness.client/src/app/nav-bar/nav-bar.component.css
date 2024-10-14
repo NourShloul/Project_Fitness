@@ -9,12 +9,50 @@
   font-family: 'Arial', sans-serif;
 }
 
+/* Nav Link Icon Styles */
+.nav-link i {
+  font-size: 24px;
+  color: #333;
+  transition: color 0.3s ease, transform 0.3s ease;
+}
+
+  .nav-link i:hover {
+    color: #007bff;
+    transform: scale(1.2);
+  }
+
+.nav-link {
+  position: relative;
+  display: inline-block;
+  margin-right: 20px;
+}
+
+  .nav-link i.fas.fa-shopping-cart::before {
+    content: '\f07a';
+  }
+
+  .nav-link i.fas.fa-shopping-bag::before {
+    content: '\f290';
+  }
+
+  .nav-link i {
+    display: inline-block;
+    padding: 5px;
+    border-radius: 50%;
+    background-color: #f8f9fa;
+  }
+
+  .nav-link:hover i {
+    background-color: #007bff;
+    color: #fff;
+  }
+
 /* Header Section */
 .shop-header {
   text-align: center;
   margin-bottom: 40px;
   padding: 80px 20px;
-  background: linear-gradient(to right, #f907fc, #7b00b6); /* Fitness vibe gradient */
+  background: linear-gradient(to right, #f907fc, #7b00b6);
   color: #fff;
   border-radius: 10px;
 }
@@ -60,13 +98,13 @@
   width: 100%;
   padding: 10px;
   font-size: 1rem;
-  border: 2px solid #f907fc; /* Fitness pink border */
+  border: 2px solid #f907fc;
   border-radius: 5px;
   transition: border-color 0.3s ease;
 }
 
   .filter-input:focus {
-    border-color: #7b00b6; /* Slightly darker when focused */
+    border-color: #7b00b6;
   }
 
 .reset-btn {
@@ -171,4 +209,13 @@
   .filters-title {
     font-size: 1.5rem;
   }
+}
+
+.hamburger span {
+  font-size: 1rem;
+}
+
+.hamburger img {
+  width: 16px;
+  height: 16px;
 }

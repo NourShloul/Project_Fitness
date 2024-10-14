@@ -1,0 +1,43 @@
+<!-- زر Add Recipe Type -->
+<button class="btn btn-success mb-0" [routerLink]="['/Dashboard/AddRecipeAdmin']">Add Recipe Type</button>
+
+<!-- الجدول -->
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Recipes Name</th>
+      <th scope="col">preparation Steps</th>
+      <th scope="col">preparation Time</th>
+      <th scope="col">Benefits</th>
+      <th scope="col">Images</th>
+
+     
+      <th scope="col">Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let item of RecipeArray">
+      <th scope="row">{{item.subRecipeId}}</th>
+      <td>{{item.subRecipeName}}</td>
+      <td>{{item.preparationSteps}}</td>
+      <td>{{item.preparationTime}}</td>
+      <td>{{item.benefits}}</td>
+      <td>
+        <a class="postcard__img_link">
+          <img class="postcard__img"
+               [src]="'https://localhost:7072/api/Recipe/getImages/' + item.subRecipeImage"
+               [alt]="item.subRecipeImage"
+               style="width: 100px; height: 100px;" /> <!-- تعديل حجم الصورة هنا -->
+        </a>
+      </td>
+      <td>
+        <!-- زر Edit -->
+        <button class="btn btn-primary" [routerLink]="['/Dashboard/UpdateRecipeAdmin', item.subRecipeId]">Edit</button>
+
+        <!-- زر Delete -->
+        <button class="btn btn-danger" (click)="deletrecipe(item.subRecipeId)">Delete</button>
+      </td>
+    </tr>
+  </tbody>
+</table>

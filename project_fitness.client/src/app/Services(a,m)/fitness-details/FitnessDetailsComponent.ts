@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { URLService } from '../../url/url.service';
+import { CreatePaymentRequestDto, URLService } from '../../url/url.service';
 import { ActivatedRoute } from '@angular/router';
 
 @Component({
@@ -28,7 +28,7 @@ export class FitnessDetailsComponent {
     )
   }
   addsubscribtion(price: number, months: number) {
-    console.log(`Subscription selected: ${ months } months, total price: ${ price } JD`);
+    console.log(`Subscription selected: ${ months } months, total price: ${ price } JD);`)
   }
 
 }

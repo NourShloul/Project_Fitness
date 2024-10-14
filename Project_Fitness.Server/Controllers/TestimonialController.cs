@@ -93,9 +93,17 @@ namespace Project_Fitness.Server.Controllers
         public IActionResult GetThree()
         {
             var testimonials = _db.Testimonials
-                .OrderByDescending(t => t.CreatedTestimonialAt)
-                .Take(3)
-                .ToList();
+       .Include(t => t.User)  // تضمين العلاقة مع User
+       .OrderByDescending(t => t.CreatedTestimonialAt)
+       .Take(3)
+       .Select(t => new
+       {
+           t.TestimonialId,
+           t.TestimonialMessege,
+           t.CreatedTestimonialAt,
+           UserName = t.User != null ? t.User.UserName : "Unknown"  // إذا كان User موجوداً، يعرض UserName
+       })
+       .ToList();
 
             return Ok(testimonials);
         }
