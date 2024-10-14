@@ -22,18 +22,21 @@
           </li>
 
           <!-- Gyms & Fitness Dropdown -->
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle text-white align-middle px-0" href="#" id="gymDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+          <li class="nav-item">
+            <a class="nav-link dropdown-toggle text-white align-middle px-0" href="#gymMenu" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="gymMenu">
               <i class="fs-4 bi-house"></i>
               <span class="ms-1 d-none d-sm-inline">Gyms & Fitness</span>
             </a>
-            <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="gymDropdown">
-              <li><a routerLink="/Dashboard/addgym" class="dropdown-item">Add Gym</a></li>
-              <li><a routerLink="/Dashboard/AllGymAdmin" class="dropdown-item">All Gyms</a></li>
-              <li><a routerLink="/Dashboard/addfitness" class="dropdown-item">Add Fitness</a></li>
-              <li><a routerLink="/Dashboard/AllFitnessAdmin" class="dropdown-item">All Fitness</a></li>
-            </ul>
+            <div class="collapse" id="gymMenu">
+              <ul class="list-unstyled ps-3">
+                <li><a routerLink="/Dashboard/addgym" class="dropdown-item text-white">Add Gym</a></li>
+                <li><a routerLink="/Dashboard/AllGymAdmin" class="dropdown-item text-white">All Gyms</a></li>
+                <li><a routerLink="/Dashboard/addfitness" class="dropdown-item text-white">Add Fitness</a></li>
+                <li><a routerLink="/Dashboard/AllFitnessAdmin" class="dropdown-item text-white">All Fitness</a></li>
+              </ul>
+            </div>
           </li>
+
 
           <!-- Nutrition Management -->
           <li class="nav-item">
