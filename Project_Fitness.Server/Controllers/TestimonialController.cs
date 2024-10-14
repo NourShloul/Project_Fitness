@@ -53,11 +53,40 @@ namespace Project_Fitness.Server.Controllers
             .Include(c => c.User) 
             .Where(d => d.IsAccept == true) 
             .Select(c => new {
-         Username = c.User.UserName, 
-         userimage=c.User.UserImage,
+                TestimonialId = c.TestimonialId,
+                Username = c.User.UserName,
+                Messege = c.TestimonialMessege,
+                Date = c.CreatedTestimonialAt,
+
+               
+
          TestimonialText = c.TestimonialMessege    
         }).ToList();
             return Ok(testimonials);
+        }
+
+
+        [HttpGet("GetAllNotAcceptedTestimonial")]
+        public IActionResult NotAcceptedTestimonial()
+        {
+            var testimonials = _db.Testimonials
+               .Include(t => t.User)  // تضمين العلاقة مع User
+               .Where(t => t.IsAccept == false)
+               .OrderByDescending(t => t.CreatedTestimonialAt)
+               .Select(t => new
+               {
+                   t.TestimonialId,
+                   t.TestimonialMessege,
+                   CreatedTestimonialAt = t.CreatedTestimonialAt.HasValue
+                       ? t.CreatedTestimonialAt.Value.ToString("yyyy-MM-dd HH:mm")
+                       : "N/A",  // التعامل مع القيمة إذا كانت null
+                   UserName = t.User != null ? t.User.UserName : "Unknown"  // إذا كان User موجوداً، يعرض UserName
+               })
+               .ToList();
+
+            return Ok(testimonials);
+
+
         }
 
 

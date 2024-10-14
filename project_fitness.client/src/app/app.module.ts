@@ -52,6 +52,7 @@ import { AlluserComponent } from './Admin/alluser/alluser.component';
 import { FilterUsersPipe } from './Admin/filter-users.pipe';
 import { SubRecipesAdminComponent } from './Admin/sub-recipes-admin/sub-recipes-admin.component';
 import { ContactUsComponent } from './Admin/contact-us/contact-us.component';
+import { TestimonialAdminComponent } from './Admin/testimonial-admin/testimonial-admin.component';
 import { AddSubrecipeAdminComponent } from './Admin/add-subrecipe-admin/add-subrecipe-admin.component';
 import { UpdateSubRecipesAdminComponent } from './Admin/update-sub-recipes-admin/update-sub-recipes-admin.component';
 import { TipsAdminComponent } from './Admin/tips-admin/tips-admin.component';
@@ -108,6 +109,9 @@ import { ManageOrdersComponent } from './Admin/manage-orders/manage-orders.compo
     FilterUsersPipe,
     AdminCategoryComponent,
     SubRecipesAdminComponent,
+    ContactUsComponent,
+    TestimonialComponent,
+    TestimonialAdminComponent,
     AddSubrecipeAdminComponent,
     UpdateSubRecipesAdminComponent,
       ContactUsComponent,
@@ -157,7 +161,7 @@ import { ManageOrdersComponent } from './Admin/manage-orders/manage-orders.compo
           { path: "AllGymAdmin", component: AllGymsComponent },
           { path: "editgym/:id", component: UpdategymComponent },
           { path: "addproduct", component: AddProductComponent },
-          { path: 'editproduct/:id', component: UpdateProductComponent }, 
+          { path: 'update-product/:id', component: UpdateProductComponent }, 
 
           { path: "admin-category", component: AdminCategoryComponent},
           { path: "products", component: ProductListComponent },
@@ -176,6 +180,7 @@ import { ManageOrdersComponent } from './Admin/manage-orders/manage-orders.compo
           { path: "editFitnessclass/:id", component: UpdatefitnessclassComponent },
           { path: "allusers", component: AlluserComponent },
           { path: "ContactAdmin", component: ContactUsComponent },
+          { path: "TestimonialAdmin", component: TestimonialAdminComponent },
           { path: 'manage-orders', component: ManageOrdersComponent },
         ]
       },

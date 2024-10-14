@@ -1,27 +1,24 @@
-
-
 <table class="table table-striped">
   <thead>
     <tr>
       <th scope="col">User Name</th>
       <th scope="col">User Email</th>
-      <th scope="col">The message</th>
+      <th scope="col">The Message</th>
       <th scope="col">Time Sent</th>
       <th scope="col">Phone Number</th>
-
-      <th scope="col">Actions</th>
+      <th scope="col">Replay</th>
+      <th scope="col">Delete</th>
     </tr>
   </thead>
   <tbody>
     <tr *ngFor="let message of ConactArray">
-      <td>{{message.name}}</td>
-      <td>{{message.email}}</td>
-      <td>{{message.message}}</td>
-      <td>{{message.createdAt}}</td>
-      <td>{{message.phoneNumber}}</td>
-
+      <td>{{ message.name }}</td>
+      <td>{{ message.email }}</td>
+      <td>{{ message.message }}</td>
+      <td>{{ formatDate(message.createdAt) }}</td> <!-- تنسيق التاريخ -->
+      <td>{{ message.phoneNumber }}</td>
       <td>
-        <a class="text-success" href="https://mail.google.com/mail/?view=cm&fs=1&to={{message.email}}" target="_blank"> Click To Replay</a>
+        <button class="btn btn-success" (click)="openMail(message.email)">Click To Reply</button>
       </td>
       <td>
         <button class="btn btn-danger" (click)="deleteContactById(message.id)">Delete</button>
