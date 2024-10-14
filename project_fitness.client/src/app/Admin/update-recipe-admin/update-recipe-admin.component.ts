@@ -8,14 +8,19 @@ import { ActivatedRoute } from '@angular/router';
   styleUrl: './update-recipe-admin.component.css'
 })
 export class UpdateRecipeAdminComponent {
-  ogOnInit() { }
+  ngOnInit() {
+    this.getRecipeDetails(this.param); 
+    
+  }
   param: any
   imageFile: any
+  DetailsArray: any = {}; 
   changeimageevevnt(event: any) {
     this.imageFile = event.target.files[0]
   }
   constructor(private _ser: URLService, private _active: ActivatedRoute) {
     this.param = this._active.snapshot.paramMap.get('id');
+    
   }
 
 
@@ -29,6 +34,12 @@ export class UpdateRecipeAdminComponent {
     this._ser.UpdateRecipe(this.param, form).subscribe((data) => {
       alert("Services Updated Successfully")
     })
+  }
+
+  getRecipeDetails(id: any) {
+    this._ser.getRecipeDetailbyID(id).subscribe((data) => {
+      this.DetailsArray = data;  // وضع البيانات في المتغير ليتم عرضها في الفورم
+    });
   }
 }
 
