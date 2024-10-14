@@ -34,7 +34,7 @@ export class LoginComponent {
       console.log("ssssssssssssss",this._ser['userId'].next(newData.userId))
 
       localStorage.setItem('UserId', newData.userId);
-      this.ProductDetails.addLocalTouser(newData.userEmail);
+      this.ProductDetails.addLocalToUser(newData.userEmail);
 
       if (newData.isAdmin) {
         // عرض رسالة نجاح للمشرف (admin)
