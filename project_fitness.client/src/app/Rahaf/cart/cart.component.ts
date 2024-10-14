@@ -139,7 +139,7 @@ export class CartComponent implements OnInit {
 
 
   PayPalCheck() {
-    debugger;
+
     this.ProductService.paypalCheckout(this.userId).subscribe(
       (data) => {
         const width = 600;
