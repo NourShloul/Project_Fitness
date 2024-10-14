@@ -3,6 +3,7 @@ import { CartService } from '../cart.service';
 import { Router } from '@angular/router';
 import { ProductDetailsService } from '../product-details.service';
 import { URLService } from '../../url/url.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-payment',
@@ -53,13 +54,79 @@ export class PaymentComponent {
     return this.cartItems.reduce((total, item) => total + (item.price * item.quantity), 0);
   }
 
-  userDATA: any
+  userDATA: any = {};  // Change to an object instead of an array
+
   getuser(id: any) {
-    debugger;
-    this.ProductService.getUSER(id).subscribe((data) =>
-      this.userDATA = data
-    )
-    console.log( "user data " + this.userDATA)
+    this.ProductService.getUSER(id).subscribe((data) => {
+      this.userDATA = data;
+      console.log("User data: ", this.userDATA); // Log inside the subscription
+    });
+  }
+
+  selectedPayment: string = '';
+
+  PayPalCheck() {
+    if (this.selectedPayment == "cash") {
+      this.ProductService.cashCheckout(this.userId).subscribe((data) => {
+        Swal.fire({
+          icon: "success",
+          title: "Order Placed Successfully!",
+          showConfirmButton: false,
+          timer: 2000,
+        }).then(() => {
+          this.router.navigate(['/']);  // Navigate to the home route after alert
+        });
+
+      },
+        (error) => {
+          Swal.fire({
+            icon: "warning",
+            title: `${error.error}`,
+            showConfirmButton: false,
+            timer: 2000,
+          });
+        }
+      );
+      
+    } else {
+      this.ProductService.paypalCheckout(this.userId).subscribe(
+        (data) => {
+          const width = 600;
+          const height = 700;
+          const left = (screen.width / 2) - (width / 2);
+          const top = (screen.height / 2) - (height / 2);
+
+          const popupWindow = window.open(
+            data.approvalUrl,
+            'PayPal Payment',
+            `width=${width}, height=${height}, top=${top}, scrollbars=yes, resizable=yes`
+          );
+
+          const checkWindowClosed = setInterval(() => {
+            if (popupWindow && popupWindow.closed) {
+              clearInterval(checkWindowClosed);
+              Swal.fire({
+                icon: "success",
+                title: "Order Placed Successfully!",
+                showConfirmButton: false,
+                timer: 2000,
+              }).then(() => {
+                this.router.navigate(['/']);  // Navigate to the home route after alert
+              });
+            }
+          }, 500);
+        },
+        (error) => {
+          Swal.fire({
+            icon: "warning",
+            title: `${error.error}`,
+            showConfirmButton: false,
+            timer: 2000,
+          });
+        }
+      );
+    }
+    
   }
 
 }

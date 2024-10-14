@@ -28,7 +28,7 @@ namespace Project_Fitness.Server.Controllers
 
         }
 
-        [HttpPost("createOrder")]
+        [HttpGet("createOrder/{id}")]
         public IActionResult createOrder(int id)
         {
 
