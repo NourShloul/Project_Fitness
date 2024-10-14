@@ -145,11 +145,15 @@ export class ProductDetailsService {
 
 
   getUSER(id: any): Observable<any> {
-    return this.http.get<any>(`${this.staticData}Users/${id}`)
+    return this.http.get<any>(`${this.staticData}/Users/${id}`)
   }
 
 
   paypalCheckout(id: any): Observable<any> {
     return this.http.get<any>(`${this.staticData}/paymentTEST/checkout/${id}`)
+  }
+
+  cashCheckout(id: any): Observable<any> {
+    return this.http.get<any>(`${this.staticData}/paymentTEST/createOrder/${id}`)
   }
 }

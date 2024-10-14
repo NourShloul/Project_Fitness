@@ -1,108 +1,111 @@
 	<!-- MAIN SECTIONS START FROM HERE -->
 <main class="main_wrapper">
 
-  <!-- BREADCRUMBS SECTION START FROM HERE -->
-  <div class="default-padding">
-    <div class="breadcrumbs-section">
-      <div class="container">
-        <div class="breadcrumbs-title title text-lg-start text-center pb-3">contact us</div>
-        <div class="breadcrumbs-block mx-lg-0 mx-auto">
-          <a routerLink="" class="item">home</a>
-          <span class="item active">contact us</span>
-        </div>
-      </div>
-    </div>
-  </div>
-  <!-- BREADCRUMBS SECTION END'S FROM HERE -->
-  <!-- CONTACT US SECTION START FROM HERE -->
-  <div class="default-padding">
-    <div class="contact-section form-section wow fadeIn">
-      <div class="container">
-        <div class="contact-wrapper">
-          <div class="row justify-content-lg-start justify-content-center">
-            <div class="col-lg-6 col-sm-10">
-              <div class="fill-up-form">
-                <div class="title text-center">Write Us</div>
+	<!-- BREADCRUMBS SECTION START FROM HERE -->
+	<div class="default-padding">
+		<div class="breadcrumbs-section">
+			<div class="container">
+				<div class="breadcrumbs-title title text-lg-start text-center pb-3">contact us</div>
+				<div class="breadcrumbs-block mx-lg-0 mx-auto">
+					<a routerLink="" class="item">home</a>
+					<span class="item active">contact us</span>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- BREADCRUMBS SECTION END'S FROM HERE -->
+	<!-- CONTACT US SECTION START FROM HERE -->
+	<div class="default-padding">
+		<div class="contact-section form-section wow fadeIn">
+			<div class="container">
+				<div class="contact-wrapper">
+					<div class="row justify-content-lg-start justify-content-center">
+						<div class="col-lg-6 col-sm-10">
+							<div class="fill-up-form">
+								<div class="title text-center">Write Us</div>
 
 
-                <form class="form" #CreateContact="ngForm" (ngSubmit)="AddNewMessage(CreateContact.value)">
+								<form class="form" #CreateContact="ngForm" (ngSubmit)="AddNewMessage(CreateContact.value)">
 									<div class="row">
 
 										<div class="col-12">
 											<div class="form-group">
-												<input type="text" name="name" class="user-input" placeholder="Your Name" required="">
+												<input type="text" name="name" class="user-input" placeholder="Your Name" required="" ngModel>
 											</div>
 										</div>
 
 										<div class="col-12">
 											<div class="form-group">
-												<input type="email" name="email" class="user-input" placeholder="E-MAIL" required="">
+												<input type="email" name="email" class="user-input" placeholder="E-MAIL" required="" ngModel>
 											</div>
 										</div>
 
 										<div class="col-12">
 											<div class="form-group">
-												<input type="text" name="phoneNumber" class="user-input" placeholder="PHONE NO." required="">
+												<input type="text" name="phoneNumber" class="user-input" placeholder="PHONE NO." required="" ngModel>
 											</div>
 										</div>
 
-										
+
 
 										<div class="col-12">
 											<div class="form-group">
-												<textarea type="text" name="message" class="user-input" placeholder="WRITE YOUR CONSERN" rows="6" required=""></textarea>
+												<textarea type="text" name="message" class="user-input" placeholder="WRITE YOUR CONSERN" rows="6" required="" ngModel></textarea>
 											</div>
 										</div>
 
 									</div>
-                  <button type="submit" class="btn_wrapper w-100 justify-content-center">CONTACT US</button>
-                </form>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-  <!-- CONTACT US SECTION END'S FROM HERE -->
-  <!-- CONTACT US SECTION START FROM HERE -->
-  <div class="contact-section details-section default-padding">
-    <div class="container">
-      <div class="contact-dtls default-padding">
-        <div class="row justify-content-center gy-lg-0 gy-4">
-          <div class="col-xl-4 col-lg-6 col-sm-10 wow fadeInLeft">
-            <div class="contact-block text-sm-start text-center">
-              <div class="icon mx-sm-0 mx-auto image-wrapper"><img loading="lazy" src="assets/images/icon/call.svg" alt="call_icon"></div>
-              <span>Call us</span>
-              <div class="d-sm-flex align-items-center justify-content-between mb-2">
-                <p>Business Inquiry :</p>
-                <a href="tel:+1 256 (7852) 551">+1 256 (7852) 551</a>
-              </div>
-              <div class="d-sm-flex align-items-center justify-content-between">
-                <p>Customer Support :</p>
-                <a href="tel:+1 256 (7852) 551">+1 256 (7852) 551</a>
-              </div>
-            </div>
-          </div>
-          <div class="col-xl-4 col-lg-6 col-sm-10 wow fadeInRight">
-            <div class="contact-block text-sm-start text-center emailBlock">
-              <div class="icon mx-sm-0 mx-auto image-wrapper"><img loading="lazy" src="assets/images/icon/mail.svg" alt="mail_icon"></div>
-              <span>E-mail</span>
-              <div class="d-sm-flex align-items-center justify-content-between mb-2">
-                <p>Business Inquiry :</p>
-                <!--<a href="mailto:businessinfogymfit.email">businessinfo@gymfit.email</a>-->
-              </div>
-              <div class="d-sm-flex align-items-center justify-content-between">
-                <p>Customer Support :</p>
-                <!--<a href="mailto:customergymfit.email">customer@gymfit.email</a>-->
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-  <!-- CONTACT US SECTION END'S FROM HERE -->
+									<button type="submit" class="btn_wrapper w-100 justify-content-center">CONTACT US</button>
+								</form>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- CONTACT US SECTION END'S FROM HERE -->
+	<a class="text-success" href="mailto: ">
+		Click to Send Mail
+	</a>
+	<!-- CONTACT US SECTION START FROM HERE -->
+	<div class="contact-section details-section default-padding">
+		<div class="container">
+			<div class="contact-dtls default-padding">
+				<div class="row justify-content-center gy-lg-0 gy-4">
+					<div class="col-xl-4 col-lg-6 col-sm-10 wow fadeInLeft">
+						<div class="contact-block text-sm-start text-center">
+							<div class="icon mx-sm-0 mx-auto image-wrapper"><img loading="lazy" src="assets/images/icon/call.svg" alt="call_icon"></div>
+							<span>Call us</span>
+							<div class="d-sm-flex align-items-center justify-content-between mb-2">
+								<p>Business Inquiry :</p>
+								<a href="tel:+1 256 (7852) 551">+1 256 (7852) 551</a>
+							</div>
+							<div class="d-sm-flex align-items-center justify-content-between">
+								<p>Customer Support :</p>
+								<a href="tel:+1 256 (7852) 551">+1 256 (7852) 551</a>
+							</div>
+						</div>
+					</div>
+					<div class="col-xl-4 col-lg-6 col-sm-10 wow fadeInRight">
+						<div class="contact-block text-sm-start text-center emailBlock">
+							<div class="icon mx-sm-0 mx-auto image-wrapper"><img loading="lazy" src="assets/images/icon/mail.svg" alt="mail_icon"></div>
+							<span>E-mail</span>
+							<div class="d-sm-flex align-items-center justify-content-between mb-2">
+								<p>Business Inquiry :</p>
+								<!--<a href="mailto:businessinfogymfit.email">businessinfo@gymfit.email</a>-->
+							</div>
+							<div class="d-sm-flex align-items-center justify-content-between">
+								<p>Customer Support :</p>
+								<!--<a href="mailto:customergymfit.email">customer@gymfit.email</a>-->
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- CONTACT US SECTION END'S FROM HERE -->
 
 </main>
 <!-- MAIN SECTIONS END'S FROM HERE -->

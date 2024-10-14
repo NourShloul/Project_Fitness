@@ -100,12 +100,12 @@ namespace Project_Fitness.Server.Controllers
             if (recipe == null) return NotFound(); // إذا لم يتم العثور على الوصفة، نرجع NotFound
 
             // تحديث بيانات الوصفة
-            recipe.RecipeName = recipeDTO.RecipeName;
+            recipe.RecipeName = recipeDTO.RecipeName ?? recipe.RecipeName;
 
             // تحديث الصورة فقط إذا تم تحميل صورة جديدة
             if (recipeDTO.RecipeImage != null)
             {
-                recipe.RecipeImage = recipeDTO.RecipeImage.FileName;
+                recipe.RecipeImage = recipeDTO.RecipeImage.FileName ?? recipe.RecipeImage;
             }
 
             _db.Recipes.Update(recipe); // تحديث الوصفة في قاعدة البيانات
@@ -115,33 +115,7 @@ namespace Project_Fitness.Server.Controllers
         }
 
 
-        //[HttpPut("Nutrition/UpdateRecipe/{id}")]
-        //public IActionResult UpdateRecipe([FromForm] RecipeDTO recipeDTO, int id)
-        //{
-        //    var uploadFolder = Path.Combine(Directory.GetCurrentDirectory(), "ImageRecipe");
-
-        //    if (!Directory.Exists(uploadFolder))
-        //    {
-        //        Directory.CreateDirectory(uploadFolder);
-        //    }
-
-        //    var ImageFile = Path.Combine(uploadFolder, recipeDTO.RecipeImage.FileName);
-
-        //    using (var stream = new FileStream(ImageFile, FileMode.Create))
-
-        //    {
-        //        recipeDTO.RecipeImage.CopyToAsync(stream);
-        //    }
-        //    var recipe = _db.Recipes.FirstOrDefault(c => c.RecipeId == id);
-        //    if (recipe == null) return NotFound();
-        //    recipe.RecipeName = recipeDTO.RecipeName;
-        //    recipe.RecipeImage = recipeDTO.RecipeImage.FileName;
-
-        //    _db.Recipes.Update(recipe);
-        //    _db.SaveChanges();
-        //    return Ok(recipe);
-        //}
-
+     
 
         [HttpDelete("Nutritiom/DeleteRecipe/{id}")]
         public IActionResult DeleteRecipe(int id)

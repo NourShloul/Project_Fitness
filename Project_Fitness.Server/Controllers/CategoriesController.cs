@@ -2,9 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using Project_Fitness.Server.DTO;
 using Project_Fitness.Server.Models;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using System.IO;
 
 namespace Project_Fitness.Server.Controllers
 {
@@ -23,129 +21,106 @@ namespace Project_Fitness.Server.Controllers
         [HttpGet]
         public IActionResult GetCategories()
         {
-            var categories = _context.Categories
-                .Select(c => new CategoriesDTO
-                {
-                    Id = c.Id,
-                    CategoryName = c.CategoryName,
-                    Description = c.Description,
-                    Image = c.Image
-                })
-                .ToList();
+            var categories = _context.Categories.ToList();
 
             return Ok(categories);
         }
 
-        // GET: api/Categories/5
-        [HttpGet("{id}")]
-        public IActionResult GetCategory(int id)
-        {
-            var category = _context.Categories
-                .Where(c => c.Id == id)
-                .Select(c => new CategoriesDTO
-                {
-                    Id = c.Id,
-                    CategoryName = c.CategoryName,
-                    Description = c.Description,
-                    Image = c.Image
-                })
-                .FirstOrDefault();
-
-            if (category == null)
-            {
-                return NotFound();
-            }
-
-            return Ok(category);
-        }
-
-        // GET: api/Categories/{categoryId}/products
-        [HttpGet("{categoryId}/products")]
-        public async Task<ActionResult<IEnumerable<Product>>> GetProductsByCategory(int categoryId)
-        {
-            var categoryExists = await _context.Categories.AnyAsync(c => c.Id == categoryId);
-            if (!categoryExists)
-            {
-                return NotFound(new { Message = $"Category with ID {categoryId} not found." });
-            }
-
-            var products = await _context.Products
-                                         .Where(p => p.CategoryId == categoryId)
-                                         .ToListAsync();
-
-            return Ok(products);
-        }
-
-        // GET: api/Categories/ByProduct/5
-        [HttpGet("ByProduct/{productId}")]
-        public IActionResult GetCategoryByProductId(int productId)
-        {
-            var category = _context.Products
-                .Where(p => p.Id == productId)
-                .Include(p => p.Category)
-                .Select(p => new CategoriesDTO
-                {
-                    Id = p.Category.Id,
-                    CategoryName = p.Category.CategoryName,
-                    Description = p.Category.Description,
-                    Image = p.Category.Image
-                })
-                .FirstOrDefault();
-
-            if (category == null)
-            {
-                return NotFound("Category for the given product ID not found.");
-            }
-
-            return Ok(category);
-        }
-
         // POST: api/Categories
         [HttpPost]
-        public IActionResult PostCategory([FromBody] CategoriesDTO categoryDto)
+        public IActionResult PostCategory([FromForm] CategoriesDTO categoryDto)
         {
             if (categoryDto == null)
             {
                 return BadRequest("Invalid category data.");
             }
 
-            var category = new Category
+           
+            if (categoryDto.ImageFile != null && categoryDto.ImageFile.Length > 0)
             {
-                CategoryName = categoryDto.CategoryName,
-                Description = categoryDto.Description,
-                Image = categoryDto.Image
-            };
+                var uploadsFolder = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/images");
 
-            _context.Categories.Add(category);
-            _context.SaveChanges();
+                try
+                {
+                    if (!Directory.Exists(uploadsFolder))
+                    {
+                        Directory.CreateDirectory(uploadsFolder);
+                    }
 
-            return CreatedAtAction(nameof(GetCategory), new { id = category.Id }, category);
+                    var uniqueFileName = Guid.NewGuid().ToString() + "_" + categoryDto.ImageFile.FileName;
+                    var filePath = Path.Combine(uploadsFolder, uniqueFileName);
+
+                    using (var fileStream = new FileStream(filePath, FileMode.Create))
+                    {
+                        categoryDto.ImageFile.CopyTo(fileStream);
+                    }
+
+                    var category = new Category
+                    {
+                        CategoryName = categoryDto.CategoryName,
+                        Description = categoryDto.Description,
+                        Image = $"/images/{uniqueFileName}" 
+                    };
+
+                    _context.Categories.Add(category);
+                    _context.SaveChanges();
+
+                    return CreatedAtAction(nameof(GetCategories), new { id = category.Id }, category);
+                }
+                catch (Exception ex)
+                {
+                    return StatusCode(500, "An error occurred while processing your request.");
+                }
+            }
+            else
+            {
+                return BadRequest("Image file is required.");
+            }
         }
 
-        // PUT: api/Categories/5
-        [HttpPut("{id}")]
-        public IActionResult UpdateCategory(int id, [FromBody] CategoriesDTO categoryDto)
-        {
-            if (categoryDto == null || id != categoryDto.Id)
-            {
-                return BadRequest("Invalid category data.");
-            }
+        //// PUT: api/Categories/5
+        //[HttpPut("{id}")]
+        //public IActionResult UpdateCategory(int id, [FromForm] CategoriesDTO categoryDto)
+        //{
+        //    if (categoryDto == null || id != categoryDto.Id)
+        //    {
+        //        return BadRequest("Invalid category data.");
+        //    }
 
-            var category = _context.Categories.Find(id);
-            if (category == null)
-            {
-                return NotFound();
-            }
+        //    var category = _context.Categories.Find(id);
+        //    if (category == null)
+        //    {
+        //        return NotFound();
+        //    }
 
-            category.CategoryName = categoryDto.CategoryName;
-            category.Description = categoryDto.Description;
-            category.Image = categoryDto.Image;
+        //    category.CategoryName = categoryDto.CategoryName;
+        //    category.Description = categoryDto.Description;
 
-            _context.Entry(category).State = EntityState.Modified;
-            _context.SaveChanges();
+        //    if (categoryDto.ImageFile != null && categoryDto.ImageFile.Length > 0)
+        //    {
+        //        var uploadsFolder = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/images");
 
-            return NoContent();
-        }
+        //        if (!Directory.Exists(uploadsFolder))
+        //        {
+        //            Directory.CreateDirectory(uploadsFolder);
+        //        }
+
+        //        var uniqueFileName = Guid.NewGuid().ToString() + "_" + categoryDto.ImageFile.FileName;
+        //        var filePath = Path.Combine(uploadsFolder, uniqueFileName);
+
+        //        using (var fileStream = new FileStream(filePath, FileMode.Create))
+        //        {
+        //            categoryDto.ImageFile.CopyTo(fileStream);
+        //        }
+
+        //        category.Image = $"/images/{uniqueFileName}";
+        //    }
+
+        //    _context.Entry(category).State = EntityState.Modified;
+        //    _context.SaveChanges();
+
+        //    return NoContent();
+        //}
 
         // DELETE: api/Categories/5
         [HttpDelete("{id}")]
