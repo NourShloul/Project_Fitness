@@ -3,6 +3,7 @@ import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 
+// Define the Category interface
 interface Category {
   id?: number;
   categoryName: string;
@@ -15,48 +16,39 @@ interface Category {
 })
 export class CategoryService {
 
-  private baseUrl = 'https://localhost:7072/api/Categories';  // Adjust the base URL to match your API endpoint
+  private baseUrl = 'https://localhost:7072/api/Categories';  // Replace with your actual API endpoint
 
   constructor(private http: HttpClient) { }
 
   // Get all categories
   getCategories(): Observable<Category[]> {
     return this.http.get<Category[]>(this.baseUrl)
-      .pipe(
-        catchError(this.handleError)
-      );
+      .pipe(catchError(this.handleError));
   }
 
-  // Get category by ID
+  // Get a category by ID
   getCategoryById(id: number): Observable<Category> {
     return this.http.get<Category>(`${this.baseUrl}/${id}`)
-      .pipe(
-        catchError(this.handleError)
-      );
+      .pipe(catchError(this.handleError));
   }
 
-  // Add a new category
-  addCategory(category: Category): Observable<Category> {
-    return this.http.post<Category>(this.baseUrl, category)
-      .pipe(
-        catchError(this.handleError)
-      );
+
+  // Add a new category using FormData for file uploads
+  addCategory(formData: FormData): Observable<Category> {
+    return this.http.post<Category>(this.baseUrl, formData).pipe(catchError(this.handleError));
   }
+
 
   // Update an existing category by ID
   updateCategory(id: number, category: Category): Observable<Category> {
     return this.http.put<Category>(`${this.baseUrl}/${id}`, category)
-      .pipe(
-        catchError(this.handleError)
-      );
+      .pipe(catchError(this.handleError));
   }
 
   // Delete a category by ID
   deleteCategory(id: number): Observable<void> {
     return this.http.delete<void>(`${this.baseUrl}/${id}`)
-      .pipe(
-        catchError(this.handleError)
-      );
+      .pipe(catchError(this.handleError));
   }
 
   // Error handling
@@ -65,3 +57,4 @@ export class CategoryService {
     return throwError('Something went wrong; please try again later.');
   }
 }
+

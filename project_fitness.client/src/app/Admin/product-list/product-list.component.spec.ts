@@ -1,23 +1,41 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { Component, OnInit } from '@angular/core';
+import { ProductService } from '../../Admin/update-product/services/product.service'; // Ensure the correct path to ProductService
+import { Router } from '@angular/router';
 
-import { ProductListComponent } from './product-list.component';
+@Component({
+  selector: 'app-product-list',
+  templateUrl: './product-list.component.html',
+  styleUrls: ['./product-list.component.css']
+})
+export class ProductListComponent implements OnInit {
+  products: any[] = [];
 
-describe('ProductListComponent', () => {
-  let component: ProductListComponent;
-  let fixture: ComponentFixture<ProductListComponent>;
+  constructor(private productService: ProductService, private router: Router) { }
 
-  beforeEach(async () => {
-    await TestBed.configureTestingModule({
-      declarations: [ProductListComponent]
-    })
-    .compileComponents();
+  ngOnInit(): void {
+    this.productService.getProducts().subscribe(
+      (data) => {
+        this.products = data;
+      },
+      (error) => {
+        console.error('Error fetching products:', error);
+      }
+    );
+  }
 
-    fixture = TestBed.createComponent(ProductListComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
-  });
+  editProduct(id: number): void {
+    this.router.navigate([`/editproduct/${id}`]);
+  }
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
-  });
-});
+  deleteProduct(id: number | undefined): void {
+    if (id) {
+      this.productService.deleteProduct(id).subscribe(() => {
+        console.log(`Product with id ${id} deleted`);
+
+        this.products = this.products.filter(product => product.id !== id);
+      }, (error) => {
+        console.error('Error deleting product:', error);
+      });
+    }
+  }
+}
