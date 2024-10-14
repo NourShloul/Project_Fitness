@@ -102,6 +102,12 @@ export class URLService {
     return this.http.get<any>(`${this.staticData}/Subrecipe/Recipe/GetSubrecipeById/${id}`);
   }
 
+  getRecipeDetailbyID(id: any): Observable<any> {
+    return this.http.get<any>(`${this.staticData}/Recipe/Nutrition/GetRecipeById/${id}`);
+  }
+  getTipsDetailbyID(id: any): Observable<any> {
+    return this.http.get<any>(`${this.staticData}/Tips/Nutrition/GetTipsById/${id}`);
+  }
   GetAllGyms(): Observable<any> {
     return this.http.get<any>(`${this.staticData}/Admin/GetAllGym`);
   }
