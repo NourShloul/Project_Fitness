@@ -99,39 +99,102 @@ namespace Project_Fitness.Server.Controllers
             }
         }
 
-        [HttpDelete("{id}")]
-        public IActionResult DeleteProduct(int id)
-        {
-            // Try to find the product by its ID
-            var product = _context.Products.Find(id);
+        //[HttpDelete("{id}")]
+        //public IActionResult DeleteProduct(int id)
+        //{
+        //    // Try to find the product by its ID
+        //    var product = _context.Products.Find(id);
 
-            if (product == null)
+        //    if (product == null)
+        //    {
+        //        // If the product does not exist, return 404 Not Found
+        //        return NotFound(new { Message = "Product not found." });
+        //    }
+
+        //    try
+        //    {
+        //        // Remove the product from the context
+        //        _context.Products.Remove(product);
+
+        //        // Save the changes to the database
+        //        _context.SaveChanges();
+
+        //        // Return a 204 No Content to indicate successful deletion
+        //        return NoContent();
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        // Catch any exceptions and return a 500 Internal Server Error
+        //        return StatusCode(500, new { Message = "Error deleting product", Details = ex.Message });
+        //    }
+        //}
+
+        [HttpDelete("deleteproduct/{id}")]
+        public IActionResult deleteproduct(int id)
+        {
+            var deleteproductd = _context.Products.FirstOrDefault(x => x.Id == id);
+            _context.Products.Remove(deleteproductd);
+            _context.SaveChanges();
+            return Ok();
+
+        }
+
+        [HttpPut("updateproduct/{id}")]
+        public IActionResult UpdateProduct(int id, [FromForm] ProductsDTO productDto)
+        {
+            // Check if the product exists
+            var existingProduct = _context.Products.FirstOrDefault(x => x.Id == id);
+            if (existingProduct == null)
             {
-                // If the product does not exist, return 404 Not Found
-                return NotFound(new { Message = "Product not found." });
+                return NotFound("Product not found.");
             }
 
             try
             {
-                // Remove the product from the context
-                _context.Products.Remove(product);
+                // Update the product's basic fields
+                existingProduct.CategoryId = productDto.CategoryId;
+                existingProduct.ProductName = productDto.ProductName;
+                existingProduct.Description = productDto.Description;
+                existingProduct.Price = productDto.Price;
+                existingProduct.StockQuantity = productDto.StockQuantity;
+                existingProduct.Discount = productDto.Discount;
+
+                // Handle the image upload if a new image is provided
+                if (productDto.Image != null && productDto.Image.Length > 0)
+                {
+                    var uploadsFolder = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/images");
+
+                    if (!Directory.Exists(uploadsFolder))
+                    {
+                        Directory.CreateDirectory(uploadsFolder);
+                    }
+
+                    // Generate a unique file name for the image
+                    var uniqueFileName = Guid.NewGuid().ToString() + "_" + productDto.Image.FileName;
+                    var filePath = Path.Combine(uploadsFolder, uniqueFileName);
+
+                    // Save the image to the server
+                    using (var fileStream = new FileStream(filePath, FileMode.Create))
+                    {
+                        productDto.Image.CopyTo(fileStream);
+                    }
+
+                    // Update the product's image path
+                    existingProduct.Image = $"/images/{uniqueFileName}";
+                }
 
                 // Save the changes to the database
+                _context.Products.Update(existingProduct);
                 _context.SaveChanges();
 
-                // Return a 204 No Content to indicate successful deletion
-                return NoContent();
+                return Ok(existingProduct);  // Return the updated product
             }
             catch (Exception ex)
             {
-                // Catch any exceptions and return a 500 Internal Server Error
-                return StatusCode(500, new { Message = "Error deleting product", Details = ex.Message });
+                // Handle any errors
+                return StatusCode(500, "An error occurred while updating the product.");
             }
         }
 
-        private bool ProductExists(int id)
-        {
-            return _context.Products.Any(e => e.Id == id);
-        }
     }
 }
