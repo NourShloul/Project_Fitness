@@ -12,7 +12,7 @@ import { ProductDetailsService } from '../../Rahaf/product-details.service';
 })
 export class LoginComponent {
 
-
+  goToCart: any = localStorage.getItem("Cart")
   ngOnInit() { }
   constructor(private _ser: URLService, private _router: Router, private ProductDetails: ProductDetailsService) { }
   loginNewUser(data: any) {
@@ -56,7 +56,14 @@ export class LoginComponent {
           text: 'Welcome to the Home Page!',
           confirmButtonText: 'OK'
         }).then(() => {
-          this._router.navigate(['/Home']);
+          if (this.goToCart) {
+            localStorage.removeItem("Cart")
+            this._router.navigate(['/cart']);
+
+          } else {
+            this._router.navigate(['/Home']);
+          }
+          
         });
       }
     }, (error) => {
