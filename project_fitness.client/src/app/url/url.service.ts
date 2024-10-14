@@ -59,17 +59,31 @@ export class URLService {
   getAllRecipes(): Observable<any> {
     return this.http.get<any>(`${this.staticData}/Subrecipe/Recipe/GetAllSubrecipe`);
   }
+
   AddRecipeTaype(data: any): Observable<any> {
     return this.http.post<any>(`${this.staticData}/Recipe/Nutrition/CreateRecipe`, data)
   }
+
+  AddSubRecipe(data: any): Observable<any> {
+    return this.http.post<any>(`${this.staticData}/Subrecipe/Nutrition/CreateSubRecipe`, data)
+  }
   UpdateRecipe(id: any, data: any): Observable<any> {
-    debugger
+   
     return this.http.put(`https://localhost:7072/api/Recipe/Nutrition/UpdateRecipe/${id}`, data)
   }
 
+  UpdateSubRecipe(id: any, data: any): Observable<any> {
+
+    return this.http.put(`https://localhost:7072/api/Subrecipe/Nutrition/UpdatesubRecipe/${id}`, data)
+  }
   deletrecipe(id: any): Observable<any> {
 
     return this.http.delete<any>(`${this.staticData}/Recipe/Nutritiom/DeleteRecipe/${id}`)
+  }
+
+  deletSubrecipe(id: any): Observable<any> {
+
+    return this.http.delete<any>(`${this.staticData}/Subrecipe/Recipe/DeleteSubrecipe/${id}`)
   }
   getSubRecipeDetails(id: any): Observable<any> {
     return this.http.get<any>(`${this.staticData}/Subrecipe/Recipe/GetSubrecipeById/${id}`);

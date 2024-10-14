@@ -50,6 +50,8 @@ import { UpdateRecipeAdminComponent } from './Admin/update-recipe-admin/update-r
 import { AddgymComponent } from './Admin/addgym/addgym.component';
 import { AddfitnessComponent } from './Admin/addfitness/addfitness.component';
 import { SubRecipesAdminComponent } from './Admin/sub-recipes-admin/sub-recipes-admin.component';
+import { AddSubrecipeAdminComponent } from './Admin/add-subrecipe-admin/add-subrecipe-admin.component';
+import { UpdateSubRecipesAdminComponent } from './Admin/update-sub-recipes-admin/update-sub-recipes-admin.component';
 
 @NgModule({
   declarations: [
@@ -94,6 +96,8 @@ import { SubRecipesAdminComponent } from './Admin/sub-recipes-admin/sub-recipes-
     AddgymComponent,
     AddfitnessComponent,
     SubRecipesAdminComponent,
+    AddSubrecipeAdminComponent,
+    UpdateSubRecipesAdminComponent,
 
   ],
   imports: [
@@ -141,7 +145,9 @@ import { SubRecipesAdminComponent } from './Admin/sub-recipes-admin/sub-recipes-
           { path: "RecipeAdmin", component: RecipeAdmainComponent },
           { path: "SubRecipeAdmin", component: SubRecipesAdminComponent },
           { path: "AddRecipeAdmin", component: AddRecipeAdminComponent },
+          { path: "AddSubRecipeAdmin", component: AddSubrecipeAdminComponent },
           { path: "UpdateRecipeAdmin/:id", component: UpdateRecipeAdminComponent },
+          { path: "UpdateSubRecipeAdmin/:id", component:UpdateSubRecipesAdminComponent },
           { path: "addgym", component: AddgymComponent },
           { path: "addfitness", component: AddfitnessComponent },
           { path: "editFitnessclass/:id", component: UpdatefitnessclassComponent },

@@ -23,8 +23,8 @@ export class SubRecipesAdminComponent {
     })
   }
 
-  deletrecipe(id: any) {
-    this._ser.deletrecipe(id).subscribe(() => {
+  deletSSubrecipe(id: any) {
+    this._ser.deletSubrecipe(id).subscribe(() => {
       alert("Sub-Recipe deleted successfully")
       this.GetAllSubRecipe();
     })
