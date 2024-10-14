@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { CartService } from '../cart.service';
 import { ProductDetailsService } from '../product-details.service';
 import { URLService } from '../../url/url.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-cart',
@@ -22,14 +23,11 @@ export class CartComponent implements OnInit {
     this.URLService.emailaddressUser.subscribe(email => {
       this.logedINuser = email;
       this.test = email;
-      
-      console.log('Email from another service:', this.logedINuser);
-      console.log('this is the test output', this.test);
+
     });
 
     this.URLService.UserIdmm.subscribe(user => {
       this.userId = user
-      console.log('user ID from Cart:', this.userId);
     });
 
     if (this.userId != null) {
@@ -37,7 +35,7 @@ export class CartComponent implements OnInit {
     }
 
     // Fetch cart items when the component is initialized
-    
+
     this.getCartItemsLocal()
   }
 
@@ -83,13 +81,13 @@ export class CartComponent implements OnInit {
     } else {
       this.router.navigate(['/payment']);
     }
-     // Navigate to the payment route
+    // Navigate to the payment route
   }
 
 
 
 
-  test555 : any
+  test555: any
   incrimentQ(productId: any, id: any) {
     if (this.test == "") {
       this.ProductService.increaseQ(productId);
@@ -136,6 +134,45 @@ export class CartComponent implements OnInit {
       //  this.router.navigate(['/cart']);
       this.getCartItemsUser()
     }
-    
+
+  }
+
+
+  PayPalCheck() {
+
+    this.ProductService.paypalCheckout(this.userId).subscribe(
+      (data) => {
+        const width = 600;
+        const height = 700;
+        const left = (screen.width / 2) - (width / 2);
+        const top = (screen.height / 2) - (height / 2);
+
+        const popupWindow = window.open(
+          data.approvalUrl,
+          'PayPal Payment',
+          `width=${width}, height=${height}, top=${top}, scrollbars=yes, resizable=yes`
+        );
+
+        const checkWindowClosed = setInterval(() => {
+          if (popupWindow && popupWindow.closed) {
+            clearInterval(checkWindowClosed);
+            Swal.fire({
+              icon: "success",
+              title: "Subscribed Successfully!",
+              showConfirmButton: false,
+              timer: 2000,
+            });
+          }
+        }, 500);
+      },
+      (error) => {
+        Swal.fire({
+          icon: "warning",
+          title: `${error.error}`,
+          showConfirmButton: false,
+          timer: 2000,
+        });
+      }
+    );
   }
 }

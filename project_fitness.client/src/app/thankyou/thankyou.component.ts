@@ -17,7 +17,6 @@ export class ThankyouComponent implements OnInit {
   amount: any;
   gymid: any;
   ngOnInit(): void {
-    
     this.URLService.UserIdmm.subscribe(user => {
       this.userId = user
       console.log('user ID from Cart:', this.userId);

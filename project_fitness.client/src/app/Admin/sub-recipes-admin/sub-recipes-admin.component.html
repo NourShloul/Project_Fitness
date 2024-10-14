@@ -1,5 +1,5 @@
 <!-- زر Add Recipe Type -->
-<button class="btn btn-success mb-0" [routerLink]="['/Dashboard/AddRecipeAdmin']">Add Recipe Type</button>
+<button class="btn btn-success mb-0" [routerLink]="['/Dashboard/AddSubRecipeAdmin']">Add SubRecipe </button>
 
 <!-- الجدول -->
 <table class="table">
@@ -33,10 +33,10 @@
       </td>
       <td>
         <!-- زر Edit -->
-        <button class="btn btn-primary" [routerLink]="['/Dashboard/UpdateRecipeAdmin', item.subRecipeId]">Edit</button>
+        <button class="btn btn-primary" [routerLink]="['/Dashboard/UpdateSubRecipeAdmin', item.subRecipeId]">Edit</button>
 
         <!-- زر Delete -->
-        <button class="btn btn-danger" (click)="deletrecipe(item.subRecipeId)">Delete</button>
+        <button class="btn btn-danger" (click)="deletSSubrecipe(item.subRecipeId)">Delete</button>
       </td>
     </tr>
   </tbody>

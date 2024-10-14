@@ -52,6 +52,9 @@ import { AddfitnessComponent } from './Admin/addfitness/addfitness.component';
 import { AlluserComponent } from './Admin/alluser/alluser.component';
 import { FilterUsersPipe } from './Admin/filter-users.pipe';
 import { SubRecipesAdminComponent } from './Admin/sub-recipes-admin/sub-recipes-admin.component';
+import { ContactUsComponent } from './Admin/contact-us/contact-us.component';
+import { AddSubrecipeAdminComponent } from './Admin/add-subrecipe-admin/add-subrecipe-admin.component';
+import { UpdateSubRecipesAdminComponent } from './Admin/update-sub-recipes-admin/update-sub-recipes-admin.component';
 
 
 @NgModule({
@@ -100,6 +103,9 @@ import { SubRecipesAdminComponent } from './Admin/sub-recipes-admin/sub-recipes-
     FilterUsersPipe,
 
     SubRecipesAdminComponent,
+    AddSubrecipeAdminComponent,
+    UpdateSubRecipesAdminComponent,
+      ContactUsComponent,
 
   ],
   imports: [
@@ -147,11 +153,14 @@ import { SubRecipesAdminComponent } from './Admin/sub-recipes-admin/sub-recipes-
           { path: "RecipeAdmin", component: RecipeAdmainComponent },
           { path: "SubRecipeAdmin", component: SubRecipesAdminComponent },
           { path: "AddRecipeAdmin", component: AddRecipeAdminComponent },
+          { path: "AddSubRecipeAdmin", component: AddSubrecipeAdminComponent },
           { path: "UpdateRecipeAdmin/:id", component: UpdateRecipeAdminComponent },
+          { path: "UpdateSubRecipeAdmin/:id", component:UpdateSubRecipesAdminComponent },
           { path: "addgym", component: AddgymComponent },
           { path: "addfitness", component: AddfitnessComponent },
           { path: "editFitnessclass/:id", component: UpdatefitnessclassComponent },
           { path: "allusers", component: AlluserComponent },
+          { path: "ContactAdmin", component: ContactUsComponent },
         ]
       },
       { path: "Profile", component: ProfileComponent },
