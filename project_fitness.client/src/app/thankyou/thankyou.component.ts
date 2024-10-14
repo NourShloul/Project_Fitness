@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { URLService, ExecutePaymentRequestDto } from '../url/url.service';
 import { Router } from '@angular/router';
 
+
 @Component({
   selector: 'app-thankyou',
   templateUrl: './thankyou.component.html',
@@ -10,44 +11,62 @@ import { Router } from '@angular/router';
 
 export class ThankyouComponent implements OnInit {
 
-  constructor(private _ser: URLService, private router: Router) { }
-
+  constructor(private _ser: URLService, private router: Router, private URLService: URLService) { }
+  userId: any;
+  month: any;
+  amount: any;
+  gymid: any;
   ngOnInit(): void {
+    
+    this.URLService.UserIdmm.subscribe(user => {
+      this.userId = user
+      console.log('user ID from Cart:', this.userId);
+    });
+    this.URLService.month.subscribe(month => {
+      this.month = month
+      console.log('sub month = ',this.month)
+    })
+    this.URLService.totalforsub.subscribe(totall => {
+      this.amount = totall;
+      console.log('the amount', this.amount);
+    })
+    this.URLService.GymID.subscribe(sub => {
+      this.gymid = sub;
+      console.log('gym id ', this.gymid);
+    })
     this.executePayment();
   }
 
   executePayment(): void {
+    debugger
     const urlParams = new URLSearchParams(window.location.search);
     const paymentId = urlParams.get('paymentId');
     const payerId = urlParams.get('PayerID');
 
-    // Check if paymentId and PayerID are present in the URL
+   
     if (paymentId && payerId) {
       const executePaymentRequest: ExecutePaymentRequestDto = {
         PaymentId: paymentId,
         PayerId: payerId,
-        UserId: 1,  // Replace with actual user ID
-        GymId: 1,   // Replace with actual Gym ID if necessary
-        FitnessClassId: null,  // Update with actual FitnessClassId if necessary
+        UserId: 1,
+        GymId: Number(localStorage.getItem('GymId')),   
+        FitnessClassId: null,  
         StartDate: new Date(),
-        EndDate: new Date(new Date().setMonth(new Date().getMonth() + 3)),  // Example: 3-month subscription
-        Total: 50  // Replace with the actual total price
+        EndDate: new Date(new Date().setMonth(new Date().getMonth() + Number(localStorage.getItem('moth')))),  
+        Total: Number(localStorage.getItem('price')) 
       };
 
-      // Call the API to execute the payment
+      
       this._ser.executePayment(executePaymentRequest).subscribe(
         (response: any) => {
           console.log('Payment executed successfully:', response);
-          // You can redirect to a success page or show a success message
         },
         (error: any) => {
           console.error('Error executing payment:', error);
-          // Optionally, handle the error and display an error message
         }
       );
     } else {
       console.error('No paymentId or PayerID found in the URL.');
-      // Optionally, redirect to an error page or display an error message
     }
   }
 }
