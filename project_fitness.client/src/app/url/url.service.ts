@@ -142,6 +142,11 @@ export class URLService {
   
   }
 
+  GetTopPrice(): Observable<any> {
+    return this.http.get<any>(`${this.staticData}/ContactUs/TopSales`);
+
+  }
+
   GetAllTestimonialToAccept(): Observable<any> {
     return this.http.get<any>(`${this.staticData}/Testimonial/GetAllNotAcceptedTestimonial`);
 
