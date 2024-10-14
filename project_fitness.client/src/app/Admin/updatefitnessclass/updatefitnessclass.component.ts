@@ -12,7 +12,7 @@ export class UpdatefitnessclassComponent {
   param: any
   ngOnInit() {
     this.param = this._active.snapshot.paramMap.get('id');
-
+    this.getDetails(this.param);
   }
 
   imageFile: any
@@ -35,6 +35,16 @@ export class UpdatefitnessclassComponent {
     debugger
     this._ser.PUTfitnessclass(this.param, form).subscribe((data) => { alert("Fitness updated successfully") })
 
+  }
+
+  Details: any
+  getDetails(id: any) {
+    debugger
+    this._ser.getClassDetails(id).subscribe((data: any) => {
+      this.Details = data;
+      console.log(this.Details, 'details')
+    }
+    )
   }
 
 }
