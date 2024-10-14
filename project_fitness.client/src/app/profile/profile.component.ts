@@ -1,44 +1,38 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { URLService } from '../url/url.service';
 
 @Component({
   selector: 'app-profile',
   templateUrl: './profile.component.html',
-  styleUrl: './profile.component.css'
+  styleUrls: ['./profile.component.css']
 })
-export class ProfileComponent {
-  userId = 1;
-  ngOnInit() {
-    
-    this._ser.UserIdmm.subscribe((data) => {
-      this.userId = Number(data);
-      console.log("batoolas", this.userId)
+export class ProfileComponent implements OnInit {
+  UserArray: any; // تأكد من استخدام النوع المناسب
 
-      this.GetAllOrder(this.userId);
-      this.GetOrderUserID(this.userId);
-    })
+  constructor(private userService: URLService) { }
+  userId: any;
 
-   
-    
+  ngOnInit(): void {
+    this.userService.UserIdmm.subscribe(user => {
+      this.userId = user,
+        console.log(this.userId);
+    });
+    this.loadUserData();
   }
-  constructor(private _ser:
-    URLService) { }
 
-  UserArray: any
-  GetAllOrder(id: number) {
-    this._ser.GetUserID(id).subscribe((data) => {
+  loadUserData() {
+    
+    this.userService.GetUserID(this.userId).subscribe(data => {
       this.UserArray = data;
-      console.log(this.UserArray);
-    });
-  }
-  OrderArray: any
-  GetOrderUserID(id: number) {
-    this._ser.GetUserID(id).subscribe((data) => {
-      this.OrderArray = data;
-      console.log(this.OrderArray);
+      console.log(this.UserArray)
+      this.UserArray.orderItems = this.flattenOrderItems(data.orders);
     });
   }
 
-
-  
+  private flattenOrderItems(orders: any[]): any[] {
+    
+    return orders.reduce((acc, order) => {
+      return acc.concat(order.orderItems);
+    }, []);
+  }
 }

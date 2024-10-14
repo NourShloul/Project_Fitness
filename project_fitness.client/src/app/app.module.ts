@@ -52,6 +52,12 @@ import { AlluserComponent } from './Admin/alluser/alluser.component';
 import { FilterUsersPipe } from './Admin/filter-users.pipe';
 import { SubRecipesAdminComponent } from './Admin/sub-recipes-admin/sub-recipes-admin.component';
 import { ContactUsComponent } from './Admin/contact-us/contact-us.component';
+import { AddSubrecipeAdminComponent } from './Admin/add-subrecipe-admin/add-subrecipe-admin.component';
+import { UpdateSubRecipesAdminComponent } from './Admin/update-sub-recipes-admin/update-sub-recipes-admin.component';
+import { TipsAdminComponent } from './Admin/tips-admin/tips-admin.component';
+import { AddTipsAdminComponent } from './Admin/add-tips-admin/add-tips-admin.component';
+import { UpdateTipsAdminComponent } from './Admin/update-tips-admin/update-tips-admin.component';
+import { EditPersonalInfoComponent } from './edit-personal-info/edit-personal-info.component';
 import { AdminCategoryComponent } from './Admin/admin-category/admin-category.component';
 import { ManageOrdersComponent } from './Admin/manage-orders/manage-orders.component';
 
@@ -102,7 +108,13 @@ import { ManageOrdersComponent } from './Admin/manage-orders/manage-orders.compo
     FilterUsersPipe,
     AdminCategoryComponent,
     SubRecipesAdminComponent,
+    AddSubrecipeAdminComponent,
+    UpdateSubRecipesAdminComponent,
       ContactUsComponent,
+      TipsAdminComponent,
+      AddTipsAdminComponent,
+      UpdateTipsAdminComponent,
+      EditPersonalInfoComponent,
       ManageOrdersComponent,
 
   ],
@@ -153,8 +165,13 @@ import { ManageOrdersComponent } from './Admin/manage-orders/manage-orders.compo
           { path: "RecipeAdmin", component: RecipeAdmainComponent },
           { path: "SubRecipeAdmin", component: SubRecipesAdminComponent },
           { path: "AddRecipeAdmin", component: AddRecipeAdminComponent },
+          { path: "AddSubRecipeAdmin", component: AddSubrecipeAdminComponent },
           { path: "UpdateRecipeAdmin/:id", component: UpdateRecipeAdminComponent },
+          { path: "UpdateSubRecipeAdmin/:id", component: UpdateSubRecipesAdminComponent },
+          { path: "TipsAdmin", component: TipsAdminComponent },
           { path: "addgym", component: AddgymComponent },
+          { path: "AddTips", component: AddTipsAdminComponent },
+          { path: "UpdateTipsAdmin/:id", component:UpdateTipsAdminComponent },
           { path: "addfitness", component: AddfitnessComponent },
           { path: "editFitnessclass/:id", component: UpdatefitnessclassComponent },
           { path: "allusers", component: AlluserComponent },
@@ -162,8 +179,9 @@ import { ManageOrdersComponent } from './Admin/manage-orders/manage-orders.compo
           { path: 'manage-orders', component: ManageOrdersComponent },
         ]
       },
-      { path: "Profile", component: ProfileComponent },
+      { path: "profile", component: ProfileComponent },
       { path: "Thankyou", component: ThankyouComponent },
+      { path: "EditPersonalInfo", component: EditPersonalInfoComponent },
       { path: "**", redirectTo: "", pathMatch: "full" }
     ])
   ],
