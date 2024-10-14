@@ -32,6 +32,7 @@ export class NavBarComponent {
   logout() {
     this.logedINuser = "";
     this.userId = null;
+    localStorage.removeItem("UserId");
     this.router.navigate(['/'])
   }
 
