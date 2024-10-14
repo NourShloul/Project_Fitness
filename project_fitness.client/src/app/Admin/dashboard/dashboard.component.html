@@ -1,125 +1,117 @@
-<div class="container-fluid">
+<div class="container-fluid" style="border-radius:20px">
   <div class="row flex-nowrap">
-    <div class="col-auto col-md-3 col-xl-2 px-sm-2 px-0 bg-dark">
+    <div class="col-auto col-md-3 col-xl-2 px-sm-2 px-0 bg-secondary" style="border-radius:10px; padding-top:20px ">
       <div class="d-flex flex-column align-items-center align-items-sm-start px-3 pt-2 text-white min-vh-100">
         <a href="/" class="d-flex align-items-center pb-3 mb-md-0 me-md-auto text-white text-decoration-none">
-          <span class="fs-5 d-none d-sm-inline">Menu</span>
+          <img src="assets/images/logo.svg" alt="">
         </a>
         <ul class="nav nav-pills flex-column mb-sm-auto mb-0 align-items-center align-items-sm-start" id="menu">
+          <!-- Add Service -->
           <li class="nav-item">
-            <a href="/dashboard/AddService" class="nav-link align-middle px-0">
-              <i class="fs-4 bi-house"></i> <span class="ms-1 d-none d-sm-inline">Add Service</span>
-            </a>
-          </li>  <li class="nav-item">
-            <a routerLink="/Dashboard/addgym" class="nav-link align-middle px-0">
-              <i class="fs-4 bi-house"></i> <span class="ms-1 d-none d-sm-inline">Add gym</span>
+            <a routerLink="/dashboard/AddService" class="nav-link text-white align-middle px-0">
+              <i class="fs-4 bi-house"></i>
+              <span class="ms-1 d-none d-sm-inline">Add Service</span>
             </a>
           </li>
+          <!-- All Users -->
           <li class="nav-item">
-            <a routerLink="/Dashboard/AllGymAdmin" class="nav-link align-middle px-0">
-              <i class="fs-4 bi-house"></i> <span class="ms-1 d-none d-sm-inline">All Services</span>
+            <a routerLink="/Dashboard/allusers" class="nav-link text-white align-middle px-0">
+              <i class="fs-4 bi-house"></i>
+              <span class="ms-1 d-none d-sm-inline">All Users</span>
             </a>
           </li>
 
-
-          <li>
-            <a href="#submenu1" data-bs-toggle="collapse" class="nav-link px-0 align-middle">
-              <i class="fs-4 bi-speedometer2"></i> <span class="ms-1 d-none d-sm-inline">Nutrition Managment</span>
+          <!-- Gyms & Fitness Dropdown -->
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle text-white align-middle px-0" href="#" id="gymDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              <i class="fs-4 bi-house"></i>
+              <span class="ms-1 d-none d-sm-inline">Gyms & Fitness</span>
             </a>
-            <ul class="collapse show nav flex-column ms-1" id="submenu1" data-bs-parent="#menu">
-              <li class="w-100">
-                <a [routerLink]="['/Dashboard/RecipeAdmin']" class="nav-link px-0">
-                  <span class="d-none d-sm-inline">Recipe</span>
-                </a>
-              </li>
-              <li>
-                <a [routerLink]="['/Dashboard/SubRecipeAdmin']" class="nav-link px-0">
-                  <span class="d-none d-sm-inline">Subrecipes</span>
-                </a>
-              </li>
-              <li>
-                <a [routerLink]="['/tips']" class="nav-link px-0">
-                  <span class="d-none d-sm-inline">Tips</span>
-                </a>
-              </li>
+            <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="gymDropdown">
+              <li><a routerLink="/Dashboard/addgym" class="dropdown-item">Add Gym</a></li>
+              <li><a routerLink="/Dashboard/AllGymAdmin" class="dropdown-item">All Gyms</a></li>
+              <li><a routerLink="/Dashboard/addfitness" class="dropdown-item">Add Fitness</a></li>
+              <li><a routerLink="/Dashboard/AllFitnessAdmin" class="dropdown-item">All Fitness</a></li>
             </ul>
+          </li>
 
-          </li>
-          <li>
-            <a href="#" class="nav-link px-0 align-middle">
-              <i class="fs-4 bi-table"></i> <span class="ms-1 d-none d-sm-inline">Orders</span>
+          <!-- Nutrition Management -->
+          <li class="nav-item">
+            <a href="#submenu1" data-bs-toggle="collapse" class="nav-link text-white px-0 align-middle">
+              <i class="fs-4 bi-speedometer2"></i>
+              <span class="ms-1 d-none d-sm-inline">Nutrition Management</span>
             </a>
-          </li>
-          <li>
-            <a href="#submenu2" data-bs-toggle="collapse" class="nav-link px-0 align-middle ">
-              <i class="fs-4 bi-bootstrap"></i> <span class="ms-1 d-none d-sm-inline">Bootstrap</span>
-            </a>
-            <ul class="collapse nav flex-column ms-1" id="submenu2" data-bs-parent="#menu">
+            <ul class="collapse nav flex-column ms-1" id="submenu1" data-bs-parent="#menu">
               <li class="w-100">
-                <a href="#" class="nav-link px-0"> <span class="d-none d-sm-inline">Item</span> 1</a>
+                <a routerLink="/Dashboard/RecipeAdmin" class="nav-link text-white px-0">Recipe</a>
               </li>
               <li>
-                <a href="#" class="nav-link px-0"> <span class="d-none d-sm-inline">Item</span> 2</a>
+                <a routerLink="/Dashboard/SubRecipeAdmin" class="nav-link text-white px-0">Subrecipes</a>
+              </li>
+              <li>
+                <a routerLink="/tips" class="nav-link text-white px-0">Tips</a>
               </li>
             </ul>
           </li>
-          <li>
-            <a href="#submenu3" data-bs-toggle="collapse" class="nav-link px-0 align-middle">
+
+          <!-- Orders -->
+          <li class="nav-item">
+            <a href="#" class="nav-link text-white px-0 align-middle">
+              <i class="fs-4 bi-table"></i>
+              <span class="ms-1 d-none d-sm-inline">Orders</span>
+            </a>
+          </li>
+
+          <!-- Products & Categories -->
+          <li class="nav-item">
+            <a href="#submenu3" data-bs-toggle="collapse" class="nav-link text-white px-0 align-middle">
               <i class="fs-4 bi-grid"></i>
               <span class="ms-1 d-none d-sm-inline">Products & Categories</span>
             </a>
             <ul class="collapse nav flex-column ms-1" id="submenu3" data-bs-parent="#menu">
               <li class="w-100">
-                <!-- Link to the product list -->
-                <a [routerLink]="['/products']" class="nav-link px-0">
-                  <span class="d-none d-sm-inline">All Products</span>
-                </a>
+                <a routerLink="/products" class="nav-link text-white px-0">All Products</a>
               </li>
               <li>
-                <!-- Link to the add product page -->
-                <a [routerLink]="['/addproduct']" class="nav-link px-0">
-                  <span class="d-none d-sm-inline">Add New Product</span>
-                </a>
+                <a routerLink="/addproduct" class="nav-link text-white px-0">Add New Product</a>
               </li>
               <li>
-                <!-- Link to edit product with id 1 -->
-                <a [routerLink]="['/editproduct']" class="nav-link px-0">
-                  <span class="d-none d-sm-inline">Edit Product </span>
-                </a>
+                <a routerLink="/editproduct" class="nav-link text-white px-0">Edit Product</a>
               </li>
               <li>
-                <!-- Link to edit product with id 1 -->
-                <a [routerLink]="['/admin-category']" class="nav-link px-0">
-                  <span class="d-none d-sm-inline">Categories</span>
-                </a>
+                <a routerLink="/admin-category" class="nav-link text-white px-0">Categories</a>
               </li>
             </ul>
           </li>
 
-          <li>
-            <a href="#" class="nav-link px-0 align-middle">
-              <i class="fs-4 bi-people"></i> <span class="ms-1 d-none d-sm-inline">Customers</span>
+          <!-- Customers -->
+          <li class="nav-item">
+            <a href="#" class="nav-link text-white px-0 align-middle">
+              <i class="fs-4 bi-people"></i>
+              <span class="ms-1 d-none d-sm-inline">Customers</span>
             </a>
           </li>
         </ul>
         <hr>
-        <div class="dropdown pb-4">
+
+        <!-- User Dropdown -->
+        <!--<div class="dropdown pb-4">
           <a href="#" class="d-flex align-items-center text-white text-decoration-none dropdown-toggle" id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
-            <img src="https://github.com/mdo.png" alt="hugenerd" width="30" height="30" class="rounded-circle">
-            <span class="d-none d-sm-inline mx-1">loser</span>
+            <img src="https://github.com/mdo.png" alt="User Image" width="30" height="30" class="rounded-circle">
+            <span class="d-none d-sm-inline mx-1">User Name</span>
           </a>
           <ul class="dropdown-menu dropdown-menu-dark text-small shadow">
             <li><a class="dropdown-item" href="#">New project...</a></li>
             <li><a class="dropdown-item" href="#">Settings</a></li>
             <li><a class="dropdown-item" href="#">Profile</a></li>
-            <li>
-              <hr class="dropdown-divider">
-            </li>
+            <li><hr class="dropdown-divider"></li>
             <li><a class="dropdown-item" href="#">Sign out</a></li>
           </ul>
-        </div>
+        </div>-->
       </div>
     </div>
+
+    <!-- Main Content -->
     <div class="col py-3">
       <router-outlet></router-outlet>
     </div>
