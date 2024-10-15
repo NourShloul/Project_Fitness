@@ -32,7 +32,7 @@ export class AddProductComponent implements OnInit {
 
   // Handle file selection
   onFileSelected(event: any): void {
-    debugger;
+    
     const file = event.target.files[0];
     if (file) {
       this.selectedFile = file;
@@ -40,7 +40,7 @@ export class AddProductComponent implements OnInit {
   }
 
   onSubmit(): void {
-    debugger;
+    
     if (this.productForm.valid) {
       const formData = new FormData();
       formData.append('categoryId', this.productForm.get('categoryId')?.value);

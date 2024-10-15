@@ -122,7 +122,7 @@ export class URLService {
     return this.http.get<any>(`${this.staticData}/Admin/GetGymById/${id}`)
   }
   getClassDetails(id: any): Observable<any>{
-    debugger
+    
     return this.http.get<any>(`${this.staticData}/Admin/GetClassById/${id}`)
   }
   GetAllTips(): Observable<any> {
@@ -177,7 +177,7 @@ export class URLService {
 
   }
   PUTgym(id: any, data: any): Observable<any> {
-    debugger
+    
     return this.http.put<any>(`${this.staticData}/Admin/UpdateGymById/${id}`, data)
   }
   deletgym(id: any): Observable<any> {

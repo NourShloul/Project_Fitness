@@ -30,15 +30,17 @@
             <a routerLink="/">Home</a>
           </li>
           <li class="dropdown">
-            <a routerLink="/" class="dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+            <a href="#servicesMenu" class="dropdown-toggle" data-bs-toggle="collapse" aria-expanded="false">
               Our Services
             </a>
-            <ul class="dropdown-menu">
+            <ul id="servicesMenu" class="collapse list-unstyled">
+              <hr />
               <li><a class="dropdown-item" routerLink="/shop">Shop</a></li>
               <li><a class="dropdown-item" routerLink="/NutritionPageOne">Nutrition</a></li>
               <li><a class="dropdown-item" routerLink="/services">Gym & class</a></li>
             </ul>
           </li>
+
           <li>
             <a routerLink="/About">About us</a>
           </li>
@@ -49,7 +51,7 @@
             <a routerLink="/Login">Login</a>
           </li>
           <li *ngIf="userId">
-            <a (click)="logout()" >Logout</a>
+            <a (click)="logout()">Logout</a>
           </li>
         </ul>
       </div>
