@@ -19,7 +19,7 @@
         <td>{{ product.stockQuantity }}</td>
         <td>
          
-          <button class="btn btn-primary" (click)="editProduct(product.id)" [disabled]="!product.id">Edit</button>
+          <button class="btn btn-primary"  (click)="editProduct(product.id)" [disabled]="!product.id">Edit</button>
           <button class="btn btn-danger" (click)="deleteProduct(product.id)" [disabled]="!product.id">Delete</button>
         </td>
 
@@ -28,6 +28,6 @@
   </table>
 
   <div class="text-center">
-    <button class="btn btn-success" routerLink="/Dashboard/addproduct">Add New Product</button>
+    <button class="btn btn-success" style="background-color: #e955fc;" routerLink="/Dashboard/addproduct">Add New Product</button>
   </div>
 </div>

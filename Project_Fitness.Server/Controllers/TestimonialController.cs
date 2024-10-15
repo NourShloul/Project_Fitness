@@ -50,20 +50,21 @@ namespace Project_Fitness.Server.Controllers
         public IActionResult GetAllAcceptedTestimonial()
         {
             var testimonials = _db.Testimonials
-            .Include(c => c.User) 
-            .Where(d => d.IsAccept == true) 
+            .Include(c => c.User)
+            .Where(d => d.IsAccept == true)
             .Select(c => new {
                 TestimonialId = c.TestimonialId,
                 Username = c.User.UserName,
                 Messege = c.TestimonialMessege,
-                Date = c.CreatedTestimonialAt,
+                Date = c.CreatedTestimonialAt.HasValue
+                    ? c.CreatedTestimonialAt.Value.ToString("MM/dd/yyyy, HH:mm")
+                    : "N/A", // في حالة كان التاريخ فارغًا (null)
+                TestimonialText = c.TestimonialMessege
+            }).ToList();
 
-               
-
-         TestimonialText = c.TestimonialMessege    
-        }).ToList();
             return Ok(testimonials);
         }
+
 
 
         [HttpGet("GetAllNotAcceptedTestimonial")]

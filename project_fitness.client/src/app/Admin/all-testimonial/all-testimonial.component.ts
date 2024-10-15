@@ -2,34 +2,33 @@ import { Component } from '@angular/core';
 import { URLService } from '../../url/url.service';
 
 @Component({
-  selector: 'app-dashboard',
-  templateUrl: './dashboard.component.html',
-  styleUrl: './dashboard.component.css'
+  selector: 'app-all-testimonial',
+  templateUrl: './all-testimonial.component.html',
+  styleUrl: './all-testimonial.component.css'
 })
-export class DashboardComponent {
+export class AllTestimonialComponent {
 
   ngOnInit() {
-    this.GetAllTestimonial();
+    this.gettheTestimonial();
   }
 
 
-  constructor(private _ser: URLService) {
+  constructor(private _ser: URLService) { 
 
   }
 
   TestimonialArray: any
-  GetAllTestimonial() {
-    this._ser.GetAllTestimonialToAccept().subscribe((data) => {
+  gettheTestimonial() {
+    this._ser.GetTestimonial().subscribe((data) => {
       this.TestimonialArray = data
       console.log(this.TestimonialArray, "this.TestimonialArray")
     })
   }
 
-
   deleteContactById(id: any) {
     this._ser.deleteTestimonial(id).subscribe(() => {
       alert("This  message deleted successfully");
-      this.GetAllTestimonial();
+      this.gettheTestimonial();
     });
   }
 

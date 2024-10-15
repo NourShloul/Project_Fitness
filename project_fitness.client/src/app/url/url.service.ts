@@ -47,6 +47,9 @@ export class URLService {
   GetOrderUserID(id: any): Observable<any> {
     return this.http.get<any>(`${this.staticData}/Profile/Profile/GetOrdersByUserId/${id}`);
   }
+  addTestimonial(id: number, testimonial: string): Observable<any> {
+    return this.http.post(`${this.staticData}/Testimonial/AddTestimonial/${id}`, { theTestimonial: testimonial });
+  }
   /////////////// end profile ///////////
   GetTypeOfRecipe(): Observable<any> {
     return this.http.get<any>(`${this.staticData}/Recipe/Nutrition/GetAllRescipe`);
@@ -142,6 +145,11 @@ export class URLService {
   
   }
 
+  GetTopPrice(): Observable<any> {
+    return this.http.get<any>(`${this.staticData}/ContactUs/TopSales`);
+
+  }
+
   GetAllTestimonialToAccept(): Observable<any> {
     return this.http.get<any>(`${this.staticData}/Testimonial/GetAllNotAcceptedTestimonial`);
 
@@ -210,6 +218,7 @@ export class URLService {
   updateUserProfile(userId: number, formData: FormData): Observable<any> {
     return this.http.post(`${this.staticData}/Profile/UpdateUserInfo/${userId}`, formData);
   }
+
 }
 export interface CreatePaymentRequestDto {
   redirectUrl: string;
