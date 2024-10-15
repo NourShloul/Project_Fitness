@@ -2,7 +2,7 @@
 {
     public class PersonalInfoDTO
     {
-        public string UserName { get; set; } = null!;
+        public string? UserName { get; set; } 
 
         public IFormFile? UserImage { get; set; }
 

@@ -1,21 +1,21 @@
 <section style="background-color: #eee;">
   <div class="container py-5">
+    <h1 style="font-family: 'Arial', sans-serif; font-size: 36px; font-weight: bold; color: #e955fc; text-align: center; margin-bottom: 30px; letter-spacing: 1px;">User Profile</h1>
     <div class="row">
       <div class="col-lg-4 mb-4">
         <!-- Profile Card -->
-        <div class="card">
+        <div class="card mb-4" style="border: 1px solid #ccc; border-radius: 10px; background-color: gainsboro;">
           <div class="card-body text-center">
             <img src="https://localhost:7072{{UserArray.userImage}}" alt="avatar" class="rounded-circle img-fluid" style="width: 150px;">
             <h5 class="my-3">{{UserArray.username}}</h5>
             <div class="d-flex justify-content-center mb-2">
-              <a type="button" class="btn btn-primary" routerLink="/EditPersonalInfo" >Edit Profile</a>
-              <button type="button" class="btn btn-outline-primary ms-1">Reset Password</button>
+              <a type="button" class="btn" style="background-color: #e955fc; color: aliceblue;" routerLink="/EditPersonalInfo">Edit Profile</a>
             </div>
           </div>
         </div>
 
         <!-- Orders Table -->
-        <div class="card mt-4">
+        <!--<div class="card mb-4">
           <div class="card-body p-0">
             <h5 class="text-center py-2">Orders</h5>
             <table class="table table-bordered mb-0">
@@ -35,12 +35,12 @@
               </tbody>
             </table>
           </div>
-        </div>
+        </div>-->
       </div>
 
       <div class="col-lg-8">
         <!-- User Information Card -->
-        <div class="card mb-4">
+        <div class="card mb-4" style="border: 1px solid #ccc; border-radius: 10px; background-color: gainsboro;">
           <div class="card-body">
             <div class="row">
               <div class="col-sm-3">
@@ -83,8 +83,8 @@
         <!-- Orders and Subscriptions Tables -->
         <div class="row">
           <!-- Orders Table -->
-          <div class="col-md-6">
-            <div class="card mb-4">
+          <div class="col-md-12 mb-4">
+            <div class="card" style="border: 1px solid #ccc; border-radius: 10px; background-color: gainsboro;">
               <div class="card-body">
                 <h5 class="mb-3">Orders</h5>
                 <table class="table table-bordered">
@@ -108,8 +108,8 @@
           </div>
 
           <!-- Subscriptions Table -->
-          <div class="col-md-6">
-            <div class="card mb-4">
+          <div class="col-md-12 mb-4">
+            <div class="card" style="border: 1px solid #ccc; border-radius: 10px; background-color: gainsboro;">
               <div class="card-body">
                 <h5 class="mb-3">Subscriptions</h5>
                 <!-- Add table-responsive wrapper for responsiveness -->
@@ -140,8 +140,19 @@
               </div>
             </div>
           </div>
-
         </div> <!-- End of Row -->
+        <div class="col-md-12 mb-4">
+          <div class="card" style="border: 1px solid #ccc; border-radius: 10px; background-color: gainsboro;">
+            <div class="card-body">
+              <h5 class="mb-3">Share My Experience</h5>
+              <div class="form-group">
+                <textarea [(ngModel)]="testimonial" placeholder="Write your testimonial here..." rows="5" class="form-control mb-3" style="background-color: #f8f9fa; border: 1px solid #ccc; border-radius: 5px;"></textarea>
+              </div>
+              <button class="btn" style="background-color: #e955fc; color: aliceblue;" (click)="submitTestimonial()">Submit</button>
+            </div>
+          </div>
+        </div>
+
       </div>
     </div>
   </div>

@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { ProductService } from '../../Admin/update-product/services/product.service';
 import { Router } from '@angular/router';
+import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-add-product',
@@ -9,38 +11,54 @@ import { Router } from '@angular/router';
   styleUrls: ['./add-product.component.css']
 })
 export class AddProductComponent implements OnInit {
-  productForm!: FormGroup;
+  productForm!: FormGroup; 
   selectedFile: File | null = null;
+  categories: any[] = [];
 
   constructor(
     private formBuilder: FormBuilder,
     private productService: ProductService,
-    private router: Router
+    private router: Router,
+    private http: HttpClient 
   ) { }
 
+ 
+  getCategories(): void {
+    this.productService.getCategories().subscribe(
+      (data: any[]) => {
+        this.categories = data;
+      },
+      (error) => {
+        console.error('Error fetching categories:', error);
+      }
+    );
+  }
+
   ngOnInit(): void {
+  
     this.productForm = this.formBuilder.group({
       categoryId: ['', Validators.required],
       productName: ['', Validators.required],
       description: ['', Validators.required],
       price: ['', [Validators.required, Validators.min(0)]],
       stockQuantity: ['', Validators.required],
-      image: ['', Validators.required],
-      discount: ['', Validators.required],
+      image: ['', Validators.required], 
+      discount: ['', Validators.required], 
     });
+
+    this.getCategories();
   }
 
-  // Handle file selection
+
   onFileSelected(event: any): void {
-    debugger;
     const file = event.target.files[0];
     if (file) {
-      this.selectedFile = file;
+      this.selectedFile = file; 
     }
   }
 
+  
   onSubmit(): void {
-    debugger;
     if (this.productForm.valid) {
       const formData = new FormData();
       formData.append('categoryId', this.productForm.get('categoryId')?.value);
@@ -51,7 +69,7 @@ export class AddProductComponent implements OnInit {
       formData.append('discount', this.productForm.get('discount')?.value);
 
       if (this.selectedFile) {
-        formData.append('image', this.selectedFile); 
+        formData.append('image', this.selectedFile);
       }
 
       this.productService.addProduct(formData).subscribe(
