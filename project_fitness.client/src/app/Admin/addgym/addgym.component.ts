@@ -14,12 +14,12 @@ export class AddgymComponent {
 
   image: any
   changeImage(event: any) {
-    debugger
+    
     this.image = event.target.files[0];
   }
 
   addnewGym(data: any) {
-    debugger
+    
     var form = new FormData();
 
     for (let key in data) {
