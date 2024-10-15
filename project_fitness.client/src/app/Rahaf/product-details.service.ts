@@ -29,7 +29,7 @@ export class ProductDetailsService {
   };
 
   addToCart(data: any) {
-
+    
 
     this.URLService.userEmail.subscribe(email => {
       this.logedINuser = email;
@@ -61,6 +61,7 @@ export class ProductDetailsService {
 
     };
   }
+
 
   addcartItemToDatabase(data: any): Observable<any> {
     return this.http.post<any>(`${this.staticData}/CartItems/addcartitem`, data);
