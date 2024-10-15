@@ -1,237 +1,187 @@
-.shop-page {
-  padding: 20px;
-}
-
-.shop-header {
-  margin-bottom: 20px;
-}
-
-.category-list {
-  list-style: none;
-  padding-left: 0;
-}
-
-.category-list li {
-  margin-bottom: 10px;
-}
-
-.category-list li a {
-  color: #4a47a3;
-  font-weight: bold;
-  text-decoration: none;
-  transition: color 0.3s ease;
-}
-
-.category-list li a:hover {
-  color: #6a63ff;
-  text-decoration: underline;
-}
-
-.price-range-slider {
-  margin-top: 20px;
-}
-
-.range-input {
-  width: 100%;
-  margin-top: 10px;
-}
-.shop-page {
-  padding: 20px;
-}
-
-.shop-header {
-  margin-bottom: 20px;
-}
-
-.category-list {
-  list-style: none;
-  padding-left: 0;
-}
-
-  .category-list li {
-    margin-bottom: 10px;
-  }
-
-    .category-list li a {
-      color: #4a47a3;
-      font-weight: bold;
-      text-decoration: none;
-      transition: color 0.3s ease;
-    }
-
-      .category-list li a:hover {
-        color: #6a63ff;
-        text-decoration: underline;
-      }
-
-.price-range-slider {
-  margin-top: 20px;
-}
-
-.range-input {
-  width: 100%;
-  margin-top: 10px;
-}
-
-.product-card {
-  background-color: white;
-  border-radius: 5px;
-  padding: 15px;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-}
-
-.product-image {
-  max-height: 200px;
-  object-fit: cover;
-}
-
-.product-name {
-  font-weight: bold;
-  margin-bottom: 10px;
-}
-
-.product-actions {
-  margin-top: 15px;
-}
-
-.btn-reset {
-  background-color: #6b63ff;
-  color: white;
-}
-
-.product-card {
-  background-color: white;
-  border-radius: 5px;
-  padding: 15px;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-}
-
-.product-image {
-  max-height: 200px;
-  object-fit: cover;
-}
-
-.product-name {
-  font-weight: bold;
-  margin-bottom: 10px;
-}
-
-.product-actions {
-  margin-top: 15px;
-}
-
-.btn-reset {
-  background-color: #6b63ff;
-  color: white;
-}
-
-/* General card styling */
-.product-card {
-  background-color: #fff;
-  border-radius: 12px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-  transition: transform 0.3s, box-shadow 0.3s;
-  margin-bottom: 30px;
-  padding: 15px;
-}
-
-  .product-card:hover {
-    transform: scale(1.05);
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
-  }
-
-.product-image {
-  border-radius: 12px;
-  width: 100%;
-  object-fit: cover;
-}
-
-.product-name {
-  font-size: 1.2rem;
-  font-weight: bold;
-  margin-top: 15px;
+/* Global Styles */
+body {
+  background-color: #f0f0f5;
   color: #333;
 }
 
-.price {
-  font-size: 1.1rem;
-  color: #000;
+/* Shop Header */
+.shop-header {
+  background-color: #fce4ec; /* Light pink */
+  border-radius: 10px;
+  margin-bottom: 20px;
+  padding: 40px 20px;
 }
 
-.card-body {
-  padding: 20px 0;
+.shop-title {
+  color: #ad1457; /* Deep pink/purple */
+  font-size: 2.5rem;
+  font-weight: bold;
 }
 
- .btn[_ngcontent-ng-c1289249718] {
-  width: 45%;
-  font-size: 9px;
-}
-.btn_wrapper {
-  display: flex;
-  align-items: center;
-  flex: 0 0 auto;
-  width: max-content;
-  background: linear-gradient(180deg, rgb(5, 246, 249) -80%, rgb(249, 7, 252) 100%);
-  background-size: 100% 100%;
-  font-family: "Zen Dots", sans-serif;
-  font-style: normal;
-  font-weight: 400;
-  color: #fff;
-  font-size: 12px; /* Reduced font size */
-  line-height: 1;
-  text-transform: uppercase;
-  text-align: center;
-  padding: 5px 10px; /* Reduced padding */
-  border-radius: 8px; /* Slightly smaller border radius */
-  box-shadow: 0 3px 15px 0 rgba(109, 141, 173, 0.55); /* Reduced shadow size */
-  position: relative;
-  transition: all 0.3s ease;
-  cursor: pointer;
-  margin: 5px;
+.shop-subtitle {
+  color: #6a1b9a; /* Purple */
+  font-size: 1.2rem;
 }
 
-  .btn_wrapper:hover {
-    box-shadow: 0 5px 20px 0 rgba(109, 141, 173, 0.75); /* Reduced hover shadow */
-    transform: translateY(-2px);
-  }
-
-.btn-secondary {
-  background-color: #6c757d;
-  border-color: #6c757d;
-  transition: background-color 0.3s, border-color 0.3s;
+/* Filter Section */
+#filterbar {
+  background-color: #f3e5f5; /* Very light purple */
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
-  .btn-secondary:hover {
-    background-color: #ff23da;
-    border-color: #ff23da;
-  }
-
-/* Spacing for buttons */
-.product-actions {
-  display: flex;
-  justify-content: space-between;
-  gap: 10px;
-}
-
-.range-input {
-  width: 100%;
+.filter-heading {
+  color: #8e24aa; /* Dark purple */
+  font-size: 1.2rem;
+  font-weight: bold;
   margin-bottom: 10px;
 }
 
-/* Responsive design adjustments */
-@media (max-width: 768px) {
-  .product-actions .btn {
-    width: 100%;
-    margin-bottom: 10px;
-  }
-
-  .product-actions {
-    flex-direction: column;
-  }
+.category-list li {
+  list-style: none;
+  margin-bottom: 8px;
 }
 
+.category-link {
+  color: #ad1457; /* Deep pink */
+  text-decoration: none;
+  font-weight: bold;
+  transition: color 0.3s;
+}
+
+  .category-link:hover {
+    color: #8e24aa; /* Dark purple on hover */
+  }
+
+/* Range Inputs */
+.range-input {
+  width: 100%;
+  margin: 10px 0;
+}
+
+/* Reset Filters Button */
+.btn-reset {
+  background-color: #d81b60; /* Bright pink */
+  color: white;
+  border-radius: 25px;
+  transition: background-color 0.3s;
+}
+
+  .btn-reset:hover {
+    background-color: #ad1457; /* Darker pink on hover */
+  }
+
+/* Products Section */
+#products {
+  padding-left: 20px;
+}
+
+/* Product Cards (Original Design) */
+.product-card {
+  background-color: white;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  padding: 20px;
+  margin-bottom: 30px;
+  transition: box-shadow 0.3s ease;
+}
+
+  .product-card:hover {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  }
+
+.card-img img {
+  border-radius: 5px;
+  max-height: 200px;
+}
+
+.product-name {
+  color: #333;
+  font-size: 1.1rem;
+  font-weight: bold;
+}
 
 .price {
+  color: #ad1457; /* Deep pink */
   font-size: 1.2rem;
-  color: #4a47a3;
 }
+
+/* Adjusted Button Styles */
+.product-actions {
+  display: flex;
+  justify-content: space-between; /* Ensure the buttons are side by side */
+}
+
+/* Shop Header */
+.shop-header {
+  background: linear-gradient(135deg, #f48fb1, #ce93d8); /* Gradient Pink to Purple */
+  border-radius: 15px;
+  margin-bottom: 20px;
+  padding: 60px 20px;
+  position: relative;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+  overflow: hidden;
+}
+
+  .shop-header::before {
+    content: '';
+    position: absolute;
+    top: -50px;
+    left: -50px;
+    width: 200px;
+    height: 200px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 50%;
+    z-index: 0;
+  }
+
+  .shop-header::after {
+    content: '';
+    position: absolute;
+    bottom: -50px;
+    right: -50px;
+    width: 200px;
+    height: 200px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 50%;
+    z-index: 0;
+  }
+
+.shop-title {
+  position: relative;
+  color: black; /* Changed to black */
+  font-size: 3rem; /* Bigger font size */
+  font-weight: bold;
+  z-index: 1;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  margin-bottom: 20px;
+  text-shadow: 2px 4px 5px rgba(0, 0, 0, 0.1); /* Subtle text shadow */
+}
+
+.shop-subtitle {
+  position: relative;
+  color: #ffffff; /* White text for contrast */
+  font-size: 1.5rem;
+  z-index: 1;
+  margin-bottom: 0;
+}
+  .product-actions .btn_wrapper {
+    background-color: #e91e63; /* Pink */
+    color: white;
+    border-radius: 15px; /* Smaller border radius */
+    font-size: 0.8rem; /* Smaller font size */
+    padding: 5px 15px; /* Reduced padding for smaller button size */
+    flex: 1; /* Flex to make buttons equal in size */
+    margin: 0 5px; /* Small margin between buttons */
+    transition: background-color 0.3s;
+  }
+
+    .product-actions .btn_wrapper:hover {
+      background-color: #ab47bc; /* Purple */
+    }
+
+    .product-actions .btn_wrapper:not(:first-child) {
+      margin-left: 5px;
+    }
