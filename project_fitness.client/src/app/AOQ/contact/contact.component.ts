@@ -10,7 +10,7 @@ import { Router } from '@angular/router';
 export class ContactComponent {
   ngOnInit() {
   }
-
+  mail: string = 'https://mail.google.com/mail/?view=cm&fs=1&to=ahmad.alqadomi02@gmail.com';
   constructor(private _ser: URLService) {
 
   }
@@ -25,15 +25,11 @@ export class ContactComponent {
       alert("The Message Send Successfully")
     },
       (error) => {
-        // هنا يتم عرض رسالة خطأ مخصصة
         if (error.status === 400) {
-          // عندما يكون الخطأ من نوع Bad Request (مثلاً خطأ في البيانات المدخلة)
           alert("There was an error in the data you submitted. Please check your inputs.");
         } else if (error.status === 500) {
-          // عندما يكون الخطأ من نوع Internal Server Error
           alert("An internal server error occurred. Please try again later.");
         } else {
-          // لأي أخطاء أخرى
           alert("An unexpected error occurred: " + error.message);
         }
       }
