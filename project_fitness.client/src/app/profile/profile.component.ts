@@ -21,9 +21,7 @@ export class ProfileComponent implements OnInit {
   }
 
   loadUserData() {
-    
     this.userService.GetUserID(this.userId).subscribe(data => {
-      debugger
       this.UserArray = data;
       console.log(this.UserArray)
       this.UserArray.orderItems = this.flattenOrderItems(data.orders);
@@ -42,6 +40,7 @@ export class ProfileComponent implements OnInit {
   testimonial: string = '';
   submitTestimonial() {
     if (this.testimonial) {
+      this.userService.addTestimonial(this.userId, this.testimonial).subscribe();
       console.log('Testimonial submitted:', this.testimonial);
       this.testimonial = '';
     } else {
