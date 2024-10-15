@@ -132,7 +132,6 @@ export class CartComponent implements OnInit {
 
 
   remove(productId: any, id: any) {
-    debugger;
     if (this.test == "") {
       this.ProductService.deleteItem(productId);
     } else {

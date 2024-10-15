@@ -52,36 +52,27 @@ export class ProductDetailsComponent implements OnInit {
     );
   }
 
-  // Add product to cart and show Swal alert
-  addToCart(productId: any, price: any, productName: any, productImage: any): void {
-    // Update cartItem object with product details
-    this.cartItemObj.productId = productId;
+  addToCart(productID: any, price: any, productName: any, productImage: any): void {
+    this.cartItemObj.productId = productID;
     this.cartItemObj.price = price;
     this.cartItemObj.product.productName = productName;
     this.cartItemObj.product.image = productImage;
+    this._ser.addToCart({ ...this.cartItemObj });
 
-    // Call the service to add the product to the cart
-    this._ser.addToCart({ ...this.cartItemObj }).subscribe(
-      () => {
-        // Success alert with navigation options
-        Swal.fire({
-          title: 'Success!',
-          text: 'Item added to cart successfully! Go to the cart to complete your order.',
-          icon: 'success',
-          confirmButtonText: 'Go to Cart',
-          cancelButtonText: 'Continue Shopping',
-          showCancelButton: true
-        }).then((result) => {
-          if (result.isConfirmed) {
-            this.router.navigate(['/cart']); // Navigate to cart on confirmation
-          } else if (result.isDismissed) {
-            console.log('Continue shopping...');
-          }
-        });
-      },
-      (error) => {
-        console.error('Error adding to cart:', error);
+
+    Swal.fire({
+      title: 'Success!',
+      text: 'Item added to cart successfully! Go to the cart to make an order.',
+      icon: 'success',
+      confirmButtonText: 'Go to Cart',
+      cancelButtonText: 'Continue Shopping',
+      showCancelButton: true
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.router.navigate(['/cart']);
+      } else if (result.isDismissed) {
+        console.log('Continuing shopping...');
       }
-    );
+    });
   }
 }
