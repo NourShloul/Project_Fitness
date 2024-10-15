@@ -64,7 +64,7 @@ namespace Project_Fitness.Server.Controllers
                 _db.SaveChanges();
 
             }
-            newOrder.TotalAmount = totalPrice;
+            newOrder.TotalAmount = totalPrice + 5;
             _db.Orders.Update(newOrder);
             _db.SaveChanges();
 
@@ -143,7 +143,7 @@ namespace Project_Fitness.Server.Controllers
                 }
 
                 // Finalize the total amount
-                newOrder.TotalAmount = totalPrice;
+                newOrder.TotalAmount = totalPrice + 5 ;
                 _db.Orders.Update(newOrder);
                 _db.SaveChanges();  // Ensure changes are saved after all modifications
 
