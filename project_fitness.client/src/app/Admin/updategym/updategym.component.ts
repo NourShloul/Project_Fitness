@@ -26,7 +26,7 @@ export class UpdategymComponent {
   }
 
   updateServices(data: any) {
-    debugger;
+    
 
     var form = new FormData();
     for (let key in data) {
@@ -35,7 +35,7 @@ export class UpdategymComponent {
 
     form.append("gymImage", this.imageFile);
 
-    debugger;
+    
     this._ser.PUTgym(this.param, form).subscribe(() => {
       // عرض رسالة نجاح باستخدام SweetAlert2
       Swal.fire({

@@ -32,7 +32,7 @@
       <td>{{item.tipsDescription}}</td>
       <td>
         <!-- زر Edit -->
-        <button class="btn btn-secondary" style="width: 80px;" [routerLink]="['/Dashboard/UpdateTipsAdmin', item.tipsId]">Edit</button>
+        <button class="btn btn-secondary me-2" style="width: 80px;" [routerLink]="['/Dashboard/UpdateTipsAdmin', item.tipsId]">Edit</button>
         <!-- زر Delete -->
         <button class="btn btn-danger" style="width: 80px;" (click)="delettips(item.tipsId)">Delete</button>
       </td>
