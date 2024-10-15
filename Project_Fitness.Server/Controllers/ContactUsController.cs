@@ -111,7 +111,7 @@ namespace Project_Fitness.Server.Controllers
         {
             var topProductsByPrice = _context.Products
                 .OrderByDescending(p => p.Price) // ترتيب المنتجات بناءً على السعر
-                .Take(3) // أخذ أعلى 3 منتجات
+                .Take(4) // أخذ أعلى 3 منتجات
                 .Select(p => new
                 {
                     ProductId = p.Id,
