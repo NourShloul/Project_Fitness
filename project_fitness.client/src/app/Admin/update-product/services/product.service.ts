@@ -40,7 +40,6 @@ export class ProductService {
       .pipe(catchError(this.handleError));
   }
 
-  // Fetch all products
   getProducts(): Observable<Product[]> {
     return this.http.get<Product[]>(`${this.baseUrl}/Products`)
       .pipe(catchError(this.handleError));
@@ -49,12 +48,14 @@ export class ProductService {
   deleteProduct(id: number): Observable<void> {
     return this.http.delete<void>(`${this.baseUrl}/Products/${id}`)
       .pipe(
-        catchError(this.handleError) // Handle errors
+        catchError(this.handleError) 
       );
   }
+  getCategories(): Observable<any[]> {
+    const categoryUrl = 'https://localhost:7072/api/Categories'; 
+    return this.http.get<any[]>(categoryUrl);
+  }
 
-
-  // Error handler
   private handleError(error: HttpErrorResponse): Observable<never> {
     console.error('An error occurred:', error.message);
     return throwError('Something went wrong; please try again later.');

@@ -26,7 +26,7 @@ export class UpdatefitnessclassComponent {
   }
 
   updateFitness(data: any) {
-    debugger;
+   
 
     var form = new FormData();
 
@@ -35,7 +35,7 @@ export class UpdatefitnessclassComponent {
     }
 
     form.append("fitnessClassesImage", this.imageFile);
-    debugger;
+    
 
     this._ser.PUTfitnessclass(this.param, form).subscribe(() => {
       // عرض رسالة نجاح باستخدام SweetAlert2
@@ -58,7 +58,7 @@ export class UpdatefitnessclassComponent {
   }
 
   getDetails(id: any) {
-    debugger;
+   
     this._ser.getClassDetails(id).subscribe((data: any) => {
       this.Details = data;
       console.log(this.Details, 'details');
