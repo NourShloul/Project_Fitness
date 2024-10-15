@@ -40,7 +40,7 @@ export class GymDetailsComponent implements OnInit {
   }
 
   addsubscribtion(price: number, months: number, gymId: number):  void {
-    debugger
+    
     if (this.userId == null || this.userId == 0 || this.userId == undefined) {
 
       Swal.fire({
@@ -72,7 +72,7 @@ export class GymDetailsComponent implements OnInit {
 
     this._ser.createPayment(request).subscribe(
       (response: any) => {
-        debugger
+        
         if (response && response.approvalUrl) {
           console.log(response.approvalUrl)
           window.location.href = response.approvalUrl;  
