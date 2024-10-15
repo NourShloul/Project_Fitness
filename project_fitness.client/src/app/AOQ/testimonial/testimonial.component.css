@@ -37,10 +37,11 @@ body {
   margin-top: 80px;
 }
 
-  .container .col-lg-4 {
-    display: flex;
-    justify-content: center;
-  }
+/* تحسين المسافة بين الأعمدة */
+.row {
+  margin-left: 0;
+  margin-right: 0;
+}
 
 .card {
   width: 300px;
@@ -49,6 +50,7 @@ body {
   perspective: 500px;
   border: none;
   background-color: inherit;
+  margin: 10px; /* إضافة مسافة بين الكروت */
 }
 
   .card .face {
@@ -65,8 +67,6 @@ body {
     backface-visibility: hidden;
     border-top: 1px solid #ddd;
     border-left: 1px solid #ddd;
-    /* border-right: 1px solid #999;
-border-bottom: 1px solid #999; */
   }
 
     .card .face.front-face,
@@ -79,9 +79,6 @@ border-bottom: 1px solid #999; */
     }
 
       .card .face.front-face .profile {
-/*        width: 150px;
-        height: 150px;
-        border-radius: 50%;*/
         object-fit: cover;
       }
 
@@ -133,7 +130,6 @@ border-bottom: 1px solid #999; */
   }
 }
 
-
 .TitleToTestimonial {
   font-family: "Zen Dots", sans-serif;
   font-weight: 400;
@@ -142,4 +138,3 @@ border-bottom: 1px solid #999; */
   line-height: 1.2;
   text-transform: uppercase;
 }
-
