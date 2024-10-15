@@ -52,7 +52,11 @@ export class ProductService {
         catchError(this.handleError) // Handle errors
       );
   }
-
+  // Get the list of categories
+  getCategories(): Observable<any[]> {
+    const categoryUrl = 'https://your-api-url.com/api/categories'; // Replace with actual categories API URL
+    return this.http.get<any[]>(categoryUrl);
+  }
 
   // Error handler
   private handleError(error: HttpErrorResponse): Observable<never> {
