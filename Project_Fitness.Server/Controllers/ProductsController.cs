@@ -128,43 +128,15 @@ namespace Project_Fitness.Server.Controllers
         //        return StatusCode(500, new { Message = "Error deleting product", Details = ex.Message });
         //    }
         //}
-
-        // DELETE: api/Products/5
-        [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteProduct(int id)
+        [HttpDelete("deleteproduct/{id}")]
+        public IActionResult deleteproduct(int id)
         {
-            try
-            {
-                // Find the product by ID asynchronously
-                var product = await _context.Products.FindAsync(id);
+            var deleteproductd = _context.Products.FirstOrDefault(x => x.Id == id);
+            _context.Products.Remove(deleteproductd);
+            _context.SaveChanges();
+            return Ok();
 
-                // Check if the product exists
-                if (product == null)
-                {
-                    return NotFound(new { message = "Product not found." });
-                }
-
-                // Remove the product from the context
-                _context.Products.Remove(product);
-
-                // Save changes to the database asynchronously
-                await _context.SaveChangesAsync();
-
-                // Return success message
-                return Ok(new { message = "Product deleted successfully." });
-            }
-            catch (DbUpdateException dbEx)
-            {
-                // Handle database-specific errors (e.g., foreign key violations)
-                return StatusCode(500, new { message = "Error deleting product due to database constraint.", error = dbEx.Message });
-            }
-            catch (Exception ex)
-            {
-                // Handle other errors and return a 500 Internal Server Error
-                return StatusCode(500, new { message = "An error occurred while deleting the product.", error = ex.Message });
-            }
         }
-
 
         [HttpPut("updateproduct/{id}")]
         public IActionResult UpdateProduct(int id, [FromForm] ProductsDTO productDto)

@@ -52,7 +52,7 @@ export class ProductService {
       );
   }
   getCategories(): Observable<any[]> {
-    const categoryUrl = 'https://localhost:7072/api'; 
+    const categoryUrl = 'https://localhost:7072/api/Categories'; 
     return this.http.get<any[]>(categoryUrl);
   }
 
