@@ -28,44 +28,40 @@ export class ProductDetailsService {
     email: 'string'
   };
 
-  addToCart(data: any): Observable<any> {
-    return new Observable(observer => {
-      this.URLService.userEmail.subscribe(email => {
-        this.logedINuser = email;
-        console.log('Email from another service:', email);
-      });
+  addToCart(data: any) {
+    
 
-      if (this.logedINuser === '') {
-        const recode = this.cartItem.find((x: any) => x.productId === data.productId);
-        if (recode) {
-          recode.quantity += data.quantity;
-          this.cartItemSubject.next(this.cartItem);
-          observer.next(this.cartItem); // Emit the updated cart data
-        } else {
-          this.cartItem.push(data);
-          this.cartItemSubject.next(this.cartItem);
-          observer.next(this.cartItem); // Emit the updated cart data
-        }
-        observer.complete(); // Mark the Observable as complete
-      } else {
-        this.apiPost.productId = data.productId;
-        this.apiPost.quantity = data.quantity;
-        this.apiPost.price = data.price;
-        this.apiPost.cartId = data.cartId;
-        this.apiPost.email = this.logedINuser;
-
-        this.addcartItemToDatabase(this.apiPost).subscribe(
-          response => {
-            observer.next(response); // Emit the response from the API
-            observer.complete(); // Mark the Observable as complete
-          },
-          error => {
-            observer.error(error); // Emit any errors
-          }
-        );
-      }
+    this.URLService.userEmail.subscribe(email => {
+      this.logedINuser = email;
+      console.log('Email from another service:', email);
     });
+
+    if (this.logedINuser === '') {
+      const recode = this.cartItem.find((x: any) => x.productId === data.productId);
+      if (recode) {
+        recode.quantity += data.quantity;
+        this.cartItemSubject.next(this.cartItem);
+        //observer.next(this.cartItem); // Emit the updated cart data
+      } else {
+        this.cartItem.push(data);
+        this.cartItemSubject.next(this.cartItem);
+        // observer.next(this.cartItem); // Emit the updated cart data
+      }
+      // observer.complete(); // Mark the Observable as complete
+    } else {
+      this.apiPost.productId = data.productId;
+      this.apiPost.quantity = data.quantity;
+      this.apiPost.price = data.price;
+      this.apiPost.cartId = data.cartId;
+      this.apiPost.email = this.logedINuser;
+
+      this.addcartItemToDatabase(this.apiPost).subscribe(
+
+      );
+
+    };
   }
+
 
   addcartItemToDatabase(data: any): Observable<any> {
     return this.http.post<any>(`${this.staticData}/CartItems/addcartitem`, data);
