@@ -54,7 +54,7 @@ export class ProductService {
   }
   // Get the list of categories
   getCategories(): Observable<any[]> {
-    const categoryUrl = 'https://your-api-url.com/api/categories'; // Replace with actual categories API URL
+    const categoryUrl = 'https://localhost:7072/api/Categories'; // Replace with actual categories API URL
     return this.http.get<any[]>(categoryUrl);
   }
 
