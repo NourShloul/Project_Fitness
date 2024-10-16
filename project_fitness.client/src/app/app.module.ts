@@ -165,7 +165,7 @@ import { TopPriceComponent } from './AOQ/top-price/top-price.component';
           { path: "AllGymAdmin", component: AllGymsComponent },
           { path: "editgym/:id", component: UpdategymComponent },
           { path: "addproduct", component: AddProductComponent },
-          { path: 'update-product/:id', component: UpdateProductComponent }, 
+          { path: 'updateproduct/:id', component: UpdateProductComponent }, 
 
           { path: "admin-category", component: AdminCategoryComponent},
           { path: "products", component: ProductListComponent },
