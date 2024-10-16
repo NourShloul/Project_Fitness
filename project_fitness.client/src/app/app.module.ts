@@ -61,6 +61,8 @@ import { UpdateTipsAdminComponent } from './Admin/update-tips-admin/update-tips-
 import { EditPersonalInfoComponent } from './edit-personal-info/edit-personal-info.component';
 import { AdminCategoryComponent } from './Admin/admin-category/admin-category.component';
 import { ManageOrdersComponent } from './Admin/manage-orders/manage-orders.component';
+import { AllTestimonialComponent } from './Admin/all-testimonial/all-testimonial.component';
+import { TopPriceComponent } from './AOQ/top-price/top-price.component';
 
 
 @NgModule({
@@ -120,6 +122,8 @@ import { ManageOrdersComponent } from './Admin/manage-orders/manage-orders.compo
       AddTipsAdminComponent,
       UpdateTipsAdminComponent,
       ManageOrdersComponent,
+      AllTestimonialComponent,
+      TopPriceComponent,
 
   ],
   imports: [
@@ -182,6 +186,8 @@ import { ManageOrdersComponent } from './Admin/manage-orders/manage-orders.compo
           { path: "ContactAdmin", component: ContactUsComponent },
           { path: "TestimonialAdmin", component: TestimonialAdminComponent },
           { path: 'manage-orders', component: ManageOrdersComponent },
+          { path: 'AllTestimonial', component: AllTestimonialComponent },
+          { path: 'TopPrice', component: TopPriceComponent },
         ]
       },
       { path: "profile", component: ProfileComponent },

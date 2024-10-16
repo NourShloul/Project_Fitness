@@ -103,5 +103,30 @@ namespace Project_Fitness.Server.Controllers
         {
             return _context.ContactUs.Any(e => e.Id == id);
         }
+
+
+
+        [HttpGet("TopSales")]
+        public IActionResult TopSales()
+        {
+            var topProductsByPrice = _context.Products
+                .OrderByDescending(p => p.Price) // ترتيب المنتجات بناءً على السعر
+                .Take(4) // أخذ أعلى 3 منتجات
+                .Select(p => new
+                {
+                    ProductId = p.Id,
+                    productname = p.ProductName,
+                    price = p.Price,
+                    description = p.Description,
+                    stockQuantity = p.StockQuantity,
+                    image = p.Image,
+                    discount = p.Discount,
+                    Category = p.Category != null ? p.Category.CategoryName : "No Category"
+                })
+                .ToList();
+
+            return Ok(topProductsByPrice);
+        }
+
     }
 }

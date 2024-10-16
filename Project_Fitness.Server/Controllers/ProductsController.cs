@@ -128,7 +128,6 @@ namespace Project_Fitness.Server.Controllers
         //        return StatusCode(500, new { Message = "Error deleting product", Details = ex.Message });
         //    }
         //}
-
         [HttpDelete("deleteproduct/{id}")]
         public IActionResult deleteproduct(int id)
         {

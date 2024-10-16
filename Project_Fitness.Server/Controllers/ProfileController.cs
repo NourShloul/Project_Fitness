@@ -59,6 +59,20 @@ namespace Project_Fitness.Server.Controllers
             //});
             return Ok(user);
         }
+
+        [HttpGet("getorderitem{id}")]
+        public IActionResult getorderitem(int id )
+        {
+            var orderitem =_db.OrderItems
+                .Include(u => u.Product).Where(u => u.OrderId == id).Select(x=>new{
+                productname=x.Product.ProductName,
+                price=x.Price,
+                quantity=x.Quantity,
+
+                });
+            
+            return Ok(orderitem);
+        }
         [HttpPost("UpdateUserInfo/{id:int}")]
         public async Task<IActionResult> editPersonalProfile(PersonalInfoDTO personal, int id ) {
             var user = await _db.Users.FirstOrDefaultAsync(u => u.UserId == id);

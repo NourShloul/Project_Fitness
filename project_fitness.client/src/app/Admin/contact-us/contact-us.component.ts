@@ -27,15 +27,14 @@ export class ContactUsComponent {
   // دالة لحذف جهة الاتصال بناءً على المعرف
   deleteContactById(id: any) {
     this._ser.deletContact(id).subscribe(() => {
-      alert("This message deleted successfully"); // تنبيه بعد الحذف
-      this.ReplayContact(); // تحديث قائمة جهات الاتصال
+      alert("This message deleted successfully"); 
+      this.ReplayContact(); 
     });
   }
 
-  // دالة لتنسيق تاريخ الإرسال
   formatDate(dateString: string): string {
-    const date = new Date(dateString); // تحويل السلسلة إلى كائن Date
-    return date.toLocaleString('en-US', { // تغيير التنسيق حسب الحاجة
+    const date = new Date(dateString); 
+    return date.toLocaleString('en-US', { 
       year: 'numeric',
       month: '2-digit',
       day: '2-digit',

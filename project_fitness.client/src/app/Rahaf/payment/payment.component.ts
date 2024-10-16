@@ -54,6 +54,11 @@ export class PaymentComponent {
     return this.cartItems.reduce((total, item) => total + (item.price * item.quantity), 0);
   }
 
+  // Calculate the total price of the items in the cart
+  getCartTotalPLUS5(): number {
+    return this.cartItems.reduce((total, item) => total + (item.price * item.quantity) + 5, 0);
+  }
+
   userDATA: any = {};  // Change to an object instead of an array
 
   getuser(id: any) {

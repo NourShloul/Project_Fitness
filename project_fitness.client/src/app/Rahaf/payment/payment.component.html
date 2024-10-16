@@ -33,14 +33,18 @@
     <!-- Order Summary (next to Shipping Details) -->
     <div class="order-summary">
       <h2 class="section-title">Order Summary</h2>
-      <ul class="summary-list"*ngFor="let item of cartItems">
-        <li class="summary-item" >
+      <ul class="summary-list" *ngFor="let item of cartItems">
+        <li class="summary-item">
           {{ item.product.productName }} - ${{item.price}} x{{item.quantity}}
         </li>
       </ul>
       <div class="total">
+        <span>SubTotal:</span>
+        <span class="total-price">{{ getCartTotal() | number: '1.2-2' }} JOD</span>
+      </div>
+      <div class="total">
         <span>Total:</span>
-        <span class="total-price">${{ getCartTotal() | number: '1.2-2' }}</span>
+        <span class="total-price">{{ getCartTotalPLUS5() | number: '1.2-2' }} JOD</span>
       </div>
     </div>
   </div>

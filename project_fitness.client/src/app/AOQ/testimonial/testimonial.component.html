@@ -2,8 +2,9 @@
 
 <div class="container align-items-center">
   <div class="row justify-content-center">
-    <div class="col-md-4 d-flex justify-content-center" *ngFor="let Testimonial of TestimonialArray">
-      <div class="card mb-4 ">
+    <!-- تعديل هنا لتوسيط الأعمدة -->
+    <div class="col-md-3 d-flex justify-content-center mb-4" *ngFor="let Testimonial of TestimonialArray">
+      <div class="card">
         <div class="face front-face">
           <img src="assets/images/logo.svg" alt="" class="profile">
           <div class="pt-3 text-uppercase name">
@@ -11,11 +12,9 @@
           </div>
         </div>
         <div class="face back-face">
-          <!--<span class="fas fa-quote-left"></span>-->
           <div class="testimonial">
             {{Testimonial.messege}}
           </div>
-          <!--<span class="fas fa-quote-right"></span>-->
         </div>
       </div>
     </div>

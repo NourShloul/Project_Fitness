@@ -47,6 +47,9 @@ export class URLService {
   GetOrderUserID(id: any): Observable<any> {
     return this.http.get<any>(`${this.staticData}/Profile/Profile/GetOrdersByUserId/${id}`);
   }
+  addTestimonial(id: number, testimonial: string): Observable<any> {
+    return this.http.post(`${this.staticData}/Testimonial/AddTestimonial/${id}`, { theTestimonial: testimonial });
+  }
   /////////////// end profile ///////////
   GetTypeOfRecipe(): Observable<any> {
     return this.http.get<any>(`${this.staticData}/Recipe/Nutrition/GetAllRescipe`);
@@ -122,7 +125,7 @@ export class URLService {
     return this.http.get<any>(`${this.staticData}/Admin/GetGymById/${id}`)
   }
   getClassDetails(id: any): Observable<any>{
-    debugger
+    
     return this.http.get<any>(`${this.staticData}/Admin/GetClassById/${id}`)
   }
   GetAllTips(): Observable<any> {
@@ -140,6 +143,11 @@ export class URLService {
   GetTestimonial(): Observable<any> {
     return this.http.get<any>(`${this.staticData}/Testimonial/GetAllAcceptedTestimonial`);
   
+  }
+
+  GetTopPrice(): Observable<any> {
+    return this.http.get<any>(`${this.staticData}/ContactUs/TopSales`);
+
   }
 
   GetAllTestimonialToAccept(): Observable<any> {
@@ -177,7 +185,7 @@ export class URLService {
 
   }
   PUTgym(id: any, data: any): Observable<any> {
-    debugger
+    
     return this.http.put<any>(`${this.staticData}/Admin/UpdateGymById/${id}`, data)
   }
   deletgym(id: any): Observable<any> {
@@ -210,6 +218,7 @@ export class URLService {
   updateUserProfile(userId: number, formData: FormData): Observable<any> {
     return this.http.post(`${this.staticData}/Profile/UpdateUserInfo/${userId}`, formData);
   }
+
 }
 export interface CreatePaymentRequestDto {
   redirectUrl: string;

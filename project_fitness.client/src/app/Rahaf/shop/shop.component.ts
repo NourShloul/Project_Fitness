@@ -98,7 +98,6 @@ export class ShopComponent implements OnInit {
 
 
   addToCart(productID: any, price: any, productName: any, productImage: any): void {
-    debugger;
     this.cartItemObj.productId = productID;
     this.cartItemObj.price = price;
     this.cartItemObj.product.productName = productName;

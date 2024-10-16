@@ -15,7 +15,7 @@ export class FitnessDetailsComponent {
   userId: any
 
   ngOnInit() {
-    debugger
+    
     this.parameter = this._route.snapshot.paramMap.get("id")
    
     this.URLService.UserIdmm.subscribe(user => {
@@ -28,7 +28,7 @@ export class FitnessDetailsComponent {
   constructor(private _ser: URLService, private _route: ActivatedRoute, private URLService: URLService) { }
 
   getDetails(id: any) {
-    debugger
+    
     this._ser.getClassDetails(id).subscribe((data: any) => {
       this.Details = data;
       console.log(this.Details, 'details')
@@ -36,7 +36,7 @@ export class FitnessDetailsComponent {
     )
   }
   addsubscribtion(price: number, months: number, ClassID: number): void {
-    debugger
+    
     if (this.userId == null || this.userId == 0 || this.userId == undefined) {
 
       Swal.fire({
@@ -67,7 +67,7 @@ export class FitnessDetailsComponent {
 
     this._ser.createPayment(request).subscribe(
       (response: any) => {
-        debugger
+        
         if (response && response.approvalUrl) {
           console.log(response.approvalUrl)
           window.location.href = response.approvalUrl;

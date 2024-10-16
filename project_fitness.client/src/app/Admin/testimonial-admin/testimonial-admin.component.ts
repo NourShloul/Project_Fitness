@@ -33,18 +33,12 @@ export class TestimonialAdminComponent {
   }
 
   AcceptTheTestimonial(id: any) {
-    debugger
     this._ser.UpdateTestimonial(id).subscribe(() => {
       
       alert("This  message accepted successfully");
       this.GetAllTestimonial();
     })
   }
-  //UpTestimonial() {
 
-
-
-  //  this._ser.UpdateTestimonial().subscribe(() => { alert("The Testimonial Accepted successfully") })
-  //}
 
 }
