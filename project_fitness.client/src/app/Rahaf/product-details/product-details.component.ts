@@ -71,6 +71,7 @@ export class ProductDetailsComponent implements OnInit {
       if (result.isConfirmed) {
         this.router.navigate(['/cart']);
       } else if (result.isDismissed) {
+        this.router.navigate(['/shop']);
         console.log('Continuing shopping...');
       }
     });

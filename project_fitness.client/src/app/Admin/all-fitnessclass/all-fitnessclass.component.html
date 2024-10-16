@@ -1,3 +1,6 @@
+<hr />
+<h2>All Fitness Classes</h2>
+<hr />
 <table class="table table-striped">
   <thead>
     <tr>
@@ -25,7 +28,7 @@
       <td>{{item.endTime}}</td>
       
       <td>
-        <a routerLink="/Dashboard/editFitnessclass/{{item.fitnessClassesId}}" class="btn btn-secondary">Edit</a>
+        <a routerLink="/Dashboard/editFitnessclass/{{item.fitnessClassesId}}" class="btn btn-secondary" style="color:white">Edit</a>
       </td>
       <td>
         <button class="btn btn-danger" (click)="deleteFitnessClassById(item.fitnessClassesId)" >Delete</button>
