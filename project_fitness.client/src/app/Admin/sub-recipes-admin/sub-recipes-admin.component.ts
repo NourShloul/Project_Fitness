@@ -40,7 +40,7 @@ export class SubRecipesAdminComponent {
 
   deletSSubrecipe(id: any) {
     this._ser.deletSubrecipe(id).subscribe(() => {
-      alert("Sub-Recipe deleted successfully");
+      alert("SubRecipe deleted successfully");
       this.GetAllSubRecipe();  // تحديث القائمة بعد الحذف
     });
   }

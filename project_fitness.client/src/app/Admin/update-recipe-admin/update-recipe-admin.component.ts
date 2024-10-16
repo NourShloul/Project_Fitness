@@ -32,7 +32,7 @@ export class UpdateRecipeAdminComponent {
     }
     form.append("RecipeImage", this.imageFile)
     this._ser.UpdateRecipe(this.param, form).subscribe((data) => {
-      alert("Services Updated Successfully")
+      alert("Recipe Updated Successfully")
     })
   }
 
