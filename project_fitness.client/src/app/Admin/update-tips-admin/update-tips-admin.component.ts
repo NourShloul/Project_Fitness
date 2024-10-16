@@ -36,7 +36,7 @@ export class UpdateTipsAdminComponent {
   }
   getTipsDetails(id: any) {
     this._ser.getTipsDetailbyID(id).subscribe((data) => {
-      this.DetailsArray = data;  // وضع البيانات في المتغير ليتم عرضها في الفورم
+      this.DetailsArray = data;  
     });
   }
 }
