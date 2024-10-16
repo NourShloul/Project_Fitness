@@ -27,11 +27,14 @@ export class OrderService {
     return this.http.post<Order>(`${this.baseUrl}`, order);
   }
 
-  updateOrder(id: number, order: Order): Observable<Order> {
-    return this.http.put<Order>(`${this.baseUrl}/${id}`, order);
+  updateOrder(id: number): Observable<any> {
+    return this.http.get<any>(`https://localhost:7072/api/Orders/update/${id}`);
   }
 
   deleteOrder(id: number): Observable<void> {
     return this.http.delete<void>(`${this.baseUrl}/${id}`);
+  }
+  getoderByID(id: number): Observable<any> {
+    return this.http.get<any>(`${this.baseUrl}/${id}`)
   }
 }

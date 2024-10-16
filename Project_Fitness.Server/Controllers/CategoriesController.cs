@@ -26,6 +26,13 @@ namespace Project_Fitness.Server.Controllers
             return Ok(categories);
         }
 
+        [HttpGet("getCategoryById/{id}")]
+        public IActionResult GetCategory(int id) {
+            var category = _context.Categories.Find(id);
+            return Ok(category);
+        }
+
+
         // POST: api/Categories
         [HttpPost]
         public IActionResult PostCategory([FromForm] CategoriesDTO categoryDto)
@@ -79,48 +86,48 @@ namespace Project_Fitness.Server.Controllers
         }
 
         //// PUT: api/Categories/5
-        //[HttpPut("{id}")]
-        //public IActionResult UpdateCategory(int id, [FromForm] CategoriesDTO categoryDto)
-        //{
-        //    if (categoryDto == null || id != categoryDto.Id)
-        //    {
-        //        return BadRequest("Invalid category data.");
-        //    }
+        [HttpPut("{id}")]
+        public IActionResult UpdateCategory(int id, [FromForm] CategoriesDTO categoryDto)
+        {
+            if (categoryDto == null)
+            {
+                return BadRequest("Invalid category data.");
+            }
 
-        //    var category = _context.Categories.Find(id);
-        //    if (category == null)
-        //    {
-        //        return NotFound();
-        //    }
+            var category = _context.Categories.Find(id);
+            if (category == null)
+            {
+                return NotFound();
+            }
 
-        //    category.CategoryName = categoryDto.CategoryName;
-        //    category.Description = categoryDto.Description;
+            category.CategoryName = categoryDto.CategoryName;
+            category.Description = categoryDto.Description;
 
-        //    if (categoryDto.ImageFile != null && categoryDto.ImageFile.Length > 0)
-        //    {
-        //        var uploadsFolder = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/images");
+            if (categoryDto.ImageFile != null && categoryDto.ImageFile.Length > 0)
+            {
+                var uploadsFolder = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/images");
 
-        //        if (!Directory.Exists(uploadsFolder))
-        //        {
-        //            Directory.CreateDirectory(uploadsFolder);
-        //        }
+                if (!Directory.Exists(uploadsFolder))
+                {
+                    Directory.CreateDirectory(uploadsFolder);
+                }
 
-        //        var uniqueFileName = Guid.NewGuid().ToString() + "_" + categoryDto.ImageFile.FileName;
-        //        var filePath = Path.Combine(uploadsFolder, uniqueFileName);
+                var uniqueFileName = Guid.NewGuid().ToString() + "_" + categoryDto.ImageFile.FileName;
+                var filePath = Path.Combine(uploadsFolder, uniqueFileName);
 
-        //        using (var fileStream = new FileStream(filePath, FileMode.Create))
-        //        {
-        //            categoryDto.ImageFile.CopyTo(fileStream);
-        //        }
+                using (var fileStream = new FileStream(filePath, FileMode.Create))
+                {
+                    categoryDto.ImageFile.CopyTo(fileStream);
+                }
 
-        //        category.Image = $"/images/{uniqueFileName}";
-        //    }
+                category.Image = $"/images/{uniqueFileName}";
+            }
 
-        //    _context.Entry(category).State = EntityState.Modified;
-        //    _context.SaveChanges();
+            _context.Entry(category).State = EntityState.Modified;
+            _context.SaveChanges();
 
-        //    return NoContent();
-        //}
+            return Ok(category);
+        }
 
         // DELETE: api/Categories/5
         [HttpDelete("{id}")]

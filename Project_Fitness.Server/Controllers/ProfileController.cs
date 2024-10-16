@@ -13,14 +13,14 @@ namespace Project_Fitness.Server.Controllers
         private readonly MyDbContext _db;
         public ProfileController(MyDbContext db) { _db = db; }
         [HttpGet("Profile/GetUserById/{id}")]
-        public IActionResult GetUser(int id)
+        public async Task<IActionResult> GetUser(int id)
         {
             if (id <= 0)
             {
                 return BadRequest("Invalid User ID");
             }
 
-            var user = _db.Users
+            var user = await _db.Users
                 .Include(u => u.Orders) // جلب الطلبات
                     .ThenInclude(o => o.OrderItems) // جلب العناصر الخاصة بالطلبات
                     .ThenInclude(oi => oi.Product) // جلب تفاصيل المنتج لكل عنصر طلب
@@ -54,7 +54,7 @@ namespace Project_Fitness.Server.Controllers
                             gymname = s.Gym.GymName,
                             startdate = s.SubscriptionStartDate,
                             enddate = s.SubscriptionEndDate,
-                            gymprice = s.Gym.Price,
+                            gymprice = s.Price
                         }).ToList(),
                     fitnessClassSubscriptions = c.Subscriptions
                         .Where(s => s.FitnessClasses != null) // الاشتراكات المرتبطة بفصول اللياقة فقط
@@ -63,9 +63,9 @@ namespace Project_Fitness.Server.Controllers
                             classname = s.FitnessClasses.FitnessClassesName,
                             startdate = s.SubscriptionStartDate,
                             enddate = s.SubscriptionEndDate,
-                            classprice = s.FitnessClasses.Price,
+                            classprice = s.Price,
                         }).ToList()
-                }).FirstOrDefault();
+                }).FirstOrDefaultAsync();
 
             if (user == null)
             {

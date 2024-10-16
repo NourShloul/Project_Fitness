@@ -38,7 +38,7 @@ export class UpdateRecipeAdminComponent implements OnInit {
 
   getRecipeDetails(id: any) {
     this._ser.getRecipeDetailbyID(id).subscribe((data) => {
-      this.DetailsArray = data;  // وضع البيانات في المتغير ليتم عرضها في الفورم
+      this.DetailsArray = data;  
     });
   }
 }
