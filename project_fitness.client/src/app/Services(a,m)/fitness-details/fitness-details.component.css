@@ -19,7 +19,7 @@ body {
 
 .dark {
   /*background: #110f16;*/
-  background: linear-gradient(to right, rgba(0, 0, 0, 0.66), #2d182d, #0e0d0d);
+  background: linear-gradient(to right, #5c5b5b, #321932, #272727);
 }
 
 

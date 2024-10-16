@@ -167,7 +167,7 @@ import { EditCategoryComponent } from './Admin/edit-category/edit-category.compo
           { path: "AllGymAdmin", component: AllGymsComponent },
           { path: "editgym/:id", component: UpdategymComponent },
           { path: "addproduct", component: AddProductComponent },
-          { path: 'update-product/:id', component: UpdateProductComponent }, 
+          { path: 'updateproduct/:id', component: UpdateProductComponent }, 
 
           { path: "admin-category", component: AdminCategoryComponent},
           { path: "products", component: ProductListComponent },

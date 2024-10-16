@@ -5,14 +5,12 @@
 
     <article class="postcard dark blue" *ngFor="let item of TipsArray">
       <div class="postcard__content d-flex align-items-start">
-        <!-- صورة النصيحة -->
         <div class="postcard__img_link">
           <img class="postcard__img"
                [src]="'https://localhost:7072/api/Recipe/getImages/' + item.tipsImage"
                [alt]="item.tipsName" />
         </div>
 
-        <!-- نص العنوان والوصف -->
         <div class="postcard__text ml-3">
           <h2 class="postcard__title blue">
             {{item.tipsName}}
