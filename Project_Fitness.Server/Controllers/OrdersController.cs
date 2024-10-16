@@ -39,27 +39,38 @@ namespace Project_Fitness.Server.Controllers
 
         // GET: api/Orders/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<Order>> GetOrder(int id)
+        public async Task<ActionResult> GetOrder(int id)
         {
-            var order = await _context.Orders.FindAsync(id);
+            var order = await _context.OrderItems
+                .Where(x => x.OrderId == id)
+                .Select(x => new {
+                    user = x.Order.User.UserName,
+                    productname = x.Product.ProductName,
+                    totalamount = x.Order.TotalAmount,
+                    quantity = x.Quantity,
+                    status = x.Order.Status
+                })
+                .ToListAsync();
 
             if (order == null)
             {
-                return NotFound();
+                return NotFound(new { message = "Order not found" });
             }
-
-            return order;
+            return Ok(order); 
         }
+        
+
 
         // PUT: api/Orders/5
-        [HttpPut("{id}")]
-        public async Task<IActionResult> PutOrder(int id, Order order)
+        [HttpGet("update/{id}")]
+        public async Task<IActionResult> PutOrder(int id)
         {
-            if (id != order.Id)
+            if (id <=0)
             {
                 return BadRequest();
             }
-
+            var order=_context.Orders.Where(x => x.Id == id).FirstOrDefault();
+            order.Status = "Delivered";
             _context.Entry(order).State = EntityState.Modified;
 
             try
