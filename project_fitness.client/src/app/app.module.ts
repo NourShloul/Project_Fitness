@@ -64,6 +64,7 @@ import { ManageOrdersComponent } from './Admin/manage-orders/manage-orders.compo
 import { AllTestimonialComponent } from './Admin/all-testimonial/all-testimonial.component';
 import { TopPriceComponent } from './AOQ/top-price/top-price.component';
 import { EditCategoryComponent } from './Admin/edit-category/edit-category.component';
+import { OrderItemComponent } from './Admin/order-item/order-item.component';
 
 
 @NgModule({
@@ -126,6 +127,7 @@ import { EditCategoryComponent } from './Admin/edit-category/edit-category.compo
       AllTestimonialComponent,
       TopPriceComponent,
       EditCategoryComponent,
+      OrderItemComponent,
 
   ],
   imports: [
@@ -190,7 +192,8 @@ import { EditCategoryComponent } from './Admin/edit-category/edit-category.compo
           { path: 'manage-orders', component: ManageOrdersComponent },
           { path: 'AllTestimonial', component: AllTestimonialComponent },
           { path: 'TopPrice', component: TopPriceComponent },
-          { path: "EditCategory/:id", component: EditCategoryComponent }
+          { path: "EditCategory/:id", component: EditCategoryComponent },
+          {path:"orderitem/:id",component:OrderItemComponent}
         ]
       },
       { path: "profile", component: ProfileComponent },

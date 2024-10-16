@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { URLService } from '../../url/url.service';
-import Swal from 'sweetalert2'; // استيراد SweetAlert2
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-all-fitnessclass',
@@ -8,13 +8,14 @@ import Swal from 'sweetalert2'; // استيراد SweetAlert2
   styleUrls: ['./all-fitnessclass.component.css']
 })
 export class AllFitnessclassComponent {
-  ngOnInit() {
-    this.getFitnessClass();
-  }
+  servicesArray: any[] = [];
+  searchTerm: string = '';
 
   constructor(private _ser: URLService) { }
 
-  servicesArray: any;
+  ngOnInit() {
+    this.getFitnessClass();
+  }
 
   getFitnessClass() {
     this._ser.GetAllFitness().subscribe((data) => {
@@ -23,8 +24,13 @@ export class AllFitnessclassComponent {
     });
   }
 
+  filteredServicesArray() {
+    return this.servicesArray.filter(item =>
+      item.fitnessClassesName.toLowerCase().includes(this.searchTerm.toLowerCase())
+    );
+  }
+
   deleteFitnessClassById(id: any) {
-    // نافذة تأكيد الحذف
     Swal.fire({
       title: 'Are you sure?',
       text: 'Do you want to delete this fitness class? This action cannot be undone!',
@@ -34,7 +40,6 @@ export class AllFitnessclassComponent {
       cancelButtonText: 'Cancel'
     }).then((result) => {
       if (result.isConfirmed) {
-        // في حالة تأكيد الحذف
         this._ser.deletfitnessclass(id).subscribe(() => {
           Swal.fire({
             icon: 'success',
@@ -42,7 +47,7 @@ export class AllFitnessclassComponent {
             text: 'The fitness class has been deleted successfully.',
             confirmButtonText: 'OK'
           });
-          this.getFitnessClass(); // تحديث قائمة الفيتنس بعد الحذف
+          this.getFitnessClass();
         },
           (error) => {
             Swal.fire({
