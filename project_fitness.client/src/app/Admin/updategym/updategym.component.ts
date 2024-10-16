@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
-import { URLService } from '../../url/url.service';
 import { ActivatedRoute } from '@angular/router';
-import Swal from 'sweetalert2';  // استيراد SweetAlert2
+import Swal from 'sweetalert2'; // استيراد SweetAlert2
+import { URLService } from '../../url/url.service';
 
 @Component({
   selector: 'app-updategym',
