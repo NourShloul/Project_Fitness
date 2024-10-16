@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { OrderService } from './order-service.service'; // Assuming you have a service to manage orders
 import { Subscriber } from 'rxjs';
 import { Router } from '@angular/router';
+import Swal from 'sweetalert2';
 
 // Define the Order interface
 interface Order {
@@ -68,11 +69,20 @@ export class ManageOrdersComponent implements OnInit {
   }
 
   // Edit an order
-  editOrder(id:any): void {
+  editOrder(id: any): void {
     this.isEditMode = true;
-    this.orderService.updateOrder(id).subscribe()
-    this.router.navigate(["/Dashboard/manage-orders"])
-    this.loadOrders()
+    this.currentOrderId = id; // Make sure to set the current order ID
+
+    this.orderService.updateOrder(id).subscribe(() => {
+      Swal.fire({
+        icon: 'success',
+        title: 'Updated!',
+        text: 'The order has been updated successfully.',
+        confirmButtonText: 'OK'
+      });
+      this.loadOrders(); // Reload the updated orders
+      this.router.navigate(["/Dashboard/manage-orders"]); // Navigate to the manage orders page
+    });
   }
 
   // Delete an order
