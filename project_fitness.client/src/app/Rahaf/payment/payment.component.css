@@ -13,14 +13,25 @@ body {
   background-color: #ffffff;
   border-radius: 8px;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  margin-bottom: 50px;
+}
+.checkout-container {
+  max-width: 80%;
+  /*height: 80vh;*/
+  margin: 0 auto;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  background-color: gainsboro;
+  margin-bottom: 50px;
 }
 
-.checkout-title {
-  text-align: center;
-  font-size: 32px;
-  margin-bottom: 40px;
-  color: #333;
-}
+  .checkout-title {
+    text-align: center;
+    font-size: 32px;
+    margin-bottom: 40px;
+    color: #333;
+  }
 
 .checkout-wrapper {
   display: flex;
@@ -28,8 +39,14 @@ body {
   gap: 20px;
 }
 
-.shipping-details, .order-summary {
+/*.shipping-details, .order-summary {
   width: 48%;
+}*/
+  .shipping-details{
+      width: 70%
+  }
+.order-summary{
+    width:28%
 }
 
 .section-title {
@@ -42,6 +59,11 @@ body {
   margin-bottom: 15px;
 }
 
+.form-group-test {
+  margin-bottom: 15px;
+  display:flex
+}
+
 label {
   display: block;
   font-size: 14px;
@@ -50,6 +72,15 @@ label {
 }
 
 .input-field {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 16px;
+  box-sizing: border-box;
+}
+
+.input-field-test {
   width: 100%;
   padding: 10px;
   border: 1px solid #ccc;
@@ -83,7 +114,7 @@ label {
 }
 
 .total-price {
-  color: #ff5722;
+  color: #e955fc;
 }
 
 .payment-info {
@@ -104,7 +135,15 @@ label {
   .payment-option input {
     margin-right: 10px;
   }
-
+#cod {
+  scale: 1.4;
+}
+#paypal {
+  scale: 1.4;
+}
+.lll {
+  font-size: 17px;
+}
 .btn-submit {
   display: block;
   width: 100%;

@@ -71,66 +71,78 @@ export class PaymentComponent {
   selectedPayment: string = '';
 
   PayPalCheck() {
-    if (this.selectedPayment == "cash") {
-      this.ProductService.cashCheckout(this.userId).subscribe((data) => {
+    if (this.selectedPayment == ""){
+      
         Swal.fire({
-          icon: "success",
-          title: "Order Placed Successfully!",
+          icon: "warning",
+          title: "You Must Select A Payment Method",
           showConfirmButton: false,
           timer: 2000,
-        }).then(() => {
-          this.router.navigate(['/']);  // Navigate to the home route after alert
         });
-
-      },
-        (error) => {
-          Swal.fire({
-            icon: "warning",
-            title: `${error.error}`,
-            showConfirmButton: false,
-            timer: 2000,
-          });
-        }
-      );
       
     } else {
-      this.ProductService.paypalCheckout(this.userId).subscribe(
-        (data) => {
-          const width = 600;
-          const height = 700;
-          const left = (screen.width / 2) - (width / 2);
-          const top = (screen.height / 2) - (height / 2);
-
-          const popupWindow = window.open(
-            data.approvalUrl,
-            'PayPal Payment',
-            `width=${width}, height=${height}, top=${top}, scrollbars=yes, resizable=yes`
-          );
-
-          const checkWindowClosed = setInterval(() => {
-            if (popupWindow && popupWindow.closed) {
-              clearInterval(checkWindowClosed);
-              Swal.fire({
-                icon: "success",
-                title: "Order Placed Successfully!",
-                showConfirmButton: false,
-                timer: 2000,
-              }).then(() => {
-                this.router.navigate(['/']);  // Navigate to the home route after alert
-              });
-            }
-          }, 500);
-        },
-        (error) => {
+      if (this.selectedPayment == "cash") {
+        this.ProductService.cashCheckout(this.userId).subscribe((data) => {
           Swal.fire({
-            icon: "warning",
-            title: `${error.error}`,
+            icon: "success",
+            title: "Order Placed Successfully!",
             showConfirmButton: false,
             timer: 2000,
+          }).then(() => {
+            this.router.navigate(['/']);  
           });
-        }
-      );
+
+        },
+          (error) => {
+            Swal.fire({
+              icon: "warning",
+              title: `${error.error}`,
+              showConfirmButton: false,
+              timer: 2000,
+            });
+          }
+        );
+
+      } else {
+        this.ProductService.paypalCheckout(this.userId).subscribe(
+          (data) => {
+            const width = 600;
+            const height = 700;
+            const left = (screen.width / 2) - (width / 2);
+            const top = (screen.height / 2) - (height / 2);
+
+            const popupWindow = window.open(
+              data.approvalUrl,
+              'PayPal Payment',
+              `width=${width}, height=${height}, top=${top}, scrollbars=yes, resizable=yes`
+            );
+
+            const checkWindowClosed = setInterval(() => {
+              if (popupWindow && popupWindow.closed) {
+                clearInterval(checkWindowClosed);
+                Swal.fire({
+                  icon: "success",
+                  title: "Order Placed Successfully!",
+                  showConfirmButton: false,
+                  timer: 2000,
+                }).then(() => {
+                  this.router.navigate(['/']);  
+                });
+              }
+            }, 500);
+          },
+          (error) => {
+            Swal.fire({
+              icon: "warning",
+              title: `${error.error}`,
+              showConfirmButton: false,
+              timer: 2000,
+            });
+          }
+        );
+      }
     }
+    
     
   }
 
