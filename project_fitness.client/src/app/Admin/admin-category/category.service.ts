@@ -40,9 +40,13 @@ export class CategoryService {
 
 
   // Update an existing category by ID
-  updateCategory(id: number, category: Category): Observable<Category> {
+  updateCategory(id: number, category: any): Observable<Category> {
     return this.http.put<Category>(`${this.baseUrl}/${id}`, category)
       .pipe(catchError(this.handleError));
+  }
+
+  getCategory(id: any) {
+    return this.http.get<any>(`${this.baseUrl}/getCategoryById/${id}`)
   }
 
   // Delete a category by ID
