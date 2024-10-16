@@ -24,7 +24,6 @@ export class ProfileComponent implements OnInit {
     });
     this.loadUserData();
   }
-
   loadUserData() {
     this.userService.GetUserID(this.userId).subscribe(data => {
       this.UserArray = data;
