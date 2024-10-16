@@ -7,48 +7,42 @@ body {
 }
 
 .checkout-container {
-  max-width: 1200px;
-  margin: 40px auto;
+  max-width: 80%;
+  margin: 20px auto;
   padding: 20px;
-  background-color: #ffffff;
+  background-color: darkgray;
   border-radius: 8px;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
   margin-bottom: 50px;
 }
-.checkout-container {
-  max-width: 80%;
-  /*height: 80vh;*/
-  margin: 0 auto;
-  padding: 20px;
-  border: 1px solid #ccc;
-  border-radius: 10px;
-  background-color: gainsboro;
-  margin-bottom: 50px;
-}
 
-  .checkout-title {
-    text-align: center;
-    font-size: 32px;
-    margin-bottom: 40px;
-    color: #333;
-  }
+.checkout-title {
+  text-align: center;
+  font-size: 32px;
+  margin-bottom: 40px;
+  color: #333;
+}
 
 .checkout-wrapper {
   display: flex;
   justify-content: space-between;
   gap: 20px;
+  
+  padding: 20px;
+  border-radius:10px;
+  
 }
 
-/*.shipping-details, .order-summary {
-  width: 48%;
-}*/
-  .shipping-details{
-      width: 60%
-  }
-.order-summary{
-    width:38%
+/* Card styles for sections */
+.card {
+  padding: 20px;
+  border-radius: 10px;
+  background-color: #f9f9f9; /* Light background for card */
+  box-shadow: 0 1px 5px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+  flex: 1; /* Allow cards to grow equally */
 }
 
+/* Styling for titles */
 .section-title {
   font-size: 24px;
   margin-bottom: 20px;
@@ -61,7 +55,7 @@ body {
 
 .form-group-test {
   margin-bottom: 15px;
-  display:flex
+  display: flex;
 }
 
 label {
@@ -71,16 +65,7 @@ label {
   color: #555;
 }
 
-.input-field {
-  width: 100%;
-  padding: 10px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  font-size: 16px;
-  box-sizing: border-box;
-}
-
-.input-field-test {
+.input-field, .input-field-test {
   width: 100%;
   padding: 10px;
   border: 1px solid #ccc;
@@ -135,16 +120,12 @@ label {
   .payment-option input {
     margin-right: 10px;
   }
-#cod {
-  scale: 1.4;
-}
-#paypal {
-  scale: 1.4;
-}
+
 .lll {
   font-size: 17px;
 }
-.btn-submit {
+
+.btn {
   display: block;
   width: 100%;
   background-color: #ff5722;
@@ -157,7 +138,7 @@ label {
   margin-top: 20px;
 }
 
-  .btn-submit:hover {
+  .btn:hover {
     background-color: #e64a19;
   }
 
@@ -165,6 +146,7 @@ label {
 @media (max-width: 768px) {
   .checkout-wrapper {
     flex-direction: column;
+    background-color: darkgrey;
   }
 
   .shipping-details, .order-summary {
