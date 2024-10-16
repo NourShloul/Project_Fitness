@@ -45,7 +45,7 @@ namespace Project_Fitness.Server.Controllers
 
           
 
-            // تحديد مسار الصورة
+          
             var imageFilePath = Path.Combine(uploadFolder, recipeDTO.RecipeImage.FileName);
 
             if (imageFilePath == null)
@@ -57,22 +57,21 @@ namespace Project_Fitness.Server.Controllers
                 }
 
             }
-            // تحقق من صحة النموذج قبل حفظ البيانات
+          
             if (!ModelState.IsValid)
             {
                 return BadRequest("Invalid Recipe");
             }
 
-            // إنشاء كائن الوصفة وإضافة البيانات
+         
             var recipe = new Recipe
             {
                 RecipeName = recipeDTO.RecipeName,
                 RecipeImage = recipeDTO.RecipeImage.FileName,
             };
 
-            // إضافة الوصفة إلى قاعدة البيانات
             _db.Recipes.Add(recipe);
-            _db.SaveChanges(); // حفظ البيانات بشكل متزامن
+            _db.SaveChanges(); 
 
             return Ok(recipe);
         }
@@ -88,35 +87,32 @@ namespace Project_Fitness.Server.Controllers
 
                 var uploadFolder = Path.Combine(Directory.GetCurrentDirectory(), "ImageRecipe");
 
-                // تحديد مسار الصورة
+               
                 var imageFilePath = Path.Combine(uploadFolder, recipeDTO.RecipeImage.FileName);
 
-                // تحميل الصورة إذا تم تقديمها
                 if (recipeDTO.RecipeImage != null)
                 {
                     using (var stream = new FileStream(imageFilePath, FileMode.Create))
                     {
-                        recipeDTO.RecipeImage.CopyTo(stream); // حفظ الصورة بشكل متزامن
+                        recipeDTO.RecipeImage.CopyTo(stream); 
                     }
                 }
 
             }
             
-            if (recipe == null) return NotFound(); // إذا لم يتم العثور على الوصفة، نرجع NotFound
+            if (recipe == null) return NotFound(); 
 
-            // تحديث بيانات الوصفة
             recipe.RecipeName = recipeDTO.RecipeName ?? recipe.RecipeName;
 
-            // تحديث الصورة فقط إذا تم تحميل صورة جديدة
             if (recipeDTO.RecipeImage != null)
             {
                 recipe.RecipeImage = recipeDTO.RecipeImage.FileName ?? recipe.RecipeImage;
             }
 
-            _db.Recipes.Update(recipe); // تحديث الوصفة في قاعدة البيانات
-            _db.SaveChanges(); // حفظ التغييرات بشكل متزامن
+            _db.Recipes.Update(recipe);
+            _db.SaveChanges();
 
-            return Ok(recipe); // إرجاع الوصفة المحدثة
+            return Ok(recipe);
         }
 
 
