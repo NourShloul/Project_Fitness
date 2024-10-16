@@ -28,7 +28,7 @@ export class AddSubrecipeAdminComponent implements OnInit {
     }
     form.append("subRecipeImage", this.image);
     this._src.AddSubRecipe(form).subscribe(() => {
-      alert("added");
+      alert("SubRecipe added successfully");
     });
   }
 
