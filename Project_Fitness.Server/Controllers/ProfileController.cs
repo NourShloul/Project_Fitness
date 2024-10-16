@@ -54,7 +54,7 @@ namespace Project_Fitness.Server.Controllers
                             gymname = s.Gym.GymName,
                             startdate = s.SubscriptionStartDate,
                             enddate = s.SubscriptionEndDate,
-                            gymprice = s.Gym.Price,
+                            gymprice = s.Price
                         }).ToList(),
                     fitnessClassSubscriptions = c.Subscriptions
                         .Where(s => s.FitnessClasses != null) // الاشتراكات المرتبطة بفصول اللياقة فقط
@@ -63,7 +63,7 @@ namespace Project_Fitness.Server.Controllers
                             classname = s.FitnessClasses.FitnessClassesName,
                             startdate = s.SubscriptionStartDate,
                             enddate = s.SubscriptionEndDate,
-                            classprice = s.FitnessClasses.Price,
+                            classprice = s.Price,
                         }).ToList()
                 }).FirstOrDefault();
 

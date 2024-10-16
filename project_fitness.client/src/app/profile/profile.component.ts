@@ -26,6 +26,7 @@ export class ProfileComponent implements OnInit {
   }
 
   loadUserData() {
+    debugger
     this.userService.GetUserID(this.userId).subscribe(data => {
       this.UserArray = data;
       console.log(this.UserArray);
