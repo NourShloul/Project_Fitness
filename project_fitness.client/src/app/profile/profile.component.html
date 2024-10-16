@@ -113,28 +113,64 @@
           <div class="col-md-12 mb-4">
             <div class="card" style="border: 1px solid #ccc; border-radius: 10px; background-color: gainsboro;">
               <div class="card-body">
-                <h5 class="mb-3">Subscriptions</h5>
+                <h5 class="mb-3">Subscriptions for Gym</h5>
                 <!-- Add table-responsive wrapper for responsiveness -->
                 <div class="table-responsive">
                   <table class="table table-bordered">
                     <thead>
                       <tr>
                         <th>Gym Name</th>
-                        <th>Class Name</th>
+                       
                         <th>Start Date</th>
                         <th>End Date</th>
-                        <th>Gym Price</th>
-                        <th>Class Price</th>
+                        <th>Price</th>
+                     
                       </tr>
                     </thead>
                     <tbody>
-                      <tr *ngFor="let subscription of UserArray.name">
+                      <tr *ngFor="let subscription of UserArray.gymSubscriptions">
                         <td>{{ subscription.gymname }}</td>
-                        <td>{{ subscription.classname }}</td>
                         <td>{{ subscription.startdate }}</td>
                         <td>{{ subscription.enddate }}</td>
                         <td>{{ subscription.gymprice }}</td>
+
+
+
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+
+
+
+          <!-- Subscriptions Table -->
+          <div class="col-md-12 mb-4">
+            <div class="card" style="border: 1px solid #ccc; border-radius: 10px; background-color: gainsboro;">
+              <div class="card-body">
+                <h5 class="mb-3">Subscriptions for class</h5>
+                <!-- Add table-responsive wrapper for responsiveness -->
+                <div class="table-responsive">
+                  <table class="table table-bordered">
+                    <thead>
+                      <tr>
+                        <th>Gym Name</th>
+
+                        <th>Start Date</th>
+                        <th>End Date</th>
+                        <th>Price</th>
+
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr *ngFor="let subscription of UserArray.fitnessClassSubscriptions">
+                        <td>{{ subscription.classname }}</td>
+                        <td>{{ subscription.startdate }}</td>
+                        <td>{{ subscription.enddate }}</td>
                         <td>{{ subscription.classprice }}</td>
+
 
 
                       </tr>
@@ -145,6 +181,15 @@
             </div>
           </div>
         </div> <!-- End of Row -->
+
+
+
+
+
+
+
+
+
         <div class="col-md-12 mb-4">
           <div class="card" style="border: 1px solid #ccc; border-radius: 10px; background-color: gainsboro;">
             <div class="card-body">
