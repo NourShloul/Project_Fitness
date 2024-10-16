@@ -1,10 +1,12 @@
 <div class="container" style="max-width: 80%; height: auto; margin: 0 auto; padding: 20px; border: 1px solid #ccc; border-radius: 10px; background-color: gainsboro;">
-  <h2 class="text-center mb-4">Category Management</h2>
-
+  
+  <hr />
+  <h2 class="text-center mb-2">Category Management</h2>
+  <hr />
   <!-- Add New Category Section -->
-  <div class="card shadow mb-4" >
-    <div class="card-header bg-primary text-white " style="background-color: #e955fc;">
-      <h3 class="text-center" style="background-color: #e955fc;">Add New Category</h3>
+  <div class="card shadow mb-4 mt-1">
+    <div class="card-header  text-white " style="background-color: #e955fc;">
+      <h4 class="text-center" style="background-color: #e955fc;">Add New Category</h4>
     </div>
     <div class="card-body">
       <div class="row">
@@ -44,6 +46,7 @@
           <th>Description</th>
           <th>Image</th>
           <th>Actions</th>
+          <th>
         </tr>
       </thead>
       <tbody>
@@ -51,7 +54,10 @@
           <td>{{ category.categoryName }}</td>
           <td>{{ category.description }}</td>
           <td>
-            <img [src]="category.image ? 'https://localhost:7072' + category.image : 'No Image'" alt="Category Image" class="img-thumbnail" style="width: 100px; height: 100px;" />
+            <img src="https://localhost:7072{{category.image}}" alt="Category Image" class="img-thumbnail" style="width: 100px; height: 100px;" />
+          </td>
+          <td>
+            <a routerLink="/Dashboard/EditCategory/{{category.id}}" class="btn btn-secondary" style="color:white">Edit</a>
           </td>
           <td>
             <button class="btn btn-danger" (click)="deleteCategory(category.id!)" [disabled]="!category.id">Delete</button>

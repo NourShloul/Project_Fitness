@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { URLService } from '../../url/url.service';
 import { ActivatedRoute } from '@angular/router';
 
@@ -7,7 +7,7 @@ import { ActivatedRoute } from '@angular/router';
   templateUrl: './update-recipe-admin.component.html',
   styleUrl: './update-recipe-admin.component.css'
 })
-export class UpdateRecipeAdminComponent {
+export class UpdateRecipeAdminComponent implements OnInit {
   ngOnInit() {
     this.getRecipeDetails(this.param); 
     
@@ -32,13 +32,13 @@ export class UpdateRecipeAdminComponent {
     }
     form.append("RecipeImage", this.imageFile)
     this._ser.UpdateRecipe(this.param, form).subscribe((data) => {
-      alert("Services Updated Successfully")
+      alert("Recipe Updated Successfully")
     })
   }
 
   getRecipeDetails(id: any) {
     this._ser.getRecipeDetailbyID(id).subscribe((data) => {
-      this.DetailsArray = data;  // وضع البيانات في المتغير ليتم عرضها في الفورم
+      this.DetailsArray = data;  
     });
   }
 }

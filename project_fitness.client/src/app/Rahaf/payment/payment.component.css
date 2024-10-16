@@ -7,12 +7,13 @@ body {
 }
 
 .checkout-container {
-  max-width: 1200px;
-  margin: 40px auto;
+  max-width: 80%;
+  margin: 20px auto;
   padding: 20px;
-  background-color: #ffffff;
+  background-color: darkgray;
   border-radius: 8px;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  margin-bottom: 50px;
 }
 
 .checkout-title {
@@ -26,12 +27,22 @@ body {
   display: flex;
   justify-content: space-between;
   gap: 20px;
+  
+  padding: 20px;
+  border-radius:10px;
+  
 }
 
-.shipping-details, .order-summary {
-  width: 48%;
+/* Card styles for sections */
+.card {
+  padding: 20px;
+  border-radius: 10px;
+  background-color: #f9f9f9; /* Light background for card */
+  box-shadow: 0 1px 5px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+  flex: 1; /* Allow cards to grow equally */
 }
 
+/* Styling for titles */
 .section-title {
   font-size: 24px;
   margin-bottom: 20px;
@@ -42,6 +53,11 @@ body {
   margin-bottom: 15px;
 }
 
+.form-group-test {
+  margin-bottom: 15px;
+  display: flex;
+}
+
 label {
   display: block;
   font-size: 14px;
@@ -49,7 +65,7 @@ label {
   color: #555;
 }
 
-.input-field {
+.input-field, .input-field-test {
   width: 100%;
   padding: 10px;
   border: 1px solid #ccc;
@@ -83,7 +99,7 @@ label {
 }
 
 .total-price {
-  color: #ff5722;
+  color: #e955fc;
 }
 
 .payment-info {
@@ -105,7 +121,11 @@ label {
     margin-right: 10px;
   }
 
-.btn-submit {
+.lll {
+  font-size: 17px;
+}
+
+.btn {
   display: block;
   width: 100%;
   background-color: #ff5722;
@@ -118,7 +138,7 @@ label {
   margin-top: 20px;
 }
 
-  .btn-submit:hover {
+  .btn:hover {
     background-color: #e64a19;
   }
 
@@ -126,6 +146,7 @@ label {
 @media (max-width: 768px) {
   .checkout-wrapper {
     flex-direction: column;
+    background-color: darkgrey;
   }
 
   .shipping-details, .order-summary {

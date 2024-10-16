@@ -6,13 +6,7 @@
           <img src="assets/images/logo.svg" alt="">
         </a>
         <ul class="nav nav-pills flex-column mb-sm-auto mb-0 align-items-center align-items-sm-start" id="menu">
-          <!-- Add Service -->
-          <li class="nav-item">
-            <a routerLink="/dashboard/AddService" class="nav-link text-white align-middle px-0">
-              <i class="fs-4 bi-house"></i>
-              <span class="ms-1 d-none d-sm-inline">Add Service</span>
-            </a>
-          </li>
+
           <!-- All Users -->
           <li class="nav-item">
             <a routerLink="/Dashboard/allusers" class="nav-link text-white align-middle px-0">
@@ -53,43 +47,22 @@
             </div>
           </li>
 
-          <!-- Orders -->
-          <li class="nav-item">
-            <a href="#" class="nav-link text-white px-0 align-middle">
-              <i class="fs-4 bi-table"></i>
-              <span class="ms-1 d-none d-sm-inline">Orders</span>
-            </a>
-          </li>
-
           <!-- Products & Categories -->
           <li class="nav-item">
-            <a href="#submenu3" data-bs-toggle="collapse" class="nav-link text-white px-0 align-middle">
+            <a class="nav-link dropdown-toggle text-white align-middle px-0" href="#submenu3" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="submenu3">
               <i class="fs-4 bi-grid"></i>
               <span class="ms-1 d-none d-sm-inline">Shop</span>
             </a>
-            <ul class="collapse nav flex-column ms-1" id="submenu3" data-bs-parent="#menu">
-              <li class="w-100">
-                <a routerLink="/Dashboard/products" class="nav-link text-white px-0">All Products</a>
-              </li>
-              <li>
-                <a routerLink="/Dashboard/addproduct" class="nav-link text-white px-0">Add New Product</a>
-              </li>
-              <li>
-                <a routerLink="/Dashboard/admin-category" class="nav-link text-white px-0">Categories</a>
-              </li>
-              <li>
-                <a routerLink="/Dashboard/manage-orders" class="nav-link text-white px-0">Orders</a>
-              </li>
-            </ul>
+            <div class="collapse" id="submenu3">
+              <ul class="list-unstyled ps-3">
+                <li><a routerLink="/Dashboard/products" class="dropdown-item text-white">All Products</a></li>
+                <li><a routerLink="/Dashboard/addproduct" class="dropdown-item text-white">Add New Product</a></li>
+                <li><a routerLink="/Dashboard/admin-category" class="dropdown-item text-white">Categories</a></li>
+                <li><a routerLink="/Dashboard/manage-orders" class="dropdown-item text-white">Orders</a></li>
+              </ul>
+            </div>
           </li>
 
-          <!-- Customers -->
-          <li class="nav-item">
-            <a href="#" class="nav-link text-white px-0 align-middle">
-              <i class="fs-4 bi-people"></i>
-              <span class="ms-1 d-none d-sm-inline">Customers</span>
-            </a>
-          </li>
 
           <!-- Testimonial -->
           <li class="nav-item">

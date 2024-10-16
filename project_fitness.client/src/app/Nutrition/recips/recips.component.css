@@ -35,14 +35,16 @@ a {
 }
 
 .cards-wrapper {
-  display: grid;
-  justify-content: center;
-  align-items: center;
-  grid-template-columns: 1fr 1fr;
-  grid-gap: 4rem;
+  display: flex; /* استخدم الفليكس لإعادة توزيع العناصر */
+  flex-wrap: wrap; /* تأكد من أن العناصر تتدفق إلى الصف التالي */
+  justify-content: center; /* يتم توسيط العناصر في الفضاء المتاح */
+  gap: 20px; /* يضيف مسافة بين الكاردات */
   padding: 4rem;
-  margin: 0 auto;
-  width: max-content;
+}
+
+.card-grid-space {
+  flex: 1 1 200px; /* تجعل الكاردات تأخذ مساحة متساوية */
+  max-width: 250px; /* يمكن تعديل العرض الأقصى كما تريد */
 }
 
 .card {
@@ -50,7 +52,7 @@ a {
   --bg-filter-opacity: 0.5;
   background-image: linear-gradient(rgba(0, 0, 0, var(--bg-filter-opacity)), rgba(0, 0, 0, var(--bg-filter-opacity))), var(--bg-img);
   height: 20em;
-  width: 20em;
+  width: 100%; /* اجعل عرض البطاقة 100% من المساحة المتاحة */
   font-size: 1.5em;
   color: white;
   border-radius: 1em;
@@ -60,7 +62,7 @@ a {
   background-size: cover;
   background-position: center;
   box-shadow: 0 0 5em -1em black;
-  transition: all, var(--transition-time);
+  transition: all var(--transition-time);
   position: relative;
   overflow: hidden;
   border: 10px solid #ccc;
@@ -88,7 +90,7 @@ a {
   }
 
   .card:hover h1 {
-    color: black
+    color: black;
   }
 
   .card .tags {
@@ -102,7 +104,7 @@ a {
       padding: 0 0.5em;
       margin-right: 0.5em;
       line-height: 1.5em;
-      transition: all, var(--transition-time);
+      transition: all var(--transition-time);
     }
 
   .card:hover .tags .tag {
@@ -134,7 +136,7 @@ a {
     left: -50%;
     top: -50%;
     z-index: -5;
-    transition: all, var(--transition-time);
+    transition: all var(--transition-time);
     transition-timing-function: ease-in-out;
   }
 
@@ -183,35 +185,18 @@ a {
   }
 
 /* MEDIA QUERIES */
-@media screen and (max-width: 1285px) {
-  .cards-wrapper {
-    grid-template-columns: 1fr 1fr;
-  }
-}
-
 @media screen and (max-width: 900px) {
   .cards-wrapper {
-    grid-template-columns: 1fr;
+    flex-direction: column; /* في الشاشات الصغيرة، اجعل العناصر في عمود */
+    align-items: center; /* تأكد من توسيط العناصر */
   }
 
   .info {
     justify-content: center;
   }
 
-  .card-grid-space .num {
-    margin-left: 0;
-    text-align: center;
-  }
-  .cards-wrapper {
-    display: flex; /* يجعل العناصر بداخلها تتوزع بشكل أفقي */
-    flex-wrap: wrap; /* يضمن أن العناصر تنتقل إلى السطر التالي إذا كانت أكبر من العرض */
-    gap: 20px; /* يضيف مسافة بين الكاردات */
-    justify-content: center; /* يجعل الكاردات متوسطة في المساحة المتاحة */
-  }
-
   .card-grid-space {
-    flex: 1 1 200px; /* يجعل الكاردات تأخذ مساحة متساوية */
-    max-width: 250px; /* يمكن تعديل العرض الأقصى كما تريد */
+    max-width: 100%; /* اجعل الكاردات تأخذ كامل العرض */
   }
 }
 
@@ -234,4 +219,16 @@ a {
     .info h1 {
       margin: 0;
     }
+}
+.cards-wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+  padding: 4rem;
+}
+
+.card-grid-space {
+  flex: 1 1 250px; /* تعيين عرض الكاردات إلى 250 بكسل كحد أدنى، ويأخذون مساحة أكبر في الشاشة */
+  max-width: 473px; /* تعيين أقصى عرض للكارد */
 }

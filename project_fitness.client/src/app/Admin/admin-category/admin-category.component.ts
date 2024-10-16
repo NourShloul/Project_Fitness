@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CategoryService } from './category.service';
+import { Route, Router } from '@angular/router';
 
 // Define the Category interface
 interface Category {
@@ -21,7 +22,7 @@ export class AdminCategoryComponent implements OnInit {
   description: string = ''; // Ensure this property is declared
   imageFile: File | null = null;  // For storing the selected image file
 
-  constructor(private categoryService: CategoryService) { }
+  constructor(private categoryService: CategoryService, private router: Router) { }
 
   ngOnInit(): void {
     this.getCategories(); // Fetch categories on component initialization
@@ -84,6 +85,10 @@ export class AdminCategoryComponent implements OnInit {
         }
       );
     }
+  }
+
+  EditCategory(id: any) {
+    this.router.navigate([`/EditCategory/${id}`])
   }
 
   // Clear the form inputs

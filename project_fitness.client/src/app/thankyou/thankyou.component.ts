@@ -18,10 +18,17 @@ export class ThankyouComponent implements OnInit {
   gymid: any;
   classid:any
   ngOnInit(): void {
-    this.URLService.UserIdmm.subscribe(user => {
+    const userId = localStorage.getItem('UserId');
+    if (userId) {
+      this._ser.userId.next(userId);
+    }    this.URLService.UserIdmm.subscribe(user => {
       this.userId = user
       console.log('user ID from Cart:', this.userId);
     });
+    const email = localStorage.getItem('Email')
+    if (email) {
+      this._ser['userEmail'].next(email);
+    }
     this.URLService.month.subscribe(month => {
       this.month = month
       console.log('sub month = ',this.month)
@@ -59,6 +66,7 @@ export class ThankyouComponent implements OnInit {
       this._ser.executePayment(executePaymentRequest).subscribe(
         (response: any) => {
           console.log('Payment executed successfully:', response);
+
           localStorage.removeItem('GymId');
           localStorage.removeItem('ClassID')
         },

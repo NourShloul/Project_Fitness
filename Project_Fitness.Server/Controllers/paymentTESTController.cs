@@ -37,7 +37,7 @@ namespace Project_Fitness.Server.Controllers
                 UserId = id,
                 TotalAmount = 0,
                 OrderDate = DateTime.Now,
-                Status = "Delivered",
+                Status = "Pending",
                 TransactionId = 555,
             };
 
@@ -89,7 +89,7 @@ namespace Project_Fitness.Server.Controllers
                 totalPriceUser += cartItem.Price * cartItem.Quantity;
             }
 
-            var totalPrice = totalPriceUser;
+            var totalPrice = totalPriceUser +5;
             var payment = payPalService.CreatePayment(_redirectUrl ?? " ", totalPrice, null, UserId);
             var approvalUrl = payment.links.FirstOrDefault(l => l.rel.Equals("approval_url", StringComparison.OrdinalIgnoreCase))?.href;
 
@@ -107,7 +107,7 @@ namespace Project_Fitness.Server.Controllers
                     UserId = userId,
                     TotalAmount = 0,
                     OrderDate = DateTime.Now,
-                    Status = "Delivered",
+                    Status = "Pending",
                     TransactionId = 555, // Ideally, this should be dynamic
                 };
 
