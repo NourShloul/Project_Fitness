@@ -47,15 +47,24 @@ namespace Project_Fitness.Server.Controllers
                             quantity = oi.Quantity
                         }).ToList()
                     }).ToList(),
-                    name = c.Subscriptions.Select(s => new
-                    {
-                        gymname = s.Gym.GymName,
-                        classname = s.FitnessClasses.FitnessClassesName,
-                        startdate = s.SubscriptionStartDate,
-                        enddate = s.SubscriptionEndDate,
-                        gymprice = s.Gym.Price,
-                        classprice = s.FitnessClasses.Price,
-                    }).ToList()
+                    gymSubscriptions = c.Subscriptions
+                        .Where(s => s.Gym != null) // الاشتراكات المرتبطة بالجيم فقط
+                        .Select(s => new
+                        {
+                            gymname = s.Gym.GymName,
+                            startdate = s.SubscriptionStartDate,
+                            enddate = s.SubscriptionEndDate,
+                            gymprice = s.Gym.Price,
+                        }).ToList(),
+                    fitnessClassSubscriptions = c.Subscriptions
+                        .Where(s => s.FitnessClasses != null) // الاشتراكات المرتبطة بفصول اللياقة فقط
+                        .Select(s => new
+                        {
+                            classname = s.FitnessClasses.FitnessClassesName,
+                            startdate = s.SubscriptionStartDate,
+                            enddate = s.SubscriptionEndDate,
+                            classprice = s.FitnessClasses.Price,
+                        }).ToList()
                 }).FirstOrDefault();
 
             if (user == null)
@@ -65,6 +74,7 @@ namespace Project_Fitness.Server.Controllers
 
             return Ok(user);
         }
+
 
         [HttpPost("UpdateUserInfo/{id:int}")]
         public async Task<IActionResult> editPersonalProfile(PersonalInfoDTO personal, int id ) {
