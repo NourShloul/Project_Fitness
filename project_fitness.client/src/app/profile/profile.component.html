@@ -93,6 +93,7 @@
                       <th>Order Date</th>
                       <th>Status</th>
                       <th>Total</th>
+                      <th>Detalis</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -100,6 +101,7 @@
                       <td>{{ order.date }}</td>
                       <td>{{ order.status }}</td>
                       <td>{{ order.total }}</td>
+                      <td><button class="btn btn-primary" (click)="showOrderDetails(order)">Details</button></td>
                     </tr>
                   </tbody>
                 </table>
@@ -133,6 +135,8 @@
                         <td>{{ subscription.enddate }}</td>
                         <td>{{ subscription.gymprice }}</td>
                         <td>{{ subscription.classprice }}</td>
+
+
                       </tr>
                     </tbody>
                   </table>
@@ -157,3 +161,33 @@
     </div>
   </div>
 </section>
+
+
+
+
+<!--         model                           -->
+<!-- Modal -->
+<div class="modal fade" id="orderDetailsModal" tabindex="-1" aria-labelledby="orderDetailsLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="orderDetailsLabel">Order Details</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+       
+        <ul *ngIf="selectedOrder?.items">
+          <li *ngFor="let item of selectedOrder.items">
+            {{ item.productname }} - Quantity: {{ item.quantity }} - Price: {{ item.price }}
+          </li>
+        </ul>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- تعديل زر "Details" في الجدول لفتح الموديل -->
+

@@ -27,7 +27,7 @@ export class AddRecipeAdminComponent {
     }
     form.append("RecipeImage", this.image)
     this._src.AddRecipeTaype(form).subscribe(() => {
-      alert("added")
+      alert("Recipe added successfully")
     })
   }
 }

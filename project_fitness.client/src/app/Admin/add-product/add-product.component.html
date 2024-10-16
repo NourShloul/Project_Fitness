@@ -1,4 +1,4 @@
-<form [formGroup]="productForm" (ngSubmit)="onSubmit()" class="container">
+<form [formGroup]="productForm" (ngSubmit)="onSubmit()" class="container" style="max-width: 80%; margin: 0 auto; padding: 20px; border: 1px solid #ccc; border-radius: 10px; background-color: gainsboro;">
   <h2 class="text-center mb-4">Add New Product</h2>
 
   <div class="row">
@@ -19,11 +19,6 @@
     </div>
   </div>
 
-  <div class="mb-3">
-    <!-- Description -->
-    <label for="description" class="form-label">Description</label>
-    <textarea id="description" formControlName="description" class="form-control" rows="3" placeholder="Enter product description" required></textarea>
-  </div>
 
   <div class="row">
     <!-- Price -->
@@ -51,6 +46,12 @@
       <label for="discount" class="form-label">Discount</label>
       <input type="number" id="discount" formControlName="discount" class="form-control" placeholder="Enter discount percentage" />
     </div>
+  </div>
+
+  <div class="mb-3">
+    <!-- Description -->
+    <label for="description" class="form-label">Description</label>
+    <textarea id="description" formControlName="description" class="form-control" rows="3" placeholder="Enter product description" required></textarea>
   </div>
 
   <!-- Submit Button -->

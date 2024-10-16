@@ -80,23 +80,28 @@ namespace Project_Fitness.Server.Controllers
         [HttpPut("Nutrition/UpdateRecipe/{id}")]
         public IActionResult UpdateRecipe([FromForm] RecipeDTO recipeDTO, int id)
         {
-            // تحديد مسار مجلد الصور
-            var uploadFolder = Path.Combine(Directory.GetCurrentDirectory(), "ImageRecipe");
-
-            // تحديد مسار الصورة
-            var imageFilePath = Path.Combine(uploadFolder, recipeDTO.RecipeImage.FileName);
-
-            // تحميل الصورة إذا تم تقديمها
-            if (recipeDTO.RecipeImage != null)
-            {
-                using (var stream = new FileStream(imageFilePath, FileMode.Create))
-                {
-                    recipeDTO.RecipeImage.CopyTo(stream); // حفظ الصورة بشكل متزامن
-                }
-            }
-
-            // البحث عن الوصفة الموجودة باستخدام ID
             var recipe = _db.Recipes.FirstOrDefault(c => c.RecipeId == id);
+          var img =recipeDTO.RecipeImage;
+            if (img != null)
+            {
+
+
+                var uploadFolder = Path.Combine(Directory.GetCurrentDirectory(), "ImageRecipe");
+
+                // تحديد مسار الصورة
+                var imageFilePath = Path.Combine(uploadFolder, recipeDTO.RecipeImage.FileName);
+
+                // تحميل الصورة إذا تم تقديمها
+                if (recipeDTO.RecipeImage != null)
+                {
+                    using (var stream = new FileStream(imageFilePath, FileMode.Create))
+                    {
+                        recipeDTO.RecipeImage.CopyTo(stream); // حفظ الصورة بشكل متزامن
+                    }
+                }
+
+            }
+            
             if (recipe == null) return NotFound(); // إذا لم يتم العثور على الوصفة، نرجع NotFound
 
             // تحديث بيانات الوصفة

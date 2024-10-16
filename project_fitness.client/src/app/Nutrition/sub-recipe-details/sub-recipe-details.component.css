@@ -60,7 +60,11 @@ h1, .h1 {
   font-weight: 500;
   line-height: 1.2;
 }
-
+img.postcard__img {
+  position: relative;
+  top: 66px;
+  left: 12px;
+}
 .small {
   font-size: 80%;
 }
@@ -236,7 +240,7 @@ h1, .h1 {
 
  
 
- 
+
  
 }
 
