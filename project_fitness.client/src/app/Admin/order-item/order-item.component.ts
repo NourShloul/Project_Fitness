@@ -14,7 +14,6 @@ export class OrderItemComponent {
   productId:any
   constructor(private fb: FormBuilder, private orderService: OrderService, private router: Router, private route: ActivatedRoute,) { }
   ngOnInit() {
-    debugger
     this.productId = +this.route.snapshot.paramMap.get('id')!;
     this.getoderByID(this.productId);
 }
