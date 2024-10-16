@@ -120,11 +120,11 @@
                     <thead>
                       <tr>
                         <th>Gym Name</th>
-                       
+
                         <th>Start Date</th>
                         <th>End Date</th>
                         <th>Price</th>
-                     
+
                       </tr>
                     </thead>
                     <tbody>
@@ -211,7 +211,7 @@
 
 
 <!--         model                           -->
-<!-- Modal -->
+
 <div class="modal fade" id="orderDetailsModal" tabindex="-1" aria-labelledby="orderDetailsLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
@@ -220,7 +220,12 @@
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-       
+        <!--<p *ngIf="selectedOrder">
+          <strong>Order Date:</strong> {{ selectedOrder.date }}<br>
+          <strong>Status:</strong> {{ selectedOrder.status }}<br>
+          <strong>Total:</strong> {{ selectedOrder.total }}<br>
+          <strong>Items:</strong>
+        </p>-->
         <ul *ngIf="selectedOrder?.items">
           <li *ngFor="let item of selectedOrder.items">
             {{ item.productname }} - Quantity: {{ item.quantity }} - Price: {{ item.price }}
@@ -234,5 +239,4 @@
   </div>
 </div>
 
-<!-- تعديل زر "Details" في الجدول لفتح الموديل -->
 
