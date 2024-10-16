@@ -1,6 +1,10 @@
 <div class="container mt-5">
   <h2>Product List</h2>
 
+  <div class="text-center">
+    <button class="btn btn-success" style="background-color: #e955fc;" routerLink="/Dashboard/addproduct">Add New Product</button>
+  </div>
+
   <table class="table table-hover">
     <thead>
       <tr>
@@ -18,8 +22,8 @@
         <td>{{ product.price | currency }}</td>
         <td>{{ product.stockQuantity }}</td>
         <td>
-         
-          <button class="btn btn-primary"  (click)="editProduct(product.id)" [disabled]="!product.id">Edit</button>
+
+          <button class="btn btn-secondary me-2" (click)="editProduct(product.id)" [disabled]="!product.id">Edit</button>
           <button class="btn btn-danger" (click)="deleteProduct(product.id)" [disabled]="!product.id">Delete</button>
         </td>
 
@@ -27,7 +31,4 @@
     </tbody>
   </table>
 
-  <div class="text-center">
-    <button class="btn btn-success" style="background-color: #e955fc;" routerLink="/Dashboard/addproduct">Add New Product</button>
-  </div>
 </div>
