@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { URLService } from '../../url/url.service';
 import { ActivatedRoute } from '@angular/router';
 
@@ -7,7 +7,7 @@ import { ActivatedRoute } from '@angular/router';
   templateUrl: './update-recipe-admin.component.html',
   styleUrl: './update-recipe-admin.component.css'
 })
-export class UpdateRecipeAdminComponent {
+export class UpdateRecipeAdminComponent implements OnInit {
   ngOnInit() {
     this.getRecipeDetails(this.param); 
     
