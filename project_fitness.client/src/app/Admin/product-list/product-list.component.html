@@ -25,7 +25,7 @@
         <td>{{ product.stockQuantity }}</td>
         <td>
 
-          <button class="btn btn-secondary me-2"  routerLink="/Dashboard/update-product/{{product.id}}">Edit</button>
+          <button class="btn btn-secondary me-2"  routerLink="/Dashboard/updateproduct/{{product.id}}">Edit</button>
           <button class="btn btn-danger" (click)="deleteProduct(product.id)" [disabled]="!product.id">Delete</button>
         </td>
 

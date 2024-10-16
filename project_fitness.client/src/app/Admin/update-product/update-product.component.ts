@@ -64,7 +64,7 @@ export class UpdateProductComponent implements OnInit {
 
   // Submit the form to update the product
   onSubmit(): void {
-    if (this.productForm.valid) {
+    
       const formData = new FormData();
       formData.append('productName', this.productForm.get('productName')?.value);
       formData.append('price', this.productForm.get('price')?.value);
@@ -78,12 +78,12 @@ export class UpdateProductComponent implements OnInit {
 
       this.productService.updateProduct(this.productId, formData).subscribe(
         () => {
-          this.router.navigate(['/products']); // Redirect to products list after successful update
+          this.router.navigate(['/Dashboard/products']); // Redirect to products list after successful update
         },
         (error) => {
           console.error('Error updating product:', error);
         }
       );
     }
-  }
+  
 }
