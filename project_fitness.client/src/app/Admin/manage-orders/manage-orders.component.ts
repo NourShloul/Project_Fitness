@@ -6,7 +6,6 @@ import { OrderService } from './order-service.service'; // Assuming you have a s
 interface Order {
   id: number; // Ensure that id is always a number
   customerName: string;
-  product: string;
   quantity: number;
   totalAmount: number;
   status: string;

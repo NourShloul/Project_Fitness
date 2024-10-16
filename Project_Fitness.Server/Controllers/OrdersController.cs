@@ -22,9 +22,19 @@ namespace Project_Fitness.Server.Controllers
 
         // GET: api/Orders
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Order>>> GetOrders()
+        public async Task<ActionResult> GetOrders()
         {
-            return await _context.Orders.ToListAsync();
+            var orders = await _context.Orders
+                
+                .Select(x => new {
+                    id=x.Id,
+                    customerName = x.User.UserName,
+                    totalAmount = x.TotalAmount,
+                    status= x.Status,
+                    quantity = x.OrderItems.Count()
+                }).ToListAsync();
+
+            return Ok(orders);
         }
 
         // GET: api/Orders/5
