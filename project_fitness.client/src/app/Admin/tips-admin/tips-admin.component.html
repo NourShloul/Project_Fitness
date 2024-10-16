@@ -5,12 +5,10 @@
   <input type="text" class="form-control" placeholder="Search by Tips Name" [(ngModel)]="searchTerm" (ngModelChange)="filterTips()">
 </div>
 
-<!-- زر Add Tips -->
 <div>
   <button class="btn btn-success" style="width: 150px;" [routerLink]="['/Dashboard/AddTips']">Add Tips</button>
 </div>
 
-<!-- الجدول -->
 <table class="table table-striped table-hover text-center" style="margin-top: 20px;">
   <thead class="thead-dark">
     <tr>
@@ -22,7 +20,6 @@
   </thead>
   <tbody>
     <tr *ngFor="let item of filteredTipsArray" style="vertical-align: middle;">
-      <!-- تعديل لاستخدام filteredTipsArray -->
       <td>
         <a class="postcard__img_link">
           <img class="postcard__img"
@@ -34,9 +31,7 @@
       <td>{{item.tipsName}}</td>
       <td>{{item.tipsDescription}}</td>
       <td>
-        <!-- زر Edit -->
         <button class="btn btn-secondary me-2" style="width: 80px;" [routerLink]="['/Dashboard/UpdateTipsAdmin', item.tipsId]">Edit</button>
-        <!-- زر Delete -->
         <button class="btn btn-danger" style="width: 80px;" (click)="delettips(item.tipsId)">Delete</button>
       </td>
     </tr>

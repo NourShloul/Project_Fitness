@@ -14,7 +14,7 @@ export class AddSubrecipeAdminComponent implements OnInit {
   constructor(private _src: URLService) { }
 
   ngOnInit() {
-    this.GetAllRecipe(); // استدعاء الدالة عند التحميل
+    this.GetAllRecipe(); 
   }
 
   changeImage(event: any) {
