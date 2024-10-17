@@ -1,53 +1,56 @@
-<form #updatesubRecipetype="ngForm" (ngSubmit)="UpdateSubRecipeAdmin(updatesubRecipetype.value)" style="max-width: 600px; margin: 0 auto; padding: 20px; border: 1px solid #ccc; border-radius: 10px; background-color: #f9f9f9;">
-  <!-- CSRF Token (if needed) -->
+<form #updatesubRecipetype="ngForm" (ngSubmit)="UpdateSubRecipeAdmin(updatesubRecipetype.value)" style="max-width: 80%; margin: 0 auto; padding: 20px; border: 1px solid #ccc; border-radius: 10px; background-color: gainsboro;">
   <input type="hidden" name="__RequestVerificationToken" value="TOKEN_VALUE">
 
-  <h2 style="text-align: center; margin-bottom: 20px;">Update  Sub Recipes</h2>
+  <h2 style="text-align: center; margin-bottom: 20px;">Update Sub Recipes</h2>
 
   <div class="form-container">
-    <!-- Title Field -->
-    <div class="form-group" style="margin-bottom: 15px;">
-      <label for="recipeId" class="form-label" style="display: block; font-weight: bold; margin-bottom: 5px;">Recipe</label>
-      <select id="recipeId" name="recipeId" class="form-control" required="required" style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 5px;" ngModel>
-        <option value="" disabled selected>Select a recipe</option>
-        <option *ngFor="let recipe of RecipeArray" [value]="recipe.recipeId">{{ recipe.recipeName }}</option>
-      </select>
-      <span class="text-danger" id="recipeId-error" style="color: red; font-size: 0.875em;"></span>
-    </div>
-    <div class="form-group" style="margin-bottom: 15px;">
-      <label for="Title" class="form-label" style="display: block; font-weight: bold; margin-bottom: 5px;">subRecipeName</label>
-      <input type="text" id="Title" name="subRecipeName" class="form-control" required="required" style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 5px;" [(ngModel)]="DetailsArray.subRecipeName">
-      <span class="text-danger" id="Title-error" style="color: red; font-size: 0.875em;"></span>
+    <div class="row">
+      <div class="col-md-6 mb-3">
+        <label for="recipeId" class="form-label" style="font-weight: bold;">Recipe</label>
+        <select id="recipeId" name="recipeId" class="form-control" required="required" ngModel>
+          <option value="" disabled selected>Select a recipe</option>
+          <option *ngFor="let recipe of RecipeArray" [value]="recipe.recipeId">{{ recipe.recipeName }}</option>
+        </select>
+        <span class="text-danger" id="recipeId-error" style="color: red; font-size: 0.875em;"></span>
+      </div>
+
+      <div class="col-md-6 mb-3">
+        <label for="subRecipeName" class="form-label" style="font-weight: bold;">Sub Recipe Name</label>
+        <input type="text" id="subRecipeName" name="subRecipeName" class="form-control" required="required" [(ngModel)]="DetailsArray.subRecipeName">
+        <span class="text-danger" id="subRecipeName-error" style="color: red; font-size: 0.875em;"></span>
+      </div>
     </div>
 
-    <div class="form-group" style="margin-bottom: 15px;">
-      <label for="Title" class="form-label" style="display: block; font-weight: bold; margin-bottom: 5px;">preparationSteps</label>
-      <input type="text" id="Title" name="preparationSteps" class="form-control" required="required" style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 5px;" [(ngModel)]="DetailsArray.preparationSteps">
-      <span class="text-danger" id="Title-error" style="color: red; font-size: 0.875em;"></span>
-    </div>
-    <div class="form-group" style="margin-bottom: 15px;">
-      <label for="Title" class="form-label" style="display: block; font-weight: bold; margin-bottom: 5px;">preparationTime</label>
-      <input type="text" id="Title" name="preparationTime" class="form-control" required="required" style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 5px;" [(ngModel)]="DetailsArray.preparationTime">
-      <span class="text-danger" id="Title-error" style="color: red; font-size: 0.875em;"></span>
-    </div>
-    <div class="form-group" style="margin-bottom: 15px;">
-      <label for="Title" class="form-label" style="display: block; font-weight: bold; margin-bottom: 5px;">benefits</label>
-      <input type="text" id="Title" name="benefits" class="form-control" required="required" style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 5px;" [(ngModel)]="DetailsArray.benefits">
-      <span class="text-danger" id="Title-error" style="color: red; font-size: 0.875em;"></span>
+    <div class="row">
+      <div class="col-md-6 mb-3">
+        <label for="preparationSteps" class="form-label" style="font-weight: bold;">Preparation Steps</label>
+        <input type="text" id="preparationSteps" name="preparationSteps" class="form-control" required="required" [(ngModel)]="DetailsArray.preparationSteps">
+        <span class="text-danger" id="preparationSteps-error" style="color: red; font-size: 0.875em;"></span>
+      </div>
+
+      <div class="col-md-6 mb-3">
+        <label for="preparationTime" class="form-label" style="font-weight: bold;">Preparation Time</label>
+        <input type="text" id="preparationTime" name="preparationTime" class="form-control" required="required" [(ngModel)]="DetailsArray.preparationTime">
+        <span class="text-danger" id="preparationTime-error" style="color: red; font-size: 0.875em;"></span>
+      </div>
     </div>
 
+    <div class="row">
+      <div class="col-md-6 mb-3">
+        <label for="benefits" class="form-label" style="font-weight: bold;">Benefits</label>
+        <input type="text" id="benefits" name="benefits" class="form-control" required="required" [(ngModel)]="DetailsArray.benefits">
+        <span class="text-danger" id="benefits-error" style="color: red; font-size: 0.875em;"></span>
+      </div>
 
-
-    <!-- Main Image Field -->
-    <div class="form-group" style="margin-bottom: 15px;">
-      <label for="Image" class="form-label" style="display: block; font-weight: bold; margin-bottom: 5px;">Main Image</label>
-      <input type="file" id="Image" name="subRecipeImage" class="form-control" required="required" style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 5px;" [(ngModel)]="DetailsArray.subRecipeImage" (change)="changeimageevevnt($event)">
-      <span class="text-danger" id="Image-error" style="color: red; font-size: 0.875em;"></span>
+      <div class="col-md-6 mb-3">
+        <label for="subRecipeImage" class="form-label" style="font-weight: bold;">Main Image</label>
+        <input type="file" id="subRecipeImage" name="subRecipeImage" class="form-control" required="required" [(ngModel)]="DetailsArray.subRecipeImage" (change)="changeimageevevnt($event)">
+        <span class="text-danger" id="subRecipeImage-error" style="color: red; font-size: 0.875em;"></span>
+      </div>
     </div>
 
-    <!-- Submit Button -->
-    <div class="form-group" style="text-align: center;">
-      <button type="submit" class="btn btn-primary" style="padding: 10px 20px; background-color: #007bff; border: none; border-radius: 5px; color: white; font-size: 1em; cursor: pointer;">Submit</button>
+    <div class="text-center">
+      <button type="submit" class="btn w-25" style="background-color: #e955fc;">Submit</button>
     </div>
   </div>
 </form>

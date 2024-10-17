@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { URLService } from '../../url/url.service';
+import Swal from 'sweetalert2'; // Import SweetAlert2
 
 @Component({
   selector: 'app-add-subrecipe-admin',
@@ -14,7 +15,7 @@ export class AddSubrecipeAdminComponent implements OnInit {
   constructor(private _src: URLService) { }
 
   ngOnInit() {
-    this.GetAllRecipe(); // استدعاء الدالة عند التحميل
+    this.GetAllRecipe();
   }
 
   changeImage(event: any) {
@@ -28,7 +29,12 @@ export class AddSubrecipeAdminComponent implements OnInit {
     }
     form.append("subRecipeImage", this.image);
     this._src.AddSubRecipe(form).subscribe(() => {
-      alert("added");
+      Swal.fire({
+        icon: 'success',
+        title: 'SubRecipe Added!',
+        text: 'SubRecipe added successfully.',
+        confirmButtonText: 'OK'
+      });
     });
   }
 
@@ -39,4 +45,3 @@ export class AddSubrecipeAdminComponent implements OnInit {
     });
   }
 }
-

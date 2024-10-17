@@ -26,7 +26,7 @@ export class AddTipsAdminComponent {
     }
     form.append("tipsImage", this.image)
     this._src.AddTips(form).subscribe(() => {
-      alert("added")
+      alert("Tips added successfully")
     })
   }
 }

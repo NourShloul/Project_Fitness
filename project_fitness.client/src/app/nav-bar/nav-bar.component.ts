@@ -33,6 +33,8 @@ export class NavBarComponent {
     this.logedINuser = "";
     this.userId = null;
     localStorage.removeItem("UserId");
+    localStorage.removeItem("Email")
+    window.location.href = "https://127.0.0.1:4200/"
     this.router.navigate(['/'])
   }
 

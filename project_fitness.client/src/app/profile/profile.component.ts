@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { URLService } from '../url/url.service';
 import { Router } from '@angular/router';
 
+declare var window: any; // للتعامل مع الجافا سكريبت لفتح الموديل
+
 @Component({
   selector: 'app-profile',
   templateUrl: './profile.component.html',
@@ -9,8 +11,11 @@ import { Router } from '@angular/router';
 })
 export class ProfileComponent implements OnInit {
   UserArray: any;
-  constructor(private userService: URLService, private router: Router) { }
   userId: any;
+  testimonial: string = '';
+  selectedOrder: any = null; // متغير لتخزين الطلب المحدد لعرض تفاصيله
+
+  constructor(private userService: URLService, private router: Router) { }
 
   ngOnInit(): void {
     this.userService.UserIdmm.subscribe(user => {
@@ -19,33 +24,37 @@ export class ProfileComponent implements OnInit {
     });
     this.loadUserData();
   }
-
   loadUserData() {
-    
     this.userService.GetUserID(this.userId).subscribe(data => {
-      debugger
       this.UserArray = data;
-      console.log(this.UserArray)
+      console.log(this.UserArray);
       this.UserArray.orderItems = this.flattenOrderItems(data.orders);
     });
   }
-  //redirectToEdit() {
-  //  this.router.navigate([`/EditPersonalInfo/${this.userId}`]);  
-  //}
+
   private flattenOrderItems(orders: any[]): any[] {
-    
     return orders.reduce((acc, order) => {
       return acc.concat(order.orderItems);
     }, []);
   }
 
-  testimonial: string = '';
   submitTestimonial() {
-    if (this.testimonial) {
+    if (this.testimonial.trim()) {
+      this.userService.addTestimonial(this.userId, this.testimonial).subscribe();
       console.log('Testimonial submitted:', this.testimonial);
       this.testimonial = '';
     } else {
       alert('Please enter a testimonial');
+    }
+  }
+
+  // دالة لفتح الموديل وعرض تفاصيل الطلب
+  showOrderDetails(order: any) {
+    this.selectedOrder = order;
+    const modalElement = document.getElementById('orderDetailsModal');
+    if (modalElement) {
+      const modal = new window.bootstrap.Modal(modalElement);
+      modal.show();
     }
   }
 }

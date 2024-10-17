@@ -1,4 +1,6 @@
-
+<hr />
+<h2> Users</h2>
+<hr />
 <div class="form-group mb-3">
   <input type="text" class="form-control" placeholder="Search by name" [(ngModel)]="searchTerm">
 </div>
@@ -11,7 +13,7 @@
       <th scope="col">Phone number</th>
       <th scope="col">Address</th>
       <th scope="col">Join Date</th>
-      <th scope="col">Actions</th>
+
     </tr>
   </thead>
   <tbody>
@@ -24,10 +26,7 @@
       <td>{{item.userPhone}}</td>
       <td>{{item.userAddress}}</td>
       <td>{{item.createdAt | date:'mediumDate'}}</td>
-      <td>
-        <!--<button class="btn btn-danger btn-sm" (click)="deleteUser(item.userId)">Delete</button>-->
-        <!--<button class="btn btn-primary btn-sm" (click)="editUser(item.userId)">Edit</button>-->
-      </td>
+      
     </tr>
   </tbody>
 </table>

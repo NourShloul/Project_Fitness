@@ -30,7 +30,7 @@ export class ProductService {
 
   // Update an existing product by ID with FormData
   updateProduct(id: number, formData: FormData): Observable<any> {
-    return this.http.put(`${this.baseUrl}/Products/${id}`, formData)
+    return this.http.put(`${this.baseUrl}/Products/updateproduct/${id}`, formData)
       .pipe(catchError(this.handleError));
   }
 

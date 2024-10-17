@@ -1,12 +1,12 @@
-<!-- إضافة حقل البحث -->
+<hr />
+<h2>SubRecipes</h2>
+<hr />
 <div class="form-group mb-3">
   <input type="text" class="form-control" placeholder="Search by SubRecipe Name" [(ngModel)]="searchTerm" (ngModelChange)="filterRecipes()">
 </div>
 
-<!-- زر Add Recipe Type -->
 <button class="btn btn-success mb-0" [routerLink]="['/Dashboard/AddSubRecipeAdmin']">Add SubRecipe </button>
 
-<!-- الجدول -->
 <table class="table table-striped table-hover text-center" style="margin-top: 20px;">
   <thead class="thead-dark">
     <tr>
@@ -33,9 +33,7 @@
       <td>{{item.preparationTime}}</td>
       <td>{{item.benefits}}</td>
       <td>
-        <!-- زر Edit -->
         <button class="btn btn-secondary me-2" style="width: 80px;" [routerLink]="['/Dashboard/UpdateSubRecipeAdmin', item.subRecipeId]">Edit</button>
-        <!-- زر Delete -->
         <button class="btn btn-danger" style="width: 80px;" (click)="deletSSubrecipe(item.subRecipeId)">Delete</button>
       </td>
     </tr>

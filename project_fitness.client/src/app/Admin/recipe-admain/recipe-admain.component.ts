@@ -8,10 +8,9 @@ import { URLService } from '../../url/url.service';
 })
 export class RecipeAdmainComponent {
 
-  searchTerm: string = '';  // متغير للبحث
-  RecipeArray: any[] = [];  // جميع الوصفات الأصلية
-  filteredRecipeArray: any[] = [];  // الوصفات المفلترة
-
+  searchTerm: string = ''; 
+  RecipeArray: any[] = [];  
+  filteredRecipeArray: any[] = [];  
   constructor(private _ser: URLService) { }
 
   ngOnInit() {
@@ -21,29 +20,27 @@ export class RecipeAdmainComponent {
   GetAllRecipe() {
     this._ser.GetTypeOfRecipe().subscribe((data) => {
       this.RecipeArray = data;
-      this.filteredRecipeArray = this.RecipeArray;  // عرض جميع البيانات عند التحميل
-      console.log("All Recipes: ", this.RecipeArray);  // عرض البيانات في وحدة التحكم
+      this.filteredRecipeArray = this.RecipeArray;  
+      console.log("All Recipes: ", this.RecipeArray);  
     });
   }
 
   filterRecipes() {
-    console.log("Search Term: ", this.searchTerm);  // عرض مصطلح البحث
+    console.log("Search Term: ", this.searchTerm); 
     if (!this.searchTerm) {
-      // إذا لم يكن هناك نص في البحث، عرض جميع الوصفات
       this.filteredRecipeArray = this.RecipeArray;
     } else {
-      // تصفية الوصفات بناءً على الاسم
       this.filteredRecipeArray = this.RecipeArray.filter(recipe =>
-        recipe.recipeName.toLowerCase().includes(this.searchTerm.toLowerCase())  // استخدم recipeName بدلاً من name
+        recipe.recipeName.toLowerCase().includes(this.searchTerm.toLowerCase())  
       );
-      console.log("Filtered Recipes: ", this.filteredRecipeArray);  // عرض البيانات المفلترة في وحدة التحكم
+      console.log("Filtered Recipes: ", this.filteredRecipeArray);  
     }
   }
 
   deletrecipe(id: any) {
     this._ser.deletrecipe(id).subscribe(() => {
       alert("Recipe deleted successfully");
-      this.GetAllRecipe();  // تحديث القائمة بعد الحذف
+      this.GetAllRecipe();  
     });
   }
 }

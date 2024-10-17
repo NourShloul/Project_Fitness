@@ -63,6 +63,8 @@ import { AdminCategoryComponent } from './Admin/admin-category/admin-category.co
 import { ManageOrdersComponent } from './Admin/manage-orders/manage-orders.component';
 import { AllTestimonialComponent } from './Admin/all-testimonial/all-testimonial.component';
 import { TopPriceComponent } from './AOQ/top-price/top-price.component';
+import { EditCategoryComponent } from './Admin/edit-category/edit-category.component';
+import { OrderItemComponent } from './Admin/order-item/order-item.component';
 
 
 @NgModule({
@@ -124,6 +126,8 @@ import { TopPriceComponent } from './AOQ/top-price/top-price.component';
       ManageOrdersComponent,
       AllTestimonialComponent,
       TopPriceComponent,
+      EditCategoryComponent,
+      OrderItemComponent,
 
   ],
   imports: [
@@ -165,7 +169,7 @@ import { TopPriceComponent } from './AOQ/top-price/top-price.component';
           { path: "AllGymAdmin", component: AllGymsComponent },
           { path: "editgym/:id", component: UpdategymComponent },
           { path: "addproduct", component: AddProductComponent },
-          { path: 'update-product/:id', component: UpdateProductComponent }, 
+          { path: 'updateproduct/:id', component: UpdateProductComponent }, 
 
           { path: "admin-category", component: AdminCategoryComponent},
           { path: "products", component: ProductListComponent },
@@ -188,6 +192,8 @@ import { TopPriceComponent } from './AOQ/top-price/top-price.component';
           { path: 'manage-orders', component: ManageOrdersComponent },
           { path: 'AllTestimonial', component: AllTestimonialComponent },
           { path: 'TopPrice', component: TopPriceComponent },
+          { path: "EditCategory/:id", component: EditCategoryComponent },
+          {path:"orderitem/:id",component:OrderItemComponent}
         ]
       },
       { path: "profile", component: ProfileComponent },
