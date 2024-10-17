@@ -27,22 +27,20 @@ namespace Project_Fitness.Server.Controllers
         [HttpGet("GetByDesc")]
         public IActionResult GetContact() 
         {
-            // جلب البيانات وترتيبها
             var contacts = _db.ContactUs
                 .OrderByDescending(c => c.CreatedAt)
                 .ToList();
 
-            // تعديل تنسيق التاريخ مع التحقق من null
             var formattedContacts = contacts.Select(c => new
             {
                 c.Message,
                 c.PhoneNumber,
-                c.Id,                // عرض الخصائص الأخرى كما هي
-                c.Name,              // افتراضًا أن لديك حقل الاسم
-                c.Email,             // افتراضًا أن لديك حقل البريد الإلكتروني
+                c.Id,                
+                c.Name,              
+                c.Email,             
                 CreatedAt = c.CreatedAt.HasValue
-                    ? c.CreatedAt.Value.ToString("yyyy-MM-dd HH:mm")  // تنسيق التاريخ إذا كانت القيمة موجودة
-                    : "N/A"  // قيمة افتراضية إذا كانت CreatedAt null
+                    ? c.CreatedAt.Value.ToString("yyyy-MM-dd HH:mm")  
+                    : "N/A"  
             }).ToList();
 
             return Ok(formattedContacts);
