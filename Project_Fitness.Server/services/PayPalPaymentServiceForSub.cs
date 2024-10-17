@@ -66,7 +66,7 @@ namespace Project_Fitness.Server.Services
             }
             catch (Exception ex)
             {
-                // Log any other general exceptions
+                
                 Console.WriteLine($"Error creating PayPal payment: {ex.Message}");
                 throw;
             }
