@@ -132,6 +132,15 @@ namespace Project_Fitness.Server.Controllers
         public IActionResult deleteproduct(int id)
         {
             var deleteproductd = _context.Products.FirstOrDefault(x => x.Id == id);
+
+            // Check if the product is connected to any CartItem
+            bool hasCartItems = _context.CartItems.Any(ci => ci.ProductId == id);
+
+            if (hasCartItems)
+            {
+                return BadRequest("Cannot delete product because it is associated with a cart item.");
+            }
+
             _context.Products.Remove(deleteproductd);
             _context.SaveChanges();
             return Ok();
