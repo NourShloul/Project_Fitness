@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { URLService } from '../../url/url.service';
+import Swal from 'sweetalert2'; // Import SweetAlert2
 
 @Component({
   selector: 'app-sub-recipes-admin',
@@ -8,9 +9,9 @@ import { URLService } from '../../url/url.service';
 })
 export class SubRecipesAdminComponent {
 
-  searchTerm: string = ''; 
-  RecipeArray: any[] = []; 
-  filteredRecipeArray: any[] = [];  
+  searchTerm: string = '';
+  RecipeArray: any[] = [];
+  filteredRecipeArray: any[] = [];
 
   constructor(private _ser: URLService) { }
 
@@ -21,7 +22,7 @@ export class SubRecipesAdminComponent {
   GetAllSubRecipe() {
     this._ser.getAllRecipes().subscribe((data) => {
       this.RecipeArray = data;
-      this.filteredRecipeArray = this.RecipeArray;  
+      this.filteredRecipeArray = this.RecipeArray;
       console.log(this.RecipeArray);
     });
   }
@@ -38,8 +39,13 @@ export class SubRecipesAdminComponent {
 
   deletSSubrecipe(id: any) {
     this._ser.deletSubrecipe(id).subscribe(() => {
-      alert("SubRecipe deleted successfully");
-      this.GetAllSubRecipe();  
+      Swal.fire({
+        icon: 'success',
+        title: 'Deleted!',
+        text: 'SubRecipe deleted successfully.',
+        confirmButtonText: 'OK'
+      });
+      this.GetAllSubRecipe();
     });
   }
 }
